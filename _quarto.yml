@@ -39,6 +39,7 @@ book:
   page-footer: CC-BY (2024) Emily Nordmann
   chapters:
   - index.qmd
+  - 01-intro.qmd
   appendices:
   - webexercises.qmd
   - references.qmd
