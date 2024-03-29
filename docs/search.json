@@ -1,0 +1,56 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "AI TutoR",
+    "section": "",
+    "text": "Overview\nThis book aims to teach beginner coders how to use AI to support their learning journey. The philosophy of this book is firmly rooted in the cognitive science of learning and as such, retrieval practice, distributed practice, and elaboration will all play a key role.\nIt is perhaps easier to start by explaining what this book is not:\n\nThis book is not a stand-alone resource. It is intended to be used alongside other course materials. It has been written with the PsyTeachR courses in mind (in particular, Applied Data Skills), but hopefully can be used as a companion to any programming course.\nThis book will not encourage learners to take short-cuts. That students should be able to understanding the principles of their coding and be able to critically evaluate code, regardless of who or what wrote it, is non-negotiable.\nThis book will not teach you how to use platforms like Github Copilot and it is not aimed at proficient or advanced programmers.",
+    "crumbs": [
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "webexercises.html",
+    "href": "webexercises.html",
+    "title": "Appendix A — Webexercises",
+    "section": "",
+    "text": "A.1 Example Questions",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Webexercises</span>"
+    ]
+  },
+  {
+    "objectID": "webexercises.html#example-questions",
+    "href": "webexercises.html#example-questions",
+    "title": "Appendix A — Webexercises",
+    "section": "",
+    "text": "A.1.1 Fill-In-The-Blanks (fitb())\nCreate fill-in-the-blank questions using fitb(), providing the answer as the first argument.\n\n2 + 2 is \n\n\nYou can also create these questions dynamically, using variables from your R session.\n\nThe square root of 25 is: \n\n\nThe blanks are case-sensitive; if you don’t care about case, use the argument ignore_case = TRUE.\n\nWhat is the letter after D? \n\n\nIf you want to ignore differences in whitespace use, use the argument ignore_ws = TRUE (which is the default) and include spaces in your answer anywhere they could be acceptable.\n\nHow do you load the tidyverse package? \n\n\nYou can set more than one possible correct answer by setting the answers as a vector.\n\nType a vowel: \n\n\nYou can use regular expressions to test answers against more complex rules.\n\nType any 3 letters: \n\n\nA.1.2 Multiple Choice (mcq())\n\n“Never gonna give you up, never gonna: \nlet you go\nturn you down\nrun away\nlet you down”\n“I \nbless the rains\nguess it rains\nsense the rain down in Africa” -Toto\n\nA.1.3 True or False (torf())\n\nTrue or False? You can permute values in a vector using sample(). \nTRUE\nFALSE\n\n\nA.1.4 Longer MCQs (longmcq())\nWhen your answers are very long, sometimes a drop-down select box gets formatted oddly. You can use longmcq() to deal with this. Since the answers are long, It’s probably best to set up the options inside an R chunk with echo=FALSE.\nWhat is a p-value?\n\nthe probability that the null hypothesis is truethe probability of the observed, or more extreme, data, under the assumption that the null-hypothesis is truethe probability of making an error in your conclusion\n\nWhat is true about a 95% confidence interval of the mean?\n\nthere is a 95% probability that the true mean lies within this rangeif you repeated the process many times, 95% of intervals calculated in this way contain the true mean95% of the data fall within this range",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Webexercises</span>"
+    ]
+  },
+  {
+    "objectID": "webexercises.html#checked-sections",
+    "href": "webexercises.html#checked-sections",
+    "title": "Appendix A — Webexercises",
+    "section": "\nA.2 Checked sections",
+    "text": "A.2 Checked sections\nCreate sections with the class webex-check to add a button that hides feedback until it is pressed. Add the class webex-box to draw a box around the section (or use your own styles).\n\nI am going to learn a lot: \nTRUE\nFALSE\nWhat is a p-value?\n\nthe probability that the null hypothesis is truethe probability of the observed, or more extreme, data, under the assumption that the null-hypothesis is truethe probability of making an error in your conclusion",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Webexercises</span>"
+    ]
+  },
+  {
+    "objectID": "webexercises.html#hidden-solutions-and-hints",
+    "href": "webexercises.html#hidden-solutions-and-hints",
+    "title": "Appendix A — Webexercises",
+    "section": "\nA.3 Hidden solutions and hints",
+    "text": "A.3 Hidden solutions and hints\nYou can fence off a solution area that will be hidden behind a button using hide() before the solution and unhide() after, each as inline R code. Pass the text you want to appear on the button to the hide() function.\nIf the solution is a code chunk, instead of using hide() and unhide(), simply set the webex.hide chunk option to TRUE, or set it to the string you wish to display on the button.\nRecreate the scatterplot below, using the built-in cars dataset.\n\n\n\n\n\n\n\n\n\n\nI need a hint\n\nSee the documentation for plot() (?plot)\n\n\n\n\n\nClick here to see the solution\n\nplot(cars$speed, cars$dist)",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Webexercises</span>"
+    ]
+  }
+]

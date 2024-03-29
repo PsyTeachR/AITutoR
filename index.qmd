@@ -1,0 +1,20 @@
+# Overview {.unnumbered}
+
+This book aims to teach beginner coders how to use AI to support their learning journey. The philosophy of this book is firmly rooted in the cognitive science of learning and as such, retrieval practice, distributed practice, and elaboration will all play a key role.
+
+It is perhaps easier to start by explaining what this book is not:
+
+* This book is not a stand-alone resource. It is intended to be used alongside other course materials. It has been written with the PsyTeachR courses in mind (in particular, Applied Data Skills), but hopefully can be used as a companion to any programming course.
+* This book will not encourage learners to take short-cuts. That students should be able to understanding the principles of their coding and be able to critically evaluate code, regardless of who or what wrote it, is non-negotiable.
+* This book will not teach you how to use platforms like Github Copilot and it is not aimed at proficient or advanced programmers. 
+
+Instead, this book will aim to help beginner coders to use AI platforms as a personalised tutor. By the end of this book, learners should be able to:
+
+* Use AI to explain concepts and functions in a level of detail and technicality appropriate to the knowledge and skill of the learner
+* Use AI to generate practice questions and coding problems to test understanding
+* Use AI to debug errors in code
+* Use AI to suggest alternative approaches
+* Use AI to **responsibly** assist with writing code
+* Critically evaluate and appraise the output of AI
+
+Crucially, this book should be considered a **living document** and is likely to change over time. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! Please contact Emily.Nordmann@glasgow.ac.uk.
