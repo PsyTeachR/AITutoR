@@ -4,9 +4,9 @@ This book aims to teach beginner coders how to use AI to support their learning 
 
 It is perhaps easier to start by explaining what this book is not:
 
-* This book is not a stand-alone resource. It is intended to be used alongside other course materials. It has been written with the PsyTeachR courses in mind (in particular, Applied Data Skills), but hopefully can be used as a companion to any programming course.
-* This book will not encourage learners to take short-cuts. That students should be able to understanding the principles of their coding and be able to critically evaluate code, regardless of who or what wrote it, is non-negotiable.
-* This book will not teach you how to use platforms like Github Copilot and it is not aimed at proficient or advanced programmers. 
+* This book **is not a stand-alone resource**. It is intended to be used alongside other course materials. It has been written with the PsyTeachR courses in mind (in particular, Applied Data Skills), but hopefully can be used as a companion to any programming course.
+* This book **will not encourage learners to take short-cuts**. That students should be able to understanding the principles of their coding and be able to critically evaluate code, regardless of who or what wrote it, is non-negotiable.
+* This book will not teach you how to use platforms like Github Copilot and it **is not aimed at proficient or advanced programmers**. 
 
 Instead, this book will aim to help beginner coders to use AI platforms as a personalised tutor. By the end of this book, learners should be able to:
 
