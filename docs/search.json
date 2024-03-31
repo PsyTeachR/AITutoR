@@ -34,7 +34,7 @@
     "href": "01-intro.html#ai-platforms",
     "title": "\n1  Intro to using AI\n",
     "section": "\n1.2 AI platforms",
-    "text": "1.2 AI platforms\n\n1.2.1 ChatGPT\nYou can sign-up for ChatGPT at https://chat.openai.com/. The free version of ChatGPT uses GPT3.5 whilst you have to pay for a subscription to get access to GPT4.0.\nThe free version is very fast and for beginner level coding does perform quite well. I’ve also found that ChatGPT does generally seem to understand the intent of what I am asking. ChatGPT also makes it easy to save your chat history so that you can continue working in previous chats at a later date. A useful feature is the “regenerate” function whereby if you’re not completely happy with the response, you can quickly ask it to generate another attempt and compare them. ChatGPT also has a mobile app. ChatGPT allows you to share links to saved chats.\nThe disadvantages of ChatGPT are that it has limited internet connectivity and the information in its database will be restricted. At the time of writing this book, ChatGPT’s training data extends until January 2022, so it can’t tell you about anything that happened after that point (regardless of whether that’s world event or a new R function). Whilst it depends on which version you’re using, it rarely gives you links to sources for where it has found the information.\n\n\n\n\nusing ChatGPT\n\n\n\n\n1.2.2 Copilot\nMicrosoft Copilot can be accessed at https://copilot.microsoft.com/ and you can sign-in with your Microsoft Account. If you are a University of Glasgow student (and also at many other universities), you can access Copilot through your university account and your Office365 subscription. If you do so, you’ll be able to access the Enterprise version of Copilot. The advantage of using your Enterprise account is that the data is processed more securely and what you input won’t be used to train the model. The disadvantage - and it’s such a big disadvantage that I don’t use it much for this reason - is that it doesn’t save your chat history so you start each time afresh. If you use a personal account, it will save your chat history, but also use your data to train the model.\nHowever, where Copilot shines is that it has access to the internet and will give you links to where it got its information so it’s easier to verify than ChatGPT. Additionally, it’s not clear but if you select the conversation style to be “Creative”, it will use GPT4.0 (which you have to pay for if you use ChatGPT).\nI have found that Copilot more frequently doesn’t understand the intent of what I am asking and with the same prompt as ChatGPT will give me a useless answer, but let’s see how I feel about that by the end of writing this book.\nThere is a Copilot mobile app.\n\n\n\n\nusing ChatGPT\n\n\n\n\n1.2.3 Gemini\nYou can access Gemini at https://gemini.google.com/ and sign-in with a regular Google account. Gemini was previously known as Bard.\nGemini also makes it easy to save and share your chat history and you can export it easily to Google Docs. Gemini’s strength lies in its connectivity to the internet. Like Copilot, it will provide links as part of its response (although sometimes they don’t always work) and you can also ask it to try and verify its response through using a regular Google search.\nAdditionally, Gemini has a “modify response” option where you can quickly ask it to make the response shorter, longer, simpler, more causal, or more professional.\nAnother advantage is that it uses a different model to ChatGPT so if you’re going to combine different AIs, using Gemini may give a different response.\nThere is a Gemini mobile app, but it isn’t currently available in the UK.\n\n\n\n\nusing ChatGPT",
+    "text": "1.2 AI platforms\n\n1.2.1 ChatGPT\nYou can sign-up for ChatGPT at https://chat.openai.com/. The free version of ChatGPT uses GPT3.5 whilst you have to pay for a subscription to get access to GPT4.0.\nThe free version is very fast and for beginner level coding does perform quite well. I’ve also found that ChatGPT is good at understanding the intent of what I want. ChatGPT also makes it easy to save your chat history so that you can continue working in previous chats at a later date. A useful feature is the “regenerate” function whereby if you’re not completely happy with the response, you can quickly ask it to generate another attempt and compare them. ChatGPT also has a mobile app and allows you to share links to saved chats.\nThe disadvantages of ChatGPT are that it has limited internet connectivity and the information in its database will be restricted. At the time of writing this book, ChatGPT’s training data extends until January 2022, so it can’t tell you about anything that happened after that point (regardless of whether that’s world event or a new R function). Whilst it depends on which version you’re using, it rarely gives you links to sources for where it has found the information.\n\n\n\n\nusing ChatGPT\n\n\n\n\n1.2.2 Copilot\nMicrosoft Copilot can be accessed at https://copilot.microsoft.com/ and you can sign-in with your Microsoft Account. If you are a University of Glasgow student (and also at many other universities), you can access Copilot through your university account and your Office365 subscription. If you do so, you’ll be able to access the Enterprise version of Copilot. The advantage of using your Enterprise account is that the data is processed more securely and what you input won’t be used to train the model. The price you pay for this security - and it’s such a big price that I don’t use it much for this reason - is that it doesn’t save your chat history so you start each time afresh. If you use a personal account, it will save your chat history, but also use your data to train the model.\nHowever, where Copilot shines is that it has access to the internet and will give you links to where it got its information so it’s easier to verify than ChatGPT. Additionally, they don’t make this clear but if you select the conversation style to be “Creative”, it will use GPT4.0 (which you have to pay for if you use ChatGPT).\nI have found that Copilot more frequently doesn’t understand the intent of what I am asking and with the same prompt as ChatGPT will give me a useless answer, but let’s see how I feel about that by the end of writing this book.\nMy general approach is that if I want to be able to return to my conversation, I use ChatGPT or Gemini. If I want links to sources for a throwaway query, I use Copilot.\nThere is a Copilot mobile app.\n\n\n\n\nusing ChatGPT\n\n\n\n\n1.2.3 Gemini\nYou can access Gemini at https://gemini.google.com/ and sign-in with a regular Google account. Gemini was previously known as Bard.\nGemini also makes it easy to save and share your chat history and you can export it easily to Google Docs. Gemini’s strength lies in its connectivity to the internet. Like Copilot, it will provide links as part of its response (although sometimes they don’t always work) and you can also ask it to try and verify its response through using a regular Google search.\nAdditionally, Gemini has a “modify response” option where you can quickly ask it to make the response shorter, longer, simpler, more causal, or more professional.\nAnother advantage is that it uses a different model to ChatGPT so if you’re going to combine different AIs, using Gemini may give a different response.\nThere is a Gemini mobile app, but it isn’t currently available in the UK.\nBefore writing this book, I had used Gemini less than the others. Let’s see where I end up at the end.\n\n\n\n\nusing ChatGPT",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Intro to using AI</span>"
     ]
@@ -54,7 +54,7 @@
     "href": "01-intro.html#activity-2",
     "title": "\n1  Intro to using AI\n",
     "section": "\n1.4 Activity 2",
-    "text": "1.4 Activity 2\nThe key difference between using an AI and a regular search engine is that you can shape the output of the AI by “prompt engineering”, which is the phrase used to describe the art of asking the question in a way that gives you the answer you want. It’s easier to show than tell.\nThink of a book, TV show, film, or videogame that you know really well (I chose Final Fantasy VII (the original PlayStation version). Ask the AI to give you three different summaries and try out the functionality of each platform (e.g., for ChatGPT ask it to regenerate the response, for Gemini, use modify response or Double-check response with Google):\n\nFirst, ask it for a summary without any additional context e.g., “Give me a summary of Final Fantasy VII (original playstation version)”\nThen, ask it for a summary for someone who doesn’t know it, e.g., “Give me a summary of Final Fantasy VII (original playstation version) for someone who knows nothing about videogames”\nFinally, ask it for an expert summary, e.g., “Give me a summary of Final Fantasy VII (original playstation version) for an expert gamer who has played it many times”\n\nReflect on the differences between the summaries - the technicality of the language, the accuracy and nuance of the information, what it chose to focus on, and what it chose to omit. The reason I asked you to create a summary of something you already know well is that you’re aware of where the gaps are. Remember this when you’re asking an AI something you don’t know as well. Just because you can’t see the gaps and the inaccuracies, doesn’t mean they’re not there.",
+    "text": "1.4 Activity 2\nThe key difference between using an AI and a regular search engine is that you can shape the output of the AI by “prompt engineering”, which is the phrase used to describe the art of asking the question in a way that gives you the answer you want. It’s easier to show than tell.\nThink of a book, TV show, film, or videogame that you know really well (I chose Final Fantasy VII (the original PlayStation version). Ask the AI to give you three different summaries and try out the functionality of each platform. For example, for ChatGPT ask it to regenerate the response, for Gemini, use modify response or Double-check response with Google.\n\nFirst, ask it for a summary without any additional context e.g., “Give me a summary of Final Fantasy VII (original playstation version)”\nThen, ask it for a summary but give it a steer on the intended audience, e.g., “Give me a summary of Final Fantasy VII (original playstation version) for someone who knows nothing about videogames” or “Give me a summary of Final Fantasy VII (original playstation version) for an expert gamer who has played it many times”\nFinally, ask it for a summary, but give it a steer on how it should act, e.g., “Act as an expert videogame reviewer for the Guardian. Give me a summary of Final Fantasy VII (original playstation version) for an expert gamer who has played it many times” or “Act as someone who spends too much time on Reddit and thinks they know everything. Give me a summary of Final Fantasy VII (original playstation version) for an expert gamer who has played it many times”.\n\nThe key takeaways to remember for your coding journey are:\n\nTell it how to act\nTell it who you are\n\nReflect on the differences between the summaries - the technicality of the language, the accuracy and nuance of the information, what it chose to focus on, and what it chose to omit. The reason I asked you to create a summary of something you already know well is that you’re aware of where the gaps are. Remember this when you’re asking an AI something you don’t know as well. Just because you can’t see the gaps and the inaccuracies, doesn’t mean they’re not there.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Intro to using AI</span>"
     ]
@@ -67,6 +67,86 @@
     "text": "I ran this explanation through Gemini and it was not happy with me and wants you to know that it can also perform tasks like translation, question answering, and even generate creative text formats like poems or code. Calm down Felicia.↩︎",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Intro to using AI</span>"
+    ]
+  },
+  {
+    "objectID": "02-elaboration.html",
+    "href": "02-elaboration.html",
+    "title": "2  Personalised tutor",
+    "section": "",
+    "text": "2.1 Set-up\nThe key to maximising the usefulness of AI is to use prompt engineering to tailor the output your to your exact needs. Before you ask any questions, you need to tell the AI who you are and exactly how it should act.\nHere’s some examples:",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Personalised tutor</span>"
+    ]
+  },
+  {
+    "objectID": "02-elaboration.html#set-up",
+    "href": "02-elaboration.html#set-up",
+    "title": "2  Personalised tutor",
+    "section": "",
+    "text": "Act as an expert tutor for the programming language R. I am a learner on an Upskilling course “Applied Data Skills” and I am learning R for the first time. I work in the NHS in Health Informatics. I have never learned a programming language before. I have used Excel and SPSS. I have reasonably good general computer literacy. I will ask you questions about concepts and functions I do not understand based on my course materials. Always give me concrete examples when you provide an answer. Tailor your responses to my level of expertise. I am using R and RStudio on a Mac and the course will strongly use the tidyverse.\n\n\nAct as an expert tutor for the programming language R. I am a first year psychology student at the University of Glasgow and I am learning R for the first time. I have never learned a programming language before and I am not very confident with computers and I am anxious about learning programming. I have a Windows laptop. I will ask you questions about concepts and functions I do not understand based on my course materials. Always give me concrete examples when you provide an answer. Tailor your responses to my level of expertise. I am using R and RStudio and the course will strongly use the tidyverse.\n\n\nAct as an expert tutor for the programming language R. I am a second year psychology student at the University of Glasgow. I have been learning R for a year. I also study statistics and computing science and know a bit of Python as well. I feel confident with learning to code and I would like to stretch myself. I will ask you questions about concepts and functions I do not understand based on my course materials. Always give me concrete examples when you provide an answer. Tailor your responses to my level of expertise. I am using R and RStudio and the course will strongly use the tidyverse although I would also like to learn about base R alternative approaches.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Personalised tutor</span>"
+    ]
+  },
+  {
+    "objectID": "02-elaboration.html#activity-1",
+    "href": "02-elaboration.html#activity-1",
+    "title": "2  Personalised tutor",
+    "section": "2.2 Activity 1",
+    "text": "2.2 Activity 1\nWrite your set-up. It’s worth spending some time to get this right, you’re going to use it a lot.\nI’d probably recommend using ChatGPT or Gemini for this because it’s helpful to be able to save your chat and the set-up information. You could also use a personal Copilot account but the Enterprise version won’t save your chats. If you’d like to use Copilot, save your set-up prompt somewhere to make it easy to reuse.\nExactly what information you provide is up to you but make sure that you explain your level of knowledge, skill, confidence and previous experience. By specifying what your field is (psychology, NHS etc.) it can then give you examples related to these fields which will make it easier for you to understand and connect your new knowledge to existing knowledge. Finally, you also want to give it some technical information about the software you’re using (e.g., R and RStudio), your operating system (Windows).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Personalised tutor</span>"
+    ]
+  },
+  {
+    "objectID": "02-elaboration.html#activity-2",
+    "href": "02-elaboration.html#activity-2",
+    "title": "2  Personalised tutor",
+    "section": "2.3 Activity 2",
+    "text": "2.3 Activity 2\nEnter your set-up into a new chat on your AI of choice. If you’re using an AI that saves your chats, you could also rename the chat to “Personal R Tutor” or “Week 1 Tutor” or anything else that make sense to you. Depending on what information you give it, it may give you some intro to R tips and information which may be more or less useful, so if you’re new and it’s confusing, just ignore it.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Personalised tutor</span>"
+    ]
+  },
+  {
+    "objectID": "02-elaboration.html#example-questions",
+    "href": "02-elaboration.html#example-questions",
+    "title": "2  Personalised tutor",
+    "section": "2.4 Example questions",
+    "text": "2.4 Example questions\nNow that you’ve got your tutor set up, you can ask it questions. Here’s some examples:\n\nWhy do I have to learn to code?\nWhat is the difference between a function and an argument?\nExplain what each part of this code is doing: ggplot(survey_data, aes(x = wait_time, y = call_time)) +  geom_point()\nGive me examples of when I would use different joins",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Personalised tutor</span>"
+    ]
+  },
+  {
+    "objectID": "02-elaboration.html#activity-3",
+    "href": "02-elaboration.html#activity-3",
+    "title": "2  Personalised tutor",
+    "section": "2.5 Activity 3",
+    "text": "2.5 Activity 3\nAsk the AI three questions based on your course materials. If the output doesn’t seem quite right for you, consider editing your initial set-up prompt and re-running the questions to see how they output changes.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Personalised tutor</span>"
+    ]
+  },
+  {
+    "objectID": "02-elaboration.html#follow-up",
+    "href": "02-elaboration.html#follow-up",
+    "title": "2  Personalised tutor",
+    "section": "2.6 Follow-up",
+    "text": "2.6 Follow-up\nAnother big difference between AI and a regular search engine is that you can have a conversation with it and follow-up on your original question. Some examples:\n\nCan you explain it comparing it to Excel?\nExpand on your explanation of geom_point()\nGive me another example of code that uses this approach\nExplain it again but in more technical / simpler terms (Gemini’s modify response can also be used for this)\nAsk me a question to test if I understand this correctly (we’re going to go into practice testing a lot more in the next chapter)\nIn your answer you said “In this example, c() is a function that combines values into a vector”, what is a vector?",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Personalised tutor</span>"
+    ]
+  },
+  {
+    "objectID": "02-elaboration.html#activity-4",
+    "href": "02-elaboration.html#activity-4",
+    "title": "2  Personalised tutor",
+    "section": "2.7 Activity 4",
+    "text": "2.7 Activity 4\nAsk a follow-up question to each of your original questions. Additionally, try outh the features of each AI. For Gemini, use the modify response and double-check response options. For ChatGPT, use regenerate response. For Copilot, click on the suggested follow-up questions or any links it provides.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Personalised tutor</span>"
     ]
   },
   {
