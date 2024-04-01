@@ -52,7 +52,7 @@ format:
     theme:
       light:
       - flatly
-      - include/light.scss
+      - include/light.scs
       dark:
       - darkly
       - include/dark.scss
