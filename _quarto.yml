@@ -40,7 +40,8 @@ book:
   chapters:
   - index.qmd
   - 01-intro.qmd
-  - 02-elaboration.qmd
+  - 02-personalise.qmd
+  - 03-testing.qmd
   appendices:
   - webexercises.qmd
   - references.qmd

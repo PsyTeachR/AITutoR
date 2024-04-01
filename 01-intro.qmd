@@ -30,15 +30,19 @@ Second, many of the developers that have produced AI models have done so behind 
 
 -   [Generative AI Has an Intellectual Property Problem](https://hbr.org/2023/04/generative-ai-has-an-intellectual-property-problem)
 
+Third, whilst the use of AI has been touted as a solution to help us manage climate change, it's also a direct contributor to the problem because of the energy demands.
+
+- [As Use of A.I. Soars, So Does the Energy and Water It Requires](https://e360.yale.edu/features/artificial-intelligence-climate-energy-emissions)
+
 ## AI platforms
 
 ### ChatGPT
 
 You can sign-up for ChatGPT at <https://chat.openai.com/>. The free version of ChatGPT uses GPT3.5 whilst you have to pay for a subscription to get access to GPT4.0.
 
-The free version is very fast and for beginner level coding does perform quite well. I've also found that ChatGPT is good at understanding the intent of what I want. ChatGPT also makes it easy to save your chat history so that you can continue working in previous chats at a later date. A useful feature is the "regenerate" function whereby if you're not completely happy with the response, you can quickly ask it to generate another attempt and compare them. ChatGPT also has a mobile app and allows you to share links to saved chats.
+The free version is very fast and for beginner level coding does perform quite well. I've also found that ChatGPT is good at understanding the intent of what I want. ChatGPT also makes it easy to save your chat history so that you can continue working in previous chats at a later date. A useful feature is the "regenerate" function whereby if you're not completely happy with the response, you can quickly ask it to generate another attempt and compare them. ChatGPT has a mobile app and allows you to share links to saved chats.
 
-The disadvantages of ChatGPT are that it has limited internet connectivity and the information in its database will be restricted. At the time of writing this book, ChatGPT's training data extends until January 2022, so it can't tell you about anything that happened after that point (regardless of whether that's world event or a new R function). Whilst it depends on which version you're using, it rarely gives you links to sources for where it has found the information.
+The disadvantages of ChatGPT are that it has limited internet connectivity and the information in its database will be restricted. At the time of writing this book, ChatGPT's training data extends until January 2022, so it can't tell you about anything that happened after that point (regardless of whether that's world event or a new R function). Whilst it does depends on which version you're using, it rarely gives you links to sources for where it has found the information.
 
 ```{r img-chatgpt, echo=FALSE, fig.cap="using ChatGPT"}
 
@@ -51,13 +55,11 @@ knitr::include_graphics("include/images/01-choose/chatgpt.gif")
 
 Microsoft Copilot can be accessed at <https://copilot.microsoft.com/> and you can sign-in with your Microsoft Account. If you are a University of Glasgow student (and also at many other universities), you can access Copilot through your university account and your Office365 subscription. If you do so, you'll be able to access the Enterprise version of Copilot. The advantage of using your Enterprise account is that the data is processed more securely and what you input won't be used to train the model. The price you pay for this security - and it's such a big price that I don't use it much for this reason - is that it doesn't save your chat history so you start each time afresh. If you use a personal account, it will save your chat history, but also use your data to train the model.
 
-However, where Copilot shines is that it has access to the internet and will give you links to where it got its information so it's easier to verify than ChatGPT. Additionally, they don't make this clear but if you select the conversation style to be "Creative", it will use GPT4.0 (which you have to pay for if you use ChatGPT). 
+However, where Copilot shines is that it has access to the internet and will give you links to where it got its information so it's easier to verify the output than ChatGPT. Additionally, they don't make this clear but if you select the conversation style to be "Creative", it will use GPT4.0 (which you have to pay for if you use ChatGPT). 
 
 I have found that Copilot more frequently doesn't understand the intent of what I am asking and with the same prompt as ChatGPT will give me a useless answer, but let's see how I feel about that by the end of writing this book.
 
-My general approach is that if I want to be able to return to my conversation, I use ChatGPT or Gemini. If I want links to sources for a throwaway query, I use Copilot.
-
-There is a Copilot mobile app.
+My general approach is that if I want to be able to return to my conversation, I use ChatGPT or Gemini. If I want links to sources, I use Copilot.
 
 ```{r img-copilot, echo=FALSE, fig.cap="using ChatGPT"}
 
@@ -95,7 +97,7 @@ knitr::include_graphics("include/images/01-choose/gemini.gif")
 
 The key difference between using an AI and a regular search engine is that you can shape the output of the AI by "prompt engineering", which is the phrase used to describe the art of asking the question in a way that gives you the answer you want. It's easier to show than tell.
 
-Think of a book, TV show, film, or videogame that you know really well (I chose Final Fantasy VII (the original PlayStation version). Ask the AI to give you three different summaries and try out the functionality of each platform. For example, for ChatGPT ask it to regenerate the response, for Gemini, use modify response or Double-check response with Google.
+Think of a book, TV show, film, or videogame that you know really well. I chose Final Fantasy VII (the original PlayStation version). Ask the AI to give you three different summaries and try out the functionality of each platform. For example, for ChatGPT ask it to regenerate the response, for Gemini, use modify response or Double-check response with Google.
 
 -   First, ask it for a summary without any additional context e.g., "Give me a summary of Final Fantasy VII (original playstation version)"
 
@@ -107,4 +109,4 @@ The key takeaways to remember for your coding journey are:
 * Tell it how to act
 * Tell it who you are
 
-Reflect on the differences between the summaries - the technicality of the language, the accuracy and nuance of the information, what it chose to focus on, and what it chose to omit. The reason I asked you to create a summary of something you already know well is that you're aware of where the gaps are. **Remember this when you're asking an AI something you don't know as well**. Just because you can't see the gaps and the inaccuracies, doesn't mean they're not there. 
+Reflect on the differences between the summaries - the technicality of the language, the accuracy and nuance of the information, what it chose to focus on, and what it chose to omit. The reason I asked you to create a summary of something you already know well is that you're aware of where the gaps are. **Remember this when you're asking an AI something you don't know as well**. Just because you can't see the gaps, inaccuracies, and biases, doesn't mean they're not there. 
