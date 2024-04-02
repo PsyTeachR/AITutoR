@@ -71,7 +71,7 @@ The questions it generates are generally helpful, but not always. Here's the iss
 ### Coding problems
 
 -   It suggests using a built-in dataset that doesn't exist. In this case, tell it that's the case and it will suggest a different dataset for the problem.
-- The example it gives isn't fully reproducible so you have to write the code without being able to run it in R.
+- The example it gives isn't fully reproducible so you have to write the code without being able to run it in R. For example, it assumes you have a dataset with columns named “number” and “price”, but loads no such dataset, so you can’t actually try out the code. It's still possible to write the code, but without being able to run it, much more difficult, particularly as a beginner. 
 
 ### Error mode
 
@@ -89,3 +89,7 @@ The questions it generates are generally helpful, but not always. Here's the iss
 - I asked Copilot four times to try and produce code with an error in it and each time it gave me functioning code. So I gave up.
 
 ![](include/images/03-testing/stillnoerror.png)
+
+::: {.callout-caution, "Feedback"}
+This book should be considered a **living document** and is likely to change over time. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it [via Forms](https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u).
+:::

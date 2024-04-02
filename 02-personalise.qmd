@@ -23,7 +23,7 @@ Write your set-up. It's worth spending some time to get this right, you're going
 
 I'd probably recommend using ChatGPT or Gemini for this because it's helpful to be able to save your chat and the set-up information. You could also use a personal Copilot account but the Enterprise version won't save your chats. If you'd like to use Copilot, save your set-up prompt somewhere to make it easy to reuse.
 
-Exactly what information you provide is up to you but make sure that you explain your level of knowledge, skill, confidence and previous experience. By specifying what your field is (psychology, NHS etc.) it can then give you examples related to these fields which will make it easier for you to understand and connect your new knowledge to existing knowledge. Finally, you also want to give it some technical information about the software you're using (e.g., R and RStudio), your operating system (Windows).
+Exactly what information you provide is up to you but make sure that you explain your level of knowledge, skill, confidence and previous experience. By specifying what your field is (psychology, NHS etc.) it can then give you examples related to these fields which will make it easier for you to understand and connect your new knowledge to existing knowledge. Finally, you also want to give it some technical information about the software you're using (e.g., R and RStudio) and your operating system (Windows).
 
 ## Activity 2: Instruct the AI
 
@@ -40,7 +40,7 @@ Now that you've got your tutor set up, you can ask it questions. Here's some exa
 
 ## Activity 3: Questions
 
-Ask the AI three questions based on your course materials. If the output doesn't seem at the right level for you, consider editing your initial set-up prompt and re-running the questions to see how they output changes.
+Ask the AI three questions based on your course materials. If the output doesn't seem at the right level for you, consider editing your initial set-up prompt and re-running the questions to see how the output changes.
 
 
 ## Follow-up
@@ -58,6 +58,10 @@ Another big difference between AI and a regular search engine is that you can ha
 
 Ask a follow-up question to each of your original questions. Additionally, try out the features of each AI. For Gemini, use the modify response and double-check response options. For ChatGPT, use regenerate response. For Copilot, click on the suggested follow-up questions or any links it provides.
 
+
+::: {.callout-caution, "Feedback"}
+This book should be considered a **living document** and is likely to change over time. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it [via Forms](https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u).
+:::
 
 
 
