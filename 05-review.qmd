@@ -1,0 +1,25 @@
+
+# Code review & Comments
+
+::: {.callout-caution}
+This chapter is under construction.
+:::
+
+In this chapter you'll learn how to use AI to perform a code check and to add comments to your code. As you've already hopefully learned by working through this book, you have to be critical about anything the AI produces or suggests because it has no expert knowledge, but it can be a useful tool for checking and improving your code.
+
+The principles of this chapter are taken from DeBruine et al's [Code Check Guide](https://code-check-club.github.io/code-review-guide/). When we refer to a code check, these are the types of things we mean:
+
+* Does it run? Can a researcher who uses that progamming language run it easily? Are any unusual or complex procedures explained?
+* Is it reproducible? Do you get the same outputs? Is it straightforward to check them?
+* Is it auditable/understandable? Even if you don’t have the expertise to assess the stats or data processing, is the code well-organised enough to figure out what is intended so mistakes could be detected? Are the outputs sufficiently detailed to allow interrogation?
+* Does it follow best practices? Is there too much repeated code that could benefit from modularisation? DRY (Don’t repeat yourself) and SPOT (Single Point of Truth)? Are the outputs of long processes saved and loaded from file? Are there unit tests? Do the variable names make sense? Do the results match what is shown in the output and there is no rounding up or down?
+* Is it correct and appropriate? Is the code actually doing what is intended? Is what is intended correct? Some logical problems can be caught without domain knowledge, such as intending to to filter out male subjects, but actually filtering them IN. Many other problems require domain and/or statistical knowledge, so may only be appropriate in some circumstances.
+
+As a beginner coder, the limited complexity of your code means that some of the above won't always apply. Additionally, in the ways we're using AI, it's not possible to get it to do some of the steps. For example, "Is it reproducible?" would require it to actually analyse the data and even if the platform has the capability **you should never give it your data**. 
+
+This process of code reviews involves a lot more back-and-forth than the other chapters, so we'll give you the general idea, some starting prompts, and a few examples, but you'll also just need to spend some time shaping what you want from the response. 
+
+
+::: {.callout-caution}
+This book should be considered a **living document** and is likely to change over time. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it [via Forms](https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u).
+:::

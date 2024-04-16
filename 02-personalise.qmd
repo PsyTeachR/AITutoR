@@ -59,7 +59,7 @@ Another big difference between AI and a regular search engine is that you can ha
 Ask a follow-up question to each of your original questions. Additionally, try out the features of each AI. For Gemini, use the modify response and double-check response options. For ChatGPT, use regenerate response. For Copilot, click on the suggested follow-up questions or any links it provides.
 
 
-::: {.callout-caution, "Feedback"}
+::: {.callout-caution}
 This book should be considered a **living document** and is likely to change over time. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it [via Forms](https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u).
 :::
 

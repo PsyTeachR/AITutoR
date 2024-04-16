@@ -111,6 +111,6 @@ The key takeaways to remember for your coding journey are:
 
 Reflect on the differences between the summaries - the technicality of the language, the accuracy and nuance of the information, what it chose to focus on, and what it chose to omit. The reason I asked you to create a summary of something you already know well is that you're aware of where the gaps are. **Remember this when you're asking an AI something you don't know as well**. Just because you can't see the gaps, inaccuracies, and biases, doesn't mean they're not there. 
 
-::: {.callout-caution, "Feedback"}
+::: {.callout-caution}
 This book should be considered a **living document** and is likely to change over time. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it [via Forms](https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u).
 :::

@@ -16,11 +16,11 @@ Then we need to give it instructions for how to create the questions. There are 
 
 > First, multiple choice questions. Each question should have 4 response options and one correct answer. Ask them one at a time and explain the answer to me and why the other options are incorrect after I provide my answer.
 
-> Second, coding problems. Give me short problems that I need to provide the answer to. These should be fully reproducible and use datasets built into R or the tidyverse.
+> Second, coding problems. Give me short problems that I need to provide the answer to. These should be fully reproducible and use datasets built into R or the tidyverse. Where necessary, give me the code to load any packages or datasets that I will need.
 
-> Third, error mode. Give me code that will result in an error and then ask me to figure out what the error is, and then fix it. Again, these should be fully reproducible and use datasets built into R or the tidyverse.
+> Third, error mode. Give me code that will result in an error. Explain what the code is intended to do and then ask me to figure out what the error is, and then fix it. The errors should be plausible errors that a beginner would be likely to make but do not tell me what the error is. The errors should be fully reproducible and use datasets built into R or the tidyverse so that I can run the code and fix them in R. Where necessary, give me the code to load any packages or datasets that I will need.
 
-> Don't give me questions until I ask and give me only 1 question at a time
+> Don't give me questions until I have given you the ILOs and functions I wanted to test. Give me only 1 question at a time and mix up the topic of each question.
 
 The final instruction is added because the AI will occasionally get ahead of itself and it's more useful to control the output.
 
@@ -63,7 +63,9 @@ The questions it generates are generally helpful, but not always. Here's the iss
 
 ### Mulitple-choice questions
 
--   It's rare, particularly with beginner level coding, but sometimes it is just plain wrong.
+-   Sometimes it is just plain wrong. The answer here should be C. If you tell it that it is wrong, it can correct itself. But just bear this in mind if you ever use it to write code that **AI does not know anything, it's just a very sophisticated parrott**. 
+![](include/images/03-testing/wrong.png)
+
 -   It may ask you questions about functions you've haven't covered in the course.
 -   It may give you a question where there are multiple correct answers without indicating this is the case, which can be confusing.
 -   It may focus too much on certain topics of functions and you have to ask it to give you questions on a topic/function specifically.
@@ -75,21 +77,22 @@ The questions it generates are generally helpful, but not always. Here's the iss
 
 ### Error mode
 
--   This is the category the AI struggled with the most, to the point where at the time of writing, I can't say that it's up to the task. I have a premium ChatGPT subscription and I also tried using GPT4.0 and it didn't help. I've decided to leave it in this book because it's a useful cautionary tale of the limits of AI.
+-   This is the category the AI struggled with the most, to the point where at the time of writing, I can't say that it's up to the task. I have tried writing the prompts mulitple times and whilst I have seen some improvement, it's not consistent. I have a premium ChatGPT subscription and I also tried using GPT4.0 and it didn't help. I've decided to leave it in this book because it's a useful cautionary tale of the limits of AI.
 -   From a learning and teaching perspective, it's a good example of why teaching might actually be a skill and my job might be safe after all. When we use Error Mode type questions in our courses, we design the errors so that they're common mistakes learners make at that point in their journey, they're mistakes that learners would plausibly make, and solving them will teach you something of use. Even when the AI managed to create an accurate error mode problem, it still wasn't helpful for learning.
--   Gemini did poorly at this. It gave me code that did not have errors, or it would tell me what the errors were, or it would give errors that were so obvious they wouldn't help you learn at all. For example:
+-   In my initial attempts at prompting, Gemini did poorly at this. It gave me code that did not have errors, or it would tell me what the errors were, or it would give errors that were so obvious they wouldn't help you learn at all. For example:
 
 ![](include/images/03-testing/obvious.png)
-
+- I then updated the prompt to say that the errors should be plausible and not to tell me what the errors were. This helped but only sometimes. 
 -   ChatGPT fared slightly better although all of the problems were very basic and of the same type (creating a vector) until I asked it to give me me a specific problem (e.g., error mode for ggplot).
 -   ChatGPT also suffered from the same problems as Gemini in that it would tell you what the error was or produce code that did not have any errors. I particularly enjoyed this response whereby it seemed to pretend that it was doing it on purpose as a teachable moment. I know I am anthropomorphising the AI here but I imagine any educator will feel a sense of kinship at trying to make your mistakes seem intentional.
 
 ![](include/images/03-testing/noerrors.png)
 
-- I asked Copilot four times to try and produce code with an error in it and each time it gave me functioning code. So I gave up.
+- It often won't tell you what built-in dataset you need to load to run the code (and this isn't the intended error). Unless you have a working knowledge of built-in datasets in R and the packages they're from, this is unnecessarily confusing. 
+- There is no prompt I can give Copilot that will result in it producing code with an error (even when the same prompt works with ChatGPT). So I gave up.
 
 ![](include/images/03-testing/stillnoerror.png)
 
-::: {.callout-caution, "Feedback"}
+::: {.callout-caution}
 This book should be considered a **living document** and is likely to change over time. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it [via Forms](https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u).
 :::

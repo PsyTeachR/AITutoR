@@ -1,0 +1,12 @@
+
+# Error checking and debugging
+
+::: {.callout-caution}
+This chapter is under construction.
+:::
+
+
+
+::: {.callout-caution}
+This book should be considered a **living document** and is likely to change over time. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it [via Forms](https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u).
+:::
