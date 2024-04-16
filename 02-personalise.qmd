@@ -43,7 +43,7 @@ Now that you've got your tutor set up, you can ask it questions. Here's some exa
 Ask the AI three questions based on your course materials. If the output doesn't seem at the right level for you, consider editing your initial set-up prompt and re-running the questions to see how the output changes.
 
 
-## Follow-up
+## Conversation
 
 Another big difference between AI and a regular search engine is that you can have a conversation with it and follow-up on your original question. Some examples:
 

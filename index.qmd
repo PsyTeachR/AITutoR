@@ -18,9 +18,9 @@ Instead, this book will aim to help beginner coders to use AI platforms as a per
 * Critically evaluate and appraise the output of AI
 
 ::: {.callout-warning}
-Using AI to write code is the last thing this book will cover, and that is an intentional choices. Using AI can superpower your coding but only once you have a solid foundation of knowledge. You need to be able to evaluate what it produces and you need to know what to ask it with enough specificity. Using AI to write code you don't understand is as dangerous as it is irresponsible.
+Using AI to write code is the last thing this book will cover, and that is an intentional choice. Using AI can superpower your coding but only once you have a solid foundation of knowledge. You need to be able to evaluate what it produces and you need to know what to ask it with enough specificity. Using AI to write code you don't understand is as dangerous as it is irresponsible.
 :::
 
-::: {.callout-caution, "Feedback"}
+::: {.callout-caution}
 This book should be considered a **living document** and is likely to change over time. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it [via Forms](https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u).
 :::
