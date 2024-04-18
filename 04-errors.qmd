@@ -5,6 +5,106 @@
 This chapter is under construction.
 :::
 
+In this chapter, you'll learn how to use AI to help you identify and fix errors. I'd argue this is probably the best use case of AI - using it to help and debug code you've written yourself - because it's human expertise that wrote the code, but with the AIs attention to detail and ability to spot missing commas.
+
+AI is also generally very good at this task, although the more complicated your code, the more likely it will run into trouble. This chapter will give a few examples to help you with your prompt engineering.
+
+## Activity 1: Set-up {#sec-setup-errors}
+
+We don't acUnlike the other chapters you don't need to do any set-up, in fact, you can often just copy and paste the code and error in and it will figure out that you want it to fix it without even needing to explicitly ask.
+
+So that you can reproduce the same errors, let's create a reproducible example and load some packages and a dataset. Open an Rmd (not a script, we'll use the Rmd in Activity 3) and run the below.
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+data("penguins")
+```
+
+## Activity 1: Simple errors {#sec-setup-errors}
+
+Unlike the other chapters you don't need to do any set-up, in fact, you can often just copy and paste the code and error in and it will figure out that you want it to fix it without even needing to explicitly ask. 
+
+Here's a simple error where we have given it the wrong function name:
+
+```{r error=TRUE}
+ggplot(penguins, aes(x = species)) +
+   geom_barchart()
+```
+
+* Give the AI both the code you and the error. One without the other is likely to result in a poor or incomplete answer (whether you ask a human or an AI).
+
+All three AIs identified, explained, and fixed this error. Gemini also tried to give some additional information about the function and with a link to more information, which is nice.
+
+```{r img-simple, echo=FALSE, fig.cap="Fixing a simple error"}
+
+knitr::include_graphics("include/images/04-error/simple.png")
+
+```
+
+## Activity 2: Contextual errors
+
+Something that catches many people out is when the error is actually being caused by your code further up your script rather than the bit that is actually causing the error.
+
+For example, in this code, what we intend to do is create a dataset that just has penguins from Biscoe Island and then calculate the mean body mass. This code will run, but it produces `NaN` as the value.
+
+```{r}
+biscoe_penguins <- penguins %>%
+  filter(island == "biscoe")
+
+biscoe_penguins %>%
+  summarise(mean_mass = mean(body_mass_g))
+```
+
+If you just give it the code and the table and ask it to explain what's happening, it will do it's best but without knowing the dataset or what code has preceded it, it won't give you the exact answer, although in this case it hints at it.
+
+```{r img-context1, echo=FALSE, fig.cap = "ChatGPT giving it the best guess"}
+
+knitr::include_graphics("include/images/04-error/context1.png")
+
+```
+
+There's a few things you can do at this point:
+
+* Give it all the code you've used so far
+* Run `str(penguins)` and `str(biscoe_penguins)` and also give it the structure of the datasets
+
+If you haven't spotted it by now, the error is that in the filter `biscoe` should be `Biscoe` with a capital B. It still doesn't have the information it needs to tell you this explicitly, but it will get you very close. **There is no shortcut for knowing your data**.
+
+```{r img-context2, echo=FALSE, fig.cap="Copilot getting very close"}
+
+knitr::include_graphics("include/images/04-error/context2.png")
+
+```
+
+## Activity 3: Rmd errors
+
+If you're working in R Markdown or Quarto, sometimes the errors will stem from your code chunk settings or YAML.
+
+In your Rmd file, copy and paste the following:
+
+> ```{r}
+penguins %>%
+  count()
+``
+
+This code is fine, it provides a simple count of the number of observations in the dataset. But if you try and knit the file, you'll get a long `! attempt to use zero-length variable name`. Copilot wasn't that helpful because all of its suggestions relate to checking your code:
+
+```{r img-rmd1, echo=FALSE, fig.cap="Missing the mark"}
+
+knitr::include_graphics("include/images/04-error/rmd1.png")
+
+```
+
+However, Gemini was more useful as one of its suggestions is indeed the solution - there's a missing back tick at the end of the code chunk. In cases like this, it won't give you a solution you can copy and paste but it will tell you what to go and look for. 
+
+
+```{r img-rmd2, echo=FALSE, fig.cap="Missing backticks"}
+
+knitr::include_graphics("include/images/04-error/rmd1.png")
+
+```
+
 
 
 ::: {.callout-caution}
