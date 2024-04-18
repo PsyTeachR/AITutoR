@@ -210,6 +210,66 @@
     ]
   },
   {
+    "objectID": "04-errors.html",
+    "href": "04-errors.html",
+    "title": "\n4  Error checking and debugging\n",
+    "section": "",
+    "text": "4.1 Activity 1: Set-up\nWe don’t acUnlike the other chapters you don’t need to do any set-up, in fact, you can often just copy and paste the code and error in and it will figure out that you want it to fix it without even needing to explicitly ask.\nSo that you can reproduce the same errors, let’s create a reproducible example and load some packages and a dataset. Open an Rmd (not a script, we’ll use the Rmd in Activity 3) and run the below.\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.1     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(palmerpenguins)\n\nWarning: package 'palmerpenguins' was built under R version 4.3.3\n\ndata(\"penguins\")",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Error checking and debugging</span>"
+    ]
+  },
+  {
+    "objectID": "04-errors.html#sec-setup-errors",
+    "href": "04-errors.html#sec-setup-errors",
+    "title": "\n4  Error checking and debugging\n",
+    "section": "\n4.2 Activity 1: Simple errors",
+    "text": "4.2 Activity 1: Simple errors\nUnlike the other chapters you don’t need to do any set-up, in fact, you can often just copy and paste the code and error in and it will figure out that you want it to fix it without even needing to explicitly ask.\nHere’s a simple error where we have given it the wrong function name:\n\nggplot(penguins, aes(x = species)) +\n   geom_barchart()\n\nError in geom_barchart(): could not find function \"geom_barchart\"\n\n\n\nGive the AI both the code you and the error. One without the other is likely to result in a poor or incomplete answer (whether you ask a human or an AI).\n\nAll three AIs identified, explained, and fixed this error. Gemini also tried to give some additional information about the function and with a link to more information, which is nice.\n\n\n\n\nFixing a simple error",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Error checking and debugging</span>"
+    ]
+  },
+  {
+    "objectID": "04-errors.html#activity-2-contextual-errors",
+    "href": "04-errors.html#activity-2-contextual-errors",
+    "title": "\n4  Error checking and debugging\n",
+    "section": "\n4.3 Activity 2: Contextual errors",
+    "text": "4.3 Activity 2: Contextual errors\nSomething that catches many people out is when the error is actually being caused by your code further up your script rather than the bit that is actually causing the error.\nFor example, in this code, what we intend to do is create a dataset that just has penguins from Biscoe Island and then calculate the mean body mass. This code will run, but it produces NaN as the value.\n\nbiscoe_penguins &lt;- penguins %&gt;%\n  filter(island == \"biscoe\")\n\nbiscoe_penguins %&gt;%\n  summarise(mean_mass = mean(body_mass_g))\n\n\n\n\nmean_mass\n\n\nNaN\n\n\n\n\n\nIf you just give it the code and the table and ask it to explain what’s happening, it will do it’s best but without knowing the dataset or what code has preceded it, it won’t give you the exact answer, although in this case it hints at it.\n\n\n\n\nChatGPT giving it the best guess\n\n\n\nThere’s a few things you can do at this point:\n\nGive it all the code you’ve used so far\nRun str(penguins) and str(biscoe_penguins) and also give it the structure of the datasets\n\nIf you haven’t spotted it by now, the error is that in the filter biscoe should be Biscoe with a capital B. It still doesn’t have the information it needs to tell you this explicitly, but it will get you very close. There is no shortcut for knowing your data.\n\n\n\n\nCopilot getting very close",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Error checking and debugging</span>"
+    ]
+  },
+  {
+    "objectID": "04-errors.html#activity-3-rmd-errors",
+    "href": "04-errors.html#activity-3-rmd-errors",
+    "title": "\n4  Error checking and debugging\n",
+    "section": "\n4.4 Activity 3: Rmd errors",
+    "text": "4.4 Activity 3: Rmd errors\nIf you’re working in R Markdown or Quarto, sometimes the errors will stem from your code chunk settings or YAML.\nIn your Rmd file, create a new code chunk and paste the following:\n\npenguins %&gt;%\n  count()\n\nBut then delete one of the final back ticks from the code chunk.\nThe code is fine, it provides a simple count of the number of observations in the dataset. But if you try and knit the file, you’ll get a long ! attempt to use zero-length variable name. Copilot wasn’t that helpful because all of its suggestions relate to checking your code:\n\n\n\n\nMissing the mark\n\n\n\nHowever, Gemini was more useful as one of its suggestions is indeed the solution - there’s a missing back tick at the end of the code chunk. In cases like this, it won’t give you a solution you can copy and paste but it will tell you what to go and look for.\n\n\n\n\nMissing backticks\n\n\n\n\n\n\n\n\n\nCaution\n\n\n\nThis book should be considered a living document and is likely to change over time. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it via Forms.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Error checking and debugging</span>"
+    ]
+  },
+  {
+    "objectID": "05-review.html",
+    "href": "05-review.html",
+    "title": "5  Code review & Comments",
+    "section": "",
+    "text": "Caution\n\n\n\nThis chapter is under construction.\n\n\nIn this chapter you’ll learn how to use AI to perform a code check and to add comments to your code. As you’ve already hopefully learned by working through this book, you have to be critical about anything the AI produces or suggests because it has no expert knowledge, but it can be a useful tool for checking and improving your code.\nThe principles of this chapter are taken from DeBruine et al’s Code Check Guide. When we refer to a code check, these are the types of things we mean:\n\nDoes it run? Can a researcher who uses that progamming language run it easily? Are any unusual or complex procedures explained?\nIs it reproducible? Do you get the same outputs? Is it straightforward to check them?\nIs it auditable/understandable? Even if you don’t have the expertise to assess the stats or data processing, is the code well-organised enough to figure out what is intended so mistakes could be detected? Are the outputs sufficiently detailed to allow interrogation?\nDoes it follow best practices? Is there too much repeated code that could benefit from modularisation? DRY (Don’t repeat yourself) and SPOT (Single Point of Truth)? Are the outputs of long processes saved and loaded from file? Are there unit tests? Do the variable names make sense? Do the results match what is shown in the output and there is no rounding up or down?\nIs it correct and appropriate? Is the code actually doing what is intended? Is what is intended correct? Some logical problems can be caught without domain knowledge, such as intending to to filter out male subjects, but actually filtering them IN. Many other problems require domain and/or statistical knowledge, so may only be appropriate in some circumstances.\n\nAs a beginner coder, the limited complexity of your code means that some of the above won’t always apply. Additionally, in the ways we’re using AI, it’s not possible to get it to do some of the steps. For example, “Is it reproducible?” would require it to actually analyse the data and even if the platform has the capability you should never give it your data.\nThis process of code reviews involves a lot more back-and-forth than the other chapters, so we’ll give you the general idea, some starting prompts, and a few examples, but you’ll also just need to spend some time shaping what you want from the response.\n\n\n\n\n\n\nCaution\n\n\n\nThis book should be considered a living document and is likely to change over time. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it via Forms.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Code review & Comments</span>"
+    ]
+  },
+  {
+    "objectID": "06-writing.html",
+    "href": "06-writing.html",
+    "title": "6  Writing Code with AI",
+    "section": "",
+    "text": "Caution\n\n\n\nThis chapter is under construction.\n\n\n\n\n\n\n\n\nCaution\n\n\n\nThis book should be considered a living document and is likely to change over time. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it via Forms.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Writing Code with AI</span>"
+    ]
+  },
+  {
     "objectID": "webexercises.html",
     "href": "webexercises.html",
     "title": "Appendix A — Webexercises",

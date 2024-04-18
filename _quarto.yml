@@ -42,6 +42,9 @@ book:
   - 01-intro.qmd
   - 02-personalise.qmd
   - 03-testing.qmd
+  - 04-errors.qmd
+  - 05-review.qmd
+  - 06-writing.qmd
   appendices:
   - webexercises.qmd
   - references.qmd

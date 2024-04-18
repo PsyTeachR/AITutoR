@@ -81,14 +81,16 @@ knitr::include_graphics("include/images/04-error/context2.png")
 
 If you're working in R Markdown or Quarto, sometimes the errors will stem from your code chunk settings or YAML.
 
-In your Rmd file, copy and paste the following:
+In your Rmd file, create a new code chunk and paste the following:
 
-> ```{r}
+```{r eval = FALSE}
 penguins %>%
   count()
-``
+```
 
-This code is fine, it provides a simple count of the number of observations in the dataset. But if you try and knit the file, you'll get a long `! attempt to use zero-length variable name`. Copilot wasn't that helpful because all of its suggestions relate to checking your code:
+But then delete one of the final back ticks from the code chunk.
+
+The code is fine, it provides a simple count of the number of observations in the dataset. But if you try and knit the file, you'll get a long `! attempt to use zero-length variable name`. Copilot wasn't that helpful because all of its suggestions relate to checking your code:
 
 ```{r img-rmd1, echo=FALSE, fig.cap="Missing the mark"}
 
