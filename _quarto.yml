@@ -7,7 +7,7 @@ execute:
   freeze: auto
 book:
   title: AI TutoR
-  author: Emily Nordmann
+  author: Emily Nordmann & Carolina Kuepper-Tetzel
   doi: ''
   license: CC-BY
   cover-image: images/logos/logo.png
@@ -36,15 +36,19 @@ book:
     header: ''
     footer: ''
   margin-header: ''
-  page-footer: CC-BY (2024) Emily Nordmann
+  page-footer: CC-BY (2024) Emily Nordmann & Carolina Kuepper-Tetzel
   chapters:
   - index.qmd
-  - 01-intro.qmd
-  - 02-personalise.qmd
-  - 03-testing.qmd
-  - 04-errors.qmd
-  - 05-review.qmd
-  - 06-writing.qmd
+  - part: "Personal Tutor"
+    chapters:
+    - 01-intro.qmd
+    - 02-personalise.qmd
+    - 03-testing.qmd
+  - part: "AI Pair Programmer"
+    chapters:
+    - 04-errors.qmd
+    - 05-review.qmd
+    - 06-writing.qmd
   appendices:
   - webexercises.qmd
   - references.qmd

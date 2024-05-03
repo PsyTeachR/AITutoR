@@ -1,19 +1,17 @@
 
 # Error checking and debugging
 
-::: {.callout-caution}
-This chapter is under construction.
-:::
+*Written by Emily Nordmann*
 
-In this chapter, you'll learn how to use AI to help you identify and fix errors. I'd argue this is probably the best use case of AI - using it to help and debug code you've written yourself - because it's human expertise that wrote the code, but with the AIs attention to detail and ability to spot missing commas.
+In this chapter, you'll learn how to use AI to help you identify and fix coding errors. I'd argue this is probably the best use case of AI - using it to help and debug code you've written yourself - because it's human expertise that wrote the code, but with the AIs attention to detail and ability to spot missing commas.
 
 AI is also generally very good at this task, although the more complicated your code, the more likely it will run into trouble. This chapter will give a few examples to help you with your prompt engineering.
 
 ## Activity 1: Set-up {#sec-setup-errors}
 
-We don't acUnlike the other chapters you don't need to do any set-up, in fact, you can often just copy and paste the code and error in and it will figure out that you want it to fix it without even needing to explicitly ask.
+Unlike the other chapters you don't need to do any set-up, in fact, you can often just copy and paste the code and error in and it will figure out that you want it to fix it without even needing to explicitly ask.
 
-So that you can reproduce the same errors, let's create a reproducible example and load some packages and a dataset. Open an Rmd (not a script, we'll use the Rmd in Activity 3) and run the below.
+So that you can reproduce the same errors, let's create a reproducible example and load some packages and a dataset. Open an Rmd (not a script, we'll use the Rmd in Activity 3) and run the below (you may need to install the package `palmerpenguins` if you don't have it already).
 
 ```{r}
 library(tidyverse)
@@ -21,7 +19,7 @@ library(palmerpenguins)
 data("penguins")
 ```
 
-## Activity 1: Simple errors {#sec-setup-errors}
+## Activity 2: Simple errors {#sec-simple-errors}
 
 Unlike the other chapters you don't need to do any set-up, in fact, you can often just copy and paste the code and error in and it will figure out that you want it to fix it without even needing to explicitly ask. 
 
@@ -32,7 +30,7 @@ ggplot(penguins, aes(x = species)) +
    geom_barchart()
 ```
 
-* Give the AI both the code you and the error. One without the other is likely to result in a poor or incomplete answer (whether you ask a human or an AI).
+* Give the AI both the code and the error. One without the other is likely to result in a poor or incomplete answer (whether you ask a human or an AI).
 
 All three AIs identified, explained, and fixed this error. Gemini also tried to give some additional information about the function and with a link to more information, which is nice.
 
@@ -42,9 +40,9 @@ knitr::include_graphics("include/images/04-error/simple.png")
 
 ```
 
-## Activity 2: Contextual errors
+## Activity 3: Contextual errors
 
-Something that catches many people out is when the error is actually being caused by your code further up your script rather than the bit that is actually causing the error.
+Something that catches many people out is when the error is actually being caused by code further up your script rather than the bit that is results in the error.
 
 For example, in this code, what we intend to do is create a dataset that just has penguins from Biscoe Island and then calculate the mean body mass. This code will run, but it produces `NaN` as the value.
 
@@ -56,7 +54,7 @@ biscoe_penguins %>%
   summarise(mean_mass = mean(body_mass_g))
 ```
 
-If you just give it the code and the table and ask it to explain what's happening, it will do it's best but without knowing the dataset or what code has preceded it, it won't give you the exact answer, although in this case it hints at it.
+If you just give it the code and the table and ask it to explain what's happening, it will do its best but without knowing the dataset or what code has preceded it, it won't give you the exact answer, although in this case it hints at it.
 
 ```{r img-context1, echo=FALSE, fig.cap = "ChatGPT giving it the best guess"}
 
@@ -77,7 +75,32 @@ knitr::include_graphics("include/images/04-error/context2.png")
 
 ```
 
-## Activity 3: Rmd errors
+## Activity 4: Incorrect (but functional) code
+
+Sometimes (often) when we write code, the issue isn't that our code doesn't work, it's that it doesn't do what we intended and we can't figure out why. 
+
+For example, let's say that we want to calculate the average body_mass_g for each species by sex and we write following:
+
+```{r}
+penguins %>%
+  group_by(sex, species) %>%
+  summarise(mean_body_mass = sd(body_mass_g, na.rm = TRUE))
+
+```
+
+We know something isn't right here. Because we're responsible researchers, we've taken time to understand our dataset and what plausible values should be and we know there's no way that the average body mass of a penguin is 269 grams (unless the penguin is made of chocolate) but the code is running fine and we can't see what we've done.
+
+You can ask the AI to help you but you will need to tell it what you intended. In this case, all three AIs correctly identified that I had used `sd` instead of `mean`. The more complex your code, the more information you will need to give it in order for it to help you find the error. 
+
+```{r img-functional, echo=FALSE, fig.cap="Fixing a functional error"}
+
+knitr::include_graphics("include/images/04-error/functional_error.png")
+
+```
+
+This is a good example of why **there is no AI tool that allows you to skip understanding the data you're working with and knowing what it is you're trying to do**.
+
+## Activity 5: Rmd errors
 
 If you're working in R Markdown or Quarto, sometimes the errors will stem from your code chunk settings or YAML.
 
@@ -107,7 +130,9 @@ knitr::include_graphics("include/images/04-error/rmd1.png")
 
 ```
 
-
+::: {.callout-important}
+I know I might be starting to sound like a broken record but **please** remember that artificial intelligence is not actually intelligent. It's not thinking, it's not making conscious decisions, it has no expert subject matter knowledge. No matter how helpful it is, you must always check the output of the code it gives you.
+:::
 
 ::: {.callout-caution}
 This book should be considered a **living document** and is likely to change over time. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it [via Forms](https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u).

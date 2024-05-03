@@ -1,32 +1,53 @@
 # Practice testing
 
-In this chapter you'll learn how to use AI to test yourself. Practice testing, or [retrieval practice](https://www.learningscientists.org/blog/2016/6/23-1), is one of the most effective ways to consolidate your learning and there's several different ways you can do it.
+*Written by Emily Nordmann*
+
+In this chapter you'll learn how to use AI to test yourself. Practice testing, or [retrieval practice](https://www.learningscientists.org/blog/2016/6/23-1), is one of the most effective ways to consolidate your learning and there's several different ways you can do it. This chapter was written with a coding course in mind but it applies to any type of course. 
 
 ## Activity 1: Set-up {#sec-setup-testing}
 
 In your AI of choice, create a new chat and give it your set-up blurb that you created in Chapter @sec-setup.
 
-It would be helpful to have a specific chapter of your course in mind to work with. For the PsyTeachR courses, we'll be using the Intended Learning Outcomes, functions used, and glossary to help instruct the AI. If you're not working through a course, or it's not a PsyTeachR course, it would be helpful to have a list of functions or skills that you want to test. As an example, we'll use [Chapter 3 of Applied Data Skills](https://psyteachr.github.io/ads-v3/03-viz.html).
+It would be helpful to have a specific week/chapter/lecture of your course in mind to work with. For the PsyTeachR R courses, we'll be using the Intended Learning Outcomes, functions used, and glossary to help instruct the AI. If you're not working through a course, or it's not a PsyTeachR course, it would be helpful to have a list of functions, concepts, or skills that you want to test. As an example, we'll use [Chapter 3 of Applied Data Skills](https://psyteachr.github.io/ads-v3/03-viz.html).
 
 ## Activity 2: Question prompt
 
-Then we need to give it instructions for how to create the questions. There are other question types you could ask it for but as a starter pack, this should be useful.
+Then we need to give it instructions for how to create the questions. There are other question types you could ask it for but here is a starter pack for a coding course and then for a theoretical course:
 
-> I would like you to generate practice questions to help consolidate my learning based on the learning outcomes, functions, and glossary used in my course materials this week that I will provide to you. I will ask you for three different types of questions.
+**Promps for a coding course**
 
-> First, multiple choice questions. Each question should have 4 response options and one correct answer. Ask them one at a time and explain the answer to me and why the other options are incorrect after I provide my answer.
+> I would like you to generate practice questions to help consolidate my learning based on the learning outcomes, functions, and glossary used in my course materials this week that I will provide to you. I will ask you for four different types of questions.
 
-> Second, coding problems. Give me short problems that I need to provide the answer to. These should be fully reproducible and use datasets built into R or the tidyverse. Where necessary, give me the code to load any packages or datasets that I will need.
+> First, multiple choice questions (MCQ). Each question should have 4 response options and one correct answer. Ask them one at a time and explain the answer to me and why the other options are incorrect after I provide my answer.
 
-> Third, error mode. Give me code that will result in an error. Explain what the code is intended to do and then ask me to figure out what the error is, and then fix it. The errors should be plausible errors that a beginner would be likely to make but do not tell me what the error is. The errors should be fully reproducible and use datasets built into R or the tidyverse so that I can run the code and fix them in R. Where necessary, give me the code to load any packages or datasets that I will need.
+> Second, fill-in-the-blank questions (FITB). Provide a line of code that has one or more missing arguments or functions and ask me to complete the code.
 
-> Don't give me questions until I have given you the ILOs and functions I wanted to test. Give me only 1 question at a time and mix up the topic of each question.
+> Third, coding problems (CP). Give me short problems that I need to provide the answer to. These should be fully reproducible and use datasets built into R or the tidyverse. Where necessary, give me the code to load any packages or datasets that I will need.
+
+> Third, error mode (EM). Give me code that will result in an error. Explain what the code is intended to do and then ask me to figure out what the error is, and then fix it. The errors should be plausible errors that a beginner would be likely to make but do not tell me what the error is. The errors should be fully reproducible and use datasets built into R or the tidyverse so that I can run the code and fix them in R. Where necessary, give me the code to load any packages or datasets that I will need.
+
+> Don't give me questions until I have given you the ILOs and functions I want to test. I will specify which type of question I want each time. Give me only 1 question at a time and mix up the topic of each question.
+
+**Prompts for a theoretical course**
+
+> I would like you to generate practice questions to help consolidate my learning based on the learning outcomes and key terms in my course materials this week that I will provide to you. I will ask you for four different types of questions.
+
+> First, multiple choice questions (MCQ). Each question should have 4 response options and one correct answer. Ask them one at a time and explain the answer to me and why the other options are incorrect after I provide my answer.
+
+> Second, TRUE or FALSE questions (TOF). Provide a statement and then ask me to determine whether the statement is true or false.
+
+> Third, fill-in-the-blank questions (FITB). Provide a statement that has one or more missing words and ask me to fill in the blanks.
+
+> Fourth, short answer questions (SAQ). Each question should ask about one specific concept, theory, or term, and I should be able to answer it in 100 words or fewer.
+
+> Don't give me questions until I have given you the ILOs and terms I want to test. I will specify which type of question I want each time. Give me only 1 question at a time and mix up the topic of each question.
+
 
 The final instruction is added because the AI will occasionally get ahead of itself and it's more useful to control the output.
 
 ## Built-in datasets
 
-As an aside, built-in datasets in R are sample datasets that come pre-loaded with the R software installation. They provide a convenient way to practice data manipulation, analysis, and visualization techniques without needing to import external data files. These datasets cover various domains and can be helpful for learning and demonstrating R functionalities.
+If you're using AI to help with coding, built-in datasets in R are sample datasets that come pre-loaded with the R software installation. They provide a convenient way to practice data manipulation, analysis, and visualization techniques without needing to import external data files. These datasets cover various domains and can be helpful for learning and demonstrating R functionalities.
 
 You can get a full list of all the built-in datasets available to you by running the command `data()` in the console. Base R comes with datasets built in but when you install extra packages they also sometimes have extra datasets, for example, the tidyverse has a lot of extra datasets. A package needs to be loaded for you to use any datasets from it, or for them to show up in the list when you run `data()`.
 
@@ -61,12 +82,12 @@ You should now be able to ask it to generate questions for you by typing `mcq` o
 
 The questions it generates are generally helpful, but not always. Here's the issues I've come across whilst writing this book that I have not been able to prevent entirely by tweaking my prompts.
 
-### Mulitple-choice questions
+### Mulitple-choice / TOF / SAQ questions
 
--   Sometimes it is just plain wrong. The answer here should be C. If you tell it that it is wrong, it can correct itself. But just bear this in mind if you ever use it to write code that **AI does not know anything, it's just a very sophisticated parrott**. 
+-   Sometimes it is just plain wrong. The answer here should be C. If you tell it that it is wrong, it can correct itself. But just bear this in mind if you ever use it to write code that **AI does not know anything, it's just a very sophisticated parrot**. 
 ![](include/images/03-testing/wrong.png)
 
--   It may ask you questions about functions you've haven't covered in the course.
+-   It may ask you questions about functions or concepts you've haven't covered in the course.
 -   It may give you a question where there are multiple correct answers without indicating this is the case, which can be confusing.
 -   It may focus too much on certain topics of functions and you have to ask it to give you questions on a topic/function specifically.
 

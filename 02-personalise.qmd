@@ -1,9 +1,11 @@
 
 # Personalised tutor
 
+*Written by Emily Nordmann*
+
 This chapter will teach you how to use AI as a personalised tutor to explain concepts and functions you're struggling to understand, or would like more information on.
 
-It will be helpful to work through these activities with a specific chapter of your course in mind (e.g., [Applied Data Skills](https://psyteachr.github.io/ads-v3/) week 1 or 2)
+It will be helpful to work through these activities with a specific week/chapter/lecture of your course in mind.
 
 ## Set-up
 
@@ -23,20 +25,22 @@ Write your set-up. It's worth spending some time to get this right, you're going
 
 I'd probably recommend using ChatGPT or Gemini for this because it's helpful to be able to save your chat and the set-up information. You could also use a personal Copilot account but the Enterprise version won't save your chats. If you'd like to use Copilot, save your set-up prompt somewhere to make it easy to reuse.
 
-Exactly what information you provide is up to you but make sure that you explain your level of knowledge, skill, confidence and previous experience. By specifying what your field is (psychology, NHS etc.) it can then give you examples related to these fields which will make it easier for you to understand and connect your new knowledge to existing knowledge. Finally, you also want to give it some technical information about the software you're using (e.g., R and RStudio) and your operating system (Windows).
+Exactly what information you provide is up to you but make sure that you explain your level of knowledge, skill, confidence and previous experience. By specifying what your field is (psychology, NHS etc.) it can then give you examples related to these fields which will make it easier for you to understand and connect your new knowledge to existing knowledge. Finally, if you're using it for coding, you also want to give it some technical information about the software you're using (e.g., R and RStudio) and your operating system (Windows).
 
 ## Activity 2: Instruct the AI
 
-Enter your set-up into a new chat on your AI of choice. If you're using an AI that saves your chats, you could also rename the chat to "Personal R Tutor" or "Week 1 Tutor" or anything else that make sense to you. Depending on what information you give it, it may give you some intro to R tips and information which may be more or less useful, so if you're new and it's confusing, just ignore it.
+Enter your set-up into a new chat on your AI of choice. If you're using an AI that saves your chats, you could also rename the chat to "Personal Tutor" or "Week 1 Tutor" or anything else that make sense to you. Depending on what information you give it, it may give you e.g., some intro to R tips and information which may be more or less useful, so if it's confusing, just ignore it until you've given it more specific prompts.
 
 ## Example questions
 
 Now that you've got your tutor set up, you can ask it questions. Here's some examples:
 
 * Why do I have to learn to code?
+* What is the difference between short-term memory and working memory?
+* Give me examples of between-subject designs
 * What is the difference between a function and an argument?
 * Explain what each part of this code is doing: `ggplot(survey_data, aes(x = wait_time, y = call_time)) +  geom_point()`
-* Give me examples of when I would use different joins
+* Give me examples of when I would use different joins in R
 
 ## Activity 3: Questions
 
