@@ -1,10 +1,10 @@
 
 # Code review
 
-**Written by Emily Nordmann**
+*Written by Emily Nordmann*
 
-::: {.callout-caution}
-In the interests of transparency, this chapter and the next are the ones I am least comfortable writing and I'd like to clearly acknowledge that I am barely one step ahead of you as a learner here so any constructive feedback is entirely welcome. 
+::: {.callout-important}
+In the interests of transparency, this chapter and the next are the ones I am least comfortable writing and I'd like to clearly acknowledge that I am barely one step ahead of you as a learner. Any constructive feedback is entirely welcome. 
 :::
 
 In this chapter you'll learn how to use AI to perform a code review and to add comments to your code. As you've already hopefully learned by working through this book, you have to be critical about anything the AI produces or suggests because it has no expert knowledge, but it can be a useful tool for checking and improving your code.
@@ -17,9 +17,9 @@ DeBruine et al's [Code Check Guide](https://code-check-club.github.io/code-revie
 * Does it follow best practices? Is there too much repeated code that could benefit from modularisation? DRY (Don’t repeat yourself) and SPOT (Single Point of Truth)? Are the outputs of long processes saved and loaded from file? Are there unit tests? Do the variable names make sense? Do the results match what is shown in the output and there is no rounding up or down?
 * Is it correct and appropriate? Is the code actually doing what is intended? Is what is intended correct? Some logical problems can be caught without domain knowledge, such as intending to to filter out male subjects, but actually filtering them IN. Many other problems require domain and/or statistical knowledge, so may only be appropriate in some circumstances.
 
-However, some of these steps cannot (and should not) be performed by an AI. You should **never** upload your research data to an AI tool (unless you have specific ethical approval and have included this in your data management plan) so assessing reproducibility is difficult and the AI doesn't know what you *intended* to do and has no subject knowledge so it can't advise on anything theoretical.
+However, some of these steps cannot (and should not) be performed by an AI. Unless you have specific ethical approval and have included this in your data management plan, you should **never** upload your research data to an AI tool. This means that assessing reproducibility is difficult. The AI also doesn't know what you *intended* to do, and why, and has no subject knowledge so it can't advise on anything theoretical.
 
-What we'll focus on in this chapter is therefore two components of code review: **comments**  and **refactoring** your code.
+Therefore, what we'll focus on in this chapter is two components of code review: **comments**  and **refactoring** your code.
 
 ## Code comments
 
@@ -37,12 +37,12 @@ sd(c(1,2,3))
 
 Comments are useful for several reasons:
 
-* Clarification: They explain what certain parts of the code do, making it easier for others (and yourself) to understand the logic and flow of the program.
+* Clarification: They explain what certain parts of the code do, making it easier for others (and yourself) to understand the logic and flow of the code.
 * Documentation: They provide information on how the code works or why certain decisions were made, which is helpful for future reference.
 * Debugging: Temporarily commenting out parts of code can help isolate sections that may be causing errors, without deleting the code.
 * Collaboration: In team projects, comments can be used to communicate with other developers about the status or purpose of the code.
 
-Overall, comments are a crucial part of writing clean, maintainable, and collaborative code. They help make the codebase more accessible and understandable to anyone who might work on it in the future.
+Overall, comments are a crucial part of writing clean, maintainable, and collaborative code. They help make the code more accessible and understandable to anyone who might work on it in the future.
 
 For transparency, Gemini and Copilot wrote the above text.
 
@@ -50,20 +50,22 @@ For transparency, Gemini and Copilot wrote the above text.
 
 First we'll use use the `palmerpenguins` dataset again.
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 library(tidyverse)
 library(palmerpenguins)
 data("penguins")
 ```
 
-You can use AI tools to help add comments to your code. In your chosen platform, input the following:
+You can use AI tools to help add comments to your code. In your chosen platform, input the below code with the prompt:
 
-> penguins_clean <- penguins %>%
+> Add comments to this code
+
+```{r eval = FALSE}
+penguins_clean <- penguins %>%
   filter(complete.cases(.)) %>%
   mutate(across(where(is.factor), as.character)) %>%
   mutate(species_sex = interaction(species, sex, sep = "_"))
-  
-> Add comments to this code
+```
 
 
 ```{r img-comment1, echo=FALSE, fig.cap="Adding comments"}
@@ -80,22 +82,17 @@ A few things to note:
 
 ## Activity 2: Review existing comments
 
-In addition to asking AI to comment your code, you can also ask it to review comments you've made yourself. As an act of masochism, I gave the AI some code I wrote for a publication and asked it to review it (the full paper [is here](https://link.springer.com/article/10.1007/s10734-024-01201-5) if you're interested, the quant analyses ended up being punted to the online appendix because of word count.
+In addition to asking AI to comment your code, you can also ask it to review comments you've made yourself. To see how this works with a more complex example, and as an act of masochism, I gave the AI some code I wrote for a publication. The full paper [is here](https://link.springer.com/article/10.1007/s10734-024-01201-5) if you're interested - the quant analyses ended up being punted to the online appendix because of word count.
 
 You can load in the dataset yourself with this code:
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 # read in data but skip rows 2 and 3
 col_names <- names(read_csv("https://osf.io/download/tf3xs/", n_max = 0))
 dat_raw <- read_csv("https://osf.io/download/tf3xs/", col_names = col_names, skip = 3) 
 ```
 
-
-As you can see, there's quite a complicated and long bit of wrangling - and this is actually a shortened version because it hit the character limit for Copilot. The prompt was:
-
-> Review my use of comments and make improvements to the comments where necessary. Explain what you changed and why. 
-
-This was the original code - I did put some effort into writing comments so I wasn't expecting it to need to change that much.
+The first section of my code involved quite a complicated and long bit of wrangling all done in a single pipeline. This code is cleaning up data from the survey platform Qualtrics and recoding some of the demographic variables. Despite it's length, this is actually a shortened version because the original hit the character limit for Copilot. I did put some effort into writing comments so I wasn't expecting it to need to change that much. 
 
 ```{r eval = TRUE} 
 dat <- dat_raw%>%
@@ -130,18 +127,10 @@ dat <- dat_raw%>%
                                 
                                 TRUE ~ "Neurotypical & non-disabled"))%>%
   # recode gender data
-
-  mutate(gender_cleaned = case_when(Q6 %in% c("Female", "female", "Woman", "woman", "Cisgender woman","female (she/her)", "F", "f", "Womxn", "Woman (tranas)") ~ "Woman",
-                                    Q6 %in% c("Man", "man", "M", "m", "Male (he/him)", "Male", "male", "Trans man.") ~ "Man",
-                                    Q6 %in% c("Agender", "Genderfluid", "GNC", "NB", "non-binary", "	
-Non-binary", "Non-Binary", "Non-binary femme", "non-binary male", "non binary",
-"Non binary", "Nonbinary", "Queer", "Transmasculine", "Non-binary") ~ "Non-binary",
-                            TRUE ~ "Not stated")) %>%
   # select necessary columns and tidy up the names
         select(ResponseId,
              "age" = Q5,
              "gender" = Q6,
-             gender_cleaned,
              "mature" = Q7,
              "level_study" = Q8,
              "country" = Q9,
@@ -157,6 +146,10 @@ Non-binary", "Non-Binary", "Non-binary femme", "non-binary male", "non binary",
              everything()) 
 ```
 
+* In your chosen AI, give it the above code and the prompt:
+
+> Review my use of comments and make improvements to the comments where necessary. Explain what you changed and why. 
+
 Each platform gave slightly different output with slightly different issues:
 
 ### Gemini output 
@@ -164,7 +157,6 @@ Each platform gave slightly different output with slightly different issues:
 * As well as giving me an explanation in the chat window, Gemini added the explanation to the comments themselves, so you'd need to go and edit these out (or amend the prompt to tell it not to do this). 
 * It has picked up where the logic of the comments might not be helpful to someone who doesn't already know the data e.g., (explain logic), which is useful.
 * Extremely problematically,  it didn't just change the comments, it changed the code. The original first use of `select()` was `select(ResponseId, "duration" = 5, Q5:Q21) %>%`. In this code, I selected the columns I wanted but I also renamed the 5th column. Gemini has changed the code to remove this from select and has instead create a new column named `duration` that will contain the value 5. I didn't ask it to do this and in its response, it doesn't tell me anywhere that it made this change. **Be very, very careful**.
-* It's also removed some of the code, for example, in the gender coding we now have the comment `# Include common variations` rather than the original list which means the code wont' run.
 
 ```{r eval=FALSE}
 dat_gemini <- dat_raw %>%
@@ -201,17 +193,10 @@ dat_gemini <- dat_raw %>%
       disability_nos != "None")) |
     (mental_health != "None" & disability_nos != "None") ~ "NDD"  # Define NDD acronym
     , TRUE ~ "Neurotypical & non-disabled")) %>%
-  # Recode gender data into more concise categories (explain categories)
-  mutate(gender_cleaned = case_when(
-    Q6 %in% c("Female", "woman", "cisgender woman", ...) ~ "Woman",  # Include common variations
-    Q6 %in% c("Man", "male", "trans man") ~ "Man",
-    Q6 %in% c("Non-binary", "genderqueer", "agender", ...) ~ "Non-binary",  # Include common variations
-    TRUE ~ "Not stated")) %>%
   # Select final columns and rename for clarity
   select(ResponseId,
          age = Q5,
          gender = Q6,
-         gender_cleaned,
          mature = Q7,
          level_study = Q8,
          country = Q9,
@@ -230,16 +215,22 @@ dat_gemini <- dat_raw %>%
 
 
 > Explanation of Changes:
+
 > Clarity: Added more specific explanations to comments, especially for variable creation and data manipulation steps.
-Logic: Explained the reasoning behind the recoding logic in the case_when statements for disability and gender.
-Conciseness: Shortened some comments where brevity is sufficient.
-Acronyms: Defined the acronym "NDD" for better understanding.
-Consistency: Used consistent formatting for comments (e.g., indentation).
-These improvements enhance the readability and maintainability of your code, making it easier for you or others to understand the purpose of each step.
+
+>Logic: Explained the reasoning behind the recoding logic in the case_when statements for disability and gender.
+
+> Conciseness: Shortened some comments where brevity is sufficient.
+
+> Acronyms: Defined the acronym "NDD" for better understanding.
+
+> Consistency: Used consistent formatting for comments (e.g., indentation).
+
+> These improvements enhance the readability and maintainability of your code, making it easier for you or others to understand the purpose of each step.
 
 ### Copilot output
 
-* Generally much better than Gemini, particularly for expanding on the more complex recoding of neurodivergence.
+* Generall, Copilot was much better than Gemini, particularly for expanding on the more complex recoding of neurodivergence.
 
 ```{r eval = TRUE}
 dat_copilot <- dat_raw %>%
@@ -273,17 +264,10 @@ dat_copilot <- dat_raw %>%
     (physical_chronic != "None" & disability_nos != "None") ~ "NDD",
     
     TRUE ~ "Neurotypical & non-disabled")) %>%
-  # Recode gender data based on survey responses
-  mutate(gender_cleaned = case_when(
-    Q6 %in% c("Female", "female", "Woman", "woman", "Cisgender woman","female (she/her)", "F", "f", "Womxn", "Woman (tranas)") ~ "Woman",
-    Q6 %in% c("Man", "man", "M", "m", "Male (he/him)", "Male", "male", "Trans man.") ~ "Man",
-    Q6 %in% c("Agender", "Genderfluid", "GNC", "NB", "non-binary", "Non-binary", "Non-Binary", "Non-binary femme", "non-binary male", "non binary", "Non binary", "Nonbinary", "Queer", "Transmasculine", "Non-binary") ~ "Non-binary",
-    TRUE ~ "Not stated")) %>%
   # Select and rename columns for analysis
   select(ResponseId,
          "age" = Q5,
          "gender" = Q6,
-         gender_cleaned,
          "mature" = Q7,
          "level_study" = Q8,
          "country" = Q9,
@@ -301,13 +285,15 @@ dat_copilot <- dat_raw %>%
 ```
 
 > Changes Made:
-Filter Comment: Clarified that the progress filter keeps responses that are more than 94% complete.
-DistributionChannel Comment: Specified that the filter excludes test entries, not just Emily’s preview data.
-NA Replacement Comment: Made it clear that missing values are replaced in disability-related columns.
-Disability Recode Comment: Expanded on the conditions for classifying disabilities to make the logic more understandable.
-Gender Recode Comment: No change needed, it’s clear and concise.
+
+> Filter Comment: Clarified that the progress filter keeps responses that are more than 94% complete.
+
+> DistributionChannel Comment: Specified that the filter excludes test entries, not just Emily’s preview data.
+> NA Replacement Comment: Made it clear that missing values are replaced in disability-related columns.
+> Disability Recode Comment: Expanded on the conditions for classifying disabilities to make the logic more understandable.
+> Gender Recode Comment: No change needed, it’s clear and concise.
 Select Statement Comment: Changed to ‘Select and rename columns for analysis’ for clarity on the operation’s purpose.
-These changes aim to make the comments more informative and to clarify the purpose and outcome of each code block.
+> These changes aim to make the comments more informative and to clarify the purpose and outcome of each code block.
 
 Whilst it doesn't look like it has changed anything, `identical` and `all.equal` suggest a different story. I have been on quite a deep dive and I still can't figure it out - it all looks fine - but it's another note of caution and also a good reason not to give it too much code to review at once. It's easier to figure out what might have changed in little chunks at a time.
 

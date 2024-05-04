@@ -5,15 +5,13 @@
 
 In this chapter, you'll learn how to use AI to help you identify and fix coding errors. I'd argue this is probably the best use case of AI - using it to help and debug code you've written yourself - because it's human expertise that wrote the code, but with the AIs attention to detail and ability to spot missing commas.
 
-AI is also generally very good at this task, although the more complicated your code, the more likely it will run into trouble. This chapter will give a few examples to help you with your prompt engineering.
+AI is generally good at this task, although the more complicated your code, the more likely it is that it will run into trouble. This chapter will give a few examples to help you with your prompt engineering.
 
 ## Activity 1: Set-up {#sec-setup-errors}
 
-Unlike the other chapters you don't need to do any set-up, in fact, you can often just copy and paste the code and error in and it will figure out that you want it to fix it without even needing to explicitly ask.
-
 So that you can reproduce the same errors, let's create a reproducible example and load some packages and a dataset. Open an Rmd (not a script, we'll use the Rmd in Activity 3) and run the below (you may need to install the package `palmerpenguins` if you don't have it already).
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 library(tidyverse)
 library(palmerpenguins)
 data("penguins")
@@ -30,9 +28,9 @@ ggplot(penguins, aes(x = species)) +
    geom_barchart()
 ```
 
-* Give the AI both the code and the error. One without the other is likely to result in a poor or incomplete answer (whether you ask a human or an AI).
+* Give your AI of choice both the code and the error. One without the other is likely to result in a poor or incomplete answer (whether you ask a human or an AI).
 
-All three AIs identified, explained, and fixed this error. Gemini also tried to give some additional information about the function and with a link to more information, which is nice.
+All three AIs identified, explained, and fixed this error. Gemini also tried to give some additional information about the function, with links to more information, which is nice.
 
 ```{r img-simple, echo=FALSE, fig.cap="Fixing a simple error"}
 
@@ -44,7 +42,7 @@ knitr::include_graphics("include/images/04-error/simple.png")
 
 Something that catches many people out is when the error is actually being caused by code further up your script rather than the bit that is results in the error.
 
-For example, in this code, what we intend to do is create a dataset that just has penguins from Biscoe Island and then calculate the mean body mass. This code will run, but it produces `NaN` as the value.
+For example, in this code, what we intended to do was to create a dataset that just has penguins from Biscoe Island and then calculate their mean body mass. This code will run, but it produces `NaN` as the value.
 
 ```{r}
 biscoe_penguins <- penguins %>%
@@ -54,18 +52,18 @@ biscoe_penguins %>%
   summarise(mean_mass = mean(body_mass_g))
 ```
 
-If you just give it the code and the table and ask it to explain what's happening, it will do its best but without knowing the dataset or what code has preceded it, it won't give you the exact answer, although in this case it hints at it.
+If you just give an AI the code and the table and ask it to explain what's happening, it will do its best but without knowing the dataset or what code has preceded it, it won't give you the exact answer, although in this case it hints at it.
 
-```{r img-context1, echo=FALSE, fig.cap = "ChatGPT giving it the best guess"}
+```{r img-context1, echo=FALSE, fig.cap = "ChatGPT giving its best guess"}
 
 knitr::include_graphics("include/images/04-error/context1.png")
 
 ```
 
-There's a few things you can do at this point:
+There's a couple of things you can do at this point:
 
-* Give it all the code you've used so far
-* Run `str(penguins)` and `str(biscoe_penguins)` and also give it the structure of the datasets
+* Give the AI all the code you've used so far
+* Run `str(penguins)` and `str(biscoe_penguins)` and give the AI the output of these calls so that it better understands the structure and contents of the datasets
 
 If you haven't spotted it by now, the error is that in the filter `biscoe` should be `Biscoe` with a capital B. It still doesn't have the information it needs to tell you this explicitly, but it will get you very close. **There is no shortcut for knowing your data**.
 
@@ -77,9 +75,9 @@ knitr::include_graphics("include/images/04-error/context2.png")
 
 ## Activity 4: Incorrect (but functional) code
 
-Sometimes (often) when we write code, the issue isn't that our code doesn't work, it's that it doesn't do what we intended and we can't figure out why. 
+Sometimes (often) when we write code, the issue isn't that our code doesn't work, but that it doesn't do what we intended to do and we can't figure out why. 
 
-For example, let's say that we want to calculate the average body_mass_g for each species by sex and we write following:
+For example, let's say that we want to calculate the average body_mass_g for each species by sex. We're feeling a bit lazy and we copy and paste in the following from a previous script we have:
 
 ```{r}
 penguins %>%
@@ -88,9 +86,9 @@ penguins %>%
 
 ```
 
-We know something isn't right here. Because we're responsible researchers, we've taken time to understand our dataset and what plausible values should be and we know there's no way that the average body mass of a penguin is 269 grams (unless the penguin is made of chocolate) but the code is running fine and we can't see what we've done.
+We know something isn't right here. Because we're responsible researchers, we've taken time to understand our dataset and what plausible values should be and we know there's no way that the average body mass of a penguin is 269 grams (unless the penguin is made of chocolate). Nut the code is running fine, we know it's worked before, and we can't see what we've done wrong.
 
-You can ask the AI to help you but you will need to tell it what you intended. In this case, all three AIs correctly identified that I had used `sd` instead of `mean`. The more complex your code, the more information you will need to give it in order for it to help you find the error. 
+You can ask the AI to help you but you can't just give it the code and output, you also need to tell it what you intended to do. In this case, all three AIs correctly identified that I had used `sd` instead of `mean`. The more complex your code, the more information you will need to give it in order for it to help you find the error. 
 
 ```{r img-functional, echo=FALSE, fig.cap="Fixing a functional error"}
 
@@ -104,14 +102,14 @@ This is a good example of why **there is no AI tool that allows you to skip unde
 
 If you're working in R Markdown or Quarto, sometimes the errors will stem from your code chunk settings or YAML.
 
-In your Rmd file, create a new code chunk and paste the following:
+In your Rmd file, create a new code chunk and copy and paste the following:
 
 ```{r eval = FALSE}
 penguins %>%
   count()
 ```
 
-But then delete one of the final back ticks from the code chunk.
+But then delete one of the final back ticks (`) from the code chunk.
 
 The code is fine, it provides a simple count of the number of observations in the dataset. But if you try and knit the file, you'll get a long `! attempt to use zero-length variable name`. Copilot wasn't that helpful because all of its suggestions relate to checking your code:
 
@@ -126,7 +124,7 @@ However, Gemini was more useful as one of its suggestions is indeed the solution
 
 ```{r img-rmd2, echo=FALSE, fig.cap="Missing backticks"}
 
-knitr::include_graphics("include/images/04-error/rmd1.png")
+knitr::include_graphics("include/images/04-error/rmd2.png")
 
 ```
 

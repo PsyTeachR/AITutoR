@@ -285,18 +285,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><p><strong>Written by Emily Nordmann</strong></p>
-<div class="callout callout-style-default callout-caution callout-titled">
+</header><p><em>Written by Emily Nordmann</em></p>
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Caution
+Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In the interests of transparency, this chapter and the next are the ones I am least comfortable writing and I’d like to clearly acknowledge that I am barely one step ahead of you as a learner here so any constructive feedback is entirely welcome.</p>
+<p>In the interests of transparency, this chapter and the next are the ones I am least comfortable writing and I’d like to clearly acknowledge that I am barely one step ahead of you as a learner. Any constructive feedback is entirely welcome.</p>
 </div>
 </div>
 <p>In this chapter you’ll learn how to use AI to perform a code review and to add comments to your code. As you’ve already hopefully learned by working through this book, you have to be critical about anything the AI produces or suggests because it has no expert knowledge, but it can be a useful tool for checking and improving your code.</p>
@@ -308,8 +308,8 @@ Caution
 <li>Does it follow best practices? Is there too much repeated code that could benefit from modularisation? DRY (Don’t repeat yourself) and SPOT (Single Point of Truth)? Are the outputs of long processes saved and loaded from file? Are there unit tests? Do the variable names make sense? Do the results match what is shown in the output and there is no rounding up or down?</li>
 <li>Is it correct and appropriate? Is the code actually doing what is intended? Is what is intended correct? Some logical problems can be caught without domain knowledge, such as intending to to filter out male subjects, but actually filtering them IN. Many other problems require domain and/or statistical knowledge, so may only be appropriate in some circumstances.</li>
 </ul>
-<p>However, some of these steps cannot (and should not) be performed by an AI. You should <strong>never</strong> upload your research data to an AI tool (unless you have specific ethical approval and have included this in your data management plan) so assessing reproducibility is difficult and the AI doesn’t know what you <em>intended</em> to do and has no subject knowledge so it can’t advise on anything theoretical.</p>
-<p>What we’ll focus on in this chapter is therefore two components of code review: <strong>comments</strong> and <strong>refactoring</strong> your code.</p>
+<p>However, some of these steps cannot (and should not) be performed by an AI. Unless you have specific ethical approval and have included this in your data management plan, you should <strong>never</strong> upload your research data to an AI tool. This means that assessing reproducibility is difficult. The AI also doesn’t know what you <em>intended</em> to do, and why, and has no subject knowledge so it can’t advise on anything theoretical.</p>
+<p>Therefore, what we’ll focus on in this chapter is two components of code review: <strong>comments</strong> and <strong>refactoring</strong> your code.</p>
 <section id="code-comments" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="code-comments">
 <span class="header-section-number">5.1</span> Code comments</h2>
 <p>Code comments are lines or sections of text added within the code itself that are ignored by the computer when the program runs. They’re there for human readers, not machines. In R, you add comments to code by adding <code>#</code> to the start of the string:</p>
@@ -329,43 +329,31 @@ Caution
 </div>
 <p>Comments are useful for several reasons:</p>
 <ul>
-<li>Clarification: They explain what certain parts of the code do, making it easier for others (and yourself) to understand the logic and flow of the program.</li>
+<li>Clarification: They explain what certain parts of the code do, making it easier for others (and yourself) to understand the logic and flow of the code.</li>
 <li>Documentation: They provide information on how the code works or why certain decisions were made, which is helpful for future reference.</li>
 <li>Debugging: Temporarily commenting out parts of code can help isolate sections that may be causing errors, without deleting the code.</li>
 <li>Collaboration: In team projects, comments can be used to communicate with other developers about the status or purpose of the code.</li>
 </ul>
-<p>Overall, comments are a crucial part of writing clean, maintainable, and collaborative code. They help make the codebase more accessible and understandable to anyone who might work on it in the future.</p>
+<p>Overall, comments are a crucial part of writing clean, maintainable, and collaborative code. They help make the code more accessible and understandable to anyone who might work on it in the future.</p>
 <p>For transparency, Gemini and Copilot wrote the above text.</p>
 </section><section id="activity-1-add-comments-with-ai" class="level2" data-number="5.2"><h2 data-number="5.2" class="anchored" data-anchor-id="activity-1-add-comments-with-ai">
 <span class="header-section-number">5.2</span> Activity 1: Add comments with AI</h2>
 <p>First we’ll use use the <code>palmerpenguins</code> dataset again.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.2     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.4.2     ✔ tibble    3.2.1
-✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-✔ purrr     1.0.1     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="fu">data</span>(<span class="st">"penguins"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">library</span>(palmerpenguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'palmerpenguins' was built under R version 4.3.3</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">data</span>(<span class="st">"penguins"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>You can use AI tools to help add comments to your code. In your chosen platform, input the following:</p>
-<blockquote class="blockquote">
-<p>penguins_clean &lt;- penguins %&gt;% filter(complete.cases(.)) %&gt;% mutate(across(where(is.factor), as.character)) %&gt;% mutate(species_sex = interaction(species, sex, sep = “_“))</p>
-</blockquote>
+<p>You can use AI tools to help add comments to your code. In your chosen platform, input the below code with the prompt:</p>
 <blockquote class="blockquote">
 <p>Add comments to this code</p>
 </blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>penguins_clean <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">filter</span>(<span class="fu">complete.cases</span>(.)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.factor), as.character)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">mutate</span>(<span class="at">species_sex =</span> <span class="fu">interaction</span>(species, sex, <span class="at">sep =</span> <span class="st">"_"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -381,97 +369,71 @@ Caution
 <li>In the above example, Gemini has also made the strange decision to make the code itself more verbose and it has removed the piping and split it into three different calls. So as always, review what it gives you.</li>
 </ul></section><section id="activity-2-review-existing-comments" class="level2" data-number="5.3"><h2 data-number="5.3" class="anchored" data-anchor-id="activity-2-review-existing-comments">
 <span class="header-section-number">5.3</span> Activity 2: Review existing comments</h2>
-<p>In addition to asking AI to comment your code, you can also ask it to review comments you’ve made yourself. As an act of masochism, I gave the AI some code I wrote for a publication and asked it to review it (the full paper <a href="https://link.springer.com/article/10.1007/s10734-024-01201-5">is here</a> if you’re interested, the quant analyses ended up being punted to the online appendix because of word count.</p>
+<p>In addition to asking AI to comment your code, you can also ask it to review comments you’ve made yourself. To see how this works with a more complex example, and as an act of masochism, I gave the AI some code I wrote for a publication. The full paper <a href="https://link.springer.com/article/10.1007/s10734-024-01201-5">is here</a> if you’re interested - the quant analyses ended up being punted to the online appendix because of word count.</p>
 <p>You can load in the dataset yourself with this code:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># read in data but skip rows 2 and 3</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>col_names <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">read_csv</span>(<span class="st">"https://osf.io/download/tf3xs/"</span>, <span class="at">n_max =</span> <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 0 Columns: 40
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (40): StartDate, EndDate, Status, Progress, Duration (in seconds), Finis...
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># read in data but skip rows 2 and 3</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>col_names <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">read_csv</span>(<span class="st">"https://osf.io/download/tf3xs/"</span>, <span class="at">n_max =</span> <span class="dv">0</span>))</span>
+<span id="cb7-3"><a href="#cb7-3"></a>dat_raw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://osf.io/download/tf3xs/"</span>, <span class="at">col_names =</span> col_names, <span class="at">skip =</span> <span class="dv">3</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>dat_raw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://osf.io/download/tf3xs/"</span>, <span class="at">col_names =</span> col_names, <span class="at">skip =</span> <span class="dv">3</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 419 Columns: 40
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (36): StartDate, EndDate, Status, RecordedDate, ResponseId, Distribution...
-dbl  (3): Progress, Duration (in seconds), Q5
-lgl  (1): Finished
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<p>The first section of my code involved quite a complicated and long bit of wrangling all done in a single pipeline. This code is cleaning up data from the survey platform Qualtrics and recoding some of the demographic variables. Despite it’s length, this is actually a shortened version because the original hit the character limit for Copilot. I did put some effort into writing comments so I wasn’t expecting it to need to change that much.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>dat <span class="ot">&lt;-</span> dat_raw<span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">filter</span>(Progress <span class="sc">&gt;</span> <span class="dv">94</span>, <span class="co"># remove incomplete responses</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>         DistributionChannel <span class="sc">!=</span> <span class="st">"preview"</span>) <span class="sc">%&gt;%</span> <span class="co"># Remove Emily's preview data</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">select</span>(ResponseId, <span class="st">"duration"</span> <span class="ot">=</span> <span class="dv">5</span>, Q5<span class="sc">:</span>Q21) <span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>  <span class="co"># replace NAs with "none" for disability info</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a>  <span class="fu">mutate</span>(<span class="at">disability_nos =</span> <span class="fu">replace_na</span>(disability_nos, <span class="st">"None"</span>),</span>
+<span id="cb8-7"><a href="#cb8-7"></a>         <span class="at">physical_chronic =</span> <span class="fu">replace_na</span>(physical_chronic, <span class="st">"None"</span>),</span>
+<span id="cb8-8"><a href="#cb8-8"></a>         <span class="at">mental_health =</span> <span class="fu">replace_na</span>(mental_health, <span class="st">"None"</span>),</span>
+<span id="cb8-9"><a href="#cb8-9"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a>  <span class="co"># recode disability data</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a>  <span class="fu">mutate</span>(<span class="at">disability =</span> <span class="fu">case_when</span>(<span class="co"># neurodivergent </span></span>
+<span id="cb8-12"><a href="#cb8-12"></a>                                  neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a>                                  physical_chronic <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span></span>
+<span id="cb8-14"><a href="#cb8-14"></a>                                  mental_health <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span> </span>
+<span id="cb8-15"><a href="#cb8-15"></a>                                  disability_nos <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">~</span></span>
+<span id="cb8-16"><a href="#cb8-16"></a>                                  <span class="st">"Neurodivergent"</span>,</span>
+<span id="cb8-17"><a href="#cb8-17"></a>                                 <span class="co"># disabled</span></span>
+<span id="cb8-18"><a href="#cb8-18"></a>                                  neurotype <span class="sc">==</span> <span class="st">"Neurotypical"</span> <span class="sc">&amp;</span></span>
+<span id="cb8-19"><a href="#cb8-19"></a>                                  physical_chronic <span class="sc">==</span> <span class="st">"Physical, mobility, or chronic health condition"</span> <span class="sc">|</span></span>
+<span id="cb8-20"><a href="#cb8-20"></a>                                  mental_health <span class="sc">==</span> <span class="st">"Mental health condition"</span> <span class="sc">|</span></span>
+<span id="cb8-21"><a href="#cb8-21"></a>                                  disability_nos <span class="sc">==</span> <span class="st">"Disability not otherwise specified"</span> <span class="sc">~</span></span>
+<span id="cb8-22"><a href="#cb8-22"></a>                                  <span class="st">"Disabled"</span>,</span>
+<span id="cb8-23"><a href="#cb8-23"></a>                                 <span class="co"># multiple conditions</span></span>
+<span id="cb8-24"><a href="#cb8-24"></a>                                 (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> mental_health <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
+<span id="cb8-25"><a href="#cb8-25"></a>      (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> physical_chronic <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
+<span id="cb8-26"><a href="#cb8-26"></a>      (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
+<span id="cb8-27"><a href="#cb8-27"></a>      (mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> physical_chronic <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
+<span id="cb8-28"><a href="#cb8-28"></a>      (mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
+<span id="cb8-29"><a href="#cb8-29"></a>      (physical_chronic <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">~</span> <span class="st">"NDD"</span>,</span>
+<span id="cb8-30"><a href="#cb8-30"></a>                                </span>
+<span id="cb8-31"><a href="#cb8-31"></a>                                <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Neurotypical &amp; non-disabled"</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb8-32"><a href="#cb8-32"></a>  <span class="co"># recode gender data</span></span>
+<span id="cb8-33"><a href="#cb8-33"></a>  <span class="co"># select necessary columns and tidy up the names</span></span>
+<span id="cb8-34"><a href="#cb8-34"></a>        <span class="fu">select</span>(ResponseId,</span>
+<span id="cb8-35"><a href="#cb8-35"></a>             <span class="st">"age"</span> <span class="ot">=</span> Q5,</span>
+<span id="cb8-36"><a href="#cb8-36"></a>             <span class="st">"gender"</span> <span class="ot">=</span> Q6,</span>
+<span id="cb8-37"><a href="#cb8-37"></a>             <span class="st">"mature"</span> <span class="ot">=</span> Q7,</span>
+<span id="cb8-38"><a href="#cb8-38"></a>             <span class="st">"level_study"</span> <span class="ot">=</span> Q8,</span>
+<span id="cb8-39"><a href="#cb8-39"></a>             <span class="st">"country"</span> <span class="ot">=</span> Q9,</span>
+<span id="cb8-40"><a href="#cb8-40"></a>             <span class="st">"subject"</span> <span class="ot">=</span> Q10,</span>
+<span id="cb8-41"><a href="#cb8-41"></a>             <span class="st">"english_first"</span> <span class="ot">=</span> Q11,</span>
+<span id="cb8-42"><a href="#cb8-42"></a>             disability,</span>
+<span id="cb8-43"><a href="#cb8-43"></a>             <span class="st">"neurotype_open"</span> <span class="ot">=</span> Q13, </span>
+<span id="cb8-44"><a href="#cb8-44"></a>             <span class="st">"disability_open"</span> <span class="ot">=</span> Q14,</span>
+<span id="cb8-45"><a href="#cb8-45"></a>             <span class="st">"why_open"</span> <span class="ot">=</span> Q18,</span>
+<span id="cb8-46"><a href="#cb8-46"></a>             <span class="st">"how_open"</span> <span class="ot">=</span> Q23,</span>
+<span id="cb8-47"><a href="#cb8-47"></a>             <span class="st">"advantages"</span> <span class="ot">=</span> Q20,</span>
+<span id="cb8-48"><a href="#cb8-48"></a>             <span class="st">"disadvantages"</span> <span class="ot">=</span> Q21,</span>
+<span id="cb8-49"><a href="#cb8-49"></a>             <span class="fu">everything</span>()) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p>As you can see, there’s quite a complicated and long bit of wrangling - and this is actually a shortened version because it hit the character limit for Copilot. The prompt was:</p>
+<ul>
+<li>In your chosen AI, give it the above code and the prompt:</li>
+</ul>
 <blockquote class="blockquote">
 <p>Review my use of comments and make improvements to the comments where necessary. Explain what you changed and why.</p>
 </blockquote>
-<p>This was the original code - I did put some effort into writing comments so I wasn’t expecting it to need to change that much.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>dat <span class="ot">&lt;-</span> dat_raw<span class="sc">%&gt;%</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">filter</span>(Progress <span class="sc">&gt;</span> <span class="dv">94</span>, <span class="co"># remove incomplete responses</span></span>
-<span id="cb14-3"><a href="#cb14-3"></a>         DistributionChannel <span class="sc">!=</span> <span class="st">"preview"</span>) <span class="sc">%&gt;%</span> <span class="co"># Remove Emily's preview data</span></span>
-<span id="cb14-4"><a href="#cb14-4"></a>  <span class="fu">select</span>(ResponseId, <span class="st">"duration"</span> <span class="ot">=</span> <span class="dv">5</span>, Q5<span class="sc">:</span>Q21) <span class="sc">%&gt;%</span></span>
-<span id="cb14-5"><a href="#cb14-5"></a>  <span class="co"># replace NAs with "none" for disability info</span></span>
-<span id="cb14-6"><a href="#cb14-6"></a>  <span class="fu">mutate</span>(<span class="at">disability_nos =</span> <span class="fu">replace_na</span>(disability_nos, <span class="st">"None"</span>),</span>
-<span id="cb14-7"><a href="#cb14-7"></a>         <span class="at">physical_chronic =</span> <span class="fu">replace_na</span>(physical_chronic, <span class="st">"None"</span>),</span>
-<span id="cb14-8"><a href="#cb14-8"></a>         <span class="at">mental_health =</span> <span class="fu">replace_na</span>(mental_health, <span class="st">"None"</span>),</span>
-<span id="cb14-9"><a href="#cb14-9"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb14-10"><a href="#cb14-10"></a>  <span class="co"># recode disability data</span></span>
-<span id="cb14-11"><a href="#cb14-11"></a>  <span class="fu">mutate</span>(<span class="at">disability =</span> <span class="fu">case_when</span>(<span class="co"># neurodivergent </span></span>
-<span id="cb14-12"><a href="#cb14-12"></a>                                  neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span></span>
-<span id="cb14-13"><a href="#cb14-13"></a>                                  physical_chronic <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span></span>
-<span id="cb14-14"><a href="#cb14-14"></a>                                  mental_health <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span> </span>
-<span id="cb14-15"><a href="#cb14-15"></a>                                  disability_nos <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">~</span></span>
-<span id="cb14-16"><a href="#cb14-16"></a>                                  <span class="st">"Neurodivergent"</span>,</span>
-<span id="cb14-17"><a href="#cb14-17"></a>                                 <span class="co"># disabled</span></span>
-<span id="cb14-18"><a href="#cb14-18"></a>                                  neurotype <span class="sc">==</span> <span class="st">"Neurotypical"</span> <span class="sc">&amp;</span></span>
-<span id="cb14-19"><a href="#cb14-19"></a>                                  physical_chronic <span class="sc">==</span> <span class="st">"Physical, mobility, or chronic health condition"</span> <span class="sc">|</span></span>
-<span id="cb14-20"><a href="#cb14-20"></a>                                  mental_health <span class="sc">==</span> <span class="st">"Mental health condition"</span> <span class="sc">|</span></span>
-<span id="cb14-21"><a href="#cb14-21"></a>                                  disability_nos <span class="sc">==</span> <span class="st">"Disability not otherwise specified"</span> <span class="sc">~</span></span>
-<span id="cb14-22"><a href="#cb14-22"></a>                                  <span class="st">"Disabled"</span>,</span>
-<span id="cb14-23"><a href="#cb14-23"></a>                                 <span class="co"># multiple conditions</span></span>
-<span id="cb14-24"><a href="#cb14-24"></a>                                 (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> mental_health <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
-<span id="cb14-25"><a href="#cb14-25"></a>      (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> physical_chronic <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
-<span id="cb14-26"><a href="#cb14-26"></a>      (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
-<span id="cb14-27"><a href="#cb14-27"></a>      (mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> physical_chronic <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
-<span id="cb14-28"><a href="#cb14-28"></a>      (mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
-<span id="cb14-29"><a href="#cb14-29"></a>      (physical_chronic <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">~</span> <span class="st">"NDD"</span>,</span>
-<span id="cb14-30"><a href="#cb14-30"></a>                                </span>
-<span id="cb14-31"><a href="#cb14-31"></a>                                <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Neurotypical &amp; non-disabled"</span>))<span class="sc">%&gt;%</span></span>
-<span id="cb14-32"><a href="#cb14-32"></a>  <span class="co"># recode gender data</span></span>
-<span id="cb14-33"><a href="#cb14-33"></a></span>
-<span id="cb14-34"><a href="#cb14-34"></a>  <span class="fu">mutate</span>(<span class="at">gender_cleaned =</span> <span class="fu">case_when</span>(Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Female"</span>, <span class="st">"female"</span>, <span class="st">"Woman"</span>, <span class="st">"woman"</span>, <span class="st">"Cisgender woman"</span>,<span class="st">"female (she/her)"</span>, <span class="st">"F"</span>, <span class="st">"f"</span>, <span class="st">"Womxn"</span>, <span class="st">"Woman (tranas)"</span>) <span class="sc">~</span> <span class="st">"Woman"</span>,</span>
-<span id="cb14-35"><a href="#cb14-35"></a>                                    Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Man"</span>, <span class="st">"man"</span>, <span class="st">"M"</span>, <span class="st">"m"</span>, <span class="st">"Male (he/him)"</span>, <span class="st">"Male"</span>, <span class="st">"male"</span>, <span class="st">"Trans man."</span>) <span class="sc">~</span> <span class="st">"Man"</span>,</span>
-<span id="cb14-36"><a href="#cb14-36"></a>                                    Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Agender"</span>, <span class="st">"Genderfluid"</span>, <span class="st">"GNC"</span>, <span class="st">"NB"</span>, <span class="st">"non-binary"</span>, <span class="st">"    </span></span>
-<span id="cb14-37"><a href="#cb14-37"></a><span class="st">Non-binary"</span>, <span class="st">"Non-Binary"</span>, <span class="st">"Non-binary femme"</span>, <span class="st">"non-binary male"</span>, <span class="st">"non binary"</span>,</span>
-<span id="cb14-38"><a href="#cb14-38"></a><span class="st">"Non binary"</span>, <span class="st">"Nonbinary"</span>, <span class="st">"Queer"</span>, <span class="st">"Transmasculine"</span>, <span class="st">"Non-binary"</span>) <span class="sc">~</span> <span class="st">"Non-binary"</span>,</span>
-<span id="cb14-39"><a href="#cb14-39"></a>                            <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Not stated"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb14-40"><a href="#cb14-40"></a>  <span class="co"># select necessary columns and tidy up the names</span></span>
-<span id="cb14-41"><a href="#cb14-41"></a>        <span class="fu">select</span>(ResponseId,</span>
-<span id="cb14-42"><a href="#cb14-42"></a>             <span class="st">"age"</span> <span class="ot">=</span> Q5,</span>
-<span id="cb14-43"><a href="#cb14-43"></a>             <span class="st">"gender"</span> <span class="ot">=</span> Q6,</span>
-<span id="cb14-44"><a href="#cb14-44"></a>             gender_cleaned,</span>
-<span id="cb14-45"><a href="#cb14-45"></a>             <span class="st">"mature"</span> <span class="ot">=</span> Q7,</span>
-<span id="cb14-46"><a href="#cb14-46"></a>             <span class="st">"level_study"</span> <span class="ot">=</span> Q8,</span>
-<span id="cb14-47"><a href="#cb14-47"></a>             <span class="st">"country"</span> <span class="ot">=</span> Q9,</span>
-<span id="cb14-48"><a href="#cb14-48"></a>             <span class="st">"subject"</span> <span class="ot">=</span> Q10,</span>
-<span id="cb14-49"><a href="#cb14-49"></a>             <span class="st">"english_first"</span> <span class="ot">=</span> Q11,</span>
-<span id="cb14-50"><a href="#cb14-50"></a>             disability,</span>
-<span id="cb14-51"><a href="#cb14-51"></a>             <span class="st">"neurotype_open"</span> <span class="ot">=</span> Q13, </span>
-<span id="cb14-52"><a href="#cb14-52"></a>             <span class="st">"disability_open"</span> <span class="ot">=</span> Q14,</span>
-<span id="cb14-53"><a href="#cb14-53"></a>             <span class="st">"why_open"</span> <span class="ot">=</span> Q18,</span>
-<span id="cb14-54"><a href="#cb14-54"></a>             <span class="st">"how_open"</span> <span class="ot">=</span> Q23,</span>
-<span id="cb14-55"><a href="#cb14-55"></a>             <span class="st">"advantages"</span> <span class="ot">=</span> Q20,</span>
-<span id="cb14-56"><a href="#cb14-56"></a>             <span class="st">"disadvantages"</span> <span class="ot">=</span> Q21,</span>
-<span id="cb14-57"><a href="#cb14-57"></a>             <span class="fu">everything</span>()) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>Each platform gave slightly different output with slightly different issues:</p>
 <section id="gemini-output" class="level3" data-number="5.3.1"><h3 data-number="5.3.1" class="anchored" data-anchor-id="gemini-output">
 <span class="header-section-number">5.3.1</span> Gemini output</h3>
@@ -479,143 +441,152 @@ lgl  (1): Finished
 <li>As well as giving me an explanation in the chat window, Gemini added the explanation to the comments themselves, so you’d need to go and edit these out (or amend the prompt to tell it not to do this).</li>
 <li>It has picked up where the logic of the comments might not be helpful to someone who doesn’t already know the data e.g., (explain logic), which is useful.</li>
 <li>Extremely problematically, it didn’t just change the comments, it changed the code. The original first use of <code>select()</code> was <code>select(ResponseId, "duration" = 5, Q5:Q21) %&gt;%</code>. In this code, I selected the columns I wanted but I also renamed the 5th column. Gemini has changed the code to remove this from select and has instead create a new column named <code>duration</code> that will contain the value 5. I didn’t ask it to do this and in its response, it doesn’t tell me anywhere that it made this change. <strong>Be very, very careful</strong>.</li>
-<li>It’s also removed some of the code, for example, in the gender coding we now have the comment <code># Include common variations</code> rather than the original list which means the code wont’ run.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>dat_gemini <span class="ot">&lt;-</span> dat_raw <span class="sc">%&gt;%</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>  <span class="co"># Filter incomplete responses and remove preview data (for clarity)</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a>  <span class="fu">filter</span>(Progress <span class="sc">&gt;</span> <span class="dv">94</span>, DistributionChannel <span class="sc">!=</span> <span class="st">"preview"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb15-4"><a href="#cb15-4"></a>  <span class="co"># Select core columns and create a "duration" column (more specific)</span></span>
-<span id="cb15-5"><a href="#cb15-5"></a>  <span class="fu">select</span>(ResponseId, Q5<span class="sc">:</span>Q21) <span class="sc">%&gt;%</span></span>
-<span id="cb15-6"><a href="#cb15-6"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb15-7"><a href="#cb15-7"></a>    <span class="at">duration =</span> <span class="dv">5</span>,  <span class="co"># Assuming duration is constant at 5, explain if not</span></span>
-<span id="cb15-8"><a href="#cb15-8"></a>    <span class="co"># Replace NAs in disability info with "None" (clearer intent)</span></span>
-<span id="cb15-9"><a href="#cb15-9"></a>    <span class="at">disability_nos =</span> <span class="fu">replace_na</span>(disability_nos, <span class="st">"None"</span>),</span>
-<span id="cb15-10"><a href="#cb15-10"></a>    <span class="at">physical_chronic =</span> <span class="fu">replace_na</span>(physical_chronic, <span class="st">"None"</span>),</span>
-<span id="cb15-11"><a href="#cb15-11"></a>    <span class="at">mental_health =</span> <span class="fu">replace_na</span>(mental_health, <span class="st">"None"</span>)</span>
-<span id="cb15-12"><a href="#cb15-12"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb15-13"><a href="#cb15-13"></a>  <span class="co"># Recode disability data into more informative categories (explain logic)</span></span>
-<span id="cb15-14"><a href="#cb15-14"></a>  <span class="fu">mutate</span>(<span class="at">disability =</span> <span class="fu">case_when</span>(</span>
-<span id="cb15-15"><a href="#cb15-15"></a>    <span class="co"># Neurodivergent with no other conditions</span></span>
-<span id="cb15-16"><a href="#cb15-16"></a>    neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span></span>
-<span id="cb15-17"><a href="#cb15-17"></a>      physical_chronic <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span></span>
-<span id="cb15-18"><a href="#cb15-18"></a>      mental_health <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span></span>
-<span id="cb15-19"><a href="#cb15-19"></a>      disability_nos <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">~</span> <span class="st">"Neurodivergent"</span>,</span>
-<span id="cb15-20"><a href="#cb15-20"></a>    <span class="co"># Disabled with any reported condition</span></span>
-<span id="cb15-21"><a href="#cb15-21"></a>    neurotype <span class="sc">==</span> <span class="st">"Neurotypical"</span> <span class="sc">&amp;</span></span>
-<span id="cb15-22"><a href="#cb15-22"></a>      (physical_chronic <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">|</span>  <span class="co"># Include "OR" for clarity</span></span>
-<span id="cb15-23"><a href="#cb15-23"></a>       mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">|</span></span>
-<span id="cb15-24"><a href="#cb15-24"></a>       disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">~</span> <span class="st">"Disabled"</span>,</span>
-<span id="cb15-25"><a href="#cb15-25"></a>    <span class="co"># Multiple conditions (explain groupings)</span></span>
-<span id="cb15-26"><a href="#cb15-26"></a>    (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span></span>
-<span id="cb15-27"><a href="#cb15-27"></a>      (physical_chronic <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">|</span></span>
-<span id="cb15-28"><a href="#cb15-28"></a>       mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">|</span></span>
-<span id="cb15-29"><a href="#cb15-29"></a>       disability_nos <span class="sc">!=</span> <span class="st">"None"</span>)) <span class="sc">|</span></span>
-<span id="cb15-30"><a href="#cb15-30"></a>    (physical_chronic <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span></span>
-<span id="cb15-31"><a href="#cb15-31"></a>     (mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">|</span></span>
-<span id="cb15-32"><a href="#cb15-32"></a>      disability_nos <span class="sc">!=</span> <span class="st">"None"</span>)) <span class="sc">|</span></span>
-<span id="cb15-33"><a href="#cb15-33"></a>    (mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">~</span> <span class="st">"NDD"</span>  <span class="co"># Define NDD acronym</span></span>
-<span id="cb15-34"><a href="#cb15-34"></a>    , <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Neurotypical &amp; non-disabled"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb15-35"><a href="#cb15-35"></a>  <span class="co"># Recode gender data into more concise categories (explain categories)</span></span>
-<span id="cb15-36"><a href="#cb15-36"></a>  <span class="fu">mutate</span>(<span class="at">gender_cleaned =</span> <span class="fu">case_when</span>(</span>
-<span id="cb15-37"><a href="#cb15-37"></a>    Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Female"</span>, <span class="st">"woman"</span>, <span class="st">"cisgender woman"</span>, ...) <span class="sc">~</span> <span class="st">"Woman"</span>,  <span class="co"># Include common variations</span></span>
-<span id="cb15-38"><a href="#cb15-38"></a>    Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Man"</span>, <span class="st">"male"</span>, <span class="st">"trans man"</span>) <span class="sc">~</span> <span class="st">"Man"</span>,</span>
-<span id="cb15-39"><a href="#cb15-39"></a>    Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Non-binary"</span>, <span class="st">"genderqueer"</span>, <span class="st">"agender"</span>, ...) <span class="sc">~</span> <span class="st">"Non-binary"</span>,  <span class="co"># Include common variations</span></span>
-<span id="cb15-40"><a href="#cb15-40"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Not stated"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb15-41"><a href="#cb15-41"></a>  <span class="co"># Select final columns and rename for clarity</span></span>
-<span id="cb15-42"><a href="#cb15-42"></a>  <span class="fu">select</span>(ResponseId,</span>
-<span id="cb15-43"><a href="#cb15-43"></a>         <span class="at">age =</span> Q5,</span>
-<span id="cb15-44"><a href="#cb15-44"></a>         <span class="at">gender =</span> Q6,</span>
-<span id="cb15-45"><a href="#cb15-45"></a>         gender_cleaned,</span>
-<span id="cb15-46"><a href="#cb15-46"></a>         <span class="at">mature =</span> Q7,</span>
-<span id="cb15-47"><a href="#cb15-47"></a>         <span class="at">level_study =</span> Q8,</span>
-<span id="cb15-48"><a href="#cb15-48"></a>         <span class="at">country =</span> Q9,</span>
-<span id="cb15-49"><a href="#cb15-49"></a>         <span class="at">subject =</span> Q10,</span>
-<span id="cb15-50"><a href="#cb15-50"></a>         <span class="at">english_first =</span> Q11,</span>
-<span id="cb15-51"><a href="#cb15-51"></a>         disability,</span>
-<span id="cb15-52"><a href="#cb15-52"></a>         <span class="at">neurotype_open =</span> Q13,</span>
-<span id="cb15-53"><a href="#cb15-53"></a>         <span class="at">disability_open =</span> Q14,</span>
-<span id="cb15-54"><a href="#cb15-54"></a>         <span class="at">why_open =</span> Q18,</span>
-<span id="cb15-55"><a href="#cb15-55"></a>         <span class="at">how_open =</span> Q23,</span>
-<span id="cb15-56"><a href="#cb15-56"></a>         <span class="at">advantages =</span> Q20,</span>
-<span id="cb15-57"><a href="#cb15-57"></a>         <span class="at">disadvantages =</span> Q21,</span>
-<span id="cb15-58"><a href="#cb15-58"></a>         <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>dat_gemini <span class="ot">&lt;-</span> dat_raw <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="co"># Filter incomplete responses and remove preview data (for clarity)</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">filter</span>(Progress <span class="sc">&gt;</span> <span class="dv">94</span>, DistributionChannel <span class="sc">!=</span> <span class="st">"preview"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="co"># Select core columns and create a "duration" column (more specific)</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">select</span>(ResponseId, Q5<span class="sc">:</span>Q21) <span class="sc">%&gt;%</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb9-7"><a href="#cb9-7"></a>    <span class="at">duration =</span> <span class="dv">5</span>,  <span class="co"># Assuming duration is constant at 5, explain if not</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>    <span class="co"># Replace NAs in disability info with "None" (clearer intent)</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a>    <span class="at">disability_nos =</span> <span class="fu">replace_na</span>(disability_nos, <span class="st">"None"</span>),</span>
+<span id="cb9-10"><a href="#cb9-10"></a>    <span class="at">physical_chronic =</span> <span class="fu">replace_na</span>(physical_chronic, <span class="st">"None"</span>),</span>
+<span id="cb9-11"><a href="#cb9-11"></a>    <span class="at">mental_health =</span> <span class="fu">replace_na</span>(mental_health, <span class="st">"None"</span>)</span>
+<span id="cb9-12"><a href="#cb9-12"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb9-13"><a href="#cb9-13"></a>  <span class="co"># Recode disability data into more informative categories (explain logic)</span></span>
+<span id="cb9-14"><a href="#cb9-14"></a>  <span class="fu">mutate</span>(<span class="at">disability =</span> <span class="fu">case_when</span>(</span>
+<span id="cb9-15"><a href="#cb9-15"></a>    <span class="co"># Neurodivergent with no other conditions</span></span>
+<span id="cb9-16"><a href="#cb9-16"></a>    neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span></span>
+<span id="cb9-17"><a href="#cb9-17"></a>      physical_chronic <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span></span>
+<span id="cb9-18"><a href="#cb9-18"></a>      mental_health <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span></span>
+<span id="cb9-19"><a href="#cb9-19"></a>      disability_nos <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">~</span> <span class="st">"Neurodivergent"</span>,</span>
+<span id="cb9-20"><a href="#cb9-20"></a>    <span class="co"># Disabled with any reported condition</span></span>
+<span id="cb9-21"><a href="#cb9-21"></a>    neurotype <span class="sc">==</span> <span class="st">"Neurotypical"</span> <span class="sc">&amp;</span></span>
+<span id="cb9-22"><a href="#cb9-22"></a>      (physical_chronic <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">|</span>  <span class="co"># Include "OR" for clarity</span></span>
+<span id="cb9-23"><a href="#cb9-23"></a>       mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">|</span></span>
+<span id="cb9-24"><a href="#cb9-24"></a>       disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">~</span> <span class="st">"Disabled"</span>,</span>
+<span id="cb9-25"><a href="#cb9-25"></a>    <span class="co"># Multiple conditions (explain groupings)</span></span>
+<span id="cb9-26"><a href="#cb9-26"></a>    (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span></span>
+<span id="cb9-27"><a href="#cb9-27"></a>      (physical_chronic <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">|</span></span>
+<span id="cb9-28"><a href="#cb9-28"></a>       mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">|</span></span>
+<span id="cb9-29"><a href="#cb9-29"></a>       disability_nos <span class="sc">!=</span> <span class="st">"None"</span>)) <span class="sc">|</span></span>
+<span id="cb9-30"><a href="#cb9-30"></a>    (physical_chronic <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span></span>
+<span id="cb9-31"><a href="#cb9-31"></a>     (mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">|</span></span>
+<span id="cb9-32"><a href="#cb9-32"></a>      disability_nos <span class="sc">!=</span> <span class="st">"None"</span>)) <span class="sc">|</span></span>
+<span id="cb9-33"><a href="#cb9-33"></a>    (mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">~</span> <span class="st">"NDD"</span>  <span class="co"># Define NDD acronym</span></span>
+<span id="cb9-34"><a href="#cb9-34"></a>    , <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Neurotypical &amp; non-disabled"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-35"><a href="#cb9-35"></a>  <span class="co"># Select final columns and rename for clarity</span></span>
+<span id="cb9-36"><a href="#cb9-36"></a>  <span class="fu">select</span>(ResponseId,</span>
+<span id="cb9-37"><a href="#cb9-37"></a>         <span class="at">age =</span> Q5,</span>
+<span id="cb9-38"><a href="#cb9-38"></a>         <span class="at">gender =</span> Q6,</span>
+<span id="cb9-39"><a href="#cb9-39"></a>         <span class="at">mature =</span> Q7,</span>
+<span id="cb9-40"><a href="#cb9-40"></a>         <span class="at">level_study =</span> Q8,</span>
+<span id="cb9-41"><a href="#cb9-41"></a>         <span class="at">country =</span> Q9,</span>
+<span id="cb9-42"><a href="#cb9-42"></a>         <span class="at">subject =</span> Q10,</span>
+<span id="cb9-43"><a href="#cb9-43"></a>         <span class="at">english_first =</span> Q11,</span>
+<span id="cb9-44"><a href="#cb9-44"></a>         disability,</span>
+<span id="cb9-45"><a href="#cb9-45"></a>         <span class="at">neurotype_open =</span> Q13,</span>
+<span id="cb9-46"><a href="#cb9-46"></a>         <span class="at">disability_open =</span> Q14,</span>
+<span id="cb9-47"><a href="#cb9-47"></a>         <span class="at">why_open =</span> Q18,</span>
+<span id="cb9-48"><a href="#cb9-48"></a>         <span class="at">how_open =</span> Q23,</span>
+<span id="cb9-49"><a href="#cb9-49"></a>         <span class="at">advantages =</span> Q20,</span>
+<span id="cb9-50"><a href="#cb9-50"></a>         <span class="at">disadvantages =</span> Q21,</span>
+<span id="cb9-51"><a href="#cb9-51"></a>         <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <blockquote class="blockquote">
-<p>Explanation of Changes: Clarity: Added more specific explanations to comments, especially for variable creation and data manipulation steps. Logic: Explained the reasoning behind the recoding logic in the case_when statements for disability and gender. Conciseness: Shortened some comments where brevity is sufficient. Acronyms: Defined the acronym “NDD” for better understanding. Consistency: Used consistent formatting for comments (e.g., indentation). These improvements enhance the readability and maintainability of your code, making it easier for you or others to understand the purpose of each step.</p>
+<p>Explanation of Changes:</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Clarity: Added more specific explanations to comments, especially for variable creation and data manipulation steps.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Logic: Explained the reasoning behind the recoding logic in the case_when statements for disability and gender.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Conciseness: Shortened some comments where brevity is sufficient.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Acronyms: Defined the acronym “NDD” for better understanding.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Consistency: Used consistent formatting for comments (e.g., indentation).</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>These improvements enhance the readability and maintainability of your code, making it easier for you or others to understand the purpose of each step.</p>
 </blockquote>
 </section><section id="copilot-output" class="level3" data-number="5.3.2"><h3 data-number="5.3.2" class="anchored" data-anchor-id="copilot-output">
 <span class="header-section-number">5.3.2</span> Copilot output</h3>
 <ul>
-<li>Generally much better than Gemini, particularly for expanding on the more complex recoding of neurodivergence.</li>
+<li>Generall, Copilot was much better than Gemini, particularly for expanding on the more complex recoding of neurodivergence.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>dat_copilot <span class="ot">&lt;-</span> dat_raw <span class="sc">%&gt;%</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">filter</span>(Progress <span class="sc">&gt;</span> <span class="dv">94</span>, <span class="co"># Keep only responses with progress over 94%</span></span>
-<span id="cb16-3"><a href="#cb16-3"></a>         DistributionChannel <span class="sc">!=</span> <span class="st">"preview"</span>) <span class="sc">%&gt;%</span> <span class="co"># Exclude preview data, such as test entries</span></span>
-<span id="cb16-4"><a href="#cb16-4"></a>  <span class="fu">select</span>(ResponseId, <span class="st">"duration"</span> <span class="ot">=</span> <span class="dv">5</span>, Q5<span class="sc">:</span>Q21) <span class="sc">%&gt;%</span></span>
-<span id="cb16-5"><a href="#cb16-5"></a>  <span class="co"># Replace missing values with "None" for disability-related columns</span></span>
-<span id="cb16-6"><a href="#cb16-6"></a>  <span class="fu">mutate</span>(<span class="at">disability_nos =</span> <span class="fu">replace_na</span>(disability_nos, <span class="st">"None"</span>),</span>
-<span id="cb16-7"><a href="#cb16-7"></a>         <span class="at">physical_chronic =</span> <span class="fu">replace_na</span>(physical_chronic, <span class="st">"None"</span>),</span>
-<span id="cb16-8"><a href="#cb16-8"></a>         <span class="at">mental_health =</span> <span class="fu">replace_na</span>(mental_health, <span class="st">"None"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb16-9"><a href="#cb16-9"></a>  <span class="co"># Recode disability categories based on survey responses</span></span>
-<span id="cb16-10"><a href="#cb16-10"></a>  <span class="fu">mutate</span>(<span class="at">disability =</span> <span class="fu">case_when</span>(</span>
-<span id="cb16-11"><a href="#cb16-11"></a>    <span class="co"># Classify as "Neurodivergent" if only neurotype is divergent and no other conditions reported</span></span>
-<span id="cb16-12"><a href="#cb16-12"></a>    neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span></span>
-<span id="cb16-13"><a href="#cb16-13"></a>    physical_chronic <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span></span>
-<span id="cb16-14"><a href="#cb16-14"></a>    mental_health <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span> </span>
-<span id="cb16-15"><a href="#cb16-15"></a>    disability_nos <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">~</span> <span class="st">"Neurodivergent"</span>,</span>
-<span id="cb16-16"><a href="#cb16-16"></a>    </span>
-<span id="cb16-17"><a href="#cb16-17"></a>    <span class="co"># Classify as "Disabled" if any physical, mental, or unspecified disability is reported</span></span>
-<span id="cb16-18"><a href="#cb16-18"></a>    neurotype <span class="sc">==</span> <span class="st">"Neurotypical"</span> <span class="sc">&amp;</span></span>
-<span id="cb16-19"><a href="#cb16-19"></a>    (physical_chronic <span class="sc">==</span> <span class="st">"Physical, mobility, or chronic health condition"</span> <span class="sc">|</span></span>
-<span id="cb16-20"><a href="#cb16-20"></a>     mental_health <span class="sc">==</span> <span class="st">"Mental health condition"</span> <span class="sc">|</span></span>
-<span id="cb16-21"><a href="#cb16-21"></a>     disability_nos <span class="sc">==</span> <span class="st">"Disability not otherwise specified"</span>) <span class="sc">~</span> <span class="st">"Disabled"</span>,</span>
-<span id="cb16-22"><a href="#cb16-22"></a>    </span>
-<span id="cb16-23"><a href="#cb16-23"></a>    <span class="co"># Classify as "NDD" (Neurodivergent with Disabilities) if multiple conditions are reported</span></span>
-<span id="cb16-24"><a href="#cb16-24"></a>    (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> mental_health <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
-<span id="cb16-25"><a href="#cb16-25"></a>    (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> physical_chronic <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
-<span id="cb16-26"><a href="#cb16-26"></a>    (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
-<span id="cb16-27"><a href="#cb16-27"></a>    (mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> physical_chronic <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
-<span id="cb16-28"><a href="#cb16-28"></a>    (mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
-<span id="cb16-29"><a href="#cb16-29"></a>    (physical_chronic <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">~</span> <span class="st">"NDD"</span>,</span>
-<span id="cb16-30"><a href="#cb16-30"></a>    </span>
-<span id="cb16-31"><a href="#cb16-31"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Neurotypical &amp; non-disabled"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb16-32"><a href="#cb16-32"></a>  <span class="co"># Recode gender data based on survey responses</span></span>
-<span id="cb16-33"><a href="#cb16-33"></a>  <span class="fu">mutate</span>(<span class="at">gender_cleaned =</span> <span class="fu">case_when</span>(</span>
-<span id="cb16-34"><a href="#cb16-34"></a>    Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Female"</span>, <span class="st">"female"</span>, <span class="st">"Woman"</span>, <span class="st">"woman"</span>, <span class="st">"Cisgender woman"</span>,<span class="st">"female (she/her)"</span>, <span class="st">"F"</span>, <span class="st">"f"</span>, <span class="st">"Womxn"</span>, <span class="st">"Woman (tranas)"</span>) <span class="sc">~</span> <span class="st">"Woman"</span>,</span>
-<span id="cb16-35"><a href="#cb16-35"></a>    Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Man"</span>, <span class="st">"man"</span>, <span class="st">"M"</span>, <span class="st">"m"</span>, <span class="st">"Male (he/him)"</span>, <span class="st">"Male"</span>, <span class="st">"male"</span>, <span class="st">"Trans man."</span>) <span class="sc">~</span> <span class="st">"Man"</span>,</span>
-<span id="cb16-36"><a href="#cb16-36"></a>    Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Agender"</span>, <span class="st">"Genderfluid"</span>, <span class="st">"GNC"</span>, <span class="st">"NB"</span>, <span class="st">"non-binary"</span>, <span class="st">"Non-binary"</span>, <span class="st">"Non-Binary"</span>, <span class="st">"Non-binary femme"</span>, <span class="st">"non-binary male"</span>, <span class="st">"non binary"</span>, <span class="st">"Non binary"</span>, <span class="st">"Nonbinary"</span>, <span class="st">"Queer"</span>, <span class="st">"Transmasculine"</span>, <span class="st">"Non-binary"</span>) <span class="sc">~</span> <span class="st">"Non-binary"</span>,</span>
-<span id="cb16-37"><a href="#cb16-37"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Not stated"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb16-38"><a href="#cb16-38"></a>  <span class="co"># Select and rename columns for analysis</span></span>
-<span id="cb16-39"><a href="#cb16-39"></a>  <span class="fu">select</span>(ResponseId,</span>
-<span id="cb16-40"><a href="#cb16-40"></a>         <span class="st">"age"</span> <span class="ot">=</span> Q5,</span>
-<span id="cb16-41"><a href="#cb16-41"></a>         <span class="st">"gender"</span> <span class="ot">=</span> Q6,</span>
-<span id="cb16-42"><a href="#cb16-42"></a>         gender_cleaned,</span>
-<span id="cb16-43"><a href="#cb16-43"></a>         <span class="st">"mature"</span> <span class="ot">=</span> Q7,</span>
-<span id="cb16-44"><a href="#cb16-44"></a>         <span class="st">"level_study"</span> <span class="ot">=</span> Q8,</span>
-<span id="cb16-45"><a href="#cb16-45"></a>         <span class="st">"country"</span> <span class="ot">=</span> Q9,</span>
-<span id="cb16-46"><a href="#cb16-46"></a>         <span class="st">"subject"</span> <span class="ot">=</span> Q10,</span>
-<span id="cb16-47"><a href="#cb16-47"></a>         <span class="st">"english_first"</span> <span class="ot">=</span> Q11,</span>
-<span id="cb16-48"><a href="#cb16-48"></a>         disability,</span>
-<span id="cb16-49"><a href="#cb16-49"></a>         <span class="st">"neurotype_open"</span> <span class="ot">=</span> Q13, </span>
-<span id="cb16-50"><a href="#cb16-50"></a>         <span class="st">"disability_open"</span> <span class="ot">=</span> Q14,</span>
-<span id="cb16-51"><a href="#cb16-51"></a>         <span class="st">"why_open"</span> <span class="ot">=</span> Q18,</span>
-<span id="cb16-52"><a href="#cb16-52"></a>         <span class="st">"how_open"</span> <span class="ot">=</span> Q23,</span>
-<span id="cb16-53"><a href="#cb16-53"></a>         <span class="st">"advantages"</span> <span class="ot">=</span> Q20,</span>
-<span id="cb16-54"><a href="#cb16-54"></a>         <span class="st">"disadvantages"</span> <span class="ot">=</span> Q21,</span>
-<span id="cb16-55"><a href="#cb16-55"></a>         <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>dat_copilot <span class="ot">&lt;-</span> dat_raw <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">filter</span>(Progress <span class="sc">&gt;</span> <span class="dv">94</span>, <span class="co"># Keep only responses with progress over 94%</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>         DistributionChannel <span class="sc">!=</span> <span class="st">"preview"</span>) <span class="sc">%&gt;%</span> <span class="co"># Exclude preview data, such as test entries</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">select</span>(ResponseId, <span class="st">"duration"</span> <span class="ot">=</span> <span class="dv">5</span>, Q5<span class="sc">:</span>Q21) <span class="sc">%&gt;%</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>  <span class="co"># Replace missing values with "None" for disability-related columns</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a>  <span class="fu">mutate</span>(<span class="at">disability_nos =</span> <span class="fu">replace_na</span>(disability_nos, <span class="st">"None"</span>),</span>
+<span id="cb10-7"><a href="#cb10-7"></a>         <span class="at">physical_chronic =</span> <span class="fu">replace_na</span>(physical_chronic, <span class="st">"None"</span>),</span>
+<span id="cb10-8"><a href="#cb10-8"></a>         <span class="at">mental_health =</span> <span class="fu">replace_na</span>(mental_health, <span class="st">"None"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a>  <span class="co"># Recode disability categories based on survey responses</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a>  <span class="fu">mutate</span>(<span class="at">disability =</span> <span class="fu">case_when</span>(</span>
+<span id="cb10-11"><a href="#cb10-11"></a>    <span class="co"># Classify as "Neurodivergent" if only neurotype is divergent and no other conditions reported</span></span>
+<span id="cb10-12"><a href="#cb10-12"></a>    neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span></span>
+<span id="cb10-13"><a href="#cb10-13"></a>    physical_chronic <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span></span>
+<span id="cb10-14"><a href="#cb10-14"></a>    mental_health <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span> </span>
+<span id="cb10-15"><a href="#cb10-15"></a>    disability_nos <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">~</span> <span class="st">"Neurodivergent"</span>,</span>
+<span id="cb10-16"><a href="#cb10-16"></a>    </span>
+<span id="cb10-17"><a href="#cb10-17"></a>    <span class="co"># Classify as "Disabled" if any physical, mental, or unspecified disability is reported</span></span>
+<span id="cb10-18"><a href="#cb10-18"></a>    neurotype <span class="sc">==</span> <span class="st">"Neurotypical"</span> <span class="sc">&amp;</span></span>
+<span id="cb10-19"><a href="#cb10-19"></a>    (physical_chronic <span class="sc">==</span> <span class="st">"Physical, mobility, or chronic health condition"</span> <span class="sc">|</span></span>
+<span id="cb10-20"><a href="#cb10-20"></a>     mental_health <span class="sc">==</span> <span class="st">"Mental health condition"</span> <span class="sc">|</span></span>
+<span id="cb10-21"><a href="#cb10-21"></a>     disability_nos <span class="sc">==</span> <span class="st">"Disability not otherwise specified"</span>) <span class="sc">~</span> <span class="st">"Disabled"</span>,</span>
+<span id="cb10-22"><a href="#cb10-22"></a>    </span>
+<span id="cb10-23"><a href="#cb10-23"></a>    <span class="co"># Classify as "NDD" (Neurodivergent with Disabilities) if multiple conditions are reported</span></span>
+<span id="cb10-24"><a href="#cb10-24"></a>    (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> mental_health <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
+<span id="cb10-25"><a href="#cb10-25"></a>    (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> physical_chronic <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
+<span id="cb10-26"><a href="#cb10-26"></a>    (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
+<span id="cb10-27"><a href="#cb10-27"></a>    (mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> physical_chronic <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
+<span id="cb10-28"><a href="#cb10-28"></a>    (mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
+<span id="cb10-29"><a href="#cb10-29"></a>    (physical_chronic <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">~</span> <span class="st">"NDD"</span>,</span>
+<span id="cb10-30"><a href="#cb10-30"></a>    </span>
+<span id="cb10-31"><a href="#cb10-31"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Neurotypical &amp; non-disabled"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-32"><a href="#cb10-32"></a>  <span class="co"># Select and rename columns for analysis</span></span>
+<span id="cb10-33"><a href="#cb10-33"></a>  <span class="fu">select</span>(ResponseId,</span>
+<span id="cb10-34"><a href="#cb10-34"></a>         <span class="st">"age"</span> <span class="ot">=</span> Q5,</span>
+<span id="cb10-35"><a href="#cb10-35"></a>         <span class="st">"gender"</span> <span class="ot">=</span> Q6,</span>
+<span id="cb10-36"><a href="#cb10-36"></a>         <span class="st">"mature"</span> <span class="ot">=</span> Q7,</span>
+<span id="cb10-37"><a href="#cb10-37"></a>         <span class="st">"level_study"</span> <span class="ot">=</span> Q8,</span>
+<span id="cb10-38"><a href="#cb10-38"></a>         <span class="st">"country"</span> <span class="ot">=</span> Q9,</span>
+<span id="cb10-39"><a href="#cb10-39"></a>         <span class="st">"subject"</span> <span class="ot">=</span> Q10,</span>
+<span id="cb10-40"><a href="#cb10-40"></a>         <span class="st">"english_first"</span> <span class="ot">=</span> Q11,</span>
+<span id="cb10-41"><a href="#cb10-41"></a>         disability,</span>
+<span id="cb10-42"><a href="#cb10-42"></a>         <span class="st">"neurotype_open"</span> <span class="ot">=</span> Q13, </span>
+<span id="cb10-43"><a href="#cb10-43"></a>         <span class="st">"disability_open"</span> <span class="ot">=</span> Q14,</span>
+<span id="cb10-44"><a href="#cb10-44"></a>         <span class="st">"why_open"</span> <span class="ot">=</span> Q18,</span>
+<span id="cb10-45"><a href="#cb10-45"></a>         <span class="st">"how_open"</span> <span class="ot">=</span> Q23,</span>
+<span id="cb10-46"><a href="#cb10-46"></a>         <span class="st">"advantages"</span> <span class="ot">=</span> Q20,</span>
+<span id="cb10-47"><a href="#cb10-47"></a>         <span class="st">"disadvantages"</span> <span class="ot">=</span> Q21,</span>
+<span id="cb10-48"><a href="#cb10-48"></a>         <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <blockquote class="blockquote">
-<p>Changes Made: Filter Comment: Clarified that the progress filter keeps responses that are more than 94% complete. DistributionChannel Comment: Specified that the filter excludes test entries, not just Emily’s preview data. NA Replacement Comment: Made it clear that missing values are replaced in disability-related columns. Disability Recode Comment: Expanded on the conditions for classifying disabilities to make the logic more understandable. Gender Recode Comment: No change needed, it’s clear and concise. Select Statement Comment: Changed to ‘Select and rename columns for analysis’ for clarity on the operation’s purpose. These changes aim to make the comments more informative and to clarify the purpose and outcome of each code block.</p>
+<p>Changes Made:</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Filter Comment: Clarified that the progress filter keeps responses that are more than 94% complete.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>DistributionChannel Comment: Specified that the filter excludes test entries, not just Emily’s preview data. NA Replacement Comment: Made it clear that missing values are replaced in disability-related columns. Disability Recode Comment: Expanded on the conditions for classifying disabilities to make the logic more understandable. Gender Recode Comment: No change needed, it’s clear and concise. Select Statement Comment: Changed to ‘Select and rename columns for analysis’ for clarity on the operation’s purpose. These changes aim to make the comments more informative and to clarify the purpose and outcome of each code block.</p>
 </blockquote>
 <p>Whilst it doesn’t look like it has changed anything, <code>identical</code> and <code>all.equal</code> suggest a different story. I have been on quite a deep dive and I still can’t figure it out - it all looks fine - but it’s another note of caution and also a good reason not to give it too much code to review at once. It’s easier to figure out what might have changed in little chunks at a time.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">identical</span>(dat, dat_copilot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">identical</span>(dat, dat_copilot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">all.equal</span>(dat, dat_copilot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">all.equal</span>(dat, dat_copilot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Component \"disability\": 31 string mismatches"</code></pre>
 </div>
@@ -627,62 +598,62 @@ lgl  (1): Finished
 <li>Same issue as Copilot in that <code>identical</code> and <code>all.equal</code> suggest differences but I can’t find them.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>dat_chat <span class="ot">&lt;-</span> dat_raw <span class="sc">%&gt;%</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a>  <span class="co"># Filter out incomplete responses and Emily's preview data</span></span>
-<span id="cb21-3"><a href="#cb21-3"></a>  <span class="fu">filter</span>(Progress <span class="sc">&gt;</span> <span class="dv">94</span>, DistributionChannel <span class="sc">!=</span> <span class="st">"preview"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb21-4"><a href="#cb21-4"></a>  <span class="co"># Select necessary columns and rename them for clarity</span></span>
-<span id="cb21-5"><a href="#cb21-5"></a>  <span class="fu">select</span>(ResponseId, </span>
-<span id="cb21-6"><a href="#cb21-6"></a>         <span class="st">"duration"</span> <span class="ot">=</span> <span class="dv">5</span>, </span>
-<span id="cb21-7"><a href="#cb21-7"></a>         Q5<span class="sc">:</span>Q21) <span class="sc">%&gt;%</span></span>
-<span id="cb21-8"><a href="#cb21-8"></a>  <span class="co"># Replace NA values with "none" for disability information</span></span>
-<span id="cb21-9"><a href="#cb21-9"></a>  <span class="fu">mutate</span>(<span class="at">disability_nos =</span> <span class="fu">replace_na</span>(disability_nos, <span class="st">"None"</span>),</span>
-<span id="cb21-10"><a href="#cb21-10"></a>         <span class="at">physical_chronic =</span> <span class="fu">replace_na</span>(physical_chronic, <span class="st">"None"</span>),</span>
-<span id="cb21-11"><a href="#cb21-11"></a>         <span class="at">mental_health =</span> <span class="fu">replace_na</span>(mental_health, <span class="st">"None"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb21-12"><a href="#cb21-12"></a>  <span class="co"># Recode disability data based on various conditions</span></span>
-<span id="cb21-13"><a href="#cb21-13"></a>  <span class="fu">mutate</span>(<span class="at">disability =</span> <span class="fu">case_when</span>(</span>
-<span id="cb21-14"><a href="#cb21-14"></a>    <span class="co"># Neurodivergent without other disabilities</span></span>
-<span id="cb21-15"><a href="#cb21-15"></a>    neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span></span>
-<span id="cb21-16"><a href="#cb21-16"></a>    physical_chronic <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span></span>
-<span id="cb21-17"><a href="#cb21-17"></a>    mental_health <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span> </span>
-<span id="cb21-18"><a href="#cb21-18"></a>    disability_nos <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">~</span> <span class="st">"Neurodivergent"</span>,</span>
-<span id="cb21-19"><a href="#cb21-19"></a>    <span class="co"># Disabled with specific conditions</span></span>
-<span id="cb21-20"><a href="#cb21-20"></a>    neurotype <span class="sc">==</span> <span class="st">"Neurotypical"</span> <span class="sc">&amp;</span></span>
-<span id="cb21-21"><a href="#cb21-21"></a>    (physical_chronic <span class="sc">==</span> <span class="st">"Physical, mobility, or chronic health condition"</span> <span class="sc">|</span></span>
-<span id="cb21-22"><a href="#cb21-22"></a>    mental_health <span class="sc">==</span> <span class="st">"Mental health condition"</span> <span class="sc">|</span></span>
-<span id="cb21-23"><a href="#cb21-23"></a>    disability_nos <span class="sc">==</span> <span class="st">"Disability not otherwise specified"</span>) <span class="sc">~</span> <span class="st">"Disabled"</span>,</span>
-<span id="cb21-24"><a href="#cb21-24"></a>    <span class="co"># Neurodevelopmental disorder (NDD) with multiple conditions</span></span>
-<span id="cb21-25"><a href="#cb21-25"></a>    (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> mental_health <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
-<span id="cb21-26"><a href="#cb21-26"></a>    (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> physical_chronic <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
-<span id="cb21-27"><a href="#cb21-27"></a>    (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
-<span id="cb21-28"><a href="#cb21-28"></a>    (mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> physical_chronic <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
-<span id="cb21-29"><a href="#cb21-29"></a>    (mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
-<span id="cb21-30"><a href="#cb21-30"></a>    (physical_chronic <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">~</span> <span class="st">"NDD"</span>,</span>
-<span id="cb21-31"><a href="#cb21-31"></a>    <span class="co"># Default case for neurotypical and non-disabled</span></span>
-<span id="cb21-32"><a href="#cb21-32"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Neurotypical &amp; non-disabled"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb21-33"><a href="#cb21-33"></a>  <span class="co"># Recode gender data for consistency</span></span>
-<span id="cb21-34"><a href="#cb21-34"></a>  <span class="fu">mutate</span>(<span class="at">gender_cleaned =</span> <span class="fu">case_when</span>(</span>
-<span id="cb21-35"><a href="#cb21-35"></a>    Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Female"</span>, <span class="st">"female"</span>, <span class="st">"Woman"</span>, <span class="st">"woman"</span>, <span class="st">"Cisgender woman"</span>,<span class="st">"female (she/her)"</span>, <span class="st">"F"</span>, <span class="st">"f"</span>, <span class="st">"Womxn"</span>, <span class="st">"Woman (trans)"</span>) <span class="sc">~</span> <span class="st">"Woman"</span>,</span>
-<span id="cb21-36"><a href="#cb21-36"></a>    Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Man"</span>, <span class="st">"man"</span>, <span class="st">"M"</span>, <span class="st">"m"</span>, <span class="st">"Male (he/him)"</span>, <span class="st">"Male"</span>, <span class="st">"male"</span>, <span class="st">"Trans man."</span>) <span class="sc">~</span> <span class="st">"Man"</span>,</span>
-<span id="cb21-37"><a href="#cb21-37"></a>    Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Agender"</span>, <span class="st">"Genderfluid"</span>, <span class="st">"GNC"</span>, <span class="st">"NB"</span>, <span class="st">"non-binary"</span>, <span class="st">"Non-binary"</span>, <span class="st">"Non-Binary"</span>, <span class="st">"Non-binary femme"</span>, <span class="st">"non-binary male"</span>, <span class="st">"non binary"</span>, <span class="st">"Non binary"</span>, <span class="st">"Nonbinary"</span>, <span class="st">"Queer"</span>, <span class="st">"Transmasculine"</span>, <span class="st">"Non-binary"</span>) <span class="sc">~</span> <span class="st">"Non-binary"</span>,</span>
-<span id="cb21-38"><a href="#cb21-38"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Not stated"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb21-39"><a href="#cb21-39"></a>  <span class="co"># Select final necessary columns and tidy up the names</span></span>
-<span id="cb21-40"><a href="#cb21-40"></a>  <span class="fu">select</span>(ResponseId,</span>
-<span id="cb21-41"><a href="#cb21-41"></a>         <span class="st">"age"</span> <span class="ot">=</span> Q5,</span>
-<span id="cb21-42"><a href="#cb21-42"></a>         <span class="st">"gender"</span> <span class="ot">=</span> Q6,</span>
-<span id="cb21-43"><a href="#cb21-43"></a>         gender_cleaned,</span>
-<span id="cb21-44"><a href="#cb21-44"></a>         <span class="st">"mature"</span> <span class="ot">=</span> Q7,</span>
-<span id="cb21-45"><a href="#cb21-45"></a>         <span class="st">"level_study"</span> <span class="ot">=</span> Q8,</span>
-<span id="cb21-46"><a href="#cb21-46"></a>         <span class="st">"country"</span> <span class="ot">=</span> Q9,</span>
-<span id="cb21-47"><a href="#cb21-47"></a>         <span class="st">"subject"</span> <span class="ot">=</span> Q10,</span>
-<span id="cb21-48"><a href="#cb21-48"></a>         <span class="st">"english_first"</span> <span class="ot">=</span> Q11,</span>
-<span id="cb21-49"><a href="#cb21-49"></a>         disability,</span>
-<span id="cb21-50"><a href="#cb21-50"></a>         <span class="st">"neurotype_open"</span> <span class="ot">=</span> Q13, </span>
-<span id="cb21-51"><a href="#cb21-51"></a>         <span class="st">"disability_open"</span> <span class="ot">=</span> Q14,</span>
-<span id="cb21-52"><a href="#cb21-52"></a>         <span class="st">"why_open"</span> <span class="ot">=</span> Q18,</span>
-<span id="cb21-53"><a href="#cb21-53"></a>         <span class="st">"how_open"</span> <span class="ot">=</span> Q23,</span>
-<span id="cb21-54"><a href="#cb21-54"></a>         <span class="st">"advantages"</span> <span class="ot">=</span> Q20,</span>
-<span id="cb21-55"><a href="#cb21-55"></a>         <span class="st">"disadvantages"</span> <span class="ot">=</span> Q21,</span>
-<span id="cb21-56"><a href="#cb21-56"></a>         <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>dat_chat <span class="ot">&lt;-</span> dat_raw <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="co"># Filter out incomplete responses and Emily's preview data</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a>  <span class="fu">filter</span>(Progress <span class="sc">&gt;</span> <span class="dv">94</span>, DistributionChannel <span class="sc">!=</span> <span class="st">"preview"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a>  <span class="co"># Select necessary columns and rename them for clarity</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>  <span class="fu">select</span>(ResponseId, </span>
+<span id="cb15-6"><a href="#cb15-6"></a>         <span class="st">"duration"</span> <span class="ot">=</span> <span class="dv">5</span>, </span>
+<span id="cb15-7"><a href="#cb15-7"></a>         Q5<span class="sc">:</span>Q21) <span class="sc">%&gt;%</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a>  <span class="co"># Replace NA values with "none" for disability information</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a>  <span class="fu">mutate</span>(<span class="at">disability_nos =</span> <span class="fu">replace_na</span>(disability_nos, <span class="st">"None"</span>),</span>
+<span id="cb15-10"><a href="#cb15-10"></a>         <span class="at">physical_chronic =</span> <span class="fu">replace_na</span>(physical_chronic, <span class="st">"None"</span>),</span>
+<span id="cb15-11"><a href="#cb15-11"></a>         <span class="at">mental_health =</span> <span class="fu">replace_na</span>(mental_health, <span class="st">"None"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb15-12"><a href="#cb15-12"></a>  <span class="co"># Recode disability data based on various conditions</span></span>
+<span id="cb15-13"><a href="#cb15-13"></a>  <span class="fu">mutate</span>(<span class="at">disability =</span> <span class="fu">case_when</span>(</span>
+<span id="cb15-14"><a href="#cb15-14"></a>    <span class="co"># Neurodivergent without other disabilities</span></span>
+<span id="cb15-15"><a href="#cb15-15"></a>    neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span></span>
+<span id="cb15-16"><a href="#cb15-16"></a>    physical_chronic <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span></span>
+<span id="cb15-17"><a href="#cb15-17"></a>    mental_health <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span> </span>
+<span id="cb15-18"><a href="#cb15-18"></a>    disability_nos <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">~</span> <span class="st">"Neurodivergent"</span>,</span>
+<span id="cb15-19"><a href="#cb15-19"></a>    <span class="co"># Disabled with specific conditions</span></span>
+<span id="cb15-20"><a href="#cb15-20"></a>    neurotype <span class="sc">==</span> <span class="st">"Neurotypical"</span> <span class="sc">&amp;</span></span>
+<span id="cb15-21"><a href="#cb15-21"></a>    (physical_chronic <span class="sc">==</span> <span class="st">"Physical, mobility, or chronic health condition"</span> <span class="sc">|</span></span>
+<span id="cb15-22"><a href="#cb15-22"></a>    mental_health <span class="sc">==</span> <span class="st">"Mental health condition"</span> <span class="sc">|</span></span>
+<span id="cb15-23"><a href="#cb15-23"></a>    disability_nos <span class="sc">==</span> <span class="st">"Disability not otherwise specified"</span>) <span class="sc">~</span> <span class="st">"Disabled"</span>,</span>
+<span id="cb15-24"><a href="#cb15-24"></a>    <span class="co"># Neurodevelopmental disorder (NDD) with multiple conditions</span></span>
+<span id="cb15-25"><a href="#cb15-25"></a>    (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> mental_health <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
+<span id="cb15-26"><a href="#cb15-26"></a>    (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> physical_chronic <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
+<span id="cb15-27"><a href="#cb15-27"></a>    (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
+<span id="cb15-28"><a href="#cb15-28"></a>    (mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> physical_chronic <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
+<span id="cb15-29"><a href="#cb15-29"></a>    (mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
+<span id="cb15-30"><a href="#cb15-30"></a>    (physical_chronic <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">~</span> <span class="st">"NDD"</span>,</span>
+<span id="cb15-31"><a href="#cb15-31"></a>    <span class="co"># Default case for neurotypical and non-disabled</span></span>
+<span id="cb15-32"><a href="#cb15-32"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Neurotypical &amp; non-disabled"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb15-33"><a href="#cb15-33"></a>  <span class="co"># Recode gender data for consistency</span></span>
+<span id="cb15-34"><a href="#cb15-34"></a>  <span class="fu">mutate</span>(<span class="at">gender_cleaned =</span> <span class="fu">case_when</span>(</span>
+<span id="cb15-35"><a href="#cb15-35"></a>    Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Female"</span>, <span class="st">"female"</span>, <span class="st">"Woman"</span>, <span class="st">"woman"</span>, <span class="st">"Cisgender woman"</span>,<span class="st">"female (she/her)"</span>, <span class="st">"F"</span>, <span class="st">"f"</span>, <span class="st">"Womxn"</span>, <span class="st">"Woman (trans)"</span>) <span class="sc">~</span> <span class="st">"Woman"</span>,</span>
+<span id="cb15-36"><a href="#cb15-36"></a>    Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Man"</span>, <span class="st">"man"</span>, <span class="st">"M"</span>, <span class="st">"m"</span>, <span class="st">"Male (he/him)"</span>, <span class="st">"Male"</span>, <span class="st">"male"</span>, <span class="st">"Trans man."</span>) <span class="sc">~</span> <span class="st">"Man"</span>,</span>
+<span id="cb15-37"><a href="#cb15-37"></a>    Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Agender"</span>, <span class="st">"Genderfluid"</span>, <span class="st">"GNC"</span>, <span class="st">"NB"</span>, <span class="st">"non-binary"</span>, <span class="st">"Non-binary"</span>, <span class="st">"Non-Binary"</span>, <span class="st">"Non-binary femme"</span>, <span class="st">"non-binary male"</span>, <span class="st">"non binary"</span>, <span class="st">"Non binary"</span>, <span class="st">"Nonbinary"</span>, <span class="st">"Queer"</span>, <span class="st">"Transmasculine"</span>, <span class="st">"Non-binary"</span>) <span class="sc">~</span> <span class="st">"Non-binary"</span>,</span>
+<span id="cb15-38"><a href="#cb15-38"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Not stated"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb15-39"><a href="#cb15-39"></a>  <span class="co"># Select final necessary columns and tidy up the names</span></span>
+<span id="cb15-40"><a href="#cb15-40"></a>  <span class="fu">select</span>(ResponseId,</span>
+<span id="cb15-41"><a href="#cb15-41"></a>         <span class="st">"age"</span> <span class="ot">=</span> Q5,</span>
+<span id="cb15-42"><a href="#cb15-42"></a>         <span class="st">"gender"</span> <span class="ot">=</span> Q6,</span>
+<span id="cb15-43"><a href="#cb15-43"></a>         gender_cleaned,</span>
+<span id="cb15-44"><a href="#cb15-44"></a>         <span class="st">"mature"</span> <span class="ot">=</span> Q7,</span>
+<span id="cb15-45"><a href="#cb15-45"></a>         <span class="st">"level_study"</span> <span class="ot">=</span> Q8,</span>
+<span id="cb15-46"><a href="#cb15-46"></a>         <span class="st">"country"</span> <span class="ot">=</span> Q9,</span>
+<span id="cb15-47"><a href="#cb15-47"></a>         <span class="st">"subject"</span> <span class="ot">=</span> Q10,</span>
+<span id="cb15-48"><a href="#cb15-48"></a>         <span class="st">"english_first"</span> <span class="ot">=</span> Q11,</span>
+<span id="cb15-49"><a href="#cb15-49"></a>         disability,</span>
+<span id="cb15-50"><a href="#cb15-50"></a>         <span class="st">"neurotype_open"</span> <span class="ot">=</span> Q13, </span>
+<span id="cb15-51"><a href="#cb15-51"></a>         <span class="st">"disability_open"</span> <span class="ot">=</span> Q14,</span>
+<span id="cb15-52"><a href="#cb15-52"></a>         <span class="st">"why_open"</span> <span class="ot">=</span> Q18,</span>
+<span id="cb15-53"><a href="#cb15-53"></a>         <span class="st">"how_open"</span> <span class="ot">=</span> Q23,</span>
+<span id="cb15-54"><a href="#cb15-54"></a>         <span class="st">"advantages"</span> <span class="ot">=</span> Q20,</span>
+<span id="cb15-55"><a href="#cb15-55"></a>         <span class="st">"disadvantages"</span> <span class="ot">=</span> Q21,</span>
+<span id="cb15-56"><a href="#cb15-56"></a>         <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section><section id="refactor-code" class="level2" data-number="5.4"><h2 data-number="5.4" class="anchored" data-anchor-id="refactor-code">
 <span class="header-section-number">5.4</span> Refactor code</h2>
@@ -711,65 +682,65 @@ lgl  (1): Finished
 <p>Split the code in each pipeline into a separate object</p>
 </blockquote>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># Step 1: Filter the data</span></span>
-<span id="cb22-2"><a href="#cb22-2"></a>dat_filtered <span class="ot">&lt;-</span> dat_raw <span class="sc">%&gt;%</span></span>
-<span id="cb22-3"><a href="#cb22-3"></a>  <span class="fu">filter</span>(Progress <span class="sc">&gt;</span> <span class="dv">94</span>, DistributionChannel <span class="sc">!=</span> <span class="st">"preview"</span>)</span>
-<span id="cb22-4"><a href="#cb22-4"></a></span>
-<span id="cb22-5"><a href="#cb22-5"></a><span class="co"># Step 2: Select and rename columns</span></span>
-<span id="cb22-6"><a href="#cb22-6"></a>dat_selected <span class="ot">&lt;-</span> dat_filtered <span class="sc">%&gt;%</span></span>
-<span id="cb22-7"><a href="#cb22-7"></a>  <span class="fu">select</span>(ResponseId, <span class="st">"duration"</span> <span class="ot">=</span> <span class="dv">5</span>, Q5<span class="sc">:</span>Q21)</span>
-<span id="cb22-8"><a href="#cb22-8"></a></span>
-<span id="cb22-9"><a href="#cb22-9"></a><span class="co"># Step 3: Replace NAs with "None" for disability info</span></span>
-<span id="cb22-10"><a href="#cb22-10"></a>dat_na_replaced <span class="ot">&lt;-</span> dat_selected <span class="sc">%&gt;%</span></span>
-<span id="cb22-11"><a href="#cb22-11"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb22-12"><a href="#cb22-12"></a>    <span class="at">disability_nos =</span> <span class="fu">replace_na</span>(disability_nos, <span class="st">"None"</span>),</span>
-<span id="cb22-13"><a href="#cb22-13"></a>    <span class="at">physical_chronic =</span> <span class="fu">replace_na</span>(physical_chronic, <span class="st">"None"</span>),</span>
-<span id="cb22-14"><a href="#cb22-14"></a>    <span class="at">mental_health =</span> <span class="fu">replace_na</span>(mental_health, <span class="st">"None"</span>)</span>
-<span id="cb22-15"><a href="#cb22-15"></a>  )</span>
-<span id="cb22-16"><a href="#cb22-16"></a></span>
-<span id="cb22-17"><a href="#cb22-17"></a><span class="co"># Step 4: Recode disability data</span></span>
-<span id="cb22-18"><a href="#cb22-18"></a>dat_disability_recode <span class="ot">&lt;-</span> dat_na_replaced <span class="sc">%&gt;%</span></span>
-<span id="cb22-19"><a href="#cb22-19"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb22-20"><a href="#cb22-20"></a>    <span class="at">disability =</span> <span class="fu">case_when</span>(</span>
-<span id="cb22-21"><a href="#cb22-21"></a>      neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> physical_chronic <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span> mental_health <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">~</span> <span class="st">"Neurodivergent"</span>,</span>
-<span id="cb22-22"><a href="#cb22-22"></a>      neurotype <span class="sc">==</span> <span class="st">"Neurotypical"</span> <span class="sc">&amp;</span> (physical_chronic <span class="sc">==</span> <span class="st">"Physical, mobility, or chronic health condition"</span> <span class="sc">|</span> mental_health <span class="sc">==</span> <span class="st">"Mental health condition"</span> <span class="sc">|</span> disability_nos <span class="sc">==</span> <span class="st">"Disability not otherwise specified"</span>) <span class="sc">~</span> <span class="st">"Disabled"</span>,</span>
-<span id="cb22-23"><a href="#cb22-23"></a>      (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> mental_health <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span> (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> physical_chronic <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span> (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span> (mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> physical_chronic <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span> (mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span> (physical_chronic <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">~</span> <span class="st">"NDD"</span>,</span>
-<span id="cb22-24"><a href="#cb22-24"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Neurotypical &amp; non-disabled"</span></span>
-<span id="cb22-25"><a href="#cb22-25"></a>    )</span>
-<span id="cb22-26"><a href="#cb22-26"></a>  )</span>
-<span id="cb22-27"><a href="#cb22-27"></a></span>
-<span id="cb22-28"><a href="#cb22-28"></a><span class="co"># Step 5: Recode gender data</span></span>
-<span id="cb22-29"><a href="#cb22-29"></a>dat_gender_recode <span class="ot">&lt;-</span> dat_disability_recode <span class="sc">%&gt;%</span></span>
-<span id="cb22-30"><a href="#cb22-30"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb22-31"><a href="#cb22-31"></a>    <span class="at">gender_cleaned =</span> <span class="fu">case_when</span>(</span>
-<span id="cb22-32"><a href="#cb22-32"></a>      Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Female"</span>, <span class="st">"female"</span>, <span class="st">"Woman"</span>, <span class="st">"woman"</span>, <span class="st">"Cisgender woman"</span>, <span class="st">"female (she/her)"</span>, <span class="st">"F"</span>, <span class="st">"f"</span>, <span class="st">"Womxn"</span>, <span class="st">"Woman (tranas)"</span>) <span class="sc">~</span> <span class="st">"Woman"</span>,</span>
-<span id="cb22-33"><a href="#cb22-33"></a>      Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Man"</span>, <span class="st">"man"</span>, <span class="st">"M"</span>, <span class="st">"m"</span>, <span class="st">"Male (he/him)"</span>, <span class="st">"Male"</span>, <span class="st">"male"</span>, <span class="st">"Trans man."</span>) <span class="sc">~</span> <span class="st">"Man"</span>,</span>
-<span id="cb22-34"><a href="#cb22-34"></a>      Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Agender"</span>, <span class="st">"Genderfluid"</span>, <span class="st">"GNC"</span>, <span class="st">"NB"</span>, <span class="st">"non-binary"</span>, <span class="st">"Non-binary"</span>, <span class="st">"Non-Binary"</span>, <span class="st">"Non-binary femme"</span>, <span class="st">"non-binary male"</span>, <span class="st">"non binary"</span>, <span class="st">"Non binary"</span>, <span class="st">"Nonbinary"</span>, <span class="st">"Queer"</span>, <span class="st">"Transmasculine"</span>, <span class="st">"Non-binary"</span>) <span class="sc">~</span> <span class="st">"Non-binary"</span>,</span>
-<span id="cb22-35"><a href="#cb22-35"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Not stated"</span></span>
-<span id="cb22-36"><a href="#cb22-36"></a>    )</span>
-<span id="cb22-37"><a href="#cb22-37"></a>  )</span>
-<span id="cb22-38"><a href="#cb22-38"></a></span>
-<span id="cb22-39"><a href="#cb22-39"></a><span class="co"># Step 6: Select necessary columns and tidy up the names</span></span>
-<span id="cb22-40"><a href="#cb22-40"></a>dat_final <span class="ot">&lt;-</span> dat_gender_recode <span class="sc">%&gt;%</span></span>
-<span id="cb22-41"><a href="#cb22-41"></a>  <span class="fu">select</span>(</span>
-<span id="cb22-42"><a href="#cb22-42"></a>    ResponseId,</span>
-<span id="cb22-43"><a href="#cb22-43"></a>    <span class="st">"age"</span> <span class="ot">=</span> Q5,</span>
-<span id="cb22-44"><a href="#cb22-44"></a>    <span class="st">"gender"</span> <span class="ot">=</span> Q6,</span>
-<span id="cb22-45"><a href="#cb22-45"></a>    gender_cleaned,</span>
-<span id="cb22-46"><a href="#cb22-46"></a>    <span class="st">"mature"</span> <span class="ot">=</span> Q7,</span>
-<span id="cb22-47"><a href="#cb22-47"></a>    <span class="st">"level_study"</span> <span class="ot">=</span> Q8,</span>
-<span id="cb22-48"><a href="#cb22-48"></a>    <span class="st">"country"</span> <span class="ot">=</span> Q9,</span>
-<span id="cb22-49"><a href="#cb22-49"></a>    <span class="st">"subject"</span> <span class="ot">=</span> Q10,</span>
-<span id="cb22-50"><a href="#cb22-50"></a>    <span class="st">"english_first"</span> <span class="ot">=</span> Q11,</span>
-<span id="cb22-51"><a href="#cb22-51"></a>    disability,</span>
-<span id="cb22-52"><a href="#cb22-52"></a>    <span class="st">"neurotype_open"</span> <span class="ot">=</span> Q13,</span>
-<span id="cb22-53"><a href="#cb22-53"></a>    <span class="st">"disability_open"</span> <span class="ot">=</span> Q14,</span>
-<span id="cb22-54"><a href="#cb22-54"></a>    <span class="st">"why_open"</span> <span class="ot">=</span> Q18,</span>
-<span id="cb22-55"><a href="#cb22-55"></a>    <span class="st">"how_open"</span> <span class="ot">=</span> Q23,</span>
-<span id="cb22-56"><a href="#cb22-56"></a>    <span class="st">"advantages"</span> <span class="ot">=</span> Q20,</span>
-<span id="cb22-57"><a href="#cb22-57"></a>    <span class="st">"disadvantages"</span> <span class="ot">=</span> Q21,</span>
-<span id="cb22-58"><a href="#cb22-58"></a>    <span class="fu">everything</span>()</span>
-<span id="cb22-59"><a href="#cb22-59"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># Step 1: Filter the data</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>dat_filtered <span class="ot">&lt;-</span> dat_raw <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a>  <span class="fu">filter</span>(Progress <span class="sc">&gt;</span> <span class="dv">94</span>, DistributionChannel <span class="sc">!=</span> <span class="st">"preview"</span>)</span>
+<span id="cb16-4"><a href="#cb16-4"></a></span>
+<span id="cb16-5"><a href="#cb16-5"></a><span class="co"># Step 2: Select and rename columns</span></span>
+<span id="cb16-6"><a href="#cb16-6"></a>dat_selected <span class="ot">&lt;-</span> dat_filtered <span class="sc">%&gt;%</span></span>
+<span id="cb16-7"><a href="#cb16-7"></a>  <span class="fu">select</span>(ResponseId, <span class="st">"duration"</span> <span class="ot">=</span> <span class="dv">5</span>, Q5<span class="sc">:</span>Q21)</span>
+<span id="cb16-8"><a href="#cb16-8"></a></span>
+<span id="cb16-9"><a href="#cb16-9"></a><span class="co"># Step 3: Replace NAs with "None" for disability info</span></span>
+<span id="cb16-10"><a href="#cb16-10"></a>dat_na_replaced <span class="ot">&lt;-</span> dat_selected <span class="sc">%&gt;%</span></span>
+<span id="cb16-11"><a href="#cb16-11"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb16-12"><a href="#cb16-12"></a>    <span class="at">disability_nos =</span> <span class="fu">replace_na</span>(disability_nos, <span class="st">"None"</span>),</span>
+<span id="cb16-13"><a href="#cb16-13"></a>    <span class="at">physical_chronic =</span> <span class="fu">replace_na</span>(physical_chronic, <span class="st">"None"</span>),</span>
+<span id="cb16-14"><a href="#cb16-14"></a>    <span class="at">mental_health =</span> <span class="fu">replace_na</span>(mental_health, <span class="st">"None"</span>)</span>
+<span id="cb16-15"><a href="#cb16-15"></a>  )</span>
+<span id="cb16-16"><a href="#cb16-16"></a></span>
+<span id="cb16-17"><a href="#cb16-17"></a><span class="co"># Step 4: Recode disability data</span></span>
+<span id="cb16-18"><a href="#cb16-18"></a>dat_disability_recode <span class="ot">&lt;-</span> dat_na_replaced <span class="sc">%&gt;%</span></span>
+<span id="cb16-19"><a href="#cb16-19"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb16-20"><a href="#cb16-20"></a>    <span class="at">disability =</span> <span class="fu">case_when</span>(</span>
+<span id="cb16-21"><a href="#cb16-21"></a>      neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> physical_chronic <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span> mental_health <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">~</span> <span class="st">"Neurodivergent"</span>,</span>
+<span id="cb16-22"><a href="#cb16-22"></a>      neurotype <span class="sc">==</span> <span class="st">"Neurotypical"</span> <span class="sc">&amp;</span> (physical_chronic <span class="sc">==</span> <span class="st">"Physical, mobility, or chronic health condition"</span> <span class="sc">|</span> mental_health <span class="sc">==</span> <span class="st">"Mental health condition"</span> <span class="sc">|</span> disability_nos <span class="sc">==</span> <span class="st">"Disability not otherwise specified"</span>) <span class="sc">~</span> <span class="st">"Disabled"</span>,</span>
+<span id="cb16-23"><a href="#cb16-23"></a>      (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> mental_health <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span> (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> physical_chronic <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span> (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span> (mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> physical_chronic <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span> (mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span> (physical_chronic <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">~</span> <span class="st">"NDD"</span>,</span>
+<span id="cb16-24"><a href="#cb16-24"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Neurotypical &amp; non-disabled"</span></span>
+<span id="cb16-25"><a href="#cb16-25"></a>    )</span>
+<span id="cb16-26"><a href="#cb16-26"></a>  )</span>
+<span id="cb16-27"><a href="#cb16-27"></a></span>
+<span id="cb16-28"><a href="#cb16-28"></a><span class="co"># Step 5: Recode gender data</span></span>
+<span id="cb16-29"><a href="#cb16-29"></a>dat_gender_recode <span class="ot">&lt;-</span> dat_disability_recode <span class="sc">%&gt;%</span></span>
+<span id="cb16-30"><a href="#cb16-30"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb16-31"><a href="#cb16-31"></a>    <span class="at">gender_cleaned =</span> <span class="fu">case_when</span>(</span>
+<span id="cb16-32"><a href="#cb16-32"></a>      Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Female"</span>, <span class="st">"female"</span>, <span class="st">"Woman"</span>, <span class="st">"woman"</span>, <span class="st">"Cisgender woman"</span>, <span class="st">"female (she/her)"</span>, <span class="st">"F"</span>, <span class="st">"f"</span>, <span class="st">"Womxn"</span>, <span class="st">"Woman (tranas)"</span>) <span class="sc">~</span> <span class="st">"Woman"</span>,</span>
+<span id="cb16-33"><a href="#cb16-33"></a>      Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Man"</span>, <span class="st">"man"</span>, <span class="st">"M"</span>, <span class="st">"m"</span>, <span class="st">"Male (he/him)"</span>, <span class="st">"Male"</span>, <span class="st">"male"</span>, <span class="st">"Trans man."</span>) <span class="sc">~</span> <span class="st">"Man"</span>,</span>
+<span id="cb16-34"><a href="#cb16-34"></a>      Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Agender"</span>, <span class="st">"Genderfluid"</span>, <span class="st">"GNC"</span>, <span class="st">"NB"</span>, <span class="st">"non-binary"</span>, <span class="st">"Non-binary"</span>, <span class="st">"Non-Binary"</span>, <span class="st">"Non-binary femme"</span>, <span class="st">"non-binary male"</span>, <span class="st">"non binary"</span>, <span class="st">"Non binary"</span>, <span class="st">"Nonbinary"</span>, <span class="st">"Queer"</span>, <span class="st">"Transmasculine"</span>, <span class="st">"Non-binary"</span>) <span class="sc">~</span> <span class="st">"Non-binary"</span>,</span>
+<span id="cb16-35"><a href="#cb16-35"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Not stated"</span></span>
+<span id="cb16-36"><a href="#cb16-36"></a>    )</span>
+<span id="cb16-37"><a href="#cb16-37"></a>  )</span>
+<span id="cb16-38"><a href="#cb16-38"></a></span>
+<span id="cb16-39"><a href="#cb16-39"></a><span class="co"># Step 6: Select necessary columns and tidy up the names</span></span>
+<span id="cb16-40"><a href="#cb16-40"></a>dat_final <span class="ot">&lt;-</span> dat_gender_recode <span class="sc">%&gt;%</span></span>
+<span id="cb16-41"><a href="#cb16-41"></a>  <span class="fu">select</span>(</span>
+<span id="cb16-42"><a href="#cb16-42"></a>    ResponseId,</span>
+<span id="cb16-43"><a href="#cb16-43"></a>    <span class="st">"age"</span> <span class="ot">=</span> Q5,</span>
+<span id="cb16-44"><a href="#cb16-44"></a>    <span class="st">"gender"</span> <span class="ot">=</span> Q6,</span>
+<span id="cb16-45"><a href="#cb16-45"></a>    gender_cleaned,</span>
+<span id="cb16-46"><a href="#cb16-46"></a>    <span class="st">"mature"</span> <span class="ot">=</span> Q7,</span>
+<span id="cb16-47"><a href="#cb16-47"></a>    <span class="st">"level_study"</span> <span class="ot">=</span> Q8,</span>
+<span id="cb16-48"><a href="#cb16-48"></a>    <span class="st">"country"</span> <span class="ot">=</span> Q9,</span>
+<span id="cb16-49"><a href="#cb16-49"></a>    <span class="st">"subject"</span> <span class="ot">=</span> Q10,</span>
+<span id="cb16-50"><a href="#cb16-50"></a>    <span class="st">"english_first"</span> <span class="ot">=</span> Q11,</span>
+<span id="cb16-51"><a href="#cb16-51"></a>    disability,</span>
+<span id="cb16-52"><a href="#cb16-52"></a>    <span class="st">"neurotype_open"</span> <span class="ot">=</span> Q13,</span>
+<span id="cb16-53"><a href="#cb16-53"></a>    <span class="st">"disability_open"</span> <span class="ot">=</span> Q14,</span>
+<span id="cb16-54"><a href="#cb16-54"></a>    <span class="st">"why_open"</span> <span class="ot">=</span> Q18,</span>
+<span id="cb16-55"><a href="#cb16-55"></a>    <span class="st">"how_open"</span> <span class="ot">=</span> Q23,</span>
+<span id="cb16-56"><a href="#cb16-56"></a>    <span class="st">"advantages"</span> <span class="ot">=</span> Q20,</span>
+<span id="cb16-57"><a href="#cb16-57"></a>    <span class="st">"disadvantages"</span> <span class="ot">=</span> Q21,</span>
+<span id="cb16-58"><a href="#cb16-58"></a>    <span class="fu">everything</span>()</span>
+<span id="cb16-59"><a href="#cb16-59"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then, for each chunk, I asked it to refactor the code, where possible. I slightly amended the prompt to explicitly say that if the code was already efficient enough, not to change anything because some of the steps are quite simple.</p>
 <blockquote class="blockquote">
@@ -779,70 +750,70 @@ lgl  (1): Finished
 <li>For step 3, Copilot and ChatGPT were both quite good at this and <code><a href="https://rdrr.io/r/base/identical.html">identical()</a></code> returned <code>TRUE</code>.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># chatgpt and copilot solution</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a>chat_dat_na_replaced <span class="ot">&lt;-</span> dat_selected <span class="sc">%&gt;%</span></span>
-<span id="cb23-3"><a href="#cb23-3"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb23-4"><a href="#cb23-4"></a>    <span class="fu">across</span>(<span class="fu">c</span>(disability_nos, physical_chronic, mental_health), <span class="sc">~</span><span class="fu">replace_na</span>(., <span class="st">"None"</span>))</span>
-<span id="cb23-5"><a href="#cb23-5"></a>  )</span>
-<span id="cb23-6"><a href="#cb23-6"></a><span class="co"># gemini solution - doesn't work, is a bit mad</span></span>
-<span id="cb23-7"><a href="#cb23-7"></a>dat_na_replaced <span class="ot">&lt;-</span> dat_selected <span class="sc">%&gt;%</span></span>
-<span id="cb23-8"><a href="#cb23-8"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb23-9"><a href="#cb23-9"></a>    <span class="at">disability_nos =</span> <span class="fu">replace_na</span>(disability_nos, <span class="st">"None"</span>),</span>
-<span id="cb23-10"><a href="#cb23-10"></a>    <span class="at">physical_chronic =</span> <span class="fu">replace_na</span>(physical_chronic, <span class="st">"None"</span>),</span>
-<span id="cb23-11"><a href="#cb23-11"></a>    <span class="at">mental_health =</span> <span class="fu">replace_na</span>(mental_health, <span class="st">"None"</span>)</span>
-<span id="cb23-12"><a href="#cb23-12"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb23-13"><a href="#cb23-13"></a>  <span class="co"># Refactored using .after</span></span>
-<span id="cb23-14"><a href="#cb23-14"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb23-15"><a href="#cb23-15"></a>    <span class="at">.after =</span> {</span>
-<span id="cb23-16"><a href="#cb23-16"></a>      .x<span class="sc">$</span>disability_nos <span class="ot">&lt;-</span> <span class="fu">replace_na</span>(.x<span class="sc">$</span>disability_nos, <span class="st">"None"</span>)</span>
-<span id="cb23-17"><a href="#cb23-17"></a>      .x<span class="sc">$</span>physical_chronic <span class="ot">&lt;-</span> <span class="fu">replace_na</span>(.x<span class="sc">$</span>physical_chronic, <span class="st">"None"</span>)</span>
-<span id="cb23-18"><a href="#cb23-18"></a>      .x<span class="sc">$</span>mental_health <span class="ot">&lt;-</span> <span class="fu">replace_na</span>(.x<span class="sc">$</span>mental_chronic, <span class="st">"None"</span>)</span>
-<span id="cb23-19"><a href="#cb23-19"></a>      .x</span>
-<span id="cb23-20"><a href="#cb23-20"></a>    }</span>
-<span id="cb23-21"><a href="#cb23-21"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># chatgpt and copilot solution</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a>chat_dat_na_replaced <span class="ot">&lt;-</span> dat_selected <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-4"><a href="#cb17-4"></a>    <span class="fu">across</span>(<span class="fu">c</span>(disability_nos, physical_chronic, mental_health), <span class="sc">~</span><span class="fu">replace_na</span>(., <span class="st">"None"</span>))</span>
+<span id="cb17-5"><a href="#cb17-5"></a>  )</span>
+<span id="cb17-6"><a href="#cb17-6"></a><span class="co"># gemini solution - doesn't work, is a bit mad</span></span>
+<span id="cb17-7"><a href="#cb17-7"></a>dat_na_replaced <span class="ot">&lt;-</span> dat_selected <span class="sc">%&gt;%</span></span>
+<span id="cb17-8"><a href="#cb17-8"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-9"><a href="#cb17-9"></a>    <span class="at">disability_nos =</span> <span class="fu">replace_na</span>(disability_nos, <span class="st">"None"</span>),</span>
+<span id="cb17-10"><a href="#cb17-10"></a>    <span class="at">physical_chronic =</span> <span class="fu">replace_na</span>(physical_chronic, <span class="st">"None"</span>),</span>
+<span id="cb17-11"><a href="#cb17-11"></a>    <span class="at">mental_health =</span> <span class="fu">replace_na</span>(mental_health, <span class="st">"None"</span>)</span>
+<span id="cb17-12"><a href="#cb17-12"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb17-13"><a href="#cb17-13"></a>  <span class="co"># Refactored using .after</span></span>
+<span id="cb17-14"><a href="#cb17-14"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-15"><a href="#cb17-15"></a>    <span class="at">.after =</span> {</span>
+<span id="cb17-16"><a href="#cb17-16"></a>      .x<span class="sc">$</span>disability_nos <span class="ot">&lt;-</span> <span class="fu">replace_na</span>(.x<span class="sc">$</span>disability_nos, <span class="st">"None"</span>)</span>
+<span id="cb17-17"><a href="#cb17-17"></a>      .x<span class="sc">$</span>physical_chronic <span class="ot">&lt;-</span> <span class="fu">replace_na</span>(.x<span class="sc">$</span>physical_chronic, <span class="st">"None"</span>)</span>
+<span id="cb17-18"><a href="#cb17-18"></a>      .x<span class="sc">$</span>mental_health <span class="ot">&lt;-</span> <span class="fu">replace_na</span>(.x<span class="sc">$</span>mental_chronic, <span class="st">"None"</span>)</span>
+<span id="cb17-19"><a href="#cb17-19"></a>      .x</span>
+<span id="cb17-20"><a href="#cb17-20"></a>    }</span>
+<span id="cb17-21"><a href="#cb17-21"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>For step 4 it was a bit of a mess:</p>
 <ul>
 <li>The code Copilot gave me didn’t work and the proposed solution to fix the initial error added on more code than I originally had.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># copilot</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a><span class="co"># doesn't run</span></span>
-<span id="cb24-3"><a href="#cb24-3"></a>copilot_dat_disability_recode <span class="ot">&lt;-</span> dat_na_replaced <span class="sc">%&gt;%</span></span>
-<span id="cb24-4"><a href="#cb24-4"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb24-5"><a href="#cb24-5"></a>    <span class="co"># Simplify the neurodivergent condition by checking for "None" in all related columns at once</span></span>
-<span id="cb24-6"><a href="#cb24-6"></a>    <span class="at">disability =</span> <span class="fu">case_when</span>(</span>
-<span id="cb24-7"><a href="#cb24-7"></a>      neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> <span class="fu">across</span>(<span class="fu">c</span>(physical_chronic, mental_health, disability_nos), <span class="sc">~</span> .x <span class="sc">==</span> <span class="st">"None"</span>) <span class="sc">~</span> <span class="st">"Neurodivergent"</span>,</span>
-<span id="cb24-8"><a href="#cb24-8"></a>      </span>
-<span id="cb24-9"><a href="#cb24-9"></a>      <span class="co"># Combine the neurotypical conditions into one line for clarity</span></span>
-<span id="cb24-10"><a href="#cb24-10"></a>      neurotype <span class="sc">==</span> <span class="st">"Neurotypical"</span> <span class="sc">&amp;</span> (physical_chronic <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">|</span> mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">|</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">~</span> <span class="st">"Disabled"</span>,</span>
-<span id="cb24-11"><a href="#cb24-11"></a>      </span>
-<span id="cb24-12"><a href="#cb24-12"></a>      <span class="co"># Simplify the multiple conditions check by using any() to check if any of the conditions are met</span></span>
-<span id="cb24-13"><a href="#cb24-13"></a>      neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> <span class="fu">any</span>(<span class="fu">c</span>(mental_health, physical_chronic, disability_nos) <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">~</span> <span class="st">"NDD"</span>,</span>
-<span id="cb24-14"><a href="#cb24-14"></a>      </span>
-<span id="cb24-15"><a href="#cb24-15"></a>      <span class="co"># Default condition remains the same</span></span>
-<span id="cb24-16"><a href="#cb24-16"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Neurotypical &amp; non-disabled"</span></span>
-<span id="cb24-17"><a href="#cb24-17"></a>    )</span>
-<span id="cb24-18"><a href="#cb24-18"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># copilot</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="co"># doesn't run</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a>copilot_dat_disability_recode <span class="ot">&lt;-</span> dat_na_replaced <span class="sc">%&gt;%</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb18-5"><a href="#cb18-5"></a>    <span class="co"># Simplify the neurodivergent condition by checking for "None" in all related columns at once</span></span>
+<span id="cb18-6"><a href="#cb18-6"></a>    <span class="at">disability =</span> <span class="fu">case_when</span>(</span>
+<span id="cb18-7"><a href="#cb18-7"></a>      neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> <span class="fu">across</span>(<span class="fu">c</span>(physical_chronic, mental_health, disability_nos), <span class="sc">~</span> .x <span class="sc">==</span> <span class="st">"None"</span>) <span class="sc">~</span> <span class="st">"Neurodivergent"</span>,</span>
+<span id="cb18-8"><a href="#cb18-8"></a>      </span>
+<span id="cb18-9"><a href="#cb18-9"></a>      <span class="co"># Combine the neurotypical conditions into one line for clarity</span></span>
+<span id="cb18-10"><a href="#cb18-10"></a>      neurotype <span class="sc">==</span> <span class="st">"Neurotypical"</span> <span class="sc">&amp;</span> (physical_chronic <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">|</span> mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">|</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">~</span> <span class="st">"Disabled"</span>,</span>
+<span id="cb18-11"><a href="#cb18-11"></a>      </span>
+<span id="cb18-12"><a href="#cb18-12"></a>      <span class="co"># Simplify the multiple conditions check by using any() to check if any of the conditions are met</span></span>
+<span id="cb18-13"><a href="#cb18-13"></a>      neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> <span class="fu">any</span>(<span class="fu">c</span>(mental_health, physical_chronic, disability_nos) <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">~</span> <span class="st">"NDD"</span>,</span>
+<span id="cb18-14"><a href="#cb18-14"></a>      </span>
+<span id="cb18-15"><a href="#cb18-15"></a>      <span class="co"># Default condition remains the same</span></span>
+<span id="cb18-16"><a href="#cb18-16"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Neurotypical &amp; non-disabled"</span></span>
+<span id="cb18-17"><a href="#cb18-17"></a>    )</span>
+<span id="cb18-18"><a href="#cb18-18"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Gemini’s code worked but recoded the data incorrectly</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># gemini</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a>gemini_dat_disability_recode <span class="ot">&lt;-</span> dat_na_replaced <span class="sc">%&gt;%</span></span>
-<span id="cb25-3"><a href="#cb25-3"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb25-4"><a href="#cb25-4"></a>    <span class="at">disability =</span> <span class="fu">case_when</span>(</span>
-<span id="cb25-5"><a href="#cb25-5"></a>      neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> physical_chronic <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span> mental_health <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">~</span> <span class="st">"Neurodivergent"</span>,</span>
-<span id="cb25-6"><a href="#cb25-6"></a>      neurotype <span class="sc">==</span> <span class="st">"Neurotypical"</span> <span class="sc">&amp;</span> (physical_chronic <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Physical, mobility, or chronic health condition"</span>, <span class="st">"Mental health condition"</span>) <span class="sc">|</span> disability_nos <span class="sc">==</span> <span class="st">"Disability not otherwise specified"</span>) <span class="sc">~</span> <span class="st">"Disabled"</span>,</span>
-<span id="cb25-7"><a href="#cb25-7"></a>      <span class="co"># Breakdown of long condition</span></span>
-<span id="cb25-8"><a href="#cb25-8"></a>      (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(mental_health)) <span class="sc">|</span> (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(physical_chronic)) <span class="sc">|</span> (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">~</span> <span class="st">"NDD"</span>,</span>
-<span id="cb25-9"><a href="#cb25-9"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Neurotypical &amp; non-disabled"</span></span>
-<span id="cb25-10"><a href="#cb25-10"></a>    )</span>
-<span id="cb25-11"><a href="#cb25-11"></a>  )</span>
-<span id="cb25-12"><a href="#cb25-12"></a></span>
-<span id="cb25-13"><a href="#cb25-13"></a>dat_disability_recode <span class="sc">%&gt;%</span> </span>
-<span id="cb25-14"><a href="#cb25-14"></a>  <span class="fu">count</span>(disability)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># gemini</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>gemini_dat_disability_recode <span class="ot">&lt;-</span> dat_na_replaced <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-4"><a href="#cb19-4"></a>    <span class="at">disability =</span> <span class="fu">case_when</span>(</span>
+<span id="cb19-5"><a href="#cb19-5"></a>      neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> physical_chronic <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span> mental_health <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">~</span> <span class="st">"Neurodivergent"</span>,</span>
+<span id="cb19-6"><a href="#cb19-6"></a>      neurotype <span class="sc">==</span> <span class="st">"Neurotypical"</span> <span class="sc">&amp;</span> (physical_chronic <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Physical, mobility, or chronic health condition"</span>, <span class="st">"Mental health condition"</span>) <span class="sc">|</span> disability_nos <span class="sc">==</span> <span class="st">"Disability not otherwise specified"</span>) <span class="sc">~</span> <span class="st">"Disabled"</span>,</span>
+<span id="cb19-7"><a href="#cb19-7"></a>      <span class="co"># Breakdown of long condition</span></span>
+<span id="cb19-8"><a href="#cb19-8"></a>      (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(mental_health)) <span class="sc">|</span> (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(physical_chronic)) <span class="sc">|</span> (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">~</span> <span class="st">"NDD"</span>,</span>
+<span id="cb19-9"><a href="#cb19-9"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Neurotypical &amp; non-disabled"</span></span>
+<span id="cb19-10"><a href="#cb19-10"></a>    )</span>
+<span id="cb19-11"><a href="#cb19-11"></a>  )</span>
+<span id="cb19-12"><a href="#cb19-12"></a></span>
+<span id="cb19-13"><a href="#cb19-13"></a>dat_disability_recode <span class="sc">%&gt;%</span> </span>
+<span id="cb19-14"><a href="#cb19-14"></a>  <span class="fu">count</span>(disability)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="table table-sm table-striped small">
@@ -871,8 +842,8 @@ lgl  (1): Finished
 </table>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>gemini_dat_disability_recode <span class="sc">%&gt;%</span> </span>
-<span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">count</span>(disability)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>gemini_dat_disability_recode <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">count</span>(disability)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="table table-sm table-striped small">
@@ -906,20 +877,20 @@ lgl  (1): Finished
 <li>ChatGPT’s actually worked, returned an identical object, and made the code more efficient.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># chatGPT</span></span>
-<span id="cb27-2"><a href="#cb27-2"></a><span class="co"># Step 4: Recode disability data</span></span>
-<span id="cb27-3"><a href="#cb27-3"></a>chat_dat_disability_recode <span class="ot">&lt;-</span> dat_na_replaced <span class="sc">%&gt;%</span></span>
-<span id="cb27-4"><a href="#cb27-4"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb27-5"><a href="#cb27-5"></a>    <span class="at">disability =</span> <span class="fu">case_when</span>(</span>
-<span id="cb27-6"><a href="#cb27-6"></a>      neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> physical_chronic <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span> mental_health <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">~</span> <span class="st">"Neurodivergent"</span>,</span>
-<span id="cb27-7"><a href="#cb27-7"></a>      neurotype <span class="sc">==</span> <span class="st">"Neurotypical"</span> <span class="sc">&amp;</span> (physical_chronic <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">|</span> mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">|</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">~</span> <span class="st">"Disabled"</span>,</span>
-<span id="cb27-8"><a href="#cb27-8"></a>      neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">|</span> mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">|</span> physical_chronic <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">|</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">~</span> <span class="st">"NDD"</span>,</span>
-<span id="cb27-9"><a href="#cb27-9"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Neurotypical &amp; non-disabled"</span></span>
-<span id="cb27-10"><a href="#cb27-10"></a>    )</span>
-<span id="cb27-11"><a href="#cb27-11"></a>  )</span>
-<span id="cb27-12"><a href="#cb27-12"></a></span>
-<span id="cb27-13"><a href="#cb27-13"></a>dat_disability_recode <span class="sc">%&gt;%</span> </span>
-<span id="cb27-14"><a href="#cb27-14"></a>  <span class="fu">count</span>(disability)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># chatGPT</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="co"># Step 4: Recode disability data</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a>chat_dat_disability_recode <span class="ot">&lt;-</span> dat_na_replaced <span class="sc">%&gt;%</span></span>
+<span id="cb21-4"><a href="#cb21-4"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-5"><a href="#cb21-5"></a>    <span class="at">disability =</span> <span class="fu">case_when</span>(</span>
+<span id="cb21-6"><a href="#cb21-6"></a>      neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> physical_chronic <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span> mental_health <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">~</span> <span class="st">"Neurodivergent"</span>,</span>
+<span id="cb21-7"><a href="#cb21-7"></a>      neurotype <span class="sc">==</span> <span class="st">"Neurotypical"</span> <span class="sc">&amp;</span> (physical_chronic <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">|</span> mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">|</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">~</span> <span class="st">"Disabled"</span>,</span>
+<span id="cb21-8"><a href="#cb21-8"></a>      neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">|</span> mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">|</span> physical_chronic <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">|</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">~</span> <span class="st">"NDD"</span>,</span>
+<span id="cb21-9"><a href="#cb21-9"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Neurotypical &amp; non-disabled"</span></span>
+<span id="cb21-10"><a href="#cb21-10"></a>    )</span>
+<span id="cb21-11"><a href="#cb21-11"></a>  )</span>
+<span id="cb21-12"><a href="#cb21-12"></a></span>
+<span id="cb21-13"><a href="#cb21-13"></a>dat_disability_recode <span class="sc">%&gt;%</span> </span>
+<span id="cb21-14"><a href="#cb21-14"></a>  <span class="fu">count</span>(disability)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="table table-sm table-striped small">
@@ -948,8 +919,8 @@ lgl  (1): Finished
 </table>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>chat_dat_disability_recode <span class="sc">%&gt;%</span> </span>
-<span id="cb28-2"><a href="#cb28-2"></a>  <span class="fu">count</span>(disability)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>chat_dat_disability_recode <span class="sc">%&gt;%</span> </span>
+<span id="cb22-2"><a href="#cb22-2"></a>  <span class="fu">count</span>(disability)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="table table-sm table-striped small">
@@ -990,16 +961,16 @@ lgl  (1): Finished
 <li>It’s arguable whether it’s that much more efficient but ChatGPT’s output does indeed use Base R and did recode the variable correctly.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># Step 4: Recode disability data</span></span>
-<span id="cb29-2"><a href="#cb29-2"></a>chat_dat_disability_recode <span class="ot">&lt;-</span> <span class="fu">transform</span>(dat_na_replaced,</span>
-<span id="cb29-3"><a href="#cb29-3"></a>                                  <span class="at">disability =</span> <span class="fu">ifelse</span>(neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> physical_chronic <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span> mental_health <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">==</span> <span class="st">"None"</span>, <span class="st">"Neurodivergent"</span>,</span>
-<span id="cb29-4"><a href="#cb29-4"></a>                                                     <span class="fu">ifelse</span>(neurotype <span class="sc">==</span> <span class="st">"Neurotypical"</span> <span class="sc">&amp;</span> (physical_chronic <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">|</span> mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">|</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>), <span class="st">"Disabled"</span>,</span>
-<span id="cb29-5"><a href="#cb29-5"></a>                                                            <span class="fu">ifelse</span>(neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">|</span> mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">|</span> physical_chronic <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">|</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>, <span class="st">"NDD"</span>,</span>
-<span id="cb29-6"><a href="#cb29-6"></a>                                                                   <span class="st">"Neurotypical &amp; non-disabled"</span>))))</span>
-<span id="cb29-7"><a href="#cb29-7"></a></span>
-<span id="cb29-8"><a href="#cb29-8"></a></span>
-<span id="cb29-9"><a href="#cb29-9"></a>dat_disability_recode <span class="sc">%&gt;%</span> </span>
-<span id="cb29-10"><a href="#cb29-10"></a>  <span class="fu">count</span>(disability)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># Step 4: Recode disability data</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a>chat_dat_disability_recode <span class="ot">&lt;-</span> <span class="fu">transform</span>(dat_na_replaced,</span>
+<span id="cb23-3"><a href="#cb23-3"></a>                                  <span class="at">disability =</span> <span class="fu">ifelse</span>(neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> physical_chronic <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span> mental_health <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">==</span> <span class="st">"None"</span>, <span class="st">"Neurodivergent"</span>,</span>
+<span id="cb23-4"><a href="#cb23-4"></a>                                                     <span class="fu">ifelse</span>(neurotype <span class="sc">==</span> <span class="st">"Neurotypical"</span> <span class="sc">&amp;</span> (physical_chronic <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">|</span> mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">|</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>), <span class="st">"Disabled"</span>,</span>
+<span id="cb23-5"><a href="#cb23-5"></a>                                                            <span class="fu">ifelse</span>(neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">|</span> mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">|</span> physical_chronic <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">|</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>, <span class="st">"NDD"</span>,</span>
+<span id="cb23-6"><a href="#cb23-6"></a>                                                                   <span class="st">"Neurotypical &amp; non-disabled"</span>))))</span>
+<span id="cb23-7"><a href="#cb23-7"></a></span>
+<span id="cb23-8"><a href="#cb23-8"></a></span>
+<span id="cb23-9"><a href="#cb23-9"></a>dat_disability_recode <span class="sc">%&gt;%</span> </span>
+<span id="cb23-10"><a href="#cb23-10"></a>  <span class="fu">count</span>(disability)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="table table-sm table-striped small">
@@ -1028,8 +999,8 @@ lgl  (1): Finished
 </table>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>chat_dat_disability_recode <span class="sc">%&gt;%</span> </span>
-<span id="cb30-2"><a href="#cb30-2"></a>  <span class="fu">count</span>(disability)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>chat_dat_disability_recode <span class="sc">%&gt;%</span> </span>
+<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">count</span>(disability)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="table table-sm table-striped small">
@@ -1063,27 +1034,27 @@ lgl  (1): Finished
 <li>Gemini’s code did run but also managed to recode the variable from having four categories to two:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>gemini_dat_disability_recode <span class="ot">&lt;-</span> dat_na_replaced <span class="sc">%&gt;%</span></span>
-<span id="cb31-2"><a href="#cb31-2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb31-3"><a href="#cb31-3"></a>    <span class="at">disability =</span> <span class="fu">ifelse</span>(</span>
-<span id="cb31-4"><a href="#cb31-4"></a>      neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> <span class="fu">all</span>(<span class="fu">c</span>(physical_chronic, mental_health, disability_nos) <span class="sc">==</span> <span class="st">"None"</span>),</span>
-<span id="cb31-5"><a href="#cb31-5"></a>      <span class="st">"Neurodivergent"</span>,</span>
-<span id="cb31-6"><a href="#cb31-6"></a>      <span class="fu">ifelse</span>(</span>
-<span id="cb31-7"><a href="#cb31-7"></a>        neurotype <span class="sc">==</span> <span class="st">"Neurotypical"</span> <span class="sc">&amp;</span> <span class="fu">any</span>(physical_chronic <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Physical, mobility, or chronic health condition"</span>, <span class="st">"Mental health condition"</span>), disability_nos <span class="sc">==</span> <span class="st">"Disability not otherwise specified"</span>),</span>
-<span id="cb31-8"><a href="#cb31-8"></a>        <span class="st">"Disabled"</span>,</span>
-<span id="cb31-9"><a href="#cb31-9"></a>        <span class="fu">ifelse</span>(</span>
-<span id="cb31-10"><a href="#cb31-10"></a>          <span class="co"># Combined condition using logical OR ( | )</span></span>
-<span id="cb31-11"><a href="#cb31-11"></a>          (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(mental_health)) <span class="sc">|</span> (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(physical_chronic)) <span class="sc">|</span> (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
-<span id="cb31-12"><a href="#cb31-12"></a>            (<span class="sc">!</span><span class="fu">is.na</span>(mental_health) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(physical_chronic)) <span class="sc">|</span> (<span class="sc">!</span><span class="fu">is.na</span>(mental_health) <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span> (<span class="sc">!</span><span class="fu">is.na</span>(physical_chronic) <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>),</span>
-<span id="cb31-13"><a href="#cb31-13"></a>          <span class="st">"NDD"</span>,</span>
-<span id="cb31-14"><a href="#cb31-14"></a>          <span class="st">"Neurotypical &amp; non-disabled"</span></span>
-<span id="cb31-15"><a href="#cb31-15"></a>        )</span>
-<span id="cb31-16"><a href="#cb31-16"></a>      )</span>
-<span id="cb31-17"><a href="#cb31-17"></a>    )</span>
-<span id="cb31-18"><a href="#cb31-18"></a>  )</span>
-<span id="cb31-19"><a href="#cb31-19"></a></span>
-<span id="cb31-20"><a href="#cb31-20"></a>dat_disability_recode <span class="sc">%&gt;%</span> </span>
-<span id="cb31-21"><a href="#cb31-21"></a>  <span class="fu">count</span>(disability)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>gemini_dat_disability_recode <span class="ot">&lt;-</span> dat_na_replaced <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb25-3"><a href="#cb25-3"></a>    <span class="at">disability =</span> <span class="fu">ifelse</span>(</span>
+<span id="cb25-4"><a href="#cb25-4"></a>      neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> <span class="fu">all</span>(<span class="fu">c</span>(physical_chronic, mental_health, disability_nos) <span class="sc">==</span> <span class="st">"None"</span>),</span>
+<span id="cb25-5"><a href="#cb25-5"></a>      <span class="st">"Neurodivergent"</span>,</span>
+<span id="cb25-6"><a href="#cb25-6"></a>      <span class="fu">ifelse</span>(</span>
+<span id="cb25-7"><a href="#cb25-7"></a>        neurotype <span class="sc">==</span> <span class="st">"Neurotypical"</span> <span class="sc">&amp;</span> <span class="fu">any</span>(physical_chronic <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Physical, mobility, or chronic health condition"</span>, <span class="st">"Mental health condition"</span>), disability_nos <span class="sc">==</span> <span class="st">"Disability not otherwise specified"</span>),</span>
+<span id="cb25-8"><a href="#cb25-8"></a>        <span class="st">"Disabled"</span>,</span>
+<span id="cb25-9"><a href="#cb25-9"></a>        <span class="fu">ifelse</span>(</span>
+<span id="cb25-10"><a href="#cb25-10"></a>          <span class="co"># Combined condition using logical OR ( | )</span></span>
+<span id="cb25-11"><a href="#cb25-11"></a>          (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(mental_health)) <span class="sc">|</span> (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(physical_chronic)) <span class="sc">|</span> (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span></span>
+<span id="cb25-12"><a href="#cb25-12"></a>            (<span class="sc">!</span><span class="fu">is.na</span>(mental_health) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(physical_chronic)) <span class="sc">|</span> (<span class="sc">!</span><span class="fu">is.na</span>(mental_health) <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span> (<span class="sc">!</span><span class="fu">is.na</span>(physical_chronic) <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>),</span>
+<span id="cb25-13"><a href="#cb25-13"></a>          <span class="st">"NDD"</span>,</span>
+<span id="cb25-14"><a href="#cb25-14"></a>          <span class="st">"Neurotypical &amp; non-disabled"</span></span>
+<span id="cb25-15"><a href="#cb25-15"></a>        )</span>
+<span id="cb25-16"><a href="#cb25-16"></a>      )</span>
+<span id="cb25-17"><a href="#cb25-17"></a>    )</span>
+<span id="cb25-18"><a href="#cb25-18"></a>  )</span>
+<span id="cb25-19"><a href="#cb25-19"></a></span>
+<span id="cb25-20"><a href="#cb25-20"></a>dat_disability_recode <span class="sc">%&gt;%</span> </span>
+<span id="cb25-21"><a href="#cb25-21"></a>  <span class="fu">count</span>(disability)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="table table-sm table-striped small">
@@ -1112,8 +1083,8 @@ lgl  (1): Finished
 </table>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>gemini_dat_disability_recode <span class="sc">%&gt;%</span> </span>
-<span id="cb32-2"><a href="#cb32-2"></a>  <span class="fu">count</span>(disability)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>gemini_dat_disability_recode <span class="sc">%&gt;%</span> </span>
+<span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">count</span>(disability)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="table table-sm table-striped small">
@@ -1139,17 +1110,17 @@ lgl  (1): Finished
 <li>Copilot’s ran and coded the data correctly although it definitely isn’t more concise. Although it does use Base R.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="co"># Step 4: Recode disability data using base R</span></span>
-<span id="cb33-2"><a href="#cb33-2"></a>copilot_dat_disability_recode <span class="ot">&lt;-</span> dat_na_replaced</span>
-<span id="cb33-3"><a href="#cb33-3"></a>copilot_dat_disability_recode<span class="sc">$</span>disability <span class="ot">&lt;-</span> <span class="fu">with</span>(dat_na_replaced, <span class="fu">ifelse</span>(</span>
-<span id="cb33-4"><a href="#cb33-4"></a>  neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> physical_chronic <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span> mental_health <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">==</span> <span class="st">"None"</span>, <span class="st">"Neurodivergent"</span>,</span>
-<span id="cb33-5"><a href="#cb33-5"></a>  <span class="fu">ifelse</span>(neurotype <span class="sc">==</span> <span class="st">"Neurotypical"</span> <span class="sc">&amp;</span> (physical_chronic <span class="sc">==</span> <span class="st">"Physical, mobility, or chronic health condition"</span> <span class="sc">|</span> mental_health <span class="sc">==</span> <span class="st">"Mental health condition"</span> <span class="sc">|</span> disability_nos <span class="sc">==</span> <span class="st">"Disability not otherwise specified"</span>), <span class="st">"Disabled"</span>,</span>
-<span id="cb33-6"><a href="#cb33-6"></a>  <span class="fu">ifelse</span>((neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> mental_health <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span> (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> physical_chronic <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span> (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span> (mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> physical_chronic <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span> (mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span> (physical_chronic <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>), <span class="st">"NDD"</span>,</span>
-<span id="cb33-7"><a href="#cb33-7"></a>  <span class="st">"Neurotypical &amp; non-disabled"</span></span>
-<span id="cb33-8"><a href="#cb33-8"></a>))))</span>
-<span id="cb33-9"><a href="#cb33-9"></a></span>
-<span id="cb33-10"><a href="#cb33-10"></a>dat_disability_recode <span class="sc">%&gt;%</span> </span>
-<span id="cb33-11"><a href="#cb33-11"></a>  <span class="fu">count</span>(disability)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># Step 4: Recode disability data using base R</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a>copilot_dat_disability_recode <span class="ot">&lt;-</span> dat_na_replaced</span>
+<span id="cb27-3"><a href="#cb27-3"></a>copilot_dat_disability_recode<span class="sc">$</span>disability <span class="ot">&lt;-</span> <span class="fu">with</span>(dat_na_replaced, <span class="fu">ifelse</span>(</span>
+<span id="cb27-4"><a href="#cb27-4"></a>  neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> physical_chronic <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span> mental_health <span class="sc">==</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">==</span> <span class="st">"None"</span>, <span class="st">"Neurodivergent"</span>,</span>
+<span id="cb27-5"><a href="#cb27-5"></a>  <span class="fu">ifelse</span>(neurotype <span class="sc">==</span> <span class="st">"Neurotypical"</span> <span class="sc">&amp;</span> (physical_chronic <span class="sc">==</span> <span class="st">"Physical, mobility, or chronic health condition"</span> <span class="sc">|</span> mental_health <span class="sc">==</span> <span class="st">"Mental health condition"</span> <span class="sc">|</span> disability_nos <span class="sc">==</span> <span class="st">"Disability not otherwise specified"</span>), <span class="st">"Disabled"</span>,</span>
+<span id="cb27-6"><a href="#cb27-6"></a>  <span class="fu">ifelse</span>((neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> mental_health <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span> (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> physical_chronic <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span> (neurotype <span class="sc">==</span> <span class="st">"Neurodivergent"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span> (mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> physical_chronic <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span> (mental_health <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>) <span class="sc">|</span> (physical_chronic <span class="sc">!=</span> <span class="st">"None"</span> <span class="sc">&amp;</span> disability_nos <span class="sc">!=</span> <span class="st">"None"</span>), <span class="st">"NDD"</span>,</span>
+<span id="cb27-7"><a href="#cb27-7"></a>  <span class="st">"Neurotypical &amp; non-disabled"</span></span>
+<span id="cb27-8"><a href="#cb27-8"></a>))))</span>
+<span id="cb27-9"><a href="#cb27-9"></a></span>
+<span id="cb27-10"><a href="#cb27-10"></a>dat_disability_recode <span class="sc">%&gt;%</span> </span>
+<span id="cb27-11"><a href="#cb27-11"></a>  <span class="fu">count</span>(disability)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="table table-sm table-striped small">
@@ -1178,8 +1149,8 @@ lgl  (1): Finished
 </table>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>copilot_dat_disability_recode <span class="sc">%&gt;%</span> </span>
-<span id="cb34-2"><a href="#cb34-2"></a>  <span class="fu">count</span>(disability)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>copilot_dat_disability_recode <span class="sc">%&gt;%</span> </span>
+<span id="cb28-2"><a href="#cb28-2"></a>  <span class="fu">count</span>(disability)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="table table-sm table-striped small">
