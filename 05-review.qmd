@@ -17,7 +17,7 @@ DeBruine et al's [Code Check Guide](https://code-check-club.github.io/code-revie
 * Does it follow best practices? Is there too much repeated code that could benefit from modularisation? DRY (Don’t repeat yourself) and SPOT (Single Point of Truth)? Are the outputs of long processes saved and loaded from file? Are there unit tests? Do the variable names make sense? Do the results match what is shown in the output and there is no rounding up or down?
 * Is it correct and appropriate? Is the code actually doing what is intended? Is what is intended correct? Some logical problems can be caught without domain knowledge, such as intending to to filter out male subjects, but actually filtering them IN. Many other problems require domain and/or statistical knowledge, so may only be appropriate in some circumstances.
 
-However, some of these steps cannot (and should not) be performed by an AI. Unless you have specific ethical approval and have included this in your data management plan, you should **never** upload your research data to an AI tool. This means that assessing reproducibility is difficult. The AI also doesn't know what you *intended* to do, and why, and has no subject knowledge so it can't advise on anything theoretical.
+However, some of these steps cannot (and should not) be performed by an AI. Unless you have specific ethical approval and have included this in your data management plan, you should **never** upload your research data to an AI tool. This means that assessing reproducibility is difficult. The AI also doesn't know what you *intended* to do, and why, and has no subject knowledge so it can't advise on anything theoretical without you giving it that information explicitly.
 
 Therefore, what we'll focus on in this chapter is two components of code review: **comments**  and **refactoring** your code.
 
@@ -28,11 +28,9 @@ Code comments are lines or sections of text added within the code itself that ar
 ```{r}
 # this is a comment
 
-# compute mean of three numbers
+# compute the mean of three numbers
 mean(c(1,2,3))
 
-# compute sd of three numbers
-sd(c(1,2,3))
 ```
 
 Comments are useful for several reasons:
@@ -56,7 +54,7 @@ library(palmerpenguins)
 data("penguins")
 ```
 
-You can use AI tools to help add comments to your code. In your chosen platform, input the below code with the prompt:
+You can use AI tools to help add comments to your code. We'll start with a simple prompt to see how it gets on. In your chosen platform, input the below code with the prompt:
 
 > Add comments to this code
 
@@ -77,10 +75,31 @@ knitr::include_graphics("include/images/05-review/comment1.png")
 A few things to note:
 
 * The AI can only tell you **what** the code is doing, it can't say **why** you chose to do that. In this example, we've created a new column that combines species and sex but the comment gives us no idea what the rationale was for this. The more complex your analysis, the more crucial it becomes to explain the rationale.
-* The comments it produces can be quite verbose. Gemini was not as bad as ChatGPT, but even in the above example there's a bit more than is really necessary. I'd argue you could delete one of the comments in each section and it would still be clear. Too many comments are a different problem to too few, but they're still a problem.
-* In the above example, Gemini has also made the strange decision to make the code itself more verbose and it has removed the piping and split it into three different calls. So as always, review what it gives you. 
+* The initial attempt at adding comments is quite verbose. Gemini was not as bad as ChatGPT, but even in the above example there's a bit more than is really necessary. I'd argue you could delete one of the comments in each section and it would still be clear. Too many comments are a different problem to too few, but they're still a problem.
+* In the above example, Gemini has also made the strange decision to make the code itself more verbose and it has removed the piping and split it into three different calls which isn't ideal.
 
-## Activity 2: Review existing comments
+## Activity 2: Comment prompt engineering
+
+Let's see if we can amend our prompt to get the comments more aligned with what we want.
+
+> Add comments to this code. Keep the comments as concise as possible Ask me any questions about the code if you are not sure what it is doing or why. Do not change anything about the code. 
+
+Copilot produced the following (and the output from ChatGPT and Gemini was very similar), which is much better. 
+
+```{r}
+# Assigning the cleaned data to 'penguins_clean'
+penguins_clean <- penguins %>%
+  # Filtering out rows with missing values
+  filter(complete.cases(.)) %>%
+  # Converting all factor columns to character type
+  mutate(across(where(is.factor), as.character)) %>%
+  # Creating a new column 'species_sex' with combined 'species' and 'sex' information
+  mutate(species_sex = interaction(species, sex, sep = "_"))
+
+```
+
+
+## Activity 3: Review existing comments
 
 In addition to asking AI to comment your code, you can also ask it to review comments you've made yourself. To see how this works with a more complex example, and as an act of masochism, I gave the AI some code I wrote for a publication. The full paper [is here](https://link.springer.com/article/10.1007/s10734-024-01201-5) if you're interested - the quant analyses ended up being punted to the online appendix because of word count.
 
@@ -92,7 +111,7 @@ col_names <- names(read_csv("https://osf.io/download/tf3xs/", n_max = 0))
 dat_raw <- read_csv("https://osf.io/download/tf3xs/", col_names = col_names, skip = 3) 
 ```
 
-The first section of my code involved quite a complicated and long bit of wrangling all done in a single pipeline. This code is cleaning up data from the survey platform Qualtrics and recoding some of the demographic variables. Despite it's length, this is actually a shortened version because the original hit the character limit for Copilot. I did put some effort into writing comments so I wasn't expecting it to need to change that much. 
+The first section of my code involved quite a complicated and long bit of wrangling, all done in a single pipeline. The purpose of the code is to clean up data collected on the survey platform Qualtrics and recoding some of the demographic variables. Despite it's length, this is actually a shortened version because the original hit the character limit for Copilot. I did put some effort into writing comments before publication but there are almost certainly improvements to be made. 
 
 ```{r eval = TRUE} 
 dat <- dat_raw%>%
@@ -126,7 +145,6 @@ dat <- dat_raw%>%
       (physical_chronic != "None" & disability_nos != "None") ~ "NDD",
                                 
                                 TRUE ~ "Neurotypical & non-disabled"))%>%
-  # recode gender data
   # select necessary columns and tidy up the names
         select(ResponseId,
              "age" = Q5,
@@ -146,13 +164,9 @@ dat <- dat_raw%>%
              everything()) 
 ```
 
-* In your chosen AI, give it the above code and the prompt:
+My initial attempt at this used the following prompt:
 
 > Review my use of comments and make improvements to the comments where necessary. Explain what you changed and why. 
-
-Each platform gave slightly different output with slightly different issues:
-
-### Gemini output 
 
 * As well as giving me an explanation in the chat window, Gemini added the explanation to the comments themselves, so you'd need to go and edit these out (or amend the prompt to tell it not to do this). 
 * It has picked up where the logic of the comments might not be helpful to someone who doesn't already know the data e.g., (explain logic), which is useful.
@@ -228,43 +242,50 @@ dat_gemini <- dat_raw %>%
 
 > These improvements enhance the readability and maintainability of your code, making it easier for you or others to understand the purpose of each step.
 
-### Copilot output
+### More prompt engineering
 
-* Generall, Copilot was much better than Gemini, particularly for expanding on the more complex recoding of neurodivergence.
+Again I played about with the prompt to try and prevent these issues:
 
-```{r eval = TRUE}
+> Review my use of comments and make improvements to the comments where necessary. Keep the comments as concise as possible. Do not change anything about the code. 
+
+Copilot introduces an error almost straight away - the filter keeps responses with progress over 94% but it claims the opposite. 
+
+```{r}
+# Assigning the processed data to 'dat'
 dat_copilot <- dat_raw %>%
-  filter(Progress > 94, # Keep only responses with progress over 94%
-         DistributionChannel != "preview") %>% # Exclude preview data, such as test entries
+  # Filtering out responses with progress over 94% and excluding preview data
+  filter(Progress > 94, # Remove incomplete responses
+         DistributionChannel != "preview") %>% # Exclude preview data
+  # Selecting specific columns by ResponseId and renaming column 5 to 'duration'
   select(ResponseId, "duration" = 5, Q5:Q21) %>%
-  # Replace missing values with "None" for disability-related columns
+  # Replacing NA values with "None" in disability-related columns
   mutate(disability_nos = replace_na(disability_nos, "None"),
          physical_chronic = replace_na(physical_chronic, "None"),
-         mental_health = replace_na(mental_health, "None")) %>%
-  # Recode disability categories based on survey responses
+         mental_health = replace_na(mental_health, "None"),
+  ) %>%
+  # Recoding disability categories based on conditions
   mutate(disability = case_when(
-    # Classify as "Neurodivergent" if only neurotype is divergent and no other conditions reported
+    # Classify as 'Neurodivergent' if only neurotype is divergent
     neurotype == "Neurodivergent" &
     physical_chronic == "None" &
     mental_health == "None" & 
     disability_nos == "None" ~ "Neurodivergent",
-    
-    # Classify as "Disabled" if any physical, mental, or unspecified disability is reported
+    # Classify as 'Disabled' if any disability condition is met
     neurotype == "Neurotypical" &
     (physical_chronic == "Physical, mobility, or chronic health condition" |
      mental_health == "Mental health condition" |
      disability_nos == "Disability not otherwise specified") ~ "Disabled",
-    
-    # Classify as "NDD" (Neurodivergent with Disabilities) if multiple conditions are reported
-    (neurotype == "Neurodivergent" & mental_health != "None") |
-    (neurotype == "Neurodivergent" & physical_chronic != "None") |
-    (neurotype == "Neurodivergent" & disability_nos != "None") |
-    (mental_health != "None" & physical_chronic != "None") |
-    (mental_health != "None" & disability_nos != "None") |
+    # Classify as 'NDD' for multiple conditions including neurodivergence
+    (neurotype == "Neurodivergent" & (mental_health != "None" |
+                                       physical_chronic != "None" |
+                                       disability_nos != "None")) |
+    (mental_health != "None" & (physical_chronic != "None" |
+                                disability_nos != "None")) |
     (physical_chronic != "None" & disability_nos != "None") ~ "NDD",
-    
-    TRUE ~ "Neurotypical & non-disabled")) %>%
-  # Select and rename columns for analysis
+    # Default classification
+    TRUE ~ "Neurotypical & non-disabled"
+  )) %>%
+  # Selecting and renaming columns for clarity
   select(ResponseId,
          "age" = Q5,
          "gender" = Q6,
@@ -280,77 +301,56 @@ dat_copilot <- dat_raw %>%
          "how_open" = Q23,
          "advantages" = Q20,
          "disadvantages" = Q21,
-         everything())
+         everything()) 
 
 ```
 
-> Changes Made:
-
-> Filter Comment: Clarified that the progress filter keeps responses that are more than 94% complete.
-
-> DistributionChannel Comment: Specified that the filter excludes test entries, not just Emily’s preview data.
-> NA Replacement Comment: Made it clear that missing values are replaced in disability-related columns.
-> Disability Recode Comment: Expanded on the conditions for classifying disabilities to make the logic more understandable.
-> Gender Recode Comment: No change needed, it’s clear and concise.
-Select Statement Comment: Changed to ‘Select and rename columns for analysis’ for clarity on the operation’s purpose.
-> These changes aim to make the comments more informative and to clarify the purpose and outcome of each code block.
-
-Whilst it doesn't look like it has changed anything, `identical` and `all.equal` suggest a different story. I have been on quite a deep dive and I still can't figure it out - it all looks fine - but it's another note of caution and also a good reason not to give it too much code to review at once. It's easier to figure out what might have changed in little chunks at a time.
+But worse, it's still changed the code (and hasn't flagged that it did this). A bit of digging with `all.equal()` and `count()` reveals that it has made changes to the disablity coding scheme. Not only was it not asked to change it, it was asked explicitly not to change the code, and it did it anyway.
 
 ```{r}
-identical(dat, dat_copilot)
 all.equal(dat, dat_copilot)
+dat %>% count(disability)
+dat_copilot %>% count(disability)
 ```
 
-### ChatGPT output
-
-* ChatGPT is slightly less verbose than Copilot although I think it might depend on the audience which version is better (for future you, ChatGPT is concise but understandable, for people who don't know your data as well, perhaps Copilot's version is better).
-* Same issue as Copilot in that `identical` and `all.equal` suggest differences but I can't find them.
+ChatGPT makes the same mistake in stating that incomplete responses are those with progress greater than 94. but generally it does a reasonably good job at editing the comments, but not going too far. Thankfully, `all.equal()` find that the object created by ChatGPT is identifical to the original, so it hasn't made any changes to the behaviour of the code.
 
 ```{r eval = FALSE}
-dat_chat <- dat_raw %>%
-  # Filter out incomplete responses and Emily's preview data
-  filter(Progress > 94, DistributionChannel != "preview") %>%
-  # Select necessary columns and rename them for clarity
-  select(ResponseId, 
-         "duration" = 5, 
-         Q5:Q21) %>%
-  # Replace NA values with "none" for disability information
+dat_chat <- dat <- dat_raw %>%
+  # Filter out incomplete responses with Progress greater than 94
+  filter(Progress > 94, 
+         # Exclude data from the "preview" distribution channel
+         DistributionChannel != "preview") %>%
+  # Select specific columns and rename them
+  select(ResponseId, "duration" = 5, Q5:Q21) %>%
+  # Replace missing values with "None" for disability information
   mutate(disability_nos = replace_na(disability_nos, "None"),
          physical_chronic = replace_na(physical_chronic, "None"),
          mental_health = replace_na(mental_health, "None")) %>%
-  # Recode disability data based on various conditions
+  # Recode disability status based on various conditions
   mutate(disability = case_when(
-    # Neurodivergent without other disabilities
-    neurotype == "Neurodivergent" &
-    physical_chronic == "None" &
-    mental_health == "None" & 
-    disability_nos == "None" ~ "Neurodivergent",
-    # Disabled with specific conditions
-    neurotype == "Neurotypical" &
-    (physical_chronic == "Physical, mobility, or chronic health condition" |
-    mental_health == "Mental health condition" |
-    disability_nos == "Disability not otherwise specified") ~ "Disabled",
-    # Neurodevelopmental disorder (NDD) with multiple conditions
-    (neurotype == "Neurodivergent" & mental_health != "None") |
-    (neurotype == "Neurodivergent" & physical_chronic != "None") |
-    (neurotype == "Neurodivergent" & disability_nos != "None") |
-    (mental_health != "None" & physical_chronic != "None") |
-    (mental_health != "None" & disability_nos != "None") |
-    (physical_chronic != "None" & disability_nos != "None") ~ "NDD",
-    # Default case for neurotypical and non-disabled
-    TRUE ~ "Neurotypical & non-disabled")) %>%
-  # Recode gender data for consistency
-  mutate(gender_cleaned = case_when(
-    Q6 %in% c("Female", "female", "Woman", "woman", "Cisgender woman","female (she/her)", "F", "f", "Womxn", "Woman (trans)") ~ "Woman",
-    Q6 %in% c("Man", "man", "M", "m", "Male (he/him)", "Male", "male", "Trans man.") ~ "Man",
-    Q6 %in% c("Agender", "Genderfluid", "GNC", "NB", "non-binary", "Non-binary", "Non-Binary", "Non-binary femme", "non-binary male", "non binary", "Non binary", "Nonbinary", "Queer", "Transmasculine", "Non-binary") ~ "Non-binary",
-    TRUE ~ "Not stated")) %>%
-  # Select final necessary columns and tidy up the names
+                                  # Neurodivergent without other disabilities
+                                  neurotype == "Neurodivergent" &
+                                  physical_chronic == "None" &
+                                  mental_health == "None" & 
+                                  disability_nos == "None" ~
+                                  "Neurodivergent",
+                                 # Disabled based on specific conditions
+                                  neurotype == "Neurotypical" &
+                                  (physical_chronic == "Physical, mobility, or chronic health condition" |
+                                  mental_health == "Mental health condition" |
+                                  disability_nos == "Disability not otherwise specified") ~
+                                  "Disabled",
+                                 # Neurodevelopmental or multiple conditions
+                                 (neurotype == "Neurodivergent" & (mental_health != "None" | physical_chronic != "None" | disability_nos != "None")) |
+                                 (mental_health != "None" & (physical_chronic != "None" | disability_nos != "None")) |
+                                 (physical_chronic != "None" & disability_nos != "None") ~ "NDD",
+                                
+                                TRUE ~ "Neurotypical & non-disabled")) %>%
+  # Select necessary columns and tidy up the names
   select(ResponseId,
          "age" = Q5,
          "gender" = Q6,
-         gender_cleaned,
          "mature" = Q7,
          "level_study" = Q8,
          "country" = Q9,
@@ -363,7 +363,8 @@ dat_chat <- dat_raw %>%
          "how_open" = Q23,
          "advantages" = Q20,
          "disadvantages" = Q21,
-         everything())
+         everything()) 
+
 
 ```
 
@@ -640,10 +641,12 @@ copilot_dat_disability_recode %>%
 I hadn't actually used AI to perform these types of tasks before writing this book so here's my takeaways:
 
 * CHECK EVERYTHING.
+* If you give an AI code, you simply cannot trust that it won't change your code, even if that's not the task you ask it to do. If you use AI to add or review comments, you must check the output. Tools like `all.equal()` can help perform these checks.
+* You also can't trust that the comments will be accurate. **Anything an AI writes must be checked before you use it. If you don't know if it's right, don't use it**.
 * Because you have to check what it does so carefully, don't give it a big dump of code. Smaller chunks will end up taking less time.
 * In some cases it was really useful and as someone who doesn't really use or know much Base R, I can see that this would be a great way to learn alternative approaches or to fill in comments.
 * That said, the amount of checking it takes is substantial and so I'm not completely convinced that it would be any quicker than doing it yourself.
-* Of the three, Gemini was the clear loser of this chapter, which is a shame as I was starting to like it. 
+* They all struggled at different points although I think Of the three, Gemini was the clear loser of this chapter, which is a shame as I was starting to like it. 
 
 ::: {.callout-caution}
 This book should be considered a **living document** and is likely to change over time. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it [via Forms](https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u).

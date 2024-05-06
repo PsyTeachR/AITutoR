@@ -4,7 +4,7 @@ This book aims to teach students how to use AI to support their learning journey
 
 It is perhaps easier to start by explaining what this book is not:
 
-* This book **is not a stand-alone resource**. It is intended to be used alongside other course materials. To make the most out of this book, you will need things like Intended Learning Outcomes, ma
+* This book **is not a stand-alone resource**. It is intended to be used alongside other course materials. To make the most out of this book, you will need things like Intended Learning Outcomes or key terms.
 * This book **will not encourage learners to take short-cuts**. That students should be able to understanding the principles of what they are learning and to critically evaluate writing on the topic, regardless of who or what wrote it, is non-negotiable.
 * For the coding aspects of this book, we will not not teach you how to use platforms like Github Copilot and it **is not aimed at proficient or advanced programmers**. 
 
@@ -12,10 +12,10 @@ Instead, this book will aim to help learners use AI platforms as a personalised 
 
 * Use AI to explain concepts and functions in a level of detail and technicality appropriate to the knowledge and skill of the learner
 * Use AI to generate practice questions to test understanding
+* Use AI to create study plans
 * Use AI to debug errors in code
 * Use AI to review, comments, and refactor code
 * Use AI to **responsibly** assist with writing code
-* Use AI to create study plans
 * Critically evaluate and appraise the output of AI
 
 ::: {.callout-warning}

@@ -7,7 +7,7 @@ execute:
   freeze: auto
 book:
   title: AI TutoR
-  author: Emily Nordmann & Carolina Kuepper-Tetzel
+  author: Emily Nordmann, School of Psychology and Neuroscience, University of Glasgow
   doi: ''
   license: CC-BY
   cover-image: images/logos/logo.png
@@ -36,7 +36,7 @@ book:
     header: ''
     footer: ''
   margin-header: ''
-  page-footer: CC-BY (2024) Emily Nordmann & Carolina Kuepper-Tetzel
+  page-footer: CC-BY (2024) Emily Nordmann, School of Psychology and Neuroscience, University of Glasgow
   chapters:
   - index.qmd
   - part: "Personal Tutor"
