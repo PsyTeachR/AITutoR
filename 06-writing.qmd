@@ -9,17 +9,17 @@ In the interests of transparency, the previous chapter and this one are the ones
 
 The best AI platform for writing code is arguably Github Copilot (or Super Clippy as my programmer friends like to call it). However, unless coding is the main part of your job, most people are unlikely to have this subscription service so we'll stick with the generic platforms.
 
-If you have access to LinkedIn Learning, I'd also highly recommend the short course "[Pair Programming with AI](https://www.linkedin.com/learning/pair-programming-with-ai/)" by Morten Rand-Hendriksen. It only takes 1.5 hours to work through and he covers using both Github Copilot and ChatGPT.
+If you have access to LinkedIn Learning (which you do if you are a UofG student or staff), I'd also highly recommend the short course [Pair Programming with AI](https://www.linkedin.com/learning/pair-programming-with-ai/) by Morten Rand-Hendriksen. It only takes 1.5 hours to work through and he covers using both Github Copilot and ChatGPT.
 
 If you've worked through this entire book then hopefully what you've learned is that AI is very useful but I also hope that you have a healthy mistrust of anything it produces which is why I've left this chapter until last. 
 
-The number 1 rule to keep in mind when using AI to write code is that the platforms we're using **are not intelligent**. They are not thinking. They are not reasoning. They are not lying to you. They don't have gaps in their knowledge because they have no knowledge. They are digital parrots on cocaine. 
+The number 1 rule to keep in mind when using AI to write code is that the platforms we're using **are not intelligent**. They are not thinking. They are not reasoning. They are not telling the truth or lying to you. They don't have gaps in their knowledge because they have no knowledge. They are digital parrots on cocaine. 
 
 ## Activity 1: Set-up
 
 Again we'll use the `palmerpenguins` dataset for this exercise so open up an Rmd and run the following:
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 library(tidyverse)
 library(palmerpenguins)
 data("penguins")
@@ -29,9 +29,9 @@ We'll also do a little bit of set-up for the AI:
 
 > Act like an expert programmer in R. I want you to help me write code. The code should be commented and should use the tidyverse where possible. Ask me questions about the code before you write it if necessary.
 
-## Activity 2: Information is power
+## Activity 2: Knowledge is power
 
-When you input this starting prompt, there's a good chance you'll get something like the following from Copilot:
+When you input this starting prompt, there's a good chance you'll get something like the following:
 
 ```{r img-write1, echo=FALSE, fig.cap="More info needed"}
 
@@ -39,7 +39,7 @@ knitr::include_graphics("include/images/06-writing/write1.png")
 
 ```
 
-Before you ask the AI to write code, it's helpful to give it as much information as you can about your dataset. You could write it all out manually but there's a few options to automate. 
+Before you ask the AI to write code, it's helpful to give it as much information as you can about your dataset. You could write out a description manually but there's a few options to automate. 
 
 `summary()` is useful because it provides a list of all variables with some descriptive statistics so that the AI has a sense of the type and range of data:
 
@@ -47,12 +47,7 @@ Before you ask the AI to write code, it's helpful to give it as much information
 summary(penguins)
 ```
 
-`str()` is also useful because it lists the variables, their data type, and lists some of the initial values for each variable. However, that means that you are giving it at least some of the raw data so you have to be very careful if you have sensitive / confidential data and you must ensure that any use of AI is in line with your data management plan. Using Copilot Enterprise means the data won't be stored and used to train the AI further so it's potentially the best option (which is not to safe it's problem free, please be careful and critical!).
-
-```{r}
-str(penguins)
-ls(penguins)
-```
+`str()` is also useful because it lists the variables, their data type, and the initial values for each variable. However, that means that you are giving it at least some of the raw data so you have to be very careful if you have sensitive / confidential data and you must ensure that any use of AI is in line with your data management plan. Using Copilot Enterprise means the data won't be stored and used to train the AI further so it's potentially the best option (which is not to say it's safe or problem free, please be careful and critical!).
 
 Finally, `ls()` provides a list of all the variables in a given object. It doesn't provide any info on the variable type or sample, but that does mean it's the most secure and depending on the task, this might be all the info you really need to give the AI. I would suggest starting with `ls()` and only scaling up if necessary (and your data isn't sensitive):
 
@@ -68,7 +63,7 @@ In your AI of choice, input the following:
 [1] "bill_depth_mm"     "bill_length_mm"    "body_mass_g"       "flipper_length_mm"
 [5] "island"            "sex"               "species"           "year" 
 
-Without being asked, Copilot has provided some examples of how you might analyse this data using R.
+Without being asked, Copilot has provided some examples of how you might analyse this data using R and the code all works as intended.
 
 ```{r}
 # Load the tidyverse package
@@ -107,13 +102,13 @@ penguins %>%
 
 ```
 
-I find this problematic in ways I struggle to properly articulate. As a psychologist, we've spent the last decade dealing with a replication and reproducibility crisis stemming in part because of questionable research practices. As a researcher, you should be making informed decisions as to how you analyse your data and I fear that this type of output is going to increase phishing and atheoretical, exploratory-as-confirmatory nonsense. What happens when the example code the AI spits out without being asked turns out to be a significant regression model that you would never have predicted or run yourself? Are you going to delete it? Or convince yourself that you were going to run it anyway and there's a perfectly logical explanation.
+I find this problematic in ways I struggle to properly articulate. As a psychologist, we've spent the last decade dealing with a replication and reproducibility crisis stemming in part because of questionable research practices. As a researcher, you should be making informed decisions as to how you analyse your data and I fear that this type of output is going to increase phishing and atheoretical, exploratory-as-confirmatory nonsense. What happens when the example code the AI spits out without being asked turns out to be a significant regression model that you would never have predicted or run yourself? Are you going to delete it? Or convince yourself that you were going to run it anyway and there's a perfectly logical explanation?
 
 Before I have a full blown existential crisis, let's get back on track.
 
 ## Activity 3: Writing code
 
-First, we'll aim to produce a table of descriptive statistics for `body_mass_g` and a histogram of that variable. Because it has the exact variable and object names, it should write code we can easily copy and paste:
+First, we'll aim to produce a table of descriptive statistics for `body_mass_g` and a histogram. Because it has the exact variable and object names, it should write code we can easily copy and paste:
 
 > Create a table of descriptive statistics for body mass and a histogram of that variable
 
@@ -258,7 +253,7 @@ penguins <- penguins %>%
 
 ```
 
-This is a good example of why LLMs are inherently Luddites. In the case of missing data, `case_when()` used to need you to specify the type of `NA`. This is very uninintuitive, particularly when you're trying to teach beginner coders (how can missing data have a type? is an entirely reasonable question) so I was delighted when it updated to remove this requirement. Additionally, `TRUE` was also changed to `default` which is a bit more readable. 
+This code is a good example of why LLMs are inherently Luddites, even if they produce working code. When there's missing data, `case_when()` used to need you to specify the type of `NA`, ni this case `NA_character`. This is very uninintuitive, particularly when you're trying to teach beginner coders (how can missing data have a type? is an entirely reasonable question) so I was delighted when it updated to remove this requirement. Additionally, `TRUE` was also changed to `default` which is a bit more readable. 
 
 However, these changes are not reflected in Copilot's code suggestion because the training data is older than the most recent update to `case_when()`. This example is relatively minor but it's important to recognise that if you only use these kinds of AI to write code, you will very quickly be writing outdated code and using deprecated functions.
 
@@ -270,7 +265,7 @@ To give one last example, I entered the following prompt:
 
 > write me code to run a linear regression predicting body mass from sex. also include the code to perform necessary assumption tests using the easystats performance package.
 
-```{r error = TRUE}
+```{r error = TRUE, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(easystats)
 
@@ -295,7 +290,7 @@ check_assumptions(lm_model)
 
 ```
 
-ChatGPT refuses to forget that in my conversation history there was an issue with the code not being lowercase, so it's now including this, even though it's completely unnecessary. 
+ChatGPT refuses to forget that in my conversation history there was an issue with the code not being lowercase, so it's now including functions to covert to lowercase, even though it's completely unnecessary. 
 
 It's also introduced an error. The function should be `check_model()` not `check_assumptions()`. I know this because I know the package. The further away you get from what you could do yourself, the harder it will be to fix any errors and check what it has gotten wrong.
 
@@ -367,7 +362,7 @@ art_string <- paste(art_string, collapse = "\n")
 cat("Your random ASCII art:", art_string, sep = "\n")
 ```
 
-Copilot (ok I actually quite like this one):
+Copilot on its way to Vegas (ok I actually quite like this one):
 
 ```{r}
 # Simple Slot Machine in R

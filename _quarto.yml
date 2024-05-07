@@ -39,9 +39,9 @@ book:
   page-footer: CC-BY (2024) Emily Nordmann, School of Psychology and Neuroscience, University of Glasgow
   chapters:
   - index.qmd
+  - 01-intro.qmd
   - part: "Personal Tutor"
     chapters:
-    - 01-intro.qmd
     - 02-personalise.qmd
     - 03-testing.qmd
   - part: "AI Pair Programmer"
