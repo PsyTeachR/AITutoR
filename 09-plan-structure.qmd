@@ -1,6 +1,8 @@
 
 # Plans and structure
 
+*Written by Carolina Kuepper-Tetzel*
+
 ::: {.callout-caution}
 This chapter is under construction
 :::

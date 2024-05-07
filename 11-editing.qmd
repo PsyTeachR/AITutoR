@@ -1,6 +1,8 @@
 
 # Editing
 
+*Written by Carolina Kuepper-Tetzel*
+
 ::: {.callout-caution}
 This chapter is under construction
 :::
