@@ -1,6 +1,6 @@
 # Practice testing
 
-*Written by Emily Nordmann*
+*Written by Emily Nordmann & Carolina Kuepper-Tetzel*
 
 In this chapter you'll learn how to use AI to test yourself. Practice testing, or [retrieval practice](https://www.learningscientists.org/blog/2016/6/23-1), is one of the most effective ways to consolidate your learning and there's several different ways you can do it. This chapter was written with a coding course in mind but it applies to any type of course. 
 
@@ -80,7 +80,7 @@ You should now be able to ask it to generate questions for you by typing `mcq` o
 
 ## Cautions and caveats
 
-The questions it generates are generally helpful, but not always. Here's the issues I've come across whilst writing this book that I have not been able to prevent entirely by tweaking my prompts.
+The questions it generates are generally helpful, but not always. Here's the issues we've come across whilst writing this book that I have not been able to prevent entirely by tweaking my prompts.
 
 ### Mulitple-choice / TOF / SAQ questions
 
@@ -98,19 +98,19 @@ The questions it generates are generally helpful, but not always. Here's the iss
 
 ### Error mode
 
--   This is the category the AI struggled with the most, to the point where at the time of writing, I can't say that it's up to the task. I have tried writing the prompts mulitple times and whilst I have seen some improvement, it's not consistent. I have a premium ChatGPT subscription and I also tried using GPT4.0 and it didn't help. I've decided to leave it in this book because it's a useful cautionary tale of the limits of AI.
--   From a learning and teaching perspective, it's a good example of why teaching might actually be a skill and my job might be safe after all. When we use Error Mode type questions in our courses, we design the errors so that they're common mistakes learners make at that point in their journey, they're mistakes that learners would plausibly make, and solving them will teach you something of use. Even when the AI managed to create an accurate error mode problem, it still wasn't helpful for learning.
--   In my initial attempts at prompting, Gemini did poorly at this. It gave me code that did not have errors, or it would tell me what the errors were, or it would give errors that were so obvious they wouldn't help you learn at all. For example:
+-   This is the category the AI struggled with the most, to the point where at the time of writing, we can't say that it's up to the task. We have tried writing the prompts multiple times and whilst we have seen some improvement, it's not consistent. We have a premium ChatGPT subscription and also tried using GPT4.0 and it didn't help. We've decided to leave it in this book because it's a useful cautionary tale of the limits of AI.
+-   From a learning and teaching perspective, it's a good example of why teaching might actually be a skill and our job might be safe after all. When we use Error Mode type questions in our courses, we design the errors so that they're common mistakes learners make at that point in their journey, they're mistakes that learners would plausibly make, and solving them will teach you something of use. Even when the AI managed to create an accurate error mode problem, it still wasn't helpful for learning.
+-   In our initial attempts at prompting, Gemini did poorly at this. It gave us code that did not have errors, or it would tell us what the errors were, or it would give errors that were so obvious they wouldn't help you learn at all. For example:
 
 ![](include/images/03-testing/obvious.png)
-- I then updated the prompt to say that the errors should be plausible and not to tell me what the errors were. This helped but only sometimes. 
--   ChatGPT fared slightly better although all of the problems were very basic and of the same type (creating a vector) until I asked it to give me me a specific problem (e.g., error mode for ggplot).
--   ChatGPT also suffered from the same problems as Gemini in that it would tell you what the error was or produce code that did not have any errors. I particularly enjoyed this response whereby it seemed to pretend that it was doing it on purpose as a teachable moment. I know I am anthropomorphising the AI here but I imagine any educator will feel a sense of kinship at trying to make your mistakes seem intentional.
+- We then updated the prompt to say that the errors should be plausible and not to tell us what the errors were. This helped but only sometimes. 
+-   ChatGPT fared slightly better although all of the problems were very basic and of the same type (creating a vector) until we asked it to give us a specific problem (e.g., error mode for ggplot).
+-   ChatGPT also suffered from the same problems as Gemini in that it would tell you what the error was or produce code that did not have any errors. We particularly enjoyed this response whereby it seemed to pretend that it was doing it on purpose as a teachable moment. We know we are anthropomorphising the AI here but we imagine any educator will feel a sense of kinship at trying to make your mistakes seem intentional.
 
 ![](include/images/03-testing/noerrors.png)
 
 - It often won't tell you what built-in dataset you need to load to run the code (and this isn't the intended error). Unless you have a working knowledge of built-in datasets in R and the packages they're from, this is unnecessarily confusing. 
-- There is no prompt I can give Copilot that will result in it producing code with an error (even when the same prompt works with ChatGPT). So I gave up.
+- There is no prompt we could give Copilot that will result in it producing code with an error (even when the same prompt works with ChatGPT). So we gave up.
 
 ![](include/images/03-testing/stillnoerror.png)
 
