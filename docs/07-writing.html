@@ -319,19 +319,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 </header><p><em>Written by Emily Nordmann</em></p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>In the interests of transparency, the previous chapter and this one are the ones I am least comfortable writing and I’d like to clearly acknowledge that I am barely one step ahead of you as a learner. Any constructive feedback is entirely welcome.</p>
-</div>
-</div>
 <p>The best AI platform for writing code is arguably Github Copilot (or Super Clippy as my programmer friends like to call it). However, unless coding is the main part of your job, most people are unlikely to have this subscription service so we’ll stick with the generic platforms.</p>
 <p>If you have access to LinkedIn Learning (which you do if you are a UofG student or staff), I’d also highly recommend the short course <a href="https://www.linkedin.com/learning/pair-programming-with-ai/">Pair Programming with AI</a> by Morten Rand-Hendriksen. It only takes 1.5 hours to work through and he covers using both Github Copilot and ChatGPT.</p>
 <p>If you’ve worked through this entire book then hopefully what you’ve learned is that AI is very useful but I also hope that you have a healthy mistrust of anything it produces which is why I’ve left this chapter until last.</p>
@@ -354,7 +341,7 @@ Important
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="include/images/06-writing/write1.png" class="img-fluid figure-img"></p>
+<figure class="figure"><p><img src="include/images/06-writing/write1.png" class="img-fluid figure-img" width="780"></p>
 <figcaption>More info needed</figcaption></figure>
 </div>
 </div>
@@ -555,7 +542,7 @@ Important
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="include/images/06-writing/write2.png" class="img-fluid figure-img"></p>
+<figure class="figure"><p><img src="include/images/06-writing/write2.png" class="img-fluid figure-img" width="406"></p>
 <figcaption>Gemini missing the mark</figcaption></figure>
 </div>
 </div>
@@ -569,7 +556,7 @@ Important
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="include/images/06-writing/write3.png" class="img-fluid figure-img"></p>
+<figure class="figure"><p><img src="include/images/06-writing/write3.png" class="img-fluid figure-img" width="408"></p>
 <figcaption>Gemini going rogue</figcaption></figure>
 </div>
 </div>
@@ -731,7 +718,7 @@ F-statistic: 72.96 on 1 and 331 DF,  p-value: 4.897e-16</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">cat</span>(<span class="fu">generate_joke</span>(), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>I told my wife she was drawing her eyebrows too high. She looked surprised! </code></pre>
+<pre><code>Why did the scarecrow win an award? Because he was outstanding in his field! </code></pre>
 </div>
 </div>
 <p>ChatGPT reassuring me art isn’t going to be outsourced any time soon:</p>
@@ -766,26 +753,26 @@ F-statistic: 72.96 on 1 and 331 DF,  p-value: 4.897e-16</code></pre>
 <span id="cb30-28"><a href="#cb30-28"></a><span class="fu">cat</span>(<span class="st">"Your random ASCII art:"</span>, art_string, <span class="at">sep =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Your random ASCII art:
-#&amp;@**@#&amp;$#&amp;@&amp;*@&amp;@&amp;@#$&amp;&amp;&amp;%@#&amp;&amp;$$%%#$**%&amp;@@##&amp;@&amp;$#*$
-*$@#**%$@$#&amp;$$*$&amp;%$%&amp;##%*$$#&amp;#%$@#&amp;@@@%&amp;@&amp;%#&amp;*$%@&amp;
-%%#$%#**&amp;%$%#**#*%%@#&amp;&amp;$$**&amp;*@@&amp;#&amp;#%*@#@$$#***$&amp;%@
-*&amp;%#&amp;#@%*#&amp;*$&amp;$&amp;$@#*#*@@#&amp;&amp;%#%@%**#$#@&amp;%&amp;*$*&amp;@&amp;*$#
-$%%&amp;$**#%&amp;#%#&amp;@$%%&amp;**@$%%*&amp;@**$##&amp;%&amp;*@#$@&amp;##%#***#
-$%$%@#%&amp;$*&amp;*%&amp;@#@%*%@%##**@#@@%@%@*&amp;#**&amp;%$%#%@@&amp;@@
-&amp;@$&amp;%@#@*&amp;$@*#&amp;#%#@@@@&amp;%*$*@&amp;&amp;#@%*&amp;%*&amp;#*%#@@*%%@$&amp;
-@*&amp;#&amp;#&amp;*@$%%&amp;%%%$@$*@**&amp;@@$*@%*#%*%#%%%%&amp;*@@@$%@@%
-@*$%&amp;#$%%&amp;*$%$$%$$$$%@@%$%$#&amp;&amp;&amp;*@$%$@&amp;&amp;$@@%*$$#@@$
-@$@@@$#&amp;$%@%@#%$@&amp;*&amp;%$$$@%@%&amp;%@%*&amp;$%#$#&amp;**%#@@$%%&amp;
-@@##@$#&amp;#$%*###&amp;&amp;%&amp;@*&amp;$@@%$&amp;$@@@$&amp;&amp;&amp;#&amp;*@#*#%$@%$$@
-##&amp;$&amp;@@#%@$$*$$$*$@#%&amp;$%*$#$*&amp;$$@%&amp;@&amp;##$##@$$#%#@@
-$%*&amp;#%$$%#**$%$%*&amp;#%$%%&amp;&amp;##$%#$**%#%%@*%%&amp;**##$$#$
-@$&amp;#$@##**@@@@&amp;@&amp;%%&amp;#@*%#$%$&amp;$@&amp;#%$%%@$#&amp;%&amp;%*$%##$
-**$&amp;$@$%&amp;$%$#$%**$*$&amp;%@#$$*%&amp;$@@#%$$*#@$$*##&amp;&amp;@**#
-%%#&amp;&amp;%$#%*%%#@@$##&amp;$$%&amp;*$#&amp;*#**$%&amp;$*@&amp;&amp;%##%@$#**@*
-$$*#$$@&amp;*&amp;*#@$$%&amp;**#@#&amp;$&amp;##@%*%##@&amp;$$**#*&amp;%%@@**$%
-**%$@#@$$%%$@#$*$$@$$&amp;**%$$&amp;*@*&amp;@**##&amp;##%@%#@*$$@%
-#@$%$$#@$$&amp;*%&amp;$$%*&amp;&amp;##@@%%$##*%##%$&amp;$*$@##%&amp;%%#&amp;#%
-$%$%%#@*##*$&amp;#$%@@*#@$&amp;@*@&amp;#@#$%@*$%@#&amp;&amp;&amp;#%@@$*&amp;*&amp;</code></pre>
+@%@*&amp;*&amp;$$@#&amp;&amp;%*&amp;$$&amp;$%$%&amp;%$@#*#$#*$#**#*$&amp;$&amp;*@%&amp;%@*
+&amp;%$@#*$%#@$&amp;*@$@%@*$&amp;%%&amp;%%%%$$&amp;$*#$*#&amp;%#@$%@#$##@#
+*$###$*&amp;*%$&amp;@#*$@#*&amp;$$@&amp;*#&amp;&amp;*%&amp;&amp;&amp;*#%%%*&amp;%&amp;*&amp;#@$#&amp;*
+##$@**@%*$&amp;##@%##$%@*%#*#$@&amp;$*%$$*@*#$%$$$$#@%***%
+$$#$@$%$*$@#&amp;*$*$$@@@#@@#*%%%%@@@#$&amp;@*$&amp;&amp;$%$%#%**$
+$$**$##*%*&amp;@%***%%&amp;%@&amp;@%&amp;@@%#%%%%$@&amp;#$@#%@%*$%$&amp;$&amp;
+#$@@%#@%*&amp;@#&amp;*&amp;*&amp;%&amp;@$*#%*&amp;*@**@*#%&amp;$@#@#$#*@&amp;%$$%*
+$@**&amp;$*##&amp;&amp;$&amp;$@#%#*#**$$%%#**%%$#%&amp;#&amp;&amp;#&amp;@@@*%#@&amp;#@
+*#$&amp;$%*%@*&amp;@@$@@@%*$$@@%$%*&amp;$*#@@@$%$*%&amp;##$$@%@&amp;$*
+*%@#&amp;&amp;%#@%&amp;$&amp;**$*%$*@&amp;*%*%*@$*$**%@&amp;&amp;%@%@#@%@@@%@*
+$#%&amp;**$@@*####&amp;*$*@$&amp;%*@#*&amp;%&amp;*%$@#%$$&amp;*@%$%%%&amp;$&amp;%@
+@@$*#*%&amp;&amp;*$%@@%*$&amp;@$#@$$@%@$&amp;%***%##&amp;&amp;%@*##$$@#@&amp;$
+&amp;$*$#%#*@@&amp;*@%%#$%#$###$%*&amp;&amp;%&amp;@@&amp;&amp;$#@%&amp;*&amp;&amp;%%%#**$$
+%%$##$*#&amp;*%@*$$%@##*&amp;&amp;@#@&amp;*$%&amp;%&amp;&amp;%@***@@&amp;$&amp;%%%$*@&amp;
+&amp;&amp;*%%%&amp;$&amp;$$%*%%&amp;#*&amp;&amp;#*$*$@*$%@$$$$*#*%@$@*&amp;&amp;$%*##@
+$#%#$%&amp;*@%@##@@%%*%*#%%*&amp;%#@*#$#&amp;#@####%&amp;#&amp;%%@#&amp;$*
+@#&amp;%&amp;*&amp;*@*##**#&amp;%$%$&amp;$@&amp;$*###@@#*$#$#$%@&amp;$&amp;%@%@%#*
+@$@#%*###@$*#$$&amp;$%#**$%#%$@%@$$%&amp;@@#%@&amp;$##&amp;%##**$*
+@&amp;##**#&amp;@@#@&amp;*%%%%#&amp;#@$%@&amp;$%%%&amp;**&amp;%**%$@%$@***$@*%
+%@#*@#&amp;#$#$%@&amp;#%*&amp;$&amp;$&amp;*$%&amp;$&amp;%#&amp;*@*#%*@%$&amp;&amp;$%####@#</code></pre>
 </div>
 </div>
 <p>Copilot on its way to Vegas (ok I actually quite like this one):</p>
@@ -809,7 +796,7 @@ $%$%%#@*##*$&amp;#$%@@*#@$&amp;@*@&amp;#@#$%@*$%@#&amp;&amp;&amp;#%@@$*&amp;*&am
 <span id="cb32-17"><a href="#cb32-17"></a><span class="co"># Spin the slot machine</span></span>
 <span id="cb32-18"><a href="#cb32-18"></a><span class="fu">spin_slot_machine</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Spinning... You got: 🍊 🍒 🍋 
+<pre><code>Spinning... You got: 🍓 🍉 🍉 
 Try again! 🍀</code></pre>
 </div>
 </div>
@@ -823,7 +810,7 @@ Caution
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This book should be considered a <strong>living document</strong> and is likely to change over time. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u">via Forms</a>.</p>
+<p>This book was written in Spring 2024 and should be considered a <strong>living document</strong>. The functionality and capability of AI is changing rapidly and the most recent advancesmay not reflect what is described in this book. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u">via Forms</a>.</p>
 </div>
 </div>
 

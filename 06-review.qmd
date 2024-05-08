@@ -3,10 +3,6 @@
 
 *Written by Emily Nordmann*
 
-::: {.callout-important}
-In the interests of transparency, this chapter and the next are the ones I am least comfortable writing and I'd like to clearly acknowledge that I am barely one step ahead of you as a learner. Any constructive feedback is entirely welcome. 
-:::
-
 In this chapter you'll learn how to use AI to perform a code review and to add comments to your code. As you've already hopefully learned by working through this book, you have to be critical about anything the AI produces or suggests because it has no expert knowledge, but it can be a useful tool for checking and improving your code.
 
 DeBruine et al's [Code Check Guide](https://code-check-club.github.io/code-review-guide/) details what a comprehensive code check refers to:
@@ -649,5 +645,5 @@ I hadn't actually used AI to perform these types of tasks before writing this bo
 * They all struggled at different points although I think Of the three, Gemini was the clear loser of this chapter, which is a shame as I was starting to like it. 
 
 ::: {.callout-caution}
-This book should be considered a **living document** and is likely to change over time. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it [via Forms](https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u).
+This book was written in Spring 2024 and should be considered a **living document**. The functionality and capability of AI is changing rapidly and the most recent advancesmay not reflect what is described in this book. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it [via Forms](https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u).
 :::
