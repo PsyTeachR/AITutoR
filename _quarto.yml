@@ -10,9 +10,9 @@ book:
   author: Emily Nordmann & Carolina Kuepper-Tetzel, School of Psychology and Neuroscience, University of Glasgow
   doi: ''
   license: CC-BY
-  cover-image: images/logos/logo.png
-  image: images/logos/logo.png
-  favicon: images/logos/logo.png
+  cover-image: include/images/logo.png
+  image: include/images/logo.png
+  favicon: include/images/logo.png
   cookie-consent: false
   google-analytics: ''
   page-navigation: true
