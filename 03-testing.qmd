@@ -6,15 +6,15 @@ In this chapter you'll learn how to use AI to test yourself. Practice testing, o
 
 ## Activity 1: Set-up {#sec-setup-testing}
 
-In your AI of choice, create a new chat and give it your set-up blurb that you created in Chapter @sec-setup.
+* In your AI of choice, create a new chat and give it your set-up blurb that you created in Chapter @sec-setup.
 
-It would be helpful to have a specific week/chapter/lecture of your course in mind to work with. For the PsyTeachR R courses, we'll be using the Intended Learning Outcomes, functions used, and glossary to help instruct the AI. If you're not working through a course, or it's not a PsyTeachR course, it would be helpful to have a list of functions, concepts, or skills that you want to test. As an example, we'll use [Chapter 3 of Applied Data Skills](https://psyteachr.github.io/ads-v3/03-viz.html).
+It would be helpful to have a specific week/chapter/lecture of your course in mind to work with. For the PsyTeachR courses, we'll be using the Intended Learning Outcomes, functions used, and glossary to help instruct the AI. If you're not working through a course, or it's not a PsyTeachR course, it would be helpful to have a list of functions, concepts, or skills that you want to test. As an example, we'll use [Chapter 3 of Applied Data Skills](https://psyteachr.github.io/ads-v3/03-viz.html).
 
 ## Activity 2: Question prompt
 
 Then we need to give it instructions for how to create the questions. There are other question types you could ask it for but here is a starter pack for a coding course and then for a theoretical course:
 
-**Promps for a coding course**
+**Prompts for a coding course**
 
 > I would like you to generate practice questions to help consolidate my learning based on the learning outcomes, functions, and glossary used in my course materials this week that I will provide to you. I will ask you for four different types of questions.
 
@@ -80,11 +80,11 @@ You should now be able to ask it to generate questions for you by typing `mcq` o
 
 ## Cautions and caveats
 
-The questions it generates are generally helpful, but not always. Here's the issues we've come across whilst writing this book that I have not been able to prevent entirely by tweaking my prompts.
+The questions it generates are generally helpful, but not always. Here's the issues we've come across whilst writing this book that we have not been able to prevent entirely by tweaking the prompts.
 
 ### Mulitple-choice / TOF / SAQ questions
 
--   Sometimes it is just plain wrong. The answer here should be C. If you tell it that it is wrong, it can correct itself. But just bear this in mind if you ever use it to write code that **AI does not know anything, it's just a very sophisticated parrot**. 
+-   Sometimes it is just plain wrong. The answer here should be C. If you tell it that it is wrong, it can correct itself (but also if you tell it that it is wrong even when it is right, it sometimes accepts that it is wrong). Bear this in mind if you ever use it to produce anything that **AI does not have any knowledge, it's just a very sophisticated parrot**. 
 ![](include/images/03-testing/wrong.png)
 
 -   It may ask you questions about functions or concepts you've haven't covered in the course.
@@ -98,7 +98,14 @@ The questions it generates are generally helpful, but not always. Here's the iss
 
 ### Error mode
 
--   This is the category the AI struggled with the most, to the point where at the time of writing, we can't say that it's up to the task. We have tried writing the prompts multiple times and whilst we have seen some improvement, it's not consistent. We have a premium ChatGPT subscription and also tried using GPT4.0 and it didn't help. We've decided to leave it in this book because it's a useful cautionary tale of the limits of AI.
+
+-   This is the category the AI struggled with the most, to the point where at the time of writing, we can't say that it's up to the task. We have tried writing the prompts multiple times and whilst we have seen some improvement, it's not consistent. We have a premium ChatGPT subscription and also tried using GPT4.0 and it didn't help. 
+
+::: {.callout-important}
+Update! OpenAI released GPT4o in May 2024 and this **can** produce sensible error mode problems. We've left the below in this book because at the time of writing, Copilot, Gemini, and earlier versions of GPT can't and it's an interesting insight into some of the issues with AI.
+:::
+
+
 -   From a learning and teaching perspective, it's a good example of why teaching might actually be a skill and our job might be safe after all. When we use Error Mode type questions in our courses, we design the errors so that they're common mistakes learners make at that point in their journey, they're mistakes that learners would plausibly make, and solving them will teach you something of use. Even when the AI managed to create an accurate error mode problem, it still wasn't helpful for learning.
 -   In our initial attempts at prompting, Gemini did poorly at this. It gave us code that did not have errors, or it would tell us what the errors were, or it would give errors that were so obvious they wouldn't help you learn at all. For example:
 
@@ -115,5 +122,5 @@ The questions it generates are generally helpful, but not always. Here's the iss
 ![](include/images/03-testing/stillnoerror.png)
 
 ::: {.callout-caution}
-This book was written in Spring 2024 and should be considered a **living document**. The functionality and capability of AI is changing rapidly and the most recent advancesmay not reflect what is described in this book. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it [via Forms](https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u).
+This book was written in Spring 2024 and should be considered a **living document**. The functionality and capability of AI is changing rapidly and the most recent advances may not reflect what is described in this book. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it [via Forms](https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u).
 :::

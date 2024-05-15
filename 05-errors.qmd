@@ -63,7 +63,29 @@ knitr::include_graphics("include/images/04-error/context1.png")
 There's a couple of things you can do at this point:
 
 * Give the AI all the code you've used so far
-* Run `str(penguins)` and `str(biscoe_penguins)` and give the AI the output of these calls so that it better understands the structure and contents of the datasets
+* Give the AI more information about the dataset. 
+
+You can manually type out a description but there's some functions you can use that can automate this.
+
+`summary()` is useful because it provides a list of all variables with some descriptive statistics so that the AI has a sense of the type and range of data:
+
+```{r}
+summary(penguins)
+```
+
+`str()` is also useful because it lists the variables, their data type, and the initial values for each variable. However, that means that you are giving it at least some of the raw data so you have to be very careful if you have sensitive / confidential data and you must ensure that any use of AI is in line with your data management plan. Using Copilot Enterprise means the data won't be stored and used to train the AI further so it's potentially the best option (which is not to say it's safe or problem free, please be careful and critical!).
+
+```{r}
+str(penguins)
+```
+
+Finally, `ls()` provides a list of all the variables in a given object. It doesn't provide any info on the variable type or sample, but that does mean it's the most secure and depending on the task, this might be all the info you really need to give the AI. I would suggest starting with `ls()` and only scaling up if necessary (and your data isn't sensitive):
+
+```{r}
+ls(penguins)
+```
+
+* Run `summary(biscoe_penguins)` and give the AI the output so that it better understands the structure and contents of the datasets
 
 If you haven't spotted it by now, the error is that in the filter `biscoe` should be `Biscoe` with a capital B. It still doesn't have the information it needs to tell you this explicitly, but it will get you very close. **There is no shortcut for knowing your data**.
 
@@ -79,14 +101,14 @@ Sometimes (often) when we write code, the issue isn't that our code doesn't work
 
 For example, let's say that we want to calculate the average body_mass_g for each species by sex. We're feeling a bit lazy and we copy and paste in the following from a previous script we have:
 
-```{r}
+```{r message=FALSE}
 penguins %>%
   group_by(sex, species) %>%
   summarise(mean_body_mass = sd(body_mass_g, na.rm = TRUE))
 
 ```
 
-We know something isn't right here. Because we're responsible researchers, we've taken time to understand our dataset and what plausible values should be and we know there's no way that the average body mass of a penguin is 269 grams (unless the penguin is made of chocolate). Nut the code is running fine, we know it's worked before, and we can't see what we've done wrong.
+We know something isn't right here. Because we're responsible researchers, we've taken time to understand our dataset and what plausible values should be and we know there's no way that the average body mass of a penguin is 269 grams (unless the penguin is made of chocolate). But the code is running fine, we know it's worked before, and we can't see what we've done wrong.
 
 You can ask the AI to help you but you can't just give it the code and output, you also need to tell it what you intended to do. In this case, all three AIs correctly identified that I had used `sd` instead of `mean`. The more complex your code, the more information you will need to give it in order for it to help you find the error. 
 
@@ -133,5 +155,5 @@ I know I might be starting to sound like a broken record but **please** remember
 :::
 
 ::: {.callout-caution}
-This book was written in Spring 2024 and should be considered a **living document**. The functionality and capability of AI is changing rapidly and the most recent advancesmay not reflect what is described in this book. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it [via Forms](https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u).
+This book was written in Spring 2024 and should be considered a **living document**. The functionality and capability of AI is changing rapidly and the most recent advances may not reflect what is described in this book. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it [via Forms](https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u).
 :::

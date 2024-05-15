@@ -346,7 +346,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="include/images/04-error/simple.png" class="img-fluid figure-img" width="459"></p>
+<figure class="figure"><p><img src="include/images/04-error/simple.png" class="img-fluid figure-img"></p>
 <figcaption>Fixing a simple error</figcaption></figure>
 </div>
 </div>
@@ -378,7 +378,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="include/images/04-error/context1.png" class="img-fluid figure-img" width="536"></p>
+<figure class="figure"><p><img src="include/images/04-error/context1.png" class="img-fluid figure-img"></p>
 <figcaption>ChatGPT giving its best guess</figcaption></figure>
 </div>
 </div>
@@ -386,13 +386,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>There’s a couple of things you can do at this point:</p>
 <ul>
 <li>Give the AI all the code you’ve used so far</li>
-<li>Run <code>str(penguins)</code> and <code>str(biscoe_penguins)</code> and give the AI the output of these calls so that it better understands the structure and contents of the datasets</li>
+<li>Give the AI more information about the dataset.</li>
+</ul>
+<p>You can manually type out a description but there’s some functions you can use that can automate this.</p>
+<p><code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> is useful because it provides a list of all variables with some descriptive statistics so that the AI has a sense of the type and range of data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">summary</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      species          island    bill_length_mm  bill_depth_mm  
+ Adelie   :152   Biscoe   :168   Min.   :32.10   Min.   :13.10  
+ Chinstrap: 68   Dream    :124   1st Qu.:39.23   1st Qu.:15.60  
+ Gentoo   :124   Torgersen: 52   Median :44.45   Median :17.30  
+                                 Mean   :43.92   Mean   :17.15  
+                                 3rd Qu.:48.50   3rd Qu.:18.70  
+                                 Max.   :59.60   Max.   :21.50  
+                                 NA's   :2       NA's   :2      
+ flipper_length_mm  body_mass_g       sex           year     
+ Min.   :172.0     Min.   :2700   female:165   Min.   :2007  
+ 1st Qu.:190.0     1st Qu.:3550   male  :168   1st Qu.:2007  
+ Median :197.0     Median :4050   NA's  : 11   Median :2008  
+ Mean   :200.9     Mean   :4202                Mean   :2008  
+ 3rd Qu.:213.0     3rd Qu.:4750                3rd Qu.:2009  
+ Max.   :231.0     Max.   :6300                Max.   :2009  
+ NA's   :2         NA's   :2                                 </code></pre>
+</div>
+</div>
+<p><code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> is also useful because it lists the variables, their data type, and the initial values for each variable. However, that means that you are giving it at least some of the raw data so you have to be very careful if you have sensitive / confidential data and you must ensure that any use of AI is in line with your data management plan. Using Copilot Enterprise means the data won’t be stored and used to train the AI further so it’s potentially the best option (which is not to say it’s safe or problem free, please be careful and critical!).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">str</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [344 × 8] (S3: tbl_df/tbl/data.frame)
+ $ species          : Factor w/ 3 levels "Adelie","Chinstrap",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ island           : Factor w/ 3 levels "Biscoe","Dream",..: 3 3 3 3 3 3 3 3 3 3 ...
+ $ bill_length_mm   : num [1:344] 39.1 39.5 40.3 NA 36.7 39.3 38.9 39.2 34.1 42 ...
+ $ bill_depth_mm    : num [1:344] 18.7 17.4 18 NA 19.3 20.6 17.8 19.6 18.1 20.2 ...
+ $ flipper_length_mm: int [1:344] 181 186 195 NA 193 190 181 195 193 190 ...
+ $ body_mass_g      : int [1:344] 3750 3800 3250 NA 3450 3650 3625 4675 3475 4250 ...
+ $ sex              : Factor w/ 2 levels "female","male": 2 1 1 NA 1 2 1 2 NA NA ...
+ $ year             : int [1:344] 2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...</code></pre>
+</div>
+</div>
+<p>Finally, <code><a href="https://rdrr.io/r/base/ls.html">ls()</a></code> provides a list of all the variables in a given object. It doesn’t provide any info on the variable type or sample, but that does mean it’s the most secure and depending on the task, this might be all the info you really need to give the AI. I would suggest starting with <code><a href="https://rdrr.io/r/base/ls.html">ls()</a></code> and only scaling up if necessary (and your data isn’t sensitive):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">ls</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "bill_depth_mm"     "bill_length_mm"    "body_mass_g"      
+[4] "flipper_length_mm" "island"            "sex"              
+[7] "species"           "year"             </code></pre>
+</div>
+</div>
+<ul>
+<li>Run <code>summary(biscoe_penguins)</code> and give the AI the output so that it better understands the structure and contents of the datasets</li>
 </ul>
 <p>If you haven’t spotted it by now, the error is that in the filter <code>biscoe</code> should be <code>Biscoe</code> with a capital B. It still doesn’t have the information it needs to tell you this explicitly, but it will get you very close. <strong>There is no shortcut for knowing your data</strong>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="include/images/04-error/context2.png" class="img-fluid figure-img" width="885"></p>
+<figure class="figure"><p><img src="include/images/04-error/context2.png" class="img-fluid figure-img"></p>
 <figcaption>Copilot getting very close</figcaption></figure>
 </div>
 </div>
@@ -402,13 +452,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Sometimes (often) when we write code, the issue isn’t that our code doesn’t work, but that it doesn’t do what we intended to do and we can’t figure out why.</p>
 <p>For example, let’s say that we want to calculate the average body_mass_g for each species by sex. We’re feeling a bit lazy and we copy and paste in the following from a previous script we have:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>penguins <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">group_by</span>(sex, species) <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">summarise</span>(<span class="at">mean_body_mass =</span> <span class="fu">sd</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`summarise()` has grouped output by 'sex'. You can override using the `.groups`
-argument.</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">group_by</span>(sex, species) <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">summarise</span>(<span class="at">mean_body_mass =</span> <span class="fu">sd</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="table table-sm table-striped small">
@@ -463,12 +509,12 @@ argument.</code></pre>
 </div>
 </div>
 </div>
-<p>We know something isn’t right here. Because we’re responsible researchers, we’ve taken time to understand our dataset and what plausible values should be and we know there’s no way that the average body mass of a penguin is 269 grams (unless the penguin is made of chocolate). Nut the code is running fine, we know it’s worked before, and we can’t see what we’ve done wrong.</p>
+<p>We know something isn’t right here. Because we’re responsible researchers, we’ve taken time to understand our dataset and what plausible values should be and we know there’s no way that the average body mass of a penguin is 269 grams (unless the penguin is made of chocolate). But the code is running fine, we know it’s worked before, and we can’t see what we’ve done wrong.</p>
 <p>You can ask the AI to help you but you can’t just give it the code and output, you also need to tell it what you intended to do. In this case, all three AIs correctly identified that I had used <code>sd</code> instead of <code>mean</code>. The more complex your code, the more information you will need to give it in order for it to help you find the error.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="include/images/04-error/functional_error.png" class="img-fluid figure-img" width="622"></p>
+<figure class="figure"><p><img src="include/images/04-error/functional_error.png" class="img-fluid figure-img"></p>
 <figcaption>Fixing a functional error</figcaption></figure>
 </div>
 </div>
@@ -479,15 +525,15 @@ argument.</code></pre>
 <p>If you’re working in R Markdown or Quarto, sometimes the errors will stem from your code chunk settings or YAML.</p>
 <p>In your Rmd file, create a new code chunk and copy and paste the following:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>penguins <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">count</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">count</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>But then delete one of the final back ticks (`) from the code chunk.</p>
 <p>The code is fine, it provides a simple count of the number of observations in the dataset. But if you try and knit the file, you’ll get a long <code>! attempt to use zero-length variable name</code>. Copilot wasn’t that helpful because all of its suggestions relate to checking your code:</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="include/images/04-error/rmd1.png" class="img-fluid figure-img" width="800"></p>
+<figure class="figure"><p><img src="include/images/04-error/rmd1.png" class="img-fluid figure-img"></p>
 <figcaption>Missing the mark</figcaption></figure>
 </div>
 </div>
@@ -496,7 +542,7 @@ argument.</code></pre>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="include/images/04-error/rmd2.png" class="img-fluid figure-img" width="447"></p>
+<figure class="figure"><p><img src="include/images/04-error/rmd2.png" class="img-fluid figure-img"></p>
 <figcaption>Missing backticks</figcaption></figure>
 </div>
 </div>
@@ -524,7 +570,7 @@ Caution
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This book was written in Spring 2024 and should be considered a <strong>living document</strong>. The functionality and capability of AI is changing rapidly and the most recent advancesmay not reflect what is described in this book. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u">via Forms</a>.</p>
+<p>This book was written in Spring 2024 and should be considered a <strong>living document</strong>. The functionality and capability of AI is changing rapidly and the most recent advances may not reflect what is described in this book. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u">via Forms</a>.</p>
 </div>
 </div>
 

@@ -5,9 +5,9 @@
 
 The best AI platform for writing code is arguably Github Copilot (or Super Clippy as my programmer friends like to call it). However, unless coding is the main part of your job, most people are unlikely to have this subscription service so we'll stick with the generic platforms.
 
-If you have access to LinkedIn Learning (which you do if you are a UofG student or staff), I'd also highly recommend the short course [Pair Programming with AI](https://www.linkedin.com/learning/pair-programming-with-ai/) by Morten Rand-Hendriksen. It only takes 1.5 hours to work through and he covers using both Github Copilot and ChatGPT.
+If you have access to LinkedIn Learning (which you do if you are a UofG student or staff), I'd also highly recommend the short course [Pair Programming with AI](https://www.linkedin.com/learning/pair-programming-with-ai/) by Morten Rand-Hendriksen. It only takes 1.5 hours to work through and he covers using both Github Copilot and ChatGPT and has a nicely critical view of AI.
 
-If you've worked through this entire book then hopefully what you've learned is that AI is very useful but I also hope that you have a healthy mistrust of anything it produces which is why I've left this chapter until last. 
+If you've worked through this entire book then hopefully what you've learned is that AI is very useful but I also hope that you have a healthy mistrust of anything it produces which is why this chapter is the last in the coding section. 
 
 The number 1 rule to keep in mind when using AI to write code is that the platforms we're using **are not intelligent**. They are not thinking. They are not reasoning. They are not telling the truth or lying to you. They don't have gaps in their knowledge because they have no knowledge. They are digital parrots on cocaine. 
 
@@ -44,6 +44,11 @@ summary(penguins)
 ```
 
 `str()` is also useful because it lists the variables, their data type, and the initial values for each variable. However, that means that you are giving it at least some of the raw data so you have to be very careful if you have sensitive / confidential data and you must ensure that any use of AI is in line with your data management plan. Using Copilot Enterprise means the data won't be stored and used to train the AI further so it's potentially the best option (which is not to say it's safe or problem free, please be careful and critical!).
+
+```{r}
+str(penguins)
+```
+
 
 Finally, `ls()` provides a list of all the variables in a given object. It doesn't provide any info on the variable type or sample, but that does mean it's the most secure and depending on the task, this might be all the info you really need to give the AI. I would suggest starting with `ls()` and only scaling up if necessary (and your data isn't sensitive):
 
@@ -98,7 +103,7 @@ penguins %>%
 
 ```
 
-I find this problematic in ways I struggle to properly articulate. As a psychologist, we've spent the last decade dealing with a replication and reproducibility crisis stemming in part because of questionable research practices. As a researcher, you should be making informed decisions as to how you analyse your data and I fear that this type of output is going to increase phishing and atheoretical, exploratory-as-confirmatory nonsense. What happens when the example code the AI spits out without being asked turns out to be a significant regression model that you would never have predicted or run yourself? Are you going to delete it? Or convince yourself that you were going to run it anyway and there's a perfectly logical explanation?
+I find this hugely problematic. Psychology has spent the last decade dealing with a replication and reproducibility crisis stemming in part because of questionable research practices. As a researcher, you should be making informed decisions as to how you analyse your data and I fear that this type of output is going to increase phishing and atheoretical, exploratory-as-confirmatory nonsense. What happens when the example code the AI spits out without being asked turns out to be a significant regression model that you would never have predicted or run yourself? Are you going to delete it? Or convince yourself that you were going to run it anyway and there's a perfectly logical explanation?
 
 Before I have a full blown existential crisis, let's get back on track.
 
@@ -249,7 +254,7 @@ penguins <- penguins %>%
 
 ```
 
-This code is a good example of why LLMs are inherently Luddites, even if they produce working code. When there's missing data, `case_when()` used to need you to specify the type of `NA`, ni this case `NA_character`. This is very uninintuitive, particularly when you're trying to teach beginner coders (how can missing data have a type? is an entirely reasonable question) so I was delighted when it updated to remove this requirement. Additionally, `TRUE` was also changed to `default` which is a bit more readable. 
+This code is a good example of why LLMs are inherently Luddites, even if they produce working code. When there's missing data, `case_when()` used to require you to specify the type of `NA`, in this case `NA_character`. This is very uninintuitive, particularly when you're trying to teach beginner coders (how can missing data have a type? is an entirely reasonable question) so I was delighted when it updated to remove this requirement. Additionally, `TRUE` was also changed to `default` which is a bit more readable. 
 
 However, these changes are not reflected in Copilot's code suggestion because the training data is older than the most recent update to `case_when()`. This example is relatively minor but it's important to recognise that if you only use these kinds of AI to write code, you will very quickly be writing outdated code and using deprecated functions.
 
@@ -292,7 +297,7 @@ It's also introduced an error. The function should be `check_model()` not `check
 
 ## Conclusions and musings
 
-A large part of coding is looking up examples of code you've used before and then tweaking it to your new use case. If you use AI like this, then it can really help speed you up by giving you access to a lot more boiler plate code you can adapt. I also find it very useful for those functions that just refuse to stick in my brain - every time I try to change the labels on a faceted `ggplot()` I get it wrong. These days I just go straight to ChatGPT.
+A large part of coding is looking up examples of code you've used before and then tweaking it to your new use case. If you use AI like this, then it can really help speed you up by giving you access to boiler plate code you can adapt. I also find it very useful for those functions that just refuse to stick in my brain - every time I try to change the labels on a faceted `ggplot()` I get it wrong. These days I just go straight to ChatGPT.
 
 Additionally, if what you're wanting to achieve is relatively simple - descriptive stats, basic plots, simple wrangling and cleaning - it can't go that far wrong and it's usually easy enough to spot when something is wrong.
 
@@ -325,7 +330,7 @@ cat(generate_joke(), "\n")
 
 ```
 
-ChatGPT reassuring me art isn't going to be outsourced any time soon:
+Gemini reassuring me art isn't going to be outsourced any time soon:
 
 ```{r}
 # Define a list of ASCII art characters
@@ -383,5 +388,5 @@ spin_slot_machine()
 ```
 
 ::: {.callout-caution}
-This book was written in Spring 2024 and should be considered a **living document**. The functionality and capability of AI is changing rapidly and the most recent advancesmay not reflect what is described in this book. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it [via Forms](https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u).
+This book was written in Spring 2024 and should be considered a **living document**. The functionality and capability of AI is changing rapidly and the most recent advances may not reflect what is described in this book. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it [via Forms](https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u).
 :::

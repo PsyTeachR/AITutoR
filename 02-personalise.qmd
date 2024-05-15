@@ -17,19 +17,21 @@ Here's some examples:
 
 > Act as an expert tutor for the programming language R. I am a first year psychology student at the University of Glasgow and I am learning R for the first time. I have never learned a programming language before and I am not very confident with computers and I am anxious about learning programming. I have a Windows laptop. I will ask you questions about concepts and functions I do not understand based on my course materials. Always give me concrete examples when you provide an answer. Tailor your responses to my level of expertise. I am using R and RStudio and the course will strongly use the tidyverse.
 
-> Act as an expert tutor for the programming language R. I am a second year psychology student at the University of Glasgow. I have been learning R for a year. I also study statistics and computing science and know a bit of Python as well. I feel confident with learning to code and I would like to stretch myself. I will ask you questions about concepts and functions I do not understand based on my course materials. Always give me concrete examples when you provide an answer. Tailor your responses to my level of expertise. I am using R and RStudio and the course will strongly use the tidyverse although I would also like to learn about base R alternative approaches.
+> Act as an expert psychology tutor for university level study. I am a second year psychology student at the University of Glasgow. I will ask you questions about concepts and theories based on my course materials. Always give me concrete examples when you provide an answer. Tailor your responses to my level of expertise.
+
+> Act as an expert careers advisor. I am about to graduate with a psychology degree and I would like help applying for jobs. Your responses should be relevant to working in the UK with a BPS accredited degree. Any writing you produce should be of an appropriate formality and tone.
 
 ## Activity 1: Write your set-up {#sec-setup}
 
-Write your set-up. It's worth spending some time to get this right, you're going to use it a lot.
-
-I'd probably recommend using ChatGPT or Gemini for this because it's helpful to be able to save your chat and the set-up information. You could also use a personal Copilot account but the Enterprise version won't save your chats. If you'd like to use Copilot, save your set-up prompt somewhere to make it easy to reuse.
+* Write and save your set-up. It's worth spending some time to get this right, you're going to use it a lot.
 
 Exactly what information you provide is up to you but make sure that you explain your level of knowledge, skill, confidence and previous experience. By specifying what your field is (psychology, NHS etc.) it can then give you examples related to these fields which will make it easier for you to understand and connect your new knowledge to existing knowledge. Finally, if you're using it for coding, you also want to give it some technical information about the software you're using (e.g., R and RStudio) and your operating system (Windows).
 
 ## Activity 2: Instruct the AI
 
-Enter your set-up into a new chat on your AI of choice. If you're using an AI that saves your chats, you could also rename the chat to "Personal Tutor" or "Week 1 Tutor" or anything else that make sense to you. Depending on what information you give it, it may give you e.g., some intro to R tips and information which may be more or less useful, so if it's confusing, just ignore it until you've given it more specific prompts.
+* Enter your set-up into a new chat on your AI of choice. If you're using an AI that saves your chats, you could also rename the chat to "Personal Tutor" or "Week 1 Tutor" or anything else that make sense to you. 
+
+Depending on what information you give it, it may give you e.g., some intro to R tips and information which may be more or less useful, so if it's confusing, just ignore it until you've given it more specific prompts.
 
 ## Example questions
 
@@ -37,14 +39,16 @@ Now that you've got your tutor set up, you can ask it questions. Here's some exa
 
 * Why do I have to learn to code?
 * What is the difference between short-term memory and working memory?
+* How do I write a CV?
 * Give me examples of between-subject designs
 * What is the difference between a function and an argument?
+* Rewrite this explanation in 100 words or less.
 * Explain what each part of this code is doing: `ggplot(survey_data, aes(x = wait_time, y = call_time)) +  geom_point()`
 * Give me examples of when I would use different joins in R
 
 ## Activity 3: Questions
 
-Ask the AI three questions based on your course materials. If the output doesn't seem at the right level for you, consider editing your initial set-up prompt and re-running the questions to see how the output changes.
+* Ask the AI three questions based on your course materials. If the output doesn't seem at the right level for you, consider editing your initial set-up prompt and re-running the questions to see how the output changes.
 
 
 ## Conversation
@@ -60,11 +64,11 @@ Another big difference between AI and a regular search engine is that you can ha
 
 ## Activity 4: Follow-up
 
-Ask a follow-up question to each of your original questions. Additionally, try out the features of each AI. For Gemini, use the modify response and double-check response options. For ChatGPT, use regenerate response. For Copilot, click on the suggested follow-up questions or any links it provides.
+* Ask a follow-up question to each of your original questions. Additionally, try out the features of each AI. For Gemini, use the modify response and double-check response options. For ChatGPT, use regenerate response. For Copilot, click on the suggested follow-up questions or any links it provides.
 
 
 ::: {.callout-caution}
-This book was written in Spring 2024 and should be considered a **living document**. The functionality and capability of AI is changing rapidly and the most recent advancesmay not reflect what is described in this book. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it [via Forms](https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u).
+This book was written in Spring 2024 and should be considered a **living document**. The functionality and capability of AI is changing rapidly and the most recent advances may not reflect what is described in this book. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it [via Forms](https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u).
 :::
 
 
