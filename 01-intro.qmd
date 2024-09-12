@@ -2,9 +2,9 @@
 
 *Written by Emily Nordmann*
 
-There are a range of AIs and an even larger number of niche apps and platforms but we're going to focus on three big hitters: OpenAI's ChatGPT, Microsoft's Copilot, and Google's Gemini. The reason I've chosen these three platforms is that they're all reasonably generic AIs, they all have a free version, you've likely heard of them, and you probably already have an account you can use with at least one of them.
+There are a range of AIs and an even larger number of niche apps and platforms but we're going to focus on two main ones: OpenAI's ChatGPT and Microsoft's Copilot. The reason I've chosen these platforms is that they both have a free version and, if you're a University of Glasgow student anyway, you already have an account you can use with at least one of them.
 
-I recommend trying out more than one platform. Below I describe the advantages and disadvantages of each as I have experienced, but some of it will come down to personal preference (and do let me know if you have further thoughts on the relative use of each platform).
+I recommend trying out both platforms. Below I describe the advantages and disadvantages of each as I have experienced, but some of it will come down to personal preference (and do let me know if you have further thoughts on the relative use of each platform).
 
 ## A brief introduction
 
@@ -12,11 +12,11 @@ I recommend trying out more than one platform. Below I describe the advantages a
 
 There are more qualified people who can explain AI better than I can but a brief but important distinction is between the AI model and the AI platform. The underlying AI model is a Large Language Model (LLM) that essentially does extremely sophisticated predictive text - it's not thinking, it's not conscious, it just is very good at deciding what word is likely to come after another word in a way that is human-like[^01-choose-1].
 
-[^01-choose-1]: I ran this explanation through Gemini and it was not happy with me and wants you to know that it can also perform tasks like translation, question answering, and even generate creative text formats like poems or code. Calm down Felicia.
+[^01-choose-1]: I ran this explanation through an AI and it was not happy with me and wants you to know that it can also perform tasks like translation, question answering, and even generate creative text formats like poems or code. Calm down Felicia.
 
-Different software companies have created different AI models. Google's latest model is named Gemini. OpenAI has a series of models it refers to as Generative Pre-trained Transformers (GPT). The explosion in AI in terms of public awareness came about when OpenAI released GPT version 3. Since then they've released 3.5, 4, and the most recent version is 4o. The capability of each successive AI is claimed to increase significantly, both in terms of its ability (e.g., to pass standardised tests) and in the human-ness of its responses.
+Different software companies have created different AI models. OpenAI has a series of models it refers to as Generative Pre-trained Transformers (GPT). The explosion in AI in terms of public awareness came about when OpenAI released GPT version 3. Since then they've released 3.5, 4, and the most recent version is 4o. The capability of each successive AI is claimed to increase significantly, both in terms of its ability (e.g., to pass standardised tests) and in the human-ness of its responses.
 
-In some cases, the name of the model and the name of the platform you use are the same. So Google's model is named Gemini and that's the name of the platform. On the other hand, ChatGPT is the name of the platform, but the underlying model it uses is GPT4o. Additionally, other companies and apps can licence use of the models so Microsoft's Copilot uses GPT4.
+In some cases, the name of the model and the name of the platform you use are the same. ChatGPT is the name of the platform, but the underlying model it uses is GPT4o. Additionally, other companies and apps can licence use of the models so Microsoft's Copilot uses GPT4.
 
 It isn't necessary that you understand all of this in detail. The key thing is that the underlying model is the same for some platforms (so you should expect similar capabilities) and that this model can and will update.
 
@@ -59,7 +59,7 @@ However, where Copilot shines is that it has access to the internet and will giv
 
 I have found that Copilot more frequently doesn't understand the intent of what I am asking and with the same prompt as ChatGPT will give me a useless answer, but let's see how I feel about that by the end of writing this book.
 
-My general approach is that if I want to be able to return to my conversation, I use ChatGPT or Gemini. If I want links to sources, I use Copilot.
+My general approach is that if I want to be able to return to my conversation, I use ChatGPT and if I want links to sources, I use Copilot.
 
 ```{r img-copilot, echo=FALSE, fig.cap="using ChatGPT"}
 
@@ -68,30 +68,9 @@ knitr::include_graphics("include/images/01-choose/copilot.gif")
 ```
 
 
-### Gemini
-
-You can access Gemini at <https://gemini.google.com/> and sign-in with a regular Google account. Gemini was previously known as Bard.
-
-Gemini also makes it easy to save and share your chat history and you can export it easily to Google Docs. Gemini's strength lies in its connectivity to the internet. Like Copilot, it will provide links as part of its response (although sometimes they don't always work) and you can also ask it to try and verify its response through using a regular Google search.
-
-Additionally, Gemini has a "modify response" option where you can quickly ask it to make the response shorter, longer, simpler, more causal, or more professional.
-
-Another advantage is that it uses a different model to ChatGPT so if you're going to combine different AIs, using Gemini may give a different response.
-
-There is a Gemini mobile app, but it isn't currently available in the UK.
-
-Before writing this book, I had used Gemini less than the others. Let's see where I end up at the end. 
-
-```{r img-gemini, echo=FALSE, fig.cap="using ChatGPT"}
-
-knitr::include_graphics("include/images/01-choose/gemini.gif")
-
-```
-
-
 ## Activity 1
 
--   Choose one of the AIs and create an account/login. You can also do this activity with multiple AIs to see the difference in output if you're interested.
+-   Choose one of the AIs and create an account/login. You can also do this activity with both AIs to see the difference in output if you're interested.
 
 ## Activity 2
 

@@ -50,7 +50,6 @@ Now that you've got your tutor set up, you can ask it questions. Here's some exa
 
 * Ask the AI three questions based on your course materials. If the output doesn't seem at the right level for you, consider editing your initial set-up prompt and re-running the questions to see how the output changes.
 
-
 ## Conversation
 
 Another big difference between AI and a regular search engine is that you can have a conversation with it and follow-up on your original question. Some examples:
@@ -58,13 +57,13 @@ Another big difference between AI and a regular search engine is that you can ha
 * Can you explain it again but compare it to Excel?
 * Expand on your explanation of `geom_point()`
 * Give me another example of code that uses this approach
-* Explain it again but in more technical / simpler terms (Gemini's modify response can also be used for this)
+* Explain it again but in more technical / simpler terms 
 * Ask me a question to test if I understand this correctly (we're going to go into practice testing a lot more in the next chapter)
 * In your answer you said "In this example, c() is a function that combines values into a vector", what is a vector?
 
 ## Activity 4: Follow-up
 
-* Ask a follow-up question to each of your original questions. Additionally, try out the features of each AI. For Gemini, use the modify response and double-check response options. For ChatGPT, use regenerate response. For Copilot, click on the suggested follow-up questions or any links it provides.
+* Ask a follow-up question to each of your original questions. Additionally, try out the features of each AI. For ChatGPT, use regenerate response. For Copilot, click on the suggested follow-up questions or any links it provides.
 
 
 ::: {.callout-caution}

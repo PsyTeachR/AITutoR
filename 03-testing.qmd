@@ -1,6 +1,6 @@
 # Practice testing
 
-*Written by Emily Nordmann & Carolina Kuepper-Tetzel*
+*Written by Emily Nordmann*
 
 In this chapter you'll learn how to use AI to test yourself. Practice testing, or [retrieval practice](https://www.learningscientists.org/blog/2016/6/23-1), is one of the most effective ways to consolidate your learning and there's several different ways you can do it. This chapter was written with a coding course in mind but it applies to any type of course. 
 
@@ -85,8 +85,6 @@ The questions it generates are generally helpful, but not always. Here's the iss
 ### Mulitple-choice / TOF / SAQ questions
 
 -   Sometimes it is just plain wrong. The answer here should be C. If you tell it that it is wrong, it can correct itself (but also if you tell it that it is wrong even when it is right, it sometimes accepts that it is wrong). Bear this in mind if you ever use it to produce anything that **AI does not have any knowledge, it's just a very sophisticated parrot**. 
-![](include/images/03-testing/wrong.png)
-
 -   It may ask you questions about functions or concepts you've haven't covered in the course.
 -   It may give you a question where there are multiple correct answers without indicating this is the case, which can be confusing.
 -   It may focus too much on certain topics of functions and you have to ask it to give you questions on a topic/function specifically.
@@ -98,21 +96,16 @@ The questions it generates are generally helpful, but not always. Here's the iss
 
 ### Error mode
 
-
 -   This is the category the AI struggled with the most, to the point where at the time of writing, we can't say that it's up to the task. We have tried writing the prompts multiple times and whilst we have seen some improvement, it's not consistent. We have a premium ChatGPT subscription and also tried using GPT4.0 and it didn't help. 
 
 ::: {.callout-important}
-Update! OpenAI released GPT4o in May 2024 and this **can** produce sensible error mode problems. We've left the below in this book because at the time of writing, Copilot, Gemini, and earlier versions of GPT can't and it's an interesting insight into some of the issues with AI.
+Update! OpenAI released GPT4o in May 2024 and this **can** produce sensible error mode problems. We've left the below in this book because at the time of writing, Copilot and earlier versions of GPT can't and it's an interesting insight into some of the issues with AI.
 :::
 
 
 -   From a learning and teaching perspective, it's a good example of why teaching might actually be a skill and our job might be safe after all. When we use Error Mode type questions in our courses, we design the errors so that they're common mistakes learners make at that point in their journey, they're mistakes that learners would plausibly make, and solving them will teach you something of use. Even when the AI managed to create an accurate error mode problem, it still wasn't helpful for learning.
--   In our initial attempts at prompting, Gemini did poorly at this. It gave us code that did not have errors, or it would tell us what the errors were, or it would give errors that were so obvious they wouldn't help you learn at all. For example:
-
-![](include/images/03-testing/obvious.png)
-- We then updated the prompt to say that the errors should be plausible and not to tell us what the errors were. This helped but only sometimes. 
 -   ChatGPT fared slightly better although all of the problems were very basic and of the same type (creating a vector) until we asked it to give us a specific problem (e.g., error mode for ggplot).
--   ChatGPT also suffered from the same problems as Gemini in that it would tell you what the error was or produce code that did not have any errors. We particularly enjoyed this response whereby it seemed to pretend that it was doing it on purpose as a teachable moment. We know we are anthropomorphising the AI here but we imagine any educator will feel a sense of kinship at trying to make your mistakes seem intentional.
+-   ChatGPT also suffered from the problem that it would tell you what the error was or produce code that did not have any errors. We particularly enjoyed this response whereby it seemed to pretend that it was doing it on purpose as a teachable moment. We know we are anthropomorphising the AI here but we imagine any educator will feel a sense of kinship at trying to make your mistakes seem intentional.
 
 ![](include/images/03-testing/noerrors.png)
 

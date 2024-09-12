@@ -7,7 +7,7 @@ execute:
   freeze: auto
 book:
   title: AI TutoR
-  author: Emily Nordmann & Carolina Kuepper-Tetzel, School of Psychology and Neuroscience, University of Glasgow
+  author: Emily Nordmann, School of Psychology and Neuroscience, University of Glasgow
   doi: ''
   license: CC-BY
   cover-image: include/images/logo.png
@@ -36,7 +36,7 @@ book:
     header: ''
     footer: ''
   margin-header: ''
-  page-footer: CC-BY (2024) Emily Nordmann & Carolina Kuepper-Tetzel, School of Psychology and Neuroscience, University of Glasgow
+  page-footer: CC-BY (2024) Emily Nordmann, School of Psychology and Neuroscience, University of Glasgow
   chapters:
   - index.qmd
   - 01-intro.qmd
@@ -44,18 +44,11 @@ book:
     chapters:
     - 02-personalise.qmd
     - 03-testing.qmd
-    - 04-study.qmd
   - part: "AI Pair Programmer"
     chapters:
-    - 05-errors.qmd
-    - 06-review.qmd
-    - 07-writing.qmd
-  - part: "AI Writing Assistant"
-    chapters:
-    - 08-litreviews.qmd
-    - 09-plan-structure.qmd
-    - 10-original.qmd
-    - 11-editing.qmd
+    - 04-errors.qmd
+    - 05-review.qmd
+    - 06-writing.qmd
   appendices:
   - webexercises.qmd
   - references.qmd
