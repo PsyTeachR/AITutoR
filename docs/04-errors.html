@@ -276,8 +276,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><p><em>Written by Emily Nordmann</em></p>
-<p>In this chapter, you’ll learn how to use AI to help you identify and fix coding errors. I’d argue this is probably the best use case of AI - using it to help and debug code you’ve written yourself - because it’s human expertise that wrote the code, but with the AIs attention to detail and ability to spot missing commas.</p>
+</header><p>In this chapter, you’ll learn how to use AI to help you identify and fix coding errors. I’d argue this is probably the best use case of AI - using it to help and debug code you’ve written yourself - because it’s human expertise that wrote the code, but with the AIs attention to detail and ability to spot missing commas.</p>
 <p>AI is generally good at this task, although the more complicated your code, the more likely it is that it will run into trouble. This chapter will give a few examples to help you with your prompt engineering.</p>
 <section id="sec-setup-errors" class="level2" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="sec-setup-errors">
 <span class="header-section-number">4.1</span> Activity 1: Set-up</h2>
@@ -301,11 +300,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Give your AI of choice both the code and the error. One without the other is likely to result in a poor or incomplete answer (whether you ask a human or an AI).</li>
 </ul>
-<p>All three AIs identified, explained, and fixed this error. Gemini also tried to give some additional information about the function, with links to more information, which is nice.</p>
+<p>Both AIs identified, explained, and fixed this error. Copilot also gives you some follow up questions you could ask to understand more about the code, which is nice.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="include/images/04-error/simple.png" class="img-fluid figure-img" width="459"></p>
+<figure class="figure"><p><img src="include/images/04-error/simple.png" class="img-fluid figure-img" width="592"></p>
 <figcaption>Fixing a simple error</figcaption></figure>
 </div>
 </div>
@@ -494,15 +493,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="include/images/04-error/rmd1.png" class="img-fluid figure-img" width="800"></p>
 <figcaption>Missing the mark</figcaption></figure>
-</div>
-</div>
-</div>
-<p>However, Gemini was more useful as one of its suggestions is indeed the solution - there’s a missing back tick at the end of the code chunk. In cases like this, it won’t give you a solution you can copy and paste but it will tell you what to go and look for.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="include/images/04-error/rmd2.png" class="img-fluid figure-img" width="447"></p>
-<figcaption>Missing backticks</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1303,7 +1293,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>CC-BY (2024) Emily Nordmann, School of Psychology and Neuroscience, University of Glasgow</p>
+<p>CC-BY (2024) School of Psychology and Neuroscience, University of Glasgow</p>
 </div>
     <div class="nav-footer-right">
       &nbsp;

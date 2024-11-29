@@ -1,8 +1,6 @@
 
 # Error checking and debugging
 
-*Written by Emily Nordmann*
-
 In this chapter, you'll learn how to use AI to help you identify and fix coding errors. I'd argue this is probably the best use case of AI - using it to help and debug code you've written yourself - because it's human expertise that wrote the code, but with the AIs attention to detail and ability to spot missing commas.
 
 AI is generally good at this task, although the more complicated your code, the more likely it is that it will run into trouble. This chapter will give a few examples to help you with your prompt engineering.
@@ -30,7 +28,7 @@ ggplot(penguins, aes(x = species)) +
 
 * Give your AI of choice both the code and the error. One without the other is likely to result in a poor or incomplete answer (whether you ask a human or an AI).
 
-All three AIs identified, explained, and fixed this error. Gemini also tried to give some additional information about the function, with links to more information, which is nice.
+Both AIs identified, explained, and fixed this error. Copilot also gives you some follow up questions you could ask to understand more about the code, which is nice.
 
 ```{r img-simple, echo=FALSE, fig.cap="Fixing a simple error"}
 
@@ -138,15 +136,6 @@ The code is fine, it provides a simple count of the number of observations in th
 ```{r img-rmd1, echo=FALSE, fig.cap="Missing the mark"}
 
 knitr::include_graphics("include/images/04-error/rmd1.png")
-
-```
-
-However, Gemini was more useful as one of its suggestions is indeed the solution - there's a missing back tick at the end of the code chunk. In cases like this, it won't give you a solution you can copy and paste but it will tell you what to go and look for. 
-
-
-```{r img-rmd2, echo=FALSE, fig.cap="Missing backticks"}
-
-knitr::include_graphics("include/images/04-error/rmd2.png")
 
 ```
 

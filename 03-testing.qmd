@@ -8,42 +8,74 @@ In this chapter you'll learn how to use AI to test yourself. Practice testing, o
 
 * In your AI of choice, create a new chat and give it your set-up blurb that you created in Chapter @sec-setup.
 
-It would be helpful to have a specific week/chapter/lecture of your course in mind to work with. For the PsyTeachR courses, we'll be using the Intended Learning Outcomes, functions used, and glossary to help instruct the AI. If you're not working through a course, or it's not a PsyTeachR course, it would be helpful to have a list of functions, concepts, or skills that you want to test. As an example, we'll use [Chapter 3 of Applied Data Skills](https://psyteachr.github.io/ads-v3/03-viz.html).
+You should have a specific week/chapter/lecture of your course in mind to work with. For the PsyTeachR courses, we'll be using the Intended Learning Outcomes, functions used, and glossary to help instruct the AI. If you're not working through a course, or it's not a PsyTeachR course, it would be helpful to have a list of functions, concepts, or skills that you want to test. 
+
+This chapter will involve uploading lecture slides or ILOs to an AI. You should use Copilot through your UofG account or you should ensure that the chat history in ChatGPT is turned off so that the slides are not used to train the model, unless your lecturer has consented to this, it's theft!
 
 ## Activity 2: Question prompt
 
-Then we need to give it instructions for how to create the questions. There are other question types you could ask it for but here is a starter pack for a coding course and then for a theoretical course:
+After you have given it your set-up prompt, you can give it instructions for how to create each type of question. 
 
-**Prompts for a coding course**
+### Multiple choice questions
 
-> I would like you to generate practice questions to help consolidate my learning based on the learning outcomes, functions, and glossary used in my course materials this week that I will provide to you. I will ask you for four different types of questions.
+First, prompt the AI with guidance for how to write effective MCQs. This ensures that the questions it produces have a better chance of being well-formed:
 
-> First, multiple choice questions (MCQ). Each question should have 4 response options and one correct answer. Ask them one at a time and explain the answer to me and why the other options are incorrect after I provide my answer.
+> Read and summarise the guidance on this page, paying particular attention to the construction of the stem and the response options https://cft.vanderbilt.edu/guides-sub-pages/writing-good-multiple-choice-test-questions/ 
 
-> Second, fill-in-the-blank questions (FITB). Provide a line of code that has one or more missing arguments or functions and ask me to complete the code.
+Follow this up with:
 
-> Third, coding problems (CP). Give me short problems that I need to provide the answer to. These should be fully reproducible and use datasets built into R or the tidyverse. Where necessary, give me the code to load any packages or datasets that I will need.
+> Now, read and summarise the guidance on this page on the different types of MCQs: https://www.utm.utoronto.ca/rgasc/media/2097/download?inline 
 
-> Third, error mode (EM). Give me code that will result in an error. Explain what the code is intended to do and then ask me to figure out what the error is, and then fix it. The errors should be plausible errors that a beginner would be likely to make but do not tell me what the error is. The errors should be fully reproducible and use datasets built into R or the tidyverse so that I can run the code and fix them in R. Where necessary, give me the code to load any packages or datasets that I will need.
+Then give the AI context about the type of questions you need. Include the level of the learner and any other information. You may want to edit this depending on your question set-up and rules:
 
-> Don't give me questions until I have given you the ILOs and functions I want to test. I will specify which type of question I want each time. Give me only 1 question at a time and mix up the topic of each question.
+> I would like you to write multiple choice questions that are appropriate for students in their first year of an undergraduate psychology degree.  
 
-**Prompts for a theoretical course**
+> 
+- All questions should follow the guidance above on best practices for MCQs
+- All questions should have four responses and one correct answer 
+- All questions should align with the intended learning outcomes 
+- All questions should be challenging in difficulty.   
 
-> I would like you to generate practice questions to help consolidate my learning based on the learning outcomes and key terms in my course materials this week that I will provide to you. I will ask you for four different types of questions.
+> 
+- I will upload the learning outcomes and content for the class I want you to test me on. Give me questions one at a time. Ask me for the correct answer and then give me an explanation for each option.
 
-> First, multiple choice questions (MCQ). Each question should have 4 response options and one correct answer. Ask them one at a time and explain the answer to me and why the other options are incorrect after I provide my answer.
+### True-or-false (TOF)
 
-> Second, TRUE or FALSE questions (TOF). Provide a statement and then ask me to determine whether the statement is true or false.
+> I would like you to write TRUE or FALSE questions (TOF) that are appropriate for students in their first year of an undergraduate psychology degree. Provide a statement and then ask me to determine whether the statement is true or false. All questions should be challenging in difficulty. 
 
-> Third, fill-in-the-blank questions (FITB). Provide a statement that has one or more missing words and ask me to fill in the blanks.
+> I will upload the learning outcomes and content for the class I want you to test me on. Give me questions one at a time. Ask me for the correct answer and then give me an explanation.
 
-> Fourth, short answer questions (SAQ). Each question should ask about one specific concept, theory, or term, and I should be able to answer it in 100 words or fewer.
+### Short-answer-questions
 
-> Don't give me questions until I have given you the ILOs and terms I want to test. I will specify which type of question I want each time. Give me only 1 question at a time and mix up the topic of each question.
+> I would like you to write short answer questions (SAQ) that are appropriate for students in their first year of an undergraduate psychology degree. Each question should ask about one specific concept, theory, or term, and I should be able to answer it in 100 words or fewer. All questions should be challenging in difficulty. 
+
+> I will upload the learning outcomes and content for the class I want you to test me on. Give me questions one at a time. Ask me for the correct answer and then give me an explanation.
 
 
-The final instruction is added because the AI will occasionally get ahead of itself and it's more useful to control the output.
+### Fill-in-the-blanks (coding)
+
+> I would like you to write fill-in-the-blank questions (FITB) that are appropriate for students in their first year of an undergraduate psychology degree. Provide a line of R code that has one or more missing arguments or functions and ask me to complete the code. All questions should be challenging in difficulty. 
+
+> I will upload the learning outcomes and content for the class I want you to test me on. Give me questions one at a time. Ask me for the correct answer and then give me an explanation.
+
+### Fill-in-the-blanks (theory)
+
+> I would like you to write fill-in-the-blank questions (FITB) that are appropriate for students in their first year of an undergraduate psychology degree. Provide a statement that has one or more missing words and ask me to fill in the blanks. All questions should be challenging in difficulty. 
+
+> I will upload the learning outcomes and content for the class I want you to test me on. Give me questions one at a time. Ask me for the correct answer and then give me an explanation.
+
+### Coding problems
+
+>  I would like you to write coding problems (CP) that are appropriate for students in their first year of an undergraduate psychology degree learning R. Give me short problems that I need to provide the answer to. These should be fully reproducible and use datasets built into R or the tidyverse. I will upload the learning outcomes and functions you should test me on. Where necessary, give me the code to load any packages or datasets that I will need. All questions should be challenging in difficulty. 
+
+> Give me questions one at a time. Ask me for the correct answer and then give me an explanation.
+
+### Error mode
+
+> I would like you to write error mode problems (EM) that are appropriate for students in their first year of an undergraduate psychology degree learning R.Give me code that will result in an error. Explain what the code is intended to do and then ask me to figure out what the error is, and then fix it. The errors should be plausible errors that a beginner would be likely to make but do not tell me what the error is. The errors should be fully reproducible and use datasets built into R or the tidyverse so that I can run the code and fix them in R. All questions should be challenging in difficulty. 
+
+> I will upload the learning outcomes and functions you should test me on. Where necessary, give me the code to load any packages or datasets that I will need. Give me questions one at a time. Ask me for the correct answer and then give me an explanation.
+
 
 ## Built-in datasets
 

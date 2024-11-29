@@ -1,8 +1,6 @@
 
 # Writing Code with AI
 
-*Written by Emily Nordmann*
-
 The best AI platform for writing code is arguably Github Copilot (or Super Clippy as my programmer friends like to call it). However, unless coding is the main part of your job, most people are unlikely to have this subscription service so we'll stick with the generic platforms.
 
 If you have access to LinkedIn Learning (which you do if you are a UofG student or staff), I'd also highly recommend the short course [Pair Programming with AI](https://www.linkedin.com/learning/pair-programming-with-ai/) by Morten Rand-Hendriksen. It only takes 1.5 hours to work through and he covers using both Github Copilot and ChatGPT and has a nicely critical view of AI.
@@ -158,28 +156,6 @@ Some notes:
 * Similarly, it's specified `binwidth = 20` for the histogram. Looking at the data this seems like a reasonable binwidth to use, but again, it is a decision the AI has imposed and you must be aware of what you're accepting. 
 * I am aware that I am using phrases like "choice" and "decision" that imbue the AI with consciousness. I know that's not true, I just can't figure out how to write it any other way.
 
-ChatGPT and Copilot both worked well. Gemini on the other hand... had a bit of a moment. First, it told me that it couldn't complete the request so I amended the variable name, thinking that perhaps it needed the exact name. It then produced a table rather than giving me the code. The numbers in this table look like plausible values for this dataset (although don't match exactly) so I suspect it has information about the `palmerpenguins` dataset. 
-
-```{r img-write2, echo=FALSE, fig.cap="Gemini missing the mark"}
-
-knitr::include_graphics("include/images/06-writing/write2.png")
-
-```
-
-The issue is that I didn't tell it to write me code  -I told it to create a table which is did, although it's interesting that both Copilot and ChatGPT understood the intent of my prompt and Gemini did not.
-
-I then edited my prompt:
-
-> Write code to create a table of descriptive statistics for body_mass_g and a histogram of that variable
-
-And it responded by giving me python code. Again, not technically wrong given the prompt but it does mean that it is ignoring the rest of the conversation and the initial set-up prompt. Following up to ask specifically for R code worked, but it's not a good start for Gemini.
-
-```{r img-write3, echo=FALSE, fig.cap="Gemini going rogue"}
-
-knitr::include_graphics("include/images/06-writing/write3.png")
-
-```
-
 ## Activity 4: Giving the AI more freedom
 
 My initial request to write code was relatively simple and relatively well-specified but let's try an example where there's more room for the AI to make choices.
@@ -258,8 +234,6 @@ This code is a good example of why LLMs are inherently Luddites, even if they pr
 
 However, these changes are not reflected in Copilot's code suggestion because the training data is older than the most recent update to `case_when()`. This example is relatively minor but it's important to recognise that if you only use these kinds of AI to write code, you will very quickly be writing outdated code and using deprecated functions.
 
-Gemini once again told me it could not complete my request and I have given up using it for the remainder of this chapter. 
-
 ## Activity 5: Further analysis
 
 To give one last example, I entered the following prompt:
@@ -328,39 +302,6 @@ generate_joke <- function() {
 cat("Here's a random joke for you:\n")
 cat(generate_joke(), "\n")
 
-```
-
-Gemini reassuring me art isn't going to be outsourced any time soon:
-
-```{r}
-# Define a list of ASCII art characters
-art_chars <- c("#", "%", "@", "&", "$", "*")
-
-# Function to generate a random character
-get_art_char <- function() {
-  return(sample(art_chars, 1))
-}
-
-# Set picture dimensions (width and height)
-picture_width <- 50
-picture_height <- 20
-
-# Create an empty matrix to store the picture
-art_matrix <- matrix(nrow = picture_height, ncol = picture_width)
-
-# Fill the matrix with random characters
-for (i in 1:picture_height) {
-  for (j in 1:picture_width) {
-    art_matrix[i, j] <- get_art_char()
-  }
-}
-
-# Convert the matrix to a string for printing
-art_string <- apply(art_matrix, 1, FUN = paste, collapse = "")
-art_string <- paste(art_string, collapse = "\n")
-
-# Print the ASCII art picture
-cat("Your random ASCII art:", art_string, sep = "\n")
 ```
 
 Copilot on its way to Vegas (ok I actually quite like this one):
