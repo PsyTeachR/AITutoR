@@ -147,5 +147,5 @@ Update! OpenAI released GPT4o in May 2024 and this **can** produce sensible erro
 ![](include/images/03-testing/stillnoerror.png)
 
 ::: {.callout-caution}
-This book was written in Spring 2024 and should be considered a **living document**. The functionality and capability of AI is changing rapidly and the most recent advances may not reflect what is described in this book. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it [via Forms](https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u).
+This chapter was last updated in November 2024 and should be considered a **living document**. The functionality and capability of AI is changing rapidly and the most recent advances may not reflect what is described in this book. 
 :::
