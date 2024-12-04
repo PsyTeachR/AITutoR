@@ -32,12 +32,12 @@ Then give the AI context about the type of questions you need. Include the level
 
 > 
 - All questions should follow the guidance above on best practices for MCQs
-- All questions should have four responses and one correct answer 
+- All questions should have four responses and one correct answer. Each response option should be on a separate line. 
 - All questions should align with the intended learning outcomes 
 - All questions should be challenging in difficulty.   
 
 > 
-- I will upload the learning outcomes and content for the class I want you to test me on. Give me questions one at a time. Ask me for the correct answer and then give me an explanation for each option.
+- I will upload the learning outcomes and content for the class I want you to test me on. Give me questions one at a time. Ask me for the correct answer and then give me an explanation for each option. Do not give any suggestions as to what the right answer is, for suggested follow up responses in Copilot only give the option "skip question
 
 ### True-or-false (TOF)
 
