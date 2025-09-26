@@ -110,7 +110,6 @@ Try out each of the six features described above and reflect on which ones you f
 
 
 ::: {.callout-tip}
-
 ## Key takeaways
 
 Reflect on the differences between the summaries - the technicality of the language, the accuracy and nuance of the information, what it chose to focus on, and what it chose to omit. The reason I asked you to create a summary of something you already know well is that you're aware of where the gaps are. **Remember this when you're asking an AI something you don't know as well**. Just because you can't see the gaps, inaccuracies, and biases, doesn't mean they're not there. 
@@ -118,6 +117,7 @@ Reflect on the differences between the summaries - the technicality of the langu
 * Tell it how to act
 * Tell it who you are
 * Always check for gaps, errors, or bias
+
 :::
 
 

@@ -1,37 +1,31 @@
 
 # Personalised tutor
 
-*Written by Emily Nordmann*
-
-This chapter will teach you how to use AI as a personalised tutor to explain concepts and functions you're struggling to understand, or would like more information on.
+This chapter will teach you how to use AI as a personalised tutor to explain concepts and functions you're struggling to understand, or would like more information on. AI can act as a study partner to explain concepts in multiple ways, but it is not a replacement for your own practice or your lecturer’s guidance. Think of it as a supplement, not a substitute.
 
 It will be helpful to work through these activities with a specific week/chapter/lecture of your course in mind.
 
-## Set-up
+## Custom instructions
 
-The key to maximising the usefulness of AI is to use prompt engineering to tailor the output your to your exact needs. Before you ask any questions, you need to tell the AI who you are and exactly how it should act.
+The key to maximising usefulness is to set up custom instructions (sometimes called “system prompts”). These apply across all chats so the AI remembers who you are and how you like answers to be framed. 
 
 Here's some examples:
 
-> Act as an expert tutor for the programming language R. I am a learner on an Upskilling course "Applied Data Skills" and I am learning R for the first time. I work in the NHS in Health Informatics. I have never learned a programming language before. I have used Excel and SPSS. I have reasonably good general computer literacy. I will ask you questions about concepts and functions I do not understand based on my course materials. Always give me concrete examples when you provide an answer. Tailor your responses to my level of expertise. I am using R and RStudio on a Mac and the course will strongly use the tidyverse.
+> Act as an expert tutor for the programming language R. I am a learner on  the course "Applied Data Skills". I have learned R in my first year and I have reasonably good general computer literacy. I will ask you questions about concepts and functions I do not understand based on my course materials. Always give me concrete examples when you provide an answer. Tailor your responses to my level of expertise. I am using R and RStudio on a Mac and the course will strongly use the tidyverse.
 
 > Act as an expert tutor for the programming language R. I am a first year psychology student at the University of Glasgow and I am learning R for the first time. I have never learned a programming language before and I am not very confident with computers and I am anxious about learning programming. I have a Windows laptop. I will ask you questions about concepts and functions I do not understand based on my course materials. Always give me concrete examples when you provide an answer. Tailor your responses to my level of expertise. I am using R and RStudio and the course will strongly use the tidyverse.
 
-> Act as an expert psychology tutor for university level study. I am a second year psychology student at the University of Glasgow. I will ask you questions about concepts and theories based on my course materials. Always give me concrete examples when you provide an answer. Tailor your responses to my level of expertise.
+This is mine. It doesn't always follow the instructions but it's much better than without it.
 
-> Act as an expert careers advisor. I am about to graduate with a psychology degree and I would like help applying for jobs. Your responses should be relevant to working in the UK with a BPS accredited degree. Any writing you produce should be of an appropriate formality and tone.
+> I am a Professor of Evidence-Informed Education in the School of Psychology and Neuroscience with expertise in cognitive psychology, individual differences, and teaching beginner data skills. You should be formal and give as much detail as possible in your responses. If I ask for code, always give me R code with a tidyverse solution where possible. Always use British spelling. Avoid being sycophantic, hyperbolic, using promotional language, negative parallelisms, or editorializing. Provide evidence for all claims. Preferably peer reviewed and within the last 5 years. Do not use the word delve or interplay. Do not use em dashes when writing and do not use bold to highlight text.
 
-## Activity 1: Write your set-up {#sec-setup}
+To add your custom instructions in Copilot, click the three dots in the top right corner, then click settings, then Custom Instructions.
 
-* Write and save your set-up. It's worth spending some time to get this right, you're going to use it a lot.
+::: {.callout-note}
+## Activity 1
 
-Exactly what information you provide is up to you but make sure that you explain your level of knowledge, skill, confidence and previous experience. By specifying what your field is (psychology, NHS etc.) it can then give you examples related to these fields which will make it easier for you to understand and connect your new knowledge to existing knowledge. Finally, if you're using it for coding, you also want to give it some technical information about the software you're using (e.g., R and RStudio) and your operating system (Windows).
-
-## Activity 2: Instruct the AI
-
-* Enter your set-up into a new chat on your AI of choice. If you're using an AI that saves your chats, you could also rename the chat to "Personal Tutor" or "Week 1 Tutor" or anything else that make sense to you. 
-
-Depending on what information you give it, it may give you e.g., some intro to R tips and information which may be more or less useful, so if it's confusing, just ignore it until you've given it more specific prompts.
+Write your custom instructions and enter them into Copilot. Exactly what information you provide is up to you but make sure that you explain your level of knowledge, skill, confidence and previous experience. If you're using it for coding, you also want to give it some technical information about the software you're using (e.g., R and RStudio) and your operating system (Windows).
+:::
 
 ## Example questions
 
@@ -39,16 +33,20 @@ Now that you've got your tutor set up, you can ask it questions. Here's some exa
 
 * Why do I have to learn to code?
 * What is the difference between short-term memory and working memory?
-* How do I write a CV?
 * Give me examples of between-subject designs
 * What is the difference between a function and an argument?
 * Rewrite this explanation in 100 words or less.
 * Explain what each part of this code is doing: `ggplot(survey_data, aes(x = wait_time, y = call_time)) +  geom_point()`
 * Give me examples of when I would use different joins in R
 
-## Activity 3: Questions
+::: {.callout-note}
 
-* Ask the AI three questions based on your course materials. If the output doesn't seem at the right level for you, consider editing your initial set-up prompt and re-running the questions to see how the output changes.
+## Activity 3
+
+1. Ask the AI three questions based on your course materials for this week. If the output doesn't seem at the right level for you, consider editing your custom instructions and re-running the questions to see how the output changes. 
+
+2. Try asking for two versions of the same answer (e.g., one simple, one more technical) and compare how the content changes.
+:::
 
 ## Conversation
 
@@ -58,16 +56,65 @@ Another big difference between AI and a regular search engine is that you can ha
 * Expand on your explanation of `geom_point()`
 * Give me another example of code that uses this approach
 * Explain it again but in more technical / simpler terms 
-* Ask me a question to test if I understand this correctly (we're going to go into practice testing a lot more in the next chapter)
+* Ask me a question to test if I understand this correctly (*we're going to go into practice testing a lot more in the next chapter*)
 * In your answer you said "In this example, c() is a function that combines values into a vector", what is a vector?
 
-## Activity 4: Follow-up
+## Socratic tutor
 
-* Ask a follow-up question to each of your original questions. Additionally, try out the features of each AI. For ChatGPT, use regenerate response. For Copilot, click on the suggested follow-up questions or any links it provides.
+Most people use AI as a one-way explainer, but you can also ask it to act like a Socratic tutor. This means instead of giving you the answer straight away, the AI asks you guiding questions so that you recall or work out the idea for yourself. This is important because actively retrieving information strengthens your learning much more than passively re-reading.
 
+Example prompts you can try:
 
-::: {.callout-caution}
-This book was written in Spring 2024 and should be considered a **living document**. The functionality and capability of AI is changing rapidly and the most recent advances may not reflect what is described in this book. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it [via Forms](https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u).
+- “Act as a Socratic tutor. Do not tell me the answer yet. Ask me questions to guide me towards understanding correlation vs causation.”
+- “Ask me a series of small questions until I can explain what a tibble is.”
+“Quiz me step by step on how the function `filter()` works in R. Only give me the next hint if I get stuck.”
+
+Learning often feels easier when you get a clear explanation, but you usually remember more when you struggle productively. The Socratic tutor style is designed to make you work a little, which improves long-term retention.
+
+::: {.callout-note}
+
+## Activity 4
+
+1. Follow up on the responses it gave to your one of your three course questions with a similar prompt to the convserational examples give.
+
+2. Then for another one of the questions, follow-up with a request to check your understanding but acting as a socratic tutor.
 :::
+
+## Be critical
+
+In this chapter I've tried to show you how to shape the AIs response, however, as always there are potential pitfalls to be aware of.
+
+1. If you provide detailed instructions (“I am anxious, please make it simple”), the AI may default to oversimplification. This risks expertise reversal effect — information is too shallow once they gain competence.
+
+2. Similarly, if you do not revisit or revise instructions, you may “lock in” a static version of yourself (e.g., always a beginner), preventing growth and calibration.
+
+3. Asking the AI questions like “Why do I have to learn to code?” produces an explanation, but does not force you to generate an answer yourself Research on retrieval practice shows that passive review is less effective for long-term retention.
+
+4. You may accept AI answers at face value, especially if they “sound fluent.” The fluency illusion (e.g., when text feels easy to read) can lead to overconfidence.
+
+5. Unlike a lecturer who has genuine expertise, the AI cannot reliably detect specific misconceptions unless prompted very carefully. You might get partial reinforcement for incorrect ideas.
+
+6. If the AI provides subtly wrong examples (e.g., incorrect R syntax), you may encode misconceptions. This is especially problematic because initial exposure can create a strong anchoring effect.
+
+7. Learning research shows benefits when you try, fail, and then see the solution. If AI always provides a clean solution first, you miss the benefits of that struggle.
+
+8. Some students may outsource all explanations (“explain my lecture in simple words”) rather than engaging with primary materials. This could erode germane cognitive load — the mental effort that builds durable schemas.
+
+::: {.callout-tip}
+
+## Key takeaways
+
+1. Tell Copilot who you are, what course you’re on, and your level of confidence. This makes answers more tailored.
+
+2. Follow up, ask for comparisons, or request simpler/more technical versions. This is how you refine understanding.
+
+3. Instead of answers, ask Copilot to quiz you step by step. This supports retrieval and deeper learning.
+
+4. AI can be over-confident and sometimes wrong. Always compare to course materials and test your own understanding.
+
+5. Reading an AI explanation is easier than doing the work yourself, but retrieval, practice, and self-explanation build stronger memory.
+
+:::
+
 
 
