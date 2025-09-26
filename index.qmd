@@ -6,13 +6,13 @@ It is perhaps easier to start by explaining what this book is not:
 
 * This book **is not a stand-alone resource**. It is intended to be used alongside other course materials. To make the most out of this book, you will need things like Intended Learning Outcomes or key terms.
 * This book **will not encourage learners to take short-cuts**. That students should be able to understanding the principles of what they are learning and to critically evaluate writing on the topic, regardless of who or what wrote it, is non-negotiable.
+* This book is not an endorsement of AI nor is it uncritical of its impact, either on learning or the environment. It is written because we have thousands of student using AI in a way that damages their learning and I do not believe that preaching abstinence is an effective solution.
 * For the coding aspects of this book, we will not not teach you how to use platforms like Github Copilot and it **is not aimed at proficient or advanced programmers**. 
 
-Instead, this book will aim to help learners use AI platforms as a personalised tutor. By the end of this book, learners should be able to:
+Instead, this book will aim to help learners use AI platforms critically. By the end of this book, learners should be able to:
 
 * Use AI to explain concepts and functions in a level of detail and technicality appropriate to the knowledge and skill of the learner
 * Use AI to generate practice questions to test understanding
-* Use AI to create study plans
 * Use AI to debug errors in code
 * Use AI to review, comments, and refactor code
 * Use AI to **responsibly** assist with writing code
@@ -20,5 +20,5 @@ Instead, this book will aim to help learners use AI platforms as a personalised 
 
 
 ::: {.callout-caution}
-This book was written in Spring 2024 and should be considered a **living document**. The functionality and capability of AI is changing rapidly and the most recent advances may not reflect what is described in this book. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it [via Forms](https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u).
+This book was written in Spring 2024 (and is currently being updated in September 2025) and should be considered a **living document**. The functionality and capability of AI is changing rapidly and the most recent advances may not reflect what is described in this book.
 :::

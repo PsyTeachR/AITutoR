@@ -1,20 +1,22 @@
 # Intro to using AI
 
-There are a range of AIs and an even larger number of niche apps and platforms but we're going to focus on two main ones: OpenAI's ChatGPT and Microsoft's Copilot. The reason I've chosen these platforms is that they both have a free version and, if you're a University of Glasgow student anyway, you already have an account you can use with at least one of them.
+There are a range of AIs and an even larger number of niche apps and platforms but we're going to focus on Microsoft's Copilot signed in via your UofG account. The reason I've chosen Copilot is that all University of Glasgow students have access to the same plan and functionality and the UofG Copilot has enhanced security, which is particularly important when you're considering using AI to help with data analysis. 
 
-I recommend trying out both platforms. Below I describe the advantages and disadvantages of each as I have experienced, but some of it will come down to personal preference (and do let me know if you have further thoughts on the relative use of each platform).
+Since 2024, generative AI tools have become embedded in most productivity software (Word, Excel, PowerPoint, Teams, Google Workspace, Adobe Creative Suite). Whilst this book uses Copilot, you should expect to see AI features in many of the tools you already use.
 
 ## A brief introduction
 
 ### AI model vs AI platforms
 
-There are more qualified people who can explain AI better than I can but a brief but important distinction is between the AI model and the AI platform. The underlying AI model is a Large Language Model (LLM) that essentially does extremely sophisticated predictive text - it's not thinking, it's not conscious, it just is very good at deciding what word is likely to come after another word in a way that is human-like[^01-choose-1].
+There are more qualified people who can explain AI better than I, but a brief but important distinction is between the AI model and the AI platform. The underlying AI model is a Large Language Model (LLM) that essentially does extremely sophisticated predictive text - it's not thinking, it's not conscious, it just is very good at deciding what word is likely to come after another word in a way that is human-like[^01-choose-1].
 
 [^01-choose-1]: I ran this explanation through an AI and it was not happy with me and wants you to know that it can also perform tasks like translation, question answering, and even generate creative text formats like poems or code. Calm down Felicia.
 
-Different software companies have created different AI models. OpenAI has a series of models it refers to as Generative Pre-trained Transformers (GPT). The explosion in AI in terms of public awareness came about when OpenAI released GPT version 3. Since then they've released 3.5, 4, and the most recent version is 4o. The capability of each successive AI is claimed to increase significantly, both in terms of its ability (e.g., to pass standardised tests) and in the human-ness of its responses.
+Different software companies have created different AI models. OpenAI has a series of models it refers to as Generative Pre-trained Transformers (GPTs). The explosion in AI in terms of public awareness came about when OpenAI released GPT version 3 and the most recent version is 5. The capability of each successive AI is claimed to increase significantly, both in terms of its ability (e.g., to pass standardised tests) and in the human-ness of its responses. In addition to GPT-5, other widely used models include Claude 3.5 (Anthropic), Gemini 1.5 (Google/DeepMind), and LLaMA 3 (Meta). Different platforms may give slightly different results because they are tuned differently.
 
-In some cases, the name of the model and the name of the platform you use are the same. ChatGPT is the name of the platform, but the underlying model it uses is GPT4o. Additionally, other companies and apps can licence use of the models so Microsoft's Copilot uses GPT4.
+Unlike earlier versions, most current models are multimodal by default: they can process text, images, and in some cases audio and video. Copilot inherits some of this, for example analysing images or diagrams when pasted in.
+
+In some cases, the name of the model and the name of the platform you use are the same. ChatGPT is the name of the platform, but the underlying model it uses is GPT5. Additionally, other companies and apps can licence use of the models so Microsoft's Copilot also uses GPT5.
 
 It isn't necessary that you understand all of this in detail. The key thing is that the underlying model is the same for some platforms (so you should expect similar capabilities) and that this model can and will update.
 
@@ -28,66 +30,99 @@ First, and most importantly, AIs are trained on huge corpora of human language. 
 
 Second, many of the developers that have produced AI models have done so behind closed doors and are very secretive about exactly what data the models have been trained on. One of the reasons for this is because it is very clearly apparent that many AI models have been given access to copyrighted sources (e.g., books and film scripts) and there are an increasing number of lawsuits being filed although it remains unclear what the future holds given how far and how fast the horse has already bolted.
 
--   [Generative AI Has an Intellectual Property Problem](https://hbr.org/2023/04/generative-ai-has-an-intellectual-property-problem)
+-   [AI Infringement Case Updates](https://www.mckoolsmith.com/newsroom-ailitigation-28)
 
 Third, whilst the use of AI has been touted as a solution to help us manage climate change, it's also a direct contributor to the problem because of the energy demands.
 
-- [As Use of A.I. Soars, So Does the Energy and Water It Requires](https://e360.yale.edu/features/artificial-intelligence-climate-energy-emissions)
+- [Explained: Generative AI’s environmental impact](https://news.mit.edu/2025/explained-generative-ai-environmental-impact-0117)
 
-## AI platforms
+Fourth, training and moderation often rely on hidden human labour. Low-paid workers, often in the Global South, are employed to filter harmful content or annotate data. This raises ethical questions about labour exploitation.
 
-### ChatGPT
+- [How We Investigated the Human Labor Behind AI](https://pulitzercenter.org/how-we-investigated-human-labor-behind-ai)
 
-You can sign-up for ChatGPT at <https://chat.openai.com/>. The free version uses 4o although there are limits on how many messagfes you can send in a certain time period and it is sometimes unavailable. When this happens, it will revert to 3.5. The free version is very fast and for beginner level courses does perform quite well. I've also found that ChatGPT is good at understanding the intent of what I want. ChatGPT also makes it easy to save your chat history so that you can continue working in previous chats at a later date. A useful feature is the "regenerate" function whereby if you're not completely happy with the response, you can quickly ask it to generate another attempt and compare them. ChatGPT has a mobile app and allows you to share links to saved chats.
-
-The disadvantages of ChatGPT are that it has limited internet connectivity and the information in its database will be restricted. At the time of writing this book, ChatGPT's training data extends until January 2022, so it can't tell you about anything that happened after that point (regardless of whether that's world event or a new R function). Whilst it does depend on which version you're using, it rarely gives you links to sources for where it has found the information.
-
-```{r img-chatgpt, echo=FALSE, fig.cap="using ChatGPT"}
-
-knitr::include_graphics("include/images/01-choose/chatgpt.gif")
-
-```
-
+Regulation is catching up: the EU AI Act will begin to take effect in 2025, and the UK is consulting on its own frameworks. This means that how we are expected to use AI responsibly may change rapidly. [AI Now 2025 Report](https://ainowinstitute.org/) provides an annual overview of social, ethical, and political issues in AI.
 
 ### Copilot
 
-Microsoft Copilot can be accessed at <https://copilot.microsoft.com/> and you can sign-in with your Microsoft Account. If you are a University of Glasgow student (and also at many other universities), you can access Copilot through your university account and your Office365 subscription. If you do so, you'll be able to access the Enterprise version of Copilot. The advantage of using your Enterprise account is that the data is processed more securely and what you input won't be used to train the model. The price you pay for this security - and it's such a big price that I don't use it much for this reason - is that it doesn't save your chat history so you start each time afresh. If you use a personal account, it will save your chat history, but also use your data to train the model.
+Microsoft Copilot is not one single tool but a family of services (e.g., in Word, Excel, Edge, Outlook). In this book, we focus on Copilot Chat accessed via Office365 using your University account, because this is the secure, enterprise version.
+ 
+ Microsoft Copilot can be accessed at by signing into [Office365](https://m365.cloud.microsoft/apps/) with your University of Glasgow student account. Whilst ChatGPT is the most widely known and used, the advantage of using your Enterprise account is that the data is processed more securely and what you input won't be used to train the model. 
+ 
+This is really, really important and if you're found to have uploaded sensitive data to an unsecure AI you can be accused of academic and/or research misconduct. So if you're using AI for any University work, use Copilot. 
 
-However, where Copilot shines is that it has access to the internet and will give you links to where it got its information so it's easier to verify the output than ChatGPT. Additionally, they don't make this clear but if you select the conversation style to be "Creative", it will use GPT4.0. 
 
-I have found that Copilot more frequently doesn't understand the intent of what I am asking and with the same prompt as ChatGPT will give me a useless answer, but let's see how I feel about that by the end of writing this book.
+## Login
 
-My general approach is that if I want to be able to return to my conversation, I use ChatGPT and if I want links to sources, I use Copilot.
+::: {.callout-note}
 
-```{r img-copilot, echo=FALSE, fig.cap="using ChatGPT"}
+## Activity 1
 
-knitr::include_graphics("include/images/01-choose/copilot.gif")
+Login to [Copilot](https://m365.cloud.microsoft/apps/) using your University of Glasgow account.
+:::
+
+At the time of writing (September 2025), in order to access GPT-5, you need to toggle this on so make sure you also click the button in the top right that says "Try GPT-5".
+
+Remember that “Copilot” is a family of tools. The link above takes you to Copilot Chat, which is the safest environment for coursework. Copilot in Word/Excel/PowerPoint may look slightly different but uses the same underlying model.
+
+## Prompting
+
+The key difference between using an AI and a regular search engine is that you can shape the output of the AI by "prompt engineering", which is the phrase used to describe the art of asking the question in a way that gives you the answer you want. It's easier to show than tell.
+
+::: {.callout-note}
+
+## Activity 2
+
+Think of a book, TV show, film, or video game that you know really well. I chose Final Fantasy VII (the original PlayStation version). Ask Copilot to give you three different summaries and try out the functionality of each platform. 
+
+1. Ask it for a summary without any additional context e.g., "Give me a summary of Final Fantasy VII (original playstation version)"
+
+2. Then, ask it for a summary but give it a steer on the intended audience, e.g., "Give me a summary of Final Fantasy VII (original playstation version) for someone who knows nothing about videogames" or "Give me a summary of Final Fantasy VII (original playstation version) for an expert gamer who has played it many times"
+
+3. Finally, ask it for a summary, but give it a steer on how it should act, e.g., "Act as an expert videogame reviewer for the Guardian. Give me a summary of Final Fantasy VII (original playstation version) for an expert gamer who has played it many times" or "Act as someone who spends too much time on Reddit and thinks they know everything. Give me a summary of Final Fantasy VII (original playstation version) for an expert gamer who has played it many times".
+
+:::
+
+## Copilot features
+
+Whilst many AIs use the same underlying model (e.g., GPT-5), the platforms can differ in their functionality. 
+
+1. The "Read Aloud" function will get Copilot to read it's response to you.
+2. The "Share prompt and copy response" button will copy your prompt and the response which you can then paste into e.g., a Word document. This is useful because if you're ever asked to provide more information on how you have used AI at University, you can use this feature to assist with being transparent.
+3. Suggested follow-up prompts give you ideas for further prompting (although I have never found these useful).
+4. The dictate function allows you to speak your prompt to the AI. On a laptop you may have to ensure your microphone settings allow access. This is often easier on a phone.
+5. "Edit in Pages" opens an editable page so you can add to and edit the response. You can also then ask an additional prompt and add new responses and share with others. We're not really going to use this feature but if you want to know more, Microsoft have [additional info and training](https://support.microsoft.com/en-gb/topic/get-started-with-microsoft-365-copilot-pages-6674bd51-9ff5-42c4-9256-44d9428a726f).
+6. Add a file to Copilot to use as part of your prompt. Because you're signed in using your UofG account it will automatically connect to your OneDrive. Even though Copilot connects securely to OneDrive, you should check your module handbook and lecturer guidance before uploading slides, datasets, or assignments. Not all materials are permitted to be shared with AI.
+
+
+```{r img-copilot, echo=FALSE, fig.cap="Copilot features"}
+
+knitr::include_graphics("include/images/01-copilot/copilot_features.png")
 
 ```
 
 
-## Activity 1
+::: {.callout-note}
 
--   Choose one of the AIs and create an account/login. You can also do this activity with both AIs to see the difference in output if you're interested.
+## Activity 4
 
-## Activity 2
+Try out each of the six features described above and reflect on which ones you find useful and why.
+:::
 
-The key difference between using an AI and a regular search engine is that you can shape the output of the AI by "prompt engineering", which is the phrase used to describe the art of asking the question in a way that gives you the answer you want. It's easier to show than tell.
 
-Think of a book, TV show, film, or video game that you know really well. I chose Final Fantasy VII (the original PlayStation version). Ask the AI to give you three different summaries and try out the functionality of each platform. For example, for ChatGPT ask it to regenerate the response, for Copilot, click on any links it provides.
+::: {.callout-tip}
 
--   First, ask it for a summary without any additional context e.g., "Give me a summary of Final Fantasy VII (original playstation version)"
-
--   Then, ask it for a summary but give it a steer on the intended audience, e.g., "Give me a summary of Final Fantasy VII (original playstation version) for someone who knows nothing about videogames" or "Give me a summary of Final Fantasy VII (original playstation version) for an expert gamer who has played it many times"
--   Finally, ask it for a summary, but give it a steer on how it should act, e.g., "Act as an expert videogame reviewer for the Guardian. Give me a summary of Final Fantasy VII (original playstation version) for an expert gamer who has played it many times" or "Act as someone who spends too much time on Reddit and thinks they know everything. Give me a summary of Final Fantasy VII (original playstation version) for an expert gamer who has played it many times".
-
-The key takeaways to remember for your learning journey are:
-
-* Tell it how to act
-* Tell it who you are
+## Key takeaways
 
 Reflect on the differences between the summaries - the technicality of the language, the accuracy and nuance of the information, what it chose to focus on, and what it chose to omit. The reason I asked you to create a summary of something you already know well is that you're aware of where the gaps are. **Remember this when you're asking an AI something you don't know as well**. Just because you can't see the gaps, inaccuracies, and biases, doesn't mean they're not there. 
 
-::: {.callout-caution}
-This book was written in Spring 2024 and should be considered a **living document**. The functionality and capability of AI is changing rapidly and the most recent advances may not reflect what is described in this book. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it [via Forms](https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u).
+* Tell it how to act
+* Tell it who you are
+* Always check for gaps, errors, or bias
 :::
+
+
+
+
+
+
+
