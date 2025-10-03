@@ -82,7 +82,7 @@ Learning often feels easier when you get a clear explanation, but you usually re
 
 ## Be critical
 
-In this chapter I've tried to show you how to shape the AIs response, however, as always there are potential pitfalls to be aware of.
+A personalised tutor is most powerful when it amplifies the cognitive processes that drive learning rather than replacing them. Three principles are central. Metacognition: monitor what you do and do not understand, then adjust your strategy and difficulty accordingly. Desirable difficulties: small, well-scaffolded challenges that require effort improve long-term retention when paired with feedback. Self-explanation: articulating why an answer is right, how a step works, or why an alternative is wrong deepens understanding and transfer. Use the tutor to create space for retrieval, explanation, and calibration, not to short-circuit them.
 
 1. If you provide detailed instructions (“I am anxious, please make it simple”), the AI may default to oversimplification. This risks the [expertise reversal effect](https://en.wikipedia.org/wiki/Expertise_reversal_effect) — information is too shallow once you gain competence.
 

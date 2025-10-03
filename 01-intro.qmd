@@ -131,13 +131,18 @@ knitr::include_graphics("include/images/01-copilot/copilot_features.png")
 
 ::: {.callout-note}
 
-## Activity 4
+## Activity 3
 
 Try out each of the six features described above and reflect on which ones you find useful and why.
 :::
 
 ## Be critical
 
+Good AI use should strengthen, not substitute, your learning processes and your motivation to learn and this is what we're going to try and convince you of through this book. Two additional ideas matter here. 
+
+First, self-determination theory suggests that high-quality learning is supported when activities nurture autonomy (choice and voice), competence (a sense of effectiveness), and relatedness (feeling connected to others or to authentic goals).
+
+Second, self-efficacy grows primarily through mastery experiences: every time you attempt an answer first, then use AI to check, refine, and correct, you accumulate evidence that you can succeed again. Over-scaffolding (“just tell me the answer”) risks undermining both autonomy and self-efficacy.
 
 ::: {.callout-tip}
 ## Key takeaways

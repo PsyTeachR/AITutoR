@@ -1,13 +1,18 @@
 
 # Error checking and debugging
 
-In this chapter, you'll learn how to use AI to help you identify and fix coding errors. I'd argue this is probably the best use case of AI - using it to help and debug code you've written yourself - because it's human expertise that wrote the code, but with the AIs attention to detail and ability to spot missing commas.
+In this chapter, you'll learn how to use AI to identify and fix coding errors. This is probably the best use case of AI: using it to debug code that you wrote. Human expertise drives the code, while AI’s attention to detail can help spot small mistakes such as missing commas.
 
-AI is generally good at this task, although the more complicated your code, the more likely it is that it will run into trouble. This chapter will give a few examples to help you with your prompt engineering.
+AI is generally good at this task, although the more complex your code, the more likely it is to struggle. This chapter gives examples to help you with prompt engineering for error checking.
 
-## Activity 1: Set-up {#sec-setup-errors}
+So that you can reproduce the same errors, let's create a reproducible example and load some packages and a dataset. 
 
-So that you can reproduce the same errors, let's create a reproducible example and load some packages and a dataset. Open an Rmd (not a script, we'll use the Rmd in Activity 3) and run the below (you may need to install the package `palmerpenguins` if you don't have it already).
+::: {.callout-note}
+
+## Activity 1
+
+Open a new Quarto or Rmd document and create a new code chunk. Run the code below to load packages and a dataset. You may need to install the package `palmerpenguins` if you do not already have it.
+
 
 ```{r warning=FALSE, message=FALSE}
 library(tidyverse)
@@ -15,7 +20,9 @@ library(palmerpenguins)
 data("penguins")
 ```
 
-## Activity 2: Simple errors {#sec-simple-errors}
+:::
+
+## Simple errors {#sec-simple-errors}
 
 Unlike the other chapters you don't need to do any set-up, in fact, you can often just copy and paste the code and error in and it will figure out that you want it to fix it without even needing to explicitly ask. 
 
@@ -26,9 +33,15 @@ ggplot(penguins, aes(x = species)) +
    geom_barchart()
 ```
 
-* Give your AI of choice both the code and the error. One without the other is likely to result in a poor or incomplete answer (whether you ask a human or an AI).
 
-Both AIs identified, explained, and fixed this error. Copilot also gives you some follow up questions you could ask to understand more about the code, which is nice.
+::: {.callout-note}
+
+## Activity 2
+
+Give Copilot both the code and the error. One without the other is likely to result in a poor or incomplete answer (whether you ask a human or an AI).
+
+:::
+
 
 ```{r img-simple, echo=FALSE, fig.cap="Fixing a simple error"}
 
@@ -36,9 +49,9 @@ knitr::include_graphics("include/images/04-error/simple.png")
 
 ```
 
-## Activity 3: Contextual errors
+## Contextual errors
 
-Something that catches many people out is when the error is actually being caused by code further up your script rather than the bit that is results in the error.
+A common issue is when the error stems from code earlier in your script, even though it shows up later.
 
 For example, in this code, what we intended to do was to create a dataset that just has penguins from Biscoe Island and then calculate their mean body mass. This code will run, but it produces `NaN` as the value.
 
@@ -52,7 +65,7 @@ biscoe_penguins %>%
 
 If you just give an AI the code and the table and ask it to explain what's happening, it will do its best but without knowing the dataset or what code has preceded it, it won't give you the exact answer, although in this case it hints at it.
 
-```{r img-context1, echo=FALSE, fig.cap = "ChatGPT giving its best guess"}
+```{r img-context1, echo=FALSE, fig.cap = "Copilot giving its best guess"}
 
 knitr::include_graphics("include/images/04-error/context1.png")
 
@@ -71,21 +84,35 @@ You can manually type out a description but there's some functions you can use t
 summary(penguins)
 ```
 
-`str()` is also useful because it lists the variables, their data type, and the initial values for each variable. However, that means that you are giving it at least some of the raw data so you have to be very careful if you have sensitive / confidential data and you must ensure that any use of AI is in line with your data management plan. Using Copilot Enterprise means the data won't be stored and used to train the AI further so it's potentially the best option (which is not to say it's safe or problem free, please be careful and critical!).
+`str()` is also useful because it lists the variables, their data type, and the initial values for each variable. 
 
 ```{r}
 str(penguins)
 ```
 
-Finally, `ls()` provides a list of all the variables in a given object. It doesn't provide any info on the variable type or sample, but that does mean it's the most secure and depending on the task, this might be all the info you really need to give the AI. I would suggest starting with `ls()` and only scaling up if necessary (and your data isn't sensitive):
+Finally, `ls()` provides a list of all the variables in a given object. It doesn't provide any info on the variable type or sample, but this might be all the info you really need to give the AI. 
 
 ```{r}
 ls(penguins)
 ```
 
-* Run `summary(biscoe_penguins)` and give the AI the output so that it better understands the structure and contents of the datasets
+::: {.callout-caution}
+Be careful with sensitive data. `str()` and `summary()` reveal actual data values, so only use them if your data management plan permits it. Using Copilot Enterprise reduces (but does not remove) risk, since data is not used for model training. Start with `ls()`, which only lists variable names, and scale up if safe.
+:::
 
-If you haven't spotted it by now, the error is that in the filter `biscoe` should be `Biscoe` with a capital B. It still doesn't have the information it needs to tell you this explicitly, but it will get you very close. **There is no shortcut for knowing your data**.
+::: {.callout-note}
+
+## Activity 3
+
+Run `summary(biscoe_penguins)` and give the AI the output so that it better understands the structure and contents of the datasets.
+
+Then give it the code you used to filter the dataset.
+
+::
+
+If you haven't spotted it by now, the error is that in the filter `biscoe` should be `Biscoe` with a capital B. 
+
+**There is no shortcut for knowing your data**.
 
 ```{r img-context2, echo=FALSE, fig.cap="Copilot getting very close"}
 
@@ -93,11 +120,11 @@ knitr::include_graphics("include/images/04-error/context2.png")
 
 ```
 
-## Activity 4: Incorrect (but functional) code
+## Incorrect (but functional) code
 
 Sometimes (often) when we write code, the issue isn't that our code doesn't work, but that it doesn't do what we intended to do and we can't figure out why. 
 
-For example, let's say that we want to calculate the average body_mass_g for each species by sex. We're feeling a bit lazy and we copy and paste in the following from a previous script we have:
+For example, let's say that we want to calculate the average `body_mass_g` for each species by sex. We're feeling a bit lazy and we copy and paste in the following from a previous script we have:
 
 ```{r message=FALSE}
 penguins %>%
@@ -108,7 +135,7 @@ penguins %>%
 
 We know something isn't right here. Because we're responsible researchers, we've taken time to understand our dataset and what plausible values should be and we know there's no way that the average body mass of a penguin is 269 grams (unless the penguin is made of chocolate). But the code is running fine, we know it's worked before, and we can't see what we've done wrong.
 
-You can ask the AI to help you but you can't just give it the code and output, you also need to tell it what you intended to do. In this case, all three AIs correctly identified that I had used `sd` instead of `mean`. The more complex your code, the more information you will need to give it in order for it to help you find the error. 
+You can ask the AI to help you but you can't just give it the code and output, you also need to tell it what you intended to do. The more complex your code, the more information you will need to give it in order for it to help you find the error. 
 
 ```{r img-functional, echo=FALSE, fig.cap="Fixing a functional error"}
 
@@ -118,31 +145,93 @@ knitr::include_graphics("include/images/04-error/functional_error.png")
 
 This is a good example of why **there is no AI tool that allows you to skip understanding the data you're working with and knowing what it is you're trying to do**.
 
-## Activity 5: Rmd errors
+## Document errors
 
-If you're working in R Markdown or Quarto, sometimes the errors will stem from your code chunk settings or YAML.
+If you're working in Rmd or Quarto, sometimes the errors will stem from your code chunk settings or YAML in the document.
 
-In your Rmd file, create a new code chunk and copy and paste the following:
+::: {.callout-note}
+
+## Activity 4
+
+1. In your Rmd or Qmd file, create a new code chunk and copy and paste the following:
 
 ```{r eval = FALSE}
 penguins %>%
   count()
 ```
 
-But then delete one of the final back ticks (`) from the code chunk.
+2. Delete one of the final back ticks (`) from the code chunk.
 
-The code is fine, it provides a simple count of the number of observations in the dataset. But if you try and knit the file, you'll get a long `! attempt to use zero-length variable name`. Copilot wasn't that helpful because all of its suggestions relate to checking your code:
+3. Try and run the code and knit/render the file.
+:::
 
-```{r img-rmd1, echo=FALSE, fig.cap="Missing the mark"}
+The code is fine, it provides a simple count of the number of observations in the dataset. But if you try and knit the file in Rmd you'll get a very long error message and if you render the file in Quarto, it will work, but it won't actually execute the code, it will just render it as text.
 
-knitr::include_graphics("include/images/04-error/rmd1.png")
+In these cases you have two options. 
 
-```
+1. Copy and paste the entire document into Copilot, not just the code but include the code chunks etc. This means it can see the formatting as well as the code.
+
+2. Take a screenshot. This can also sometimes help diagnose working directory issues if you include the files pane.
+
+If you're not at all sure where the issue is stemming from, you might need a combination of both. But whatever you do, make sure that you verify the explanation of the error, don't trust it blindly.
+
+::: {.callout-note}
+
+## Activity 5
+
+Try pasting the entire document into Copilot and/or providing a screenshot until it can diagnose the missing backtick.
+
+:::
 
 ::: {.callout-important}
 I know I might be starting to sound like a broken record but **please** remember that artificial intelligence is not actually intelligent. It's not thinking, it's not making conscious decisions, it has no expert subject matter knowledge. No matter how helpful it is, you must always check the output of the code it gives you.
 :::
 
-::: {.callout-caution}
-This book was written in Spring 2024 and should be considered a **living document**. The functionality and capability of AI is changing rapidly and the most recent advances may not reflect what is described in this book. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it [via Forms](https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u).
+## Be critical
+
+From a cognitive science perspective, being critical when debugging with AI matters because learning is strongest when you engage in active processing rather than relying on external answers. Research on [desirable difficulties](https://www.learningscientists.org/blog/2017/7/16/weekly-digest-68) shows that struggling with a problem, even briefly, improves long-term retention and transfer. Similarly, studies of [self-explanation](https://www.learningscientists.org/blog/2020/2/20-1) demonstrate that learners build deeper understanding when they articulate why an error occurred and how to fix it. If you immediately outsource error checking to AI, you bypass the very processes that consolidate your knowledge of syntax, functions, and debugging strategies. 
+
+Another benefit of practising debugging yourself—before turning to AI—is the development of [self-efficacy](https://www.simplypsychology.org/self-efficacy.html) and autonomy. In Bandura’s terms, mastery experiences are the strongest source of self-efficacy: each time you locate and fix an error unaided, you build the expectation that you can do so again. 
+
+Autonomy is likewise enhanced when you make choices about how to proceed rather than defaulting to external solutions. Framed through [self-determination theory](https://positivepsychology.com/self-determination-theory), brief, well-timed AI support can still help, provided it is autonomy-supportive (you decide when to ask), competence-supportive (it explains rather than replaces your reasoning), and scaffolded (assistance fades as you improve). 
+
+In practice: attempt a fix first, articulate a hypothesis about the bug, then use AI to test or refine that hypothesis. This preserves a sense of authorship over your code, strengthens future problem-solving, and reduces learned dependence on external help.
+
+
+### Common errors
+
+Coding errors tend to repeat and there's actually a fairly small set of errors you will make constantly. But you won't learn these patterns if you always ask the AI.
+
+1. Missing or extra ()
+2. Missing or extra commas
+3. Missing or extra quotation marks
+3. Typos in object or variable names - remember R is case sensitive
+4. Missing `+` for ggplot()
+5. Missing `|>` or `%>%` for piped lines of code
+6. Using `=` instead of `==`
+7. Writing code but not running it so that e.g., a package isn't loaded or an object isn't created that you later need.
+8. Trying to perform a numerical operation on a character/factor variable (or vice versa).
+
+To help boost your confidence in error checking and debugging, you can create Error Mode questions like we showed you in Chapter 3. You could sk it to give you examples based on the common list of errors noted above and work your way through them until you're more comfortable spotting them in your own code.
+
+::: {.callout-tip}
+
+## Key Takeaways
+
+1. Try first, then ask AI. Read the error message, inspect recent edits, and attempt a fix before consulting AI. This strengthens understanding and builds self-efficacy.
+
+2. Provide full context. When you do use AI, include the code and the exact error message. Add brief intent (“what I meant to do”) and, if safe, a minimal reproducible example.
+
+3. Know your data. Many “mystery” errors are case sensitivity, misspellings, or filtering mistakes. Use `summary()`, `str()`, or `ls()`  to verify assumptions.
+
+4. Protect sensitive data. Prefer `ls()` first; only share `summary()`/`str()` outputs if your data management plan permits. Copilot Enterprise reduces but does not remove risk.
+
+5. Expect and learn common patterns in errors. 
+
+6. State the goal. Tell AI what outcome you intended (e.g., “mean by species and sex”), not just the code, to help it detect functional (not just syntactic) errors.
+
+7. Use screenshots or full documents for format bugs. For Rmd/Qmd issues, share the whole document or a screenshot showing YAML, chunk fences, and working directory.
+
+8. Treat AI as scaffolding. Ask it to explain rather than replace reasoning, and fade assistance over time to preserve autonomy and develop durable debugging habits.
 :::
+
