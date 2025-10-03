@@ -52,7 +52,7 @@ Now that you've got your tutor set up, you can ask it questions. Here's some exa
 
 Another big difference between AI and a regular search engine is that you can have a conversation with it and follow-up on your original question. Some examples:
 
-* Can you explain it again but compare it to Excel?
+* Can you explain it again but compare coding in R to doing the same task in Excel?
 * Expand on your explanation of `geom_point()`
 * Give me another example of code that uses this approach
 * Explain it again but in more technical / simpler terms 
@@ -75,30 +75,30 @@ Learning often feels easier when you get a clear explanation, but you usually re
 
 ## Activity 4
 
-1. Follow up on the responses it gave to your one of your three course questions with a similar prompt to the convserational examples give.
+1. Follow up on the responses it gave to your one of your three course questions with a similar prompt to the conversational examples give.
 
-2. Then for another one of the questions, follow-up with a request to check your understanding but acting as a socratic tutor.
+2. Then for another one of the questions, follow-up with a request to check your understanding but acting as a Socratic tutor.
 :::
 
 ## Be critical
 
 In this chapter I've tried to show you how to shape the AIs response, however, as always there are potential pitfalls to be aware of.
 
-1. If you provide detailed instructions (“I am anxious, please make it simple”), the AI may default to oversimplification. This risks expertise reversal effect — information is too shallow once they gain competence.
+1. If you provide detailed instructions (“I am anxious, please make it simple”), the AI may default to oversimplification. This risks the [expertise reversal effect](https://en.wikipedia.org/wiki/Expertise_reversal_effect) — information is too shallow once you gain competence.
 
-2. Similarly, if you do not revisit or revise instructions, you may “lock in” a static version of yourself (e.g., always a beginner), preventing growth and calibration.
+2. Similarly, if you do not [revisit or revise instructions](https://achemicalorthodoxy.co.uk/2019/10/02/guidance-fading-how-i-do-it/), you may “lock in” a static version of yourself (e.g., always a beginner), preventing growth and calibration.
 
-3. Asking the AI questions like “Why do I have to learn to code?” produces an explanation, but does not force you to generate an answer yourself Research on retrieval practice shows that passive review is less effective for long-term retention.
+3. Asking the AI questions like “Why do I have to learn to code?” produces an explanation, but does not force you to generate an answer yourself. Research on [retrieval practice](https://www.learningscientists.org/blog/2016/6/23-1) shows that passive review is less effective for long-term retention.
 
-4. You may accept AI answers at face value, especially if they “sound fluent.” The fluency illusion (e.g., when text feels easy to read) can lead to overconfidence.
+4. You may accept AI answers at face value, especially if they “sound fluent.” The [fluency illusion](https://sites.lafayette.edu/rothm/2015/04/08/the-fluency-illusion-and-a-better-way-to-study/) (e.g., when text feels easy to read) can lead to overconfidence.
 
 5. Unlike a lecturer who has genuine expertise, the AI cannot reliably detect specific misconceptions unless prompted very carefully. You might get partial reinforcement for incorrect ideas.
 
-6. If the AI provides subtly wrong examples (e.g., incorrect R syntax), you may encode misconceptions. This is especially problematic because initial exposure can create a strong anchoring effect.
+6. If the AI provides subtly wrong examples (e.g., incorrect R syntax), you may encode misconceptions. This is especially problematic because initial exposure can create a strong [anchoring effect](https://www.simplypsychology.org/what-is-the-anchoring-bias.html).
 
-7. Learning research shows benefits when you try, fail, and then see the solution. If AI always provides a clean solution first, you miss the benefits of that struggle.
+7. Learning research shows benefits when you try, fail, and then see the solution. If AI always provides a clean solution first, you miss the benefits of "[desirable difficulities](https://www.learningscientists.org/blog/2017/7/16/weekly-digest-68)".
 
-8. Some students may outsource all explanations (“explain my lecture in simple words”) rather than engaging with primary materials. This could erode germane cognitive load — the mental effort that builds durable schemas.
+8. Some students may outsource all explanations (“explain my lecture in simple words”) rather than engaging with primary materials. This could erode [germane cognitive load](https://www.learningscientists.org/blog/2023/7/6) — the mental effort that builds durable schemas.
 
 ::: {.callout-tip}
 

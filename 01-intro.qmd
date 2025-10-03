@@ -1,6 +1,6 @@
 # Intro to using AI
 
-There are a range of AIs and an even larger number of niche apps and platforms but we're going to focus on Microsoft's Copilot signed in via your UofG account. The reason I've chosen Copilot is that all University of Glasgow students have access to the same plan and functionality and the UofG Copilot has enhanced security, which is particularly important when you're considering using AI to help with data analysis. 
+There are a range of AIs and an even larger number of niche apps and platforms but we're going to focus on Microsoft's Copilot signed in via your UofG account. The reason we've chosen Copilot is that all University of Glasgow students have access to the same plan and functionality and the UofG Copilot has enhanced security, which is particularly important when you're considering using AI to help with data analysis. 
 
 Since 2024, generative AI tools have become embedded in most productivity software (Word, Excel, PowerPoint, Teams, Google Workspace, Adobe Creative Suite). Whilst this book uses Copilot, you should expect to see AI features in many of the tools you already use.
 
@@ -8,9 +8,7 @@ Since 2024, generative AI tools have become embedded in most productivity softwa
 
 ### AI model vs AI platforms
 
-There are more qualified people who can explain AI better than I, but a brief but important distinction is between the AI model and the AI platform. The underlying AI model is a Large Language Model (LLM) that essentially does extremely sophisticated predictive text - it's not thinking, it's not conscious, it just is very good at deciding what word is likely to come after another word in a way that is human-like[^01-choose-1].
-
-[^01-choose-1]: I ran this explanation through an AI and it was not happy with me and wants you to know that it can also perform tasks like translation, question answering, and even generate creative text formats like poems or code. Calm down Felicia.
+There are more qualified people who can explain AI better than I, but a brief but important distinction is between the AI model and the AI platform. The underlying AI model is a Large Language Model (LLM) that essentially does extremely sophisticated predictive text - it's not thinking, it's not conscious, it just is very good at deciding what word is likely to come after another word in a way that is human-like.
 
 Different software companies have created different AI models. OpenAI has a series of models it refers to as Generative Pre-trained Transformers (GPTs). The explosion in AI in terms of public awareness came about when OpenAI released GPT version 3 and the most recent version is 5. The capability of each successive AI is claimed to increase significantly, both in terms of its ability (e.g., to pass standardised tests) and in the human-ness of its responses. In addition to GPT-5, other widely used models include Claude 3.5 (Anthropic), Gemini 1.5 (Google/DeepMind), and LLaMA 3 (Meta). Different platforms may give slightly different results because they are tuned differently.
 
@@ -42,11 +40,39 @@ Fourth, training and moderation often rely on hidden human labour. Low-paid work
 
 Regulation is catching up: the EU AI Act will begin to take effect in 2025, and the UK is consulting on its own frameworks. This means that how we are expected to use AI responsibly may change rapidly. [AI Now 2025 Report](https://ainowinstitute.org/) provides an annual overview of social, ethical, and political issues in AI.
 
+## Criticality and AI
+
+When using AI, it is not enough to know how to operate the tools, you also need to approach them critically. That means asking not just “what can this do for me?” but also “how trustworthy is this output, and what are the wider implications of relying on it?” 
+
+### Accuracy
+
+AI tools are trained to generate fluent and convincing text, but this does not mean it is correct. They frequently “hallucinate” — producing confident but false information such as incorrect references, fabricated statistics, or misattributed quotes. You should treat outputs as drafts or starting points, not final answers and verify with authoritative sources.
+
+### Authority and Expertise
+
+AI cannot tell the difference between high-quality peer-reviewed research and a random blogpost unless explicitly instructed. It mirrors patterns in its training data rather than exercising judgement. Always consider who should be the authority on a question — a textbook, journal article, or your lecturer — and cross-check AI outputs accordingly.
+
+### Transparency
+
+You cannot see the training data or the “reasoning” steps of the model. That lack of transparency makes it hard to know why it gave a particular answer or whether it is missing key perspectives. Ask yourself what might have been left out or under-represented, and be cautious about treating AI answers as comprehensive.
+
+### Epistemic Caution
+
+AIs generate text that looks authoritative, which can give a false sense of understanding. This risks shallow learning if students accept outputs uncritically rather than grappling with concepts themselves. Use AI as a “thinking partner,” but make sure you can explain ideas in your own words without relying on its phrasing.
+
+### Equity and Access
+
+Even though UofG provides Copilot securely, in wider society access to premium AI tools is uneven. This creates new digital divides: between those who can afford subscription services and those who cannot, or between those trained to use AI critically and those left behind. Reflect on whose voices are privileged or excluded in AI-mediated work.
+
+### Over-reliance and deskilling
+
+Outsourcing too much to AI can erode your own skills in writing, problem-solving, or coding. Just as calculators changed how we teach arithmetic, AI may change what we expect students to be able to do unaided. Use AI strategically, but keep developing your own capacity, especially in core academic skills such as argumentation, critical reading, and data analysis.
+
 ### Copilot
 
 Microsoft Copilot is not one single tool but a family of services (e.g., in Word, Excel, Edge, Outlook). In this book, we focus on Copilot Chat accessed via Office365 using your University account, because this is the secure, enterprise version.
  
- Microsoft Copilot can be accessed at by signing into [Office365](https://m365.cloud.microsoft/apps/) with your University of Glasgow student account. Whilst ChatGPT is the most widely known and used, the advantage of using your Enterprise account is that the data is processed more securely and what you input won't be used to train the model. 
+Microsoft Copilot can be accessed at by signing into [Office365](https://m365.cloud.microsoft/apps/) with your University of Glasgow student account. Whilst ChatGPT is the most widely known and used, the advantage of using your Enterprise account is that the data is processed more securely and what you input won't be used to train the model. 
  
 This is really, really important and if you're found to have uploaded sensitive data to an unsecure AI you can be accused of academic and/or research misconduct. So if you're using AI for any University work, use Copilot. 
 
@@ -72,13 +98,15 @@ The key difference between using an AI and a regular search engine is that you c
 
 ## Activity 2
 
-Think of a book, TV show, film, or video game that you know really well. I chose Final Fantasy VII (the original PlayStation version). Ask Copilot to give you three different summaries and try out the functionality of each platform. 
+Think of a book, TV show, film, or video game that you know really well. I chose Final Fantasy VII (the original PlayStation version). Ask Copilot to give you three different summaries for different audiences. 
 
 1. Ask it for a summary without any additional context e.g., "Give me a summary of Final Fantasy VII (original playstation version)"
 
 2. Then, ask it for a summary but give it a steer on the intended audience, e.g., "Give me a summary of Final Fantasy VII (original playstation version) for someone who knows nothing about videogames" or "Give me a summary of Final Fantasy VII (original playstation version) for an expert gamer who has played it many times"
 
 3. Finally, ask it for a summary, but give it a steer on how it should act, e.g., "Act as an expert videogame reviewer for the Guardian. Give me a summary of Final Fantasy VII (original playstation version) for an expert gamer who has played it many times" or "Act as someone who spends too much time on Reddit and thinks they know everything. Give me a summary of Final Fantasy VII (original playstation version) for an expert gamer who has played it many times".
+
+Reflect on the differences in the information and detail it gives you for each one and how you're able to evaluate the accuracy of the summaries because of your existing expert knowledge. 
 
 :::
 
@@ -108,6 +136,8 @@ knitr::include_graphics("include/images/01-copilot/copilot_features.png")
 Try out each of the six features described above and reflect on which ones you find useful and why.
 :::
 
+## Be critical
+
 
 ::: {.callout-tip}
 ## Key takeaways
@@ -117,6 +147,9 @@ Reflect on the differences between the summaries - the technicality of the langu
 * Tell it how to act
 * Tell it who you are
 * Always check for gaps, errors, or bias
+* Fluency ≠ truth and persuasive text may still be wrong
+* Authority matters! Ask yourself “who should be the expert here?”
+* Over-reliance risks deskilling. Keep practising your own academic skills
 
 :::
 
