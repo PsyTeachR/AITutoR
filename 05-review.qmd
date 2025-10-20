@@ -8,7 +8,7 @@ DeBruine et al's [Code Check Guide](https://code-check-club.github.io/code-revie
 * Does it run? Can a researcher who uses that progamming language run it easily? Are any unusual or complex procedures explained?
 * Is it reproducible? Do you get the same outputs? Is it straightforward to check them?
 * Is it auditable/understandable? Even if you don’t have the expertise to assess the stats or data processing, is the code well-organised enough to figure out what is intended so mistakes could be detected? Are the outputs sufficiently detailed to allow interrogation?
-* Does it follow best practices? Is there too much repeated code that could benefit from modularisation? DRY (Don’t repeat yourself) and SPOT (Single Point of Truth)? Are the outputs of long processes saved and loaded from file? Are there unit tests? Do the variable names make sense? Do the results match what is shown in the output and there is no rounding up or down?
+* Does it follow best practices? Is there too much repeated code that could benefit from modularisation? DRY (Don’t repeat yourself) and SPOT (Single Point of Truth)? Are the outputs of long processes saved and loaded from file? Do the variable names make sense? Do the results match what is shown in the output and there is no rounding up or down?
 * Is it correct and appropriate? Is the code actually doing what is intended? Is what is intended correct? Some logical problems can be caught without domain knowledge, such as intending to to filter out male subjects, but actually filtering them IN. Many other problems require domain and/or statistical knowledge, so may only be appropriate in some circumstances.
 
 However, some of these steps cannot (and should not) be performed by an AI. Unless you have specific ethical approval and have included this in your data management plan, you should **never** upload your research data to an AI tool. This means that assessing reproducibility is difficult. The AI also doesn't know what you *intended* to do, and why, and has no subject knowledge so it can't advise on anything theoretical without you giving it that information explicitly.
@@ -19,7 +19,9 @@ Therefore, what we'll focus on in this chapter is two components of code review:
 
 Code comments are lines or sections of text added within the code itself that are ignored by the computer when the program runs. They're there for human readers, not machines. In R, you add comments to code by adding `#` to the start of the string:
 
-```{r eval  = FALSE}
+```{r}
+#| eval: FALSE 
+
 # this is a comment
 
 # compute the mean of three numbers
@@ -322,7 +324,7 @@ dat_copilot <- dat_raw %>%
 
 ```
 
-```{r img-comment3, echo=FALSE, fig.cap="Refactoring"}
+```{r img-refactor1, echo=FALSE, fig.cap="Refactoring"}
 
 knitr::include_graphics("include/images/05-review/refactor1.png")
 

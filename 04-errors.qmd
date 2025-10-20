@@ -112,7 +112,11 @@ Then give it the code you used to filter the dataset.
 
 If you haven't spotted it by now, the error is that in the filter `biscoe` should be `Biscoe` with a capital B. 
 
-**There is no shortcut for knowing your data**.
+
+::: {.callout-important}
+There is no shortcut for knowing your data.
+:::
+
 
 ```{r img-context2, echo=FALSE, fig.cap="Copilot getting very close"}
 
@@ -143,7 +147,11 @@ knitr::include_graphics("include/images/04-error/functional_error.png")
 
 ```
 
-This is a good example of why **there is no AI tool that allows you to skip understanding the data you're working with and knowing what it is you're trying to do**.
+::: {.callout-important}
+There is no AI tool that allows you to skip understanding the data you're working with and knowing what it is you're trying to do.
+:::
+
+
 
 ## Document errors
 
@@ -187,18 +195,7 @@ Try pasting the entire document into Copilot and/or providing a screenshot until
 I know I might be starting to sound like a broken record but **please** remember that artificial intelligence is not actually intelligent. It's not thinking, it's not making conscious decisions, it has no expert subject matter knowledge. No matter how helpful it is, you must always check the output of the code it gives you.
 :::
 
-## Be critical
-
-From a cognitive science perspective, being critical when debugging with AI matters because learning is strongest when you engage in active processing rather than relying on external answers. Research on [desirable difficulties](https://www.learningscientists.org/blog/2017/7/16/weekly-digest-68) shows that struggling with a problem, even briefly, improves long-term retention and transfer. Similarly, studies of [self-explanation](https://www.learningscientists.org/blog/2020/2/20-1) demonstrate that learners build deeper understanding when they articulate why an error occurred and how to fix it. If you immediately outsource error checking to AI, you bypass the very processes that consolidate your knowledge of syntax, functions, and debugging strategies. 
-
-Another benefit of practising debugging yourself—before turning to AI—is the development of [self-efficacy](https://www.simplypsychology.org/self-efficacy.html) and autonomy. In Bandura’s terms, mastery experiences are the strongest source of self-efficacy: each time you locate and fix an error unaided, you build the expectation that you can do so again. 
-
-Autonomy is likewise enhanced when you make choices about how to proceed rather than defaulting to external solutions. Framed through [self-determination theory](https://positivepsychology.com/self-determination-theory), brief, well-timed AI support can still help, provided it is autonomy-supportive (you decide when to ask), competence-supportive (it explains rather than replaces your reasoning), and scaffolded (assistance fades as you improve). 
-
-In practice: attempt a fix first, articulate a hypothesis about the bug, then use AI to test or refine that hypothesis. This preserves a sense of authorship over your code, strengthens future problem-solving, and reduces learned dependence on external help.
-
-
-### Common errors
+## Common errors
 
 Coding errors tend to repeat and there's actually a fairly small set of errors you will make constantly. But you won't learn these patterns if you always ask the AI.
 
@@ -213,6 +210,17 @@ Coding errors tend to repeat and there's actually a fairly small set of errors y
 8. Trying to perform a numerical operation on a character/factor variable (or vice versa).
 
 To help boost your confidence in error checking and debugging, you can create Error Mode questions like we showed you in Chapter 3. You could ask it to give you examples based on the common list of errors noted above and work your way through them until you're more comfortable spotting them in your own code.
+
+## Be critical
+
+From a cognitive science perspective, being critical when debugging with AI matters because learning is strongest when you engage in active processing rather than relying on external answers. Research on [desirable difficulties](https://www.learningscientists.org/blog/2017/7/16/weekly-digest-68) shows that struggling with a problem, even briefly, improves long-term retention and transfer. Similarly, studies of [self-explanation](https://www.learningscientists.org/blog/2020/2/20-1) demonstrate that learners build deeper understanding when they articulate why an error occurred and how to fix it. If you immediately outsource error checking to AI, you bypass the very processes that consolidate your knowledge of syntax, functions, and debugging strategies. 
+
+Another benefit of practising debugging yourself before turning to AI, is the development of [self-efficacy](https://www.simplypsychology.org/self-efficacy.html) and autonomy. In Bandura’s terms, mastery experiences are the strongest source of self-efficacy: each time you locate and fix an error unaided, you build the expectation that you can do so again. 
+
+Autonomy is likewise enhanced when you make choices about how to proceed rather than defaulting to external solutions. Framed through [self-determination theory](https://positivepsychology.com/self-determination-theory), brief, well-timed AI support can still help, provided it is autonomy-supportive (you decide when to ask), competence-supportive (it explains rather than replaces your reasoning), and scaffolded (assistance fades as you improve). 
+
+In practice: attempt a fix first, articulate a hypothesis about the bug, then use AI to test or refine that hypothesis. This preserves a sense of authorship over your code, strengthens future problem-solving, and reduces learned dependence on external help.
+
 
 ::: {.callout-tip}
 

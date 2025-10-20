@@ -7,7 +7,7 @@ execute:
   freeze: auto
 book:
   title: AI TutoR
-  author: School of Psychology and Neuroscience, University of Glasgow
+  author: Professor Emily Nordmann
   doi: ''
   license: CC-BY
   cover-image: include/images/logo.png

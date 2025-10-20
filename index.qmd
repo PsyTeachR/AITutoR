@@ -6,11 +6,12 @@ It is perhaps easier to start by explaining what this book is not:
 
 * This book **is not a stand-alone resource**. It is intended to be used alongside other course materials. To make the most out of this book, you will need things like Intended Learning Outcomes or key terms.
 * This book **will not encourage learners to take short-cuts**. That students should be able to understanding the principles of what they are learning and to critically evaluate writing on the topic, regardless of who or what wrote it, is non-negotiable.
-* This book is not an endorsement of AI nor is it uncritical of its impact, either on learning or the environment. It is written because we have thousands of student using AI in a way that damages their learning and I do not believe that preaching abstinence is an effective solution.
+* This book is not an endorsement of AI nor is it uncritical of its impact, either on learning or the environment. It is written because we have thousands of student using AI in a way that damages their learning and I do not believe that preaching abstinence is an effective solution. Others csn, and do, disagree.
 * For the coding aspects of this book, we will not not teach you how to use platforms like Github Copilot and it **is not aimed at proficient or advanced programmers**. 
 
 Instead, this book will aim to help learners use AI platforms critically. By the end of this book, learners should be able to:
 
+* Explain the potential impact of relying on AI on cognition, autonomy, and self-efficacy.
 * Use AI to explain concepts and functions in a level of detail and technicality appropriate to the knowledge and skill of the learner
 * Use AI to generate practice questions to test understanding
 * Use AI to debug errors in code
@@ -20,5 +21,5 @@ Instead, this book will aim to help learners use AI platforms critically. By the
 
 
 ::: {.callout-caution}
-This book was written in Spring 2024 (and is currently being updated in September 2025) and should be considered a **living document**. The functionality and capability of AI is changing rapidly and the most recent advances may not reflect what is described in this book.
+This book was first written in Spring 2024 (and is currently being updated in September 2025) and should be considered a **living document**. The functionality and capability of AI is changing rapidly and the most recent advances may not reflect what is described in this book.
 :::

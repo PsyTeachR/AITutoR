@@ -17,14 +17,15 @@ Here's some examples:
 
 This is mine. It doesn't always follow the instructions but it's much better than without it.
 
-> I am a Professor of Evidence-Informed Education in the School of Psychology and Neuroscience with expertise in cognitive psychology, individual differences, and teaching beginner data skills. You should be formal and give as much detail as possible in your responses. If I ask for code, always give me R code with a tidyverse solution where possible. Always use British spelling. Avoid being sycophantic, hyperbolic, using promotional language, negative parallelisms, or editorializing. Provide evidence for all claims. Preferably peer reviewed and within the last 5 years. Do not use the word delve or interplay. Do not use em dashes when writing and do not use bold to highlight text.
+> I am a Professor of Evidence-Informed Education in the School of Psychology and Neuroscience with expertise in cognitive psychology, individual differences, and teaching beginner data skills. You should be formal and give as much detail as possible in your responses. If I ask for code, always give me R code with a tidyverse solution where possible. Always use British spelling. Avoid being sycophantic, hyperbolic, using promotional language, negative parallelisms, or editorializing. Provide evidence for all claims. Preferably peer reviewed and within the last 5 years. 
 
-To add your custom instructions in Copilot, click the three dots in the top right corner, then click settings, then Custom Instructions.
 
 ::: {.callout-note}
 ## Activity 1
 
 Write your custom instructions and enter them into Copilot. Exactly what information you provide is up to you but make sure that you explain your level of knowledge, skill, confidence and previous experience. If you're using it for coding, you also want to give it some technical information about the software you're using (e.g., R and RStudio) and your operating system (Windows).
+
+- To add your custom instructions in Copilot, click the three dots in the top right corner, then click settings, then Custom Instructions.
 :::
 
 ## Example questions
@@ -82,23 +83,22 @@ Learning often feels easier when you get a clear explanation, but you usually re
 
 ## Be critical
 
-A personalised tutor is most powerful when it amplifies the cognitive processes that drive learning rather than replacing them. Three principles are central. Metacognition: monitor what you do and do not understand, then adjust your strategy and difficulty accordingly. Desirable difficulties: small, well-scaffolded challenges that require effort improve long-term retention when paired with feedback. Self-explanation: articulating why an answer is right, how a step works, or why an alternative is wrong deepens understanding and transfer. Use the tutor to create space for retrieval, explanation, and calibration, not to short-circuit them.
+A personalised tutor is most powerful when it amplifies the cognitive processes that drive learning rather than replacing them. Three principles are central:
 
-1. If you provide detailed instructions (“I am anxious, please make it simple”), the AI may default to oversimplification. This risks the [expertise reversal effect](https://en.wikipedia.org/wiki/Expertise_reversal_effect) — information is too shallow once you gain competence.
+1. Metacognition: monitor what you do and do not understand, then adjust your strategy and difficulty accordingly. 
+2. Desirable difficulties: small, well-scaffolded challenges that require effort improve long-term retention when paired with feedback.
+3. Self-explanation: articulating why an answer is right, how a step works, or why an alternative is wrong deepens understanding and transfer. 
 
-2. Similarly, if you do not [revisit or revise instructions](https://achemicalorthodoxy.co.uk/2019/10/02/guidance-fading-how-i-do-it/), you may “lock in” a static version of yourself (e.g., always a beginner), preventing growth and calibration.
+Use your AI tutor to create space for retrieval, explanation, and calibration, not to short-circuit them. Based on the three principles, here are some things to watch out for.
 
-3. Asking the AI questions like “Why do I have to learn to code?” produces an explanation, but does not force you to generate an answer yourself. Research on [retrieval practice](https://www.learningscientists.org/blog/2016/6/23-1) shows that passive review is less effective for long-term retention.
+- If you provide detailed instructions (“I am anxious, please make it simple”), the AI may default to oversimplification. This risks the [expertise reversal effect](https://en.wikipedia.org/wiki/Expertise_reversal_effect) — information is too shallow once you gain competence.Similarly, if you do not [revisit or revise instructions](https://achemicalorthodoxy.co.uk/2019/10/02/guidance-fading-how-i-do-it/), you may “lock in” a static version of yourself (e.g., always a beginner), preventing growth and calibration.
 
-4. You may accept AI answers at face value, especially if they “sound fluent.” The [fluency illusion](https://sites.lafayette.edu/rothm/2015/04/08/the-fluency-illusion-and-a-better-way-to-study/) (e.g., when text feels easy to read) can lead to overconfidence.
+- Asking the AI questions like “Why do I have to learn to code?” produces an explanation, but does not force you to generate an answer yourself. Research on [retrieval practice](https://www.learningscientists.org/blog/2016/6/23-1) shows that passive review is less effective for long-term retention.
 
-5. Unlike a lecturer who has genuine expertise, the AI cannot reliably detect specific misconceptions unless prompted very carefully. You might get partial reinforcement for incorrect ideas.
+- You may accept AI answers at face value, especially if they “sound fluent.” The [fluency illusion](https://sites.lafayette.edu/rothm/2015/04/08/the-fluency-illusion-and-a-better-way-to-study/) (e.g., when text feels easy to read) can lead to overconfidence.Unlike a lecturer who has genuine expertise, the AI cannot reliably detect specific misconceptions unless prompted very carefully. You might get partial reinforcement for incorrect ideas.
 
-6. If the AI provides subtly wrong examples (e.g., incorrect R syntax), you may encode misconceptions. This is especially problematic because initial exposure can create a strong [anchoring effect](https://www.simplypsychology.org/what-is-the-anchoring-bias.html).
+- Learning research shows benefits when you try, fail, and then see the solution. If AI always provides a clean solution first, you miss the benefits of "[desirable difficulities](https://www.learningscientists.org/blog/2017/7/16/weekly-digest-68)". Related, over-time, reliance on AI rather than working through the problem yourself will reduce your resilience, autonomy, and competence - you can only learn and believe you are capable of difficult things if you try and succeed at doing difficult things.
 
-7. Learning research shows benefits when you try, fail, and then see the solution. If AI always provides a clean solution first, you miss the benefits of "[desirable difficulities](https://www.learningscientists.org/blog/2017/7/16/weekly-digest-68)".
-
-8. Some students may outsource all explanations (“explain my lecture in simple words”) rather than engaging with primary materials. This could erode [germane cognitive load](https://www.learningscientists.org/blog/2023/7/6) — the mental effort that builds durable schemas.
 
 ::: {.callout-tip}
 

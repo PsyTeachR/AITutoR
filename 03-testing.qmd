@@ -178,11 +178,6 @@ Add in your sources for the content you want to study.
 
 :::
 
-::: {.callout-caution}
-
-The suggested follow-up prompts in Copilot sometimes indicate what the correct answer is, particularly for closed-questions like MCQs. I've not found a reliable way to stop it from doing this - let me know if you crack it. 
-
-:::
 
 ## Test yourself
 
@@ -196,11 +191,15 @@ Ask if for one question of each type and work through them. Reflect on whether t
 
 :::
 
+::: {.callout-caution}
+
+The suggested follow-up prompts in Copilot sometimes indicate what the correct answer is, particularly for closed-questions like MCQs. I've not found a reliable way to stop it from doing this - let me know if you crack it. 
+
+:::
+
 ## Be critical
 
-Effective practice testing is not just about answering more questions; it is about engaging the cognitive processes that drive learning. Three ideas are central here. First, [metacognition](https://www.learningscientists.org/blog/2024/5/23-1?): accurate monitoring and control of learning (calibration) helps you choose the right strategies and difficulty. Second, [desirable difficulties](https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/04/EBjork_RBjork_2011.pdf): tasks that are effortful—retrieval, generation, discrimination—strengthen long-term retention when paired with feedback. Third, [self-explanation](https://www.learningscientists.org/blog/2020/2/20-1): articulating why an answer is right or wrong deepens understanding and transfer. Use AI to amplify these processes, not to bypass them. Treat every AI-generated item as an opportunity to retrieve, explain, and calibrate.
-
-The questions AI generates can be useful, but they can also introduce illusions of fluency and miscalibration. 
+Effective practice testing is not just about answering more questions; it is about engaging the cognitive processes that drive learning  -again [metacognition](https://www.learningscientists.org/blog/2024/5/23-1?), [desirable difficulties](https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/04/EBjork_RBjork_2011.pdf) and [self-explanation](https://www.learningscientists.org/blog/2020/2/20-1) are key. The questions AI generates can be useful, but they can also introduce illusions of fluency and miscalibration. 
 
 ### Multiple-choice / TOF / SAQ questions
 
@@ -211,7 +210,7 @@ The questions AI generates can be useful, but they can also introduce illusions 
 
 ### Coding problems
 
-- The examples are not always reproducible. For instance, it might assume the existence of a dataset with variables called “number” and “price” but provide no such dataset, making it impossible to run the code. You can still attempt the problem, but this adds extra difficulty—especially for beginners.
+- The examples are not always reproducible. For instance, it might assume the existence of a dataset with variables called “number” and “price” but provide no such dataset, making it impossible to run the code. You can still attempt the problem, but this adds extra difficulty, especially for beginners.
 - It sometimes uses functions or approaches you have not been taught, such as defaulting to Base R instead of tidyverse.
 
 ### Error mode
