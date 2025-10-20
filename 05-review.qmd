@@ -19,7 +19,7 @@ Therefore, what we'll focus on in this chapter is two components of code review:
 
 Code comments are lines or sections of text added within the code itself that are ignored by the computer when the program runs. They're there for human readers, not machines. In R, you add comments to code by adding `#` to the start of the string:
 
-```{r}
+```{r eval  = FALSE}
 # this is a comment
 
 # compute the mean of three numbers
@@ -36,9 +36,7 @@ Comments are useful for several reasons:
 
 Overall, comments are a crucial part of writing clean, maintainable, and collaborative code. They help make the code more accessible and understandable to anyone who might work on it in the future.
 
-For transparency, Copilot wrote the above text.
-
-## Activity 1: Add comments with AI
+## Adding comments with AI
 
 First we'll use use the `palmerpenguins` dataset again.
 
@@ -48,9 +46,23 @@ library(palmerpenguins)
 data("penguins")
 ```
 
-You can use AI tools to help add comments to your code. Previous experience has taught us that we need to be a bit specific with what we want the AI to do so we'll give it a clear prompt. In your chosen platform, input the below code with the prompt:
+You can use AI tools to help add comments to your code. Previous experience has taught us that we need to be a bit specific with what we want the AI to do so we'll give it a clear prompt. 
 
-> Add comments to this code. Keep the comments as concise as possible Ask me any questions about the code if you are not sure what it is doing or why. Do not change anything about the code. 
+::: {.callout-caution}
+
+## Caution!!!
+
+For this chapter, be very, very careful to ensure you are using GPT-5, not GPT-4. The performance of GPT-5 is significantly better and avoids introducing errors into your code.
+
+:::
+
+::: {.callout-note}
+
+## Activity 1
+
+In Copilot, input the below code with the prompt:
+
+> Add comments to this code. Keep the comments as concise as possible. Ask me any questions about the code if you are not sure what it is doing or why. Do not change anything about the code. 
 
 ```{r eval = FALSE}
 penguins_clean <- penguins %>%
@@ -59,6 +71,21 @@ penguins_clean <- penguins %>%
   mutate(species_sex = interaction(species, sex, sep = "_"))
 ```
 
+:::
+
+Here's its suggested comments:
+
+```{r}
+
+# Clean data, convert factors to character, and create a combined label
+penguins_clean <- penguins %>%                         # start from the penguins data
+  filter(complete.cases(.)) %>%                        # keep only rows with no missing values in any column
+  mutate(across(where(is.factor), as.character)) %>%   # convert all factor columns to character
+  mutate(species_sex = interaction(species, sex, sep = "_"))  # new factor combining species and sex, e.g., "Adelie_female"
+
+```
+
+However, the AI can only tell you **what** the code is doing, it can't say **why** you chose to do that. The more complex your analysis, the more crucial it becomes to explain the rationale and so ensuring your prompt encourages the AI to ask for clarification is vital and in order to be able to answer these questions **you need to know your data and what you're trying to achieve**. 
 
 ```{r img-comment1, echo=FALSE, fig.cap="Adding comments"}
 
@@ -66,17 +93,16 @@ knitr::include_graphics("include/images/05-review/comment1.png")
 
 ```
 
-A couple of notes:
 
-* The AI can only tell you **what** the code is doing, it can't say **why** you chose to do that. In this example, we've created a new column that combines species and sex but the comment gives us no idea what the rationale was for this. The more complex your analysis, the more crucial it becomes to explain the rationale.
-* We've reminded it to be concise but still remember that not all the comments necessary. Too many comments are a different problem to too few, but they're still a problem so always review what it produces.
-
-
-## Activity 2: Review existing comments
+## Review existing comments
 
 In addition to asking AI to comment your code, you can also ask it to review comments you've made yourself. To see how this works with a more complex example, and as an act of masochism, I gave the AI some code I wrote for a publication. The full paper [is here](https://link.springer.com/article/10.1007/s10734-024-01201-5) if you're interested - the quant analyses ended up being punted to the online appendix because of word count.
 
-You can load in the dataset yourself with this code:
+::: {.callout-note}
+
+## Activity 2
+
+Load in the dataset yourself with this code:
 
 ```{r warning=FALSE, message=FALSE}
 # read in data but skip rows 2 and 3
@@ -84,7 +110,18 @@ col_names <- names(read_csv("https://osf.io/download/tf3xs/", n_max = 0))
 dat_raw <- read_csv("https://osf.io/download/tf3xs/", col_names = col_names, skip = 3) 
 ```
 
-The first section of my code involved quite a complicated and long bit of wrangling, all done in a single pipeline. The purpose of the code is to clean up data collected on the survey platform Qualtrics and recoding some of the demographic variables. This is actually a shortened version because the original hit the character limit for Copilot. I did put some effort into writing comments before publication but there are almost certainly improvements to be made. 
+:::
+
+The first section of my code involves quite a complicated and long bit of wrangling, all done in a single pipeline. The purpose of the code is to clean up data collected on the survey platform Qualtrics and recode some of the demographic variables. This is actually a shortened version because the original hit the character limit for Copilot. I did put some effort into writing comments before publication but there are almost certainly improvements to be made. 
+
+::: {.callout-note}
+
+## Activity 3
+
+Provide the code with the following prompt followed by the code:
+
+> Please review the comments in my code and improve them where needed. Make comments clear, concise, and useful for someone reading the code for the first time. Keep the meaning of existing comments, but reword or simplify them for better readability. Add comments only where they genuinely help understanding (e.g., explaining intent or logic, not obvious code). Do not change any of the code itself. After editing, explain your reasoning for each change — briefly describe why the original comment needed improvement (e.g., too long, unclear, redundant, missing context, etc.).
+
 
 ```{r eval = TRUE} 
 dat <- dat_raw%>%
@@ -122,123 +159,149 @@ Non-binary", "Non-Binary", "Non-binary femme", "non-binary male", "non binary",
              everything()) 
 ```
 
-Provide the code with the following prompt:
 
-> Review my use of comments and make improvements to the comments where necessary. Keep the comments as concise as possible. Do not change anything about the code. 
+:::
 
-In an earlier version of this book with a different AI tool (Gemini) providing this prompt resulting in it changing the code without telling me so that not only did it not do what I intended but it also didn't work so you need to **be very, very careful**.
+::: {.callout-caution}
 
-To check that it hasn't changed any code you can run `all.equal()` to compare two datasets. If it returns true, it means that the result of your inital code and the new code are identical. This is a really important check. 
+## Have I mentioned you need to be careful?
+
+1. In an earlier version of this book, providing this prompt resulting in it changing the code without telling me so that not only did it not do what I intended but it also didn't work so you need to **be very, very careful**. 
+
+2. Using GPT-4 for this task resulted in incorrect comments, which then affected subsequent reasoning. 
+
+:::
+
+To check that it hasn't changed any code you can run `all.equal()` to compare two datasets. If it returns true, it means that the result of your initial code and the new code are identical. This is a really important check. 
+
+Here's the code with the new comments:
 
 ```{r}
-# Assigning the processed data to 'dat'
+
+# this is the code copied from Copilot with the edited comments
+
 dat_copilot <- dat_raw %>%
-  filter(Progress > 94, # Exclude responses below 95% completion
-       DistributionChannel != "preview") %>% # Exclude preview data
-select(ResponseId, "duration" = 5, Q5:Q21) %>%
-mutate(
-  disability_nos = replace_na(disability_nos, "None"), # Default 'None' for missing disability info
-  physical_chronic = replace_na(physical_chronic, "None"),
-  mental_health = replace_na(mental_health, "None")
-) %>%
-mutate(
-  gender_cleaned = case_when(
-    Q6 %in% c("Female", "female", "Woman", "woman", "Cisgender woman","female (she/her)", "F", "f", "Womxn", "Woman (tranas)") ~ "Woman",
-    Q6 %in% c("Man", "man", "M", "m", "Male (he/him)", "Male", "male", "Trans man.") ~ "Man",
-    Q6 %in% c("Agender", "Genderfluid", "GNC", "NB", "non-binary", "Non-binary", "Non-Binary", "Non-binary femme", "non-binary male", "non binary", "Non binary", "Nonbinary", "Queer", "Transmasculine", "Non-binary") ~ "Non-binary",
-    TRUE ~ "Not stated"
-  ) # Standardize gender representation
-) %>%
-select(
-  ResponseId,
-  "age" = Q5, # Rename Q5 to 'age'
-  "gender" = Q6, # Rename Q6 to 'gender'
-  "mature" = Q7, # Rename Q7 to 'mature'
-  "level_study" = Q8, # Rename Q8 to 'level_study'
-  "country" = Q9, # Rename Q9 to 'country'
-  "subject" = Q10, # Rename Q10 to 'subject'
-  "english_first" = Q11, # Rename Q11 to 'english_first'
-  "neurotype_open" = Q13, # Rename Q13 to 'neurotype_open'
-  "disability_open" = Q14, # Rename Q14 to 'disability_open'
-  "why_open" = Q18, # Rename Q18 to 'why_open'
-  "how_open" = Q23, # Rename Q23 to 'how_open'
-  "advantages" = Q20, # Rename Q20 to 'advantages'
-  "disadvantages" = Q21, # Rename Q21 to 'disadvantages'
-  everything() # Include all remaining columns
+  filter(Progress > 94,                        # keep responses with >94% progress
+         DistributionChannel != "preview") %>% # exclude preview/test responses
+  select(ResponseId, "duration" = 5, Q5:Q21) %>%  # select ID, rename column 5 as 'duration', keep Q5–Q21
+  # fill missing disability-related fields with "None"
+  mutate(disability_nos = replace_na(disability_nos, "None"),
+         physical_chronic = replace_na(physical_chronic, "None"),
+         mental_health = replace_na(mental_health, "None"),
+  ) %>%
+  # standardise gender responses into four categories
+  mutate(gender_cleaned = case_when(Q6 %in% c("Female", "female", "Woman", "woman", "Cisgender woman","female (she/her)", "F", "f", "Womxn", "Woman (tranas)") ~ "Woman",
+                                    Q6 %in% c("Man", "man", "M", "m", "Male (he/him)", "Male", "male", "Trans man.") ~ "Man",
+                                    Q6 %in% c("Agender", "Genderfluid", "GNC", "NB", "non-binary", "    
+Non-binary", "Non-Binary", "Non-binary femme", "non-binary male", "non binary",
+"Non binary", "Nonbinary", "Queer", "Transmasculine", "Non-binary") ~ "Non-binary",
+                                    TRUE ~ "Not stated")) %>%
+  # rename key columns for clarity and keep all remaining variables
+  select(ResponseId,
+         "age" = Q5,
+         "gender" = Q6,
+         "mature" = Q7,
+         "level_study" = Q8,
+         "country" = Q9,
+         "subject" = Q10,
+         "english_first" = Q11,
+         "neurotype_open" = Q13, 
+         "disability_open" = Q14,
+         "why_open" = Q18,
+         "how_open" = Q23,
+         "advantages" = Q20,
+         "disadvantages" = Q21,
+         everything())
+
+
+# then we can test if the two objects are identical to ensure it hasn't changed anything
+
+all.equal(dat, dat_copilot)
+
+```
+
+`all.equal()` returns true 
+
+
+## Refactoring code
+
+Refactoring means improving the structure of your code without changing what it does. You are not adding new features or fixing bugs—you are just making the code cleaner, easier to read, and easier to work with. Refactoring is like tidying your desk: everything still works the same, but it is more organised and makes future work easier.Refactoring helps you:
+
+* Make your code easier to read: So that you (and others) can quickly understand what it does later on.
+* Simplify your code: Break big, messy pieces into smaller, easier-to-manage parts.
+* Keep your code easy to update: Clean, consistent code makes it easier to fix bugs or add new features later.
+* Avoid repeating yourself: You can spot and remove duplicated or unnecessary code.
+* Sometimes make it faster: Tidier code can help your program run more efficiently.
+* Spot hidden problems: While cleaning up, you might notice bugs or logic errors that you had missed before.
+
+::: {.callout-caution}
+
+## Caution!!!
+
+Are you using GPT-5 as instructed? The next section goes very badly if you aren't.
+
+:::
+
+::: {.callout-note}
+
+## Activity 4
+
+We'll stick with the example of code from my publication because it's complicated enough that there are likely improvements or alternative solutions. Enter the following prompt followed by the code (use the original, not the Copilot commented version):
+
+> I would like you to refactor the following code. Keep the behaviour and output exactly the same, but make the code cleaner, easier to read, and more efficient. Please:
+
+> Add helpful comments where needed.
+> Use clear and consistent variable and function names.
+> Remove any unnecessary repetition.
+> Break long sections into smaller, logical parts if possible.
+> Follow good coding style for R and use a tidyverse approach where possible.
+> After refactoring, briefly explain what changes you made and why.
+
+:::
+
+Here's the refactored code it gave me:
+
+```{r}
+
+# Lookup vectors for gender recoding (kept exactly as in the original lists)
+woman_terms <- c(
+  "Female", "female", "Woman", "woman", "Cisgender woman",
+  "female (she/her)", "F", "f", "Womxn", "Woman (tranas)"
 )
 
+man_terms <- c(
+  "Man", "man", "M", "m", "Male (he/him)", "Male", "male", "Trans man."
+)
 
-```
-
-
-## Refactor code
-
-To refactor code refers to the process of restructuring existing code without changing its intended behavior. The goal is to make the code more maintainable, readable, and efficient, while not altering the functionality or output. The benefits of refactoring code should be that it:
-
-* Improves Readability: Makes the code easier to understand for anyone who reads it in the future, which includes other developers or even the original author after some time has passed.
-* Reduces Complexity: Simplifies complex code structures, breaking down large functions into smaller, more manageable ones.
-* Enhances Maintainability: With cleaner code, it becomes easier to maintain and update the software over time.
-* Facilitates Extensibility: Well-factored code can be extended with new features more easily.
-* Improves Performance: In some cases, refactoring can optimize the performance of the software by removing redundancies and improving algorithms.
-* Identifies Bugs: The process of refactoring can often reveal hidden bugs or issues in the code that can then be fixed.
-
-With thanks to Copilot for writing the above.
-
-## Activity 3: Refactor
-
-I'll stick with the example of code from my publication because it's complicated enough that there are likely improvements or alternative solutions. Using the same code chunk as above, the prompt is:
-
-> refactor this code and explain what you have changed and why. Where possible, use a tidyverse approach. 
-
-Copilot's first attempt produces an error
-
-```{r error=TRUE}
+nonbinary_terms <- c(
+  "Agender", "Genderfluid", "GNC", "NB", "non-binary", "    
+Non-binary", "Non-Binary", "Non-binary femme", "non-binary male", "non binary",
+  "Non binary", "Nonbinary", "Queer", "Transmasculine", "Non-binary"
+)
 
 dat_copilot <- dat_raw %>%
-  filter(Progress > 94, DistributionChannel != "preview") %>% # Keep only complete and non-preview data
-  rename(duration = Q5) %>% # Rename Q5 here to avoid repetition
-  select(ResponseId, duration, Q6:Q21) %>% # Select relevant columns once
-  mutate(
-    across(c(disability_nos, physical_chronic, mental_health), ~replace_na(., "None")), # Use across() for NAs
-    gender_cleaned = case_when(
-      Q6 %in% c("Female", "female", "Woman", "woman", "Cisgender woman", "female (she/her)", "F", "f", "Womxn", "Woman (tranas)") ~ "Woman",
-      Q6 %in% c("Man", "man", "M", "m", "Male (he/him)", "Male", "male", "Trans man.") ~ "Man",
-      Q6 %in% c("Agender", "Genderfluid", "GNC", "NB", "non-binary", "Non-binary", "Non-Binary", "Non-binary femme", "non-binary male", "non binary", "Non binary", "Nonbinary", "Queer", "Transmasculine", "Non-binary") ~ "Non-binary",
-      TRUE ~ "Not stated"
-    ) # Recode gender once
+  # 1) Filter valid responses
+  filter(
+    Progress > 94,                       # keep responses with > 94% progress
+    DistributionChannel != "preview"     # exclude preview/test responses
   ) %>%
-  select(
-    ResponseId,
-    duration,
-    gender_cleaned,
-    across(Q7:Q21, .names = "{.col}_cleaned") # Clean up column names in one go
-  )
-
-```
-
-
-ChatGPT 4o introduces an error in that it's changed `"duration" = 5` to `duration = Q5`. The original code was selecting the column by index number (i.e., the 5th column), this isn't the name of a column and so it doesn't run (although if you fix this it does then run and `all.equal()` returns true.  
-
-```{r error=TRUE}
-dat_chat <- dat_raw %>%
-  # Remove incomplete responses and preview data
-  filter(Progress > 94, DistributionChannel != "preview") %>%
-  
-  # Select necessary columns and rename them
-  select(ResponseId, duration = Q5, Q5:Q21) %>%
-  
-  # Replace NAs with "None" for disability info
-  mutate(across(c(disability_nos, physical_chronic, mental_health), ~ replace_na(.x, "None"))) %>%
-  
-  # Recode gender data
-  mutate(gender_cleaned = case_when(
-    Q6 %in% c("Female", "female", "Woman", "woman", "Cisgender woman", "female (she/her)", "F", "f", "Womxn", "Woman (tranas)") ~ "Woman",
-    Q6 %in% c("Man", "man", "M", "m", "Male (he/him)", "Male", "male", "Trans man.") ~ "Man",
-    Q6 %in% c("Agender", "Genderfluid", "GNC", "NB", "non-binary", "Non-binary", "Non-Binary", "Non-binary femme", "non-binary male", "non binary", "Non binary", "Nonbinary", "Queer", "Transmasculine", "Non-binary") ~ "Non-binary",
-    TRUE ~ "Not stated"
+  # 2) Keep required columns and rename column 5 to 'duration'
+  select(ResponseId, duration = 5, Q5:Q21) %>%
+  # 3) Impute missing disability-related fields with "None"
+  mutate(across(
+    c(disability_nos, physical_chronic, mental_health),
+    ~ replace_na(.x, "None")
   )) %>%
-  
-  # Select and rename necessary columns
+  # 4) Standardise gender responses into four categories
+  mutate(
+    gender_cleaned = case_when(
+      Q6 %in% woman_terms ~ "Woman",
+      Q6 %in% man_terms ~ "Man",
+      Q6 %in% nonbinary_terms ~ "Non-binary",
+      TRUE ~ "Not stated"
+    )
+  ) %>%
+  # 5) Rename key variables for clarity and keep all remaining variables
   select(
     ResponseId,
     age = Q5,
@@ -259,166 +322,73 @@ dat_chat <- dat_raw %>%
 
 ```
 
+```{r img-comment3, echo=FALSE, fig.cap="Refactoring"}
 
-Because you have to check everything so carefully, I wondered if it might be easier to give it less code at any one time so I asked Copilot to split the code in each pipeline into a different object which it did:
-
-> Split the code in each pipeline into a separate object
-
-```{r}
-# Filter complete and non-preview data
-filtered_data <- dat_raw %>%
-  filter(Progress > 94,
-         DistributionChannel != "preview")
-
-# Select and rename columns
-selected_data <- filtered_data %>%
-  select(ResponseId, "duration" = 5, Q5:Q21)
-
-# Replace NAs with "None" for disability info
-na_replaced_data <- selected_data %>%
-  mutate(
-    disability_nos = replace_na(disability_nos, "None"),
-    physical_chronic = replace_na(physical_chronic, "None"),
-    mental_health = replace_na(mental_health, "None")
-  )
-
-# Recode gender data
-gender_recoded_data <- na_replaced_data %>%
-  mutate(
-    gender_cleaned = case_when(
-      Q6 %in% c("Female", "female", "Woman", "woman", "Cisgender woman", "female (she/her)", "F", "f", "Womxn", "Woman (tranas)") ~ "Woman",
-      Q6 %in% c("Man", "man", "M", "m", "Male (he/him)", "Male", "male", "Trans man.") ~ "Man",
-      Q6 %in% c("Agender", "Genderfluid", "GNC", "NB", "non-binary", "Non-binary", "Non-Binary", "Non-binary femme", "non-binary male", "non binary", "Non binary", "Nonbinary", "Queer", "Transmasculine", "Non-binary") ~ "Non-binary",
-      TRUE ~ "Not stated"
-    )
-  )
-
-# Final selection and renaming of columns
-final_data <- gender_recoded_data %>%
-  select(
-    ResponseId,
-    "age" = Q5,
-    "gender" = gender_cleaned,
-    "mature" = Q7,
-    "level_study" = Q8,
-    "country" = Q9,
-    "subject" = Q10,
-    "english_first" = Q11,
-    "neurotype_open" = Q13,
-    "disability_open" = Q14,
-    "why_open" = Q18,
-    "how_open" = Q23,
-    "advantages" = Q20,
-    "disadvantages" = Q21,
-    everything()
-  )
-
-# The final dataset is now stored in 'final_data'
-
+knitr::include_graphics("include/images/05-review/refactor1.png")
 
 ```
 
-Then, for each chunk, I asked it to refactor the code, where possible. I slightly amended the prompt to explicitly say that if the code was already efficient enough, not to change anything because some of the steps are quite simple.
-
-> Refactor this code where necessary. Explain what you changed and why. Do not change anything if the code is already efficient. Use the tidyverse where possible.
-
-* For step 3, Copilot and ChatGPT were both quite good at this and `all.equal()` returned `TRUE`.
-
-```{r eval=FALSE}
-# chatgpt and copilot solution
-chat_dat_na_replaced <- dat_selected %>%
-  mutate(
-    across(c(disability_nos, physical_chronic, mental_health), ~replace_na(., "None"))
-  )
-```
-
-For step 4 it was a bit of a mess:
-
-Both Copilot removed `everything()` with this explanation:
-
-> Removed everything(): The everything() argument in select is redundant here because you've explicitly specified all the columns you want to keep.
-
-Which is just wrong and means you end up not selecting the rest of the columns. 
+Again, it's very important to check that this refactored code has the same result as the original. **There is no shortcut for knowing and checking your data**.
 
 ```{r}
-final_data_copilot <- gender_recoded_data %>%
-  # Select & rename columns (exclude everything())
-  select(ResponseId,
-         age = Q5,
-         gender = gender_cleaned,
-         mature = Q7,
-         level_study = Q8,
-         country = Q9,
-         subject = Q10,
-         english_first = Q11,
-         neurotype_open = Q13,
-         disability_open = Q14,
-         why_open = Q18,
-         how_open = Q23,
-         advantages = Q20,
-         disadvantages = Q21)
-
-
-```
-
-ChatGPT's actually worked and returned an identical object although I am not convinced that this code is better, I think it's just more verbose:
-
-> Clarity: Using rename makes it clear which columns are being renamed before they are selected. This separates the concerns of renaming and selecting, which can improve readability.
-Maintainability: If additional columns need to be renamed or if the selection needs to be modified, having separate rename and select steps makes it easier to adjust the code.
-
-```{r}
-final_data_chat <- gender_recoded_data %>%
-  rename(
-  age = Q5,
-  gender = gender_cleaned,
-  mature = Q7,
-  level_study = Q8,
-  country = Q9,
-  subject = Q10,
-  english_first = Q11,
-  neurotype_open = Q13,
-  disability_open = Q14,
-  why_open = Q18,
-  how_open = Q23,
-  advantages = Q20,
-  disadvantages = Q21
-) %>%
-select(ResponseId, age, gender, mature, level_study, country, subject, english_first, neurotype_open, disability_open, why_open, how_open, advantages, disadvantages, everything())
-
+all.equal(dat, dat_copilot)
 ```
 
 
 ## Alternative approaches
 
-In the PsyTeachR courses we strongly use the `tidyverse` approach but it's useful to be aware of other approaches, particularly Base R given that it doesn't require any package dependencies. 
+In the PsyTeachR courses, we mainly use the tidyverse approach because it provides a consistent, easy-to-read way of writing R code. The tidyverse is a collection of R packages (such as dplyr, ggplot2, and tidyr) that extend R’s core functionality and make data analysis more intuitive.
 
-You can simply amend the prompt to say use Base R as an alternative:
+However, it is also useful to understand Base R, which refers to the set of functions that come built into R itself. Base R does not rely on any additional packages, so it works “out of the box” as soon as you install R. This means your code will run anywhere, even if tidyverse packages are not installed.
 
-> when refactoring, use Base R instead of tidyverse 
+::: {.callout-note}
 
-* It's definitely not more efficient but ChatGPT's output does indeed use Base R and did recode the variable correctly.
+## Activity 5
+
+Ask Copilot to write the code in Base R using the following prompt. Rather than give it the full code, we're just going to do the first few lines that filter and select.
+
+> Please rewrite the following code using Base R instead of tidyverse functions. Keep the same behaviour and output. When you rewrite it, please use only Base R functions (no tidyverse or other external packages).Add short, clear comments explaining what each main step does. After showing the Base R version, explain the key differences between the tidyverse and Base R approaches — for example, syntax style, readability, and performance. If there are trade-offs (e.g., tidyverse is easier to read but Base R runs without extra packages), explain those too.
 
 ```{r}
-# Recode gender data
-gender_recoded_data_chat <- na_replaced_data
+dat_copilot <- dat_raw %>%
+  # 1) Filter valid responses
+  filter(
+    Progress > 94,                       # keep responses with > 94% progress
+    DistributionChannel != "preview"     # exclude preview/test responses
+  ) %>%
+  # 2) Keep required columns and rename column 5 to 'duration'
+  select(ResponseId, duration = 5, Q5:Q21)
+```
 
-# Define the recoding function
-recode_gender <- function(gender) {
-  if (gender %in% c("Female", "female", "Woman", "woman", "Cisgender woman", "female (she/her)", "F", "f", "Womxn", "Woman (tranas)")) {
-    return("Woman")
-  } else if (gender %in% c("Man", "man", "M", "m", "Male (he/him)", "Male", "male", "Trans man.")) {
-    return("Man")
-  } else if (gender %in% c("Agender", "Genderfluid", "GNC", "NB", "non-binary", "Non-binary", "Non-Binary", "Non-binary femme", "non-binary male", "non binary", "Non binary", "Nonbinary", "Queer", "Transmasculine", "Non-binary")) {
-    return("Non-binary")
-  } else {
-    return("Not stated")
-  }
-}
+:::
 
-# Apply the recoding function to the 'Q6' column
-gender_recoded_data_chat$gender_cleaned <- sapply(na_replaced_data$Q6, recode_gender)
+Here's the Base R version. I'll confess I have no idea if this is the approach you would take because I never code in Base R (because look at it, it's horrible).
 
-all.equal(gender_recoded_data, gender_recoded_data_chat)
+```{r}
+## 1) Filter valid responses
+dat_tmp <- dat_raw[dat_raw$Progress > 94 &
+                   dat_raw$DistributionChannel != "preview",
+                   , drop = FALSE]
+
+## 2) Keep required columns and rename column 5 to 'duration'
+keep_idx <- c(
+  match("ResponseId", names(dat_tmp)),         # ResponseId
+  5L,                                          # original column 5
+  match(paste0("Q", 5:21), names(dat_tmp))     # Q5:Q21 by name
+)
+keep_idx <- unique(keep_idx[!is.na(keep_idx)]) # remove NAs, keep order
+
+dat_copilot <- dat_tmp[, keep_idx, drop = FALSE]
+
+## rename the selected column that came from original position 5
+pos5 <- which(keep_idx == 5L)
+if (length(pos5) == 1L) names(dat_copilot)[pos5] <- "duration"
+```
+
+```{r img-comment3, echo=FALSE, fig.cap="Base R. Gross."}
+
+knitr::include_graphics("include/images/05-review/refactor2.png")
+
 ```
 
 
@@ -434,6 +404,3 @@ I hadn't actually used AI to perform these types of tasks before writing this bo
 * That said, the amount of checking it takes is substantial and so I'm not completely convinced that it would be any quicker than doing it yourself.
 
 
-::: {.callout-caution}
-This book was written in Spring 2024 and should be considered a **living document**. The functionality and capability of AI is changing rapidly and the most recent advances may not reflect what is described in this book. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it [via Forms](https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u).
-:::

@@ -180,7 +180,7 @@ Add in your sources for the content you want to study.
 
 ::: {.callout-caution}
 
-The suggested follow-up prompts in Copilot sometimes indicate what the correct answer is, particularly for closed-questions. I've not found a reliable way to stop it from doing this - let me know if you crack it. 
+The suggested follow-up prompts in Copilot sometimes indicate what the correct answer is, particularly for closed-questions like MCQs. I've not found a reliable way to stop it from doing this - let me know if you crack it. 
 
 :::
 

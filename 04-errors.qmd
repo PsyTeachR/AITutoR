@@ -108,7 +108,7 @@ Run `summary(biscoe_penguins)` and give the AI the output so that it better unde
 
 Then give it the code you used to filter the dataset.
 
-::
+:::
 
 If you haven't spotted it by now, the error is that in the filter `biscoe` should be `Biscoe` with a capital B. 
 
@@ -212,7 +212,7 @@ Coding errors tend to repeat and there's actually a fairly small set of errors y
 7. Writing code but not running it so that e.g., a package isn't loaded or an object isn't created that you later need.
 8. Trying to perform a numerical operation on a character/factor variable (or vice versa).
 
-To help boost your confidence in error checking and debugging, you can create Error Mode questions like we showed you in Chapter 3. You could sk it to give you examples based on the common list of errors noted above and work your way through them until you're more comfortable spotting them in your own code.
+To help boost your confidence in error checking and debugging, you can create Error Mode questions like we showed you in Chapter 3. You could ask it to give you examples based on the common list of errors noted above and work your way through them until you're more comfortable spotting them in your own code.
 
 ::: {.callout-tip}
 
