@@ -235,6 +235,42 @@ Effective practice testing is not just about answering more questions; it is abo
 
 :::
 
+## Test yourself
+
+```{r}
+#| echo: false
+library(webexercises)
+opts_meta <- c(
+"Frequent testing reduces metacognition because learners focus on results instead of process",
+answer = "Frequent testing improves metacognitive calibration by revealing what learners actually know versus what they think they know",
+"Self-testing has no measurable effect on metacognitive accuracy",
+"Testing reduces motivation and therefore limits reflection on learning progress"
+)
+```
 
 
+1. Why does practice testing improve long-term retention?
+
+`r mcq(c( "Because it increases exposure to learning materials without requiring recall", "Because it allows learners to memorise correct answers through repetition alone", answer = "Because it strengthens retrieval pathways by requiring effortful recall and feedback", "Because it reduces cognitive load by simplifying the learning task" ))`
+
+>
+
+2. What key difference distinguishes multiple-choice questions (MCQs) from short-answer questions (SAQs)?
+
+`r mcq(c( "MCQs and SAQs both primarily measure recognition memory", answer = "MCQs test recognition of correct information, while SAQs test recall and explanation in your own words", "SAQs are easier to write but harder to mark objectively than MCQs", "MCQs promote deeper understanding because they include distractors" ))`
+
+>
+
+3. How does regular self-testing affect a learner’s metacognitive accuracy?
+
+`r longmcq(opts_meta)`
+
+>
+
+4. AI-generated questions can create `r fitb(c("illusions", "illusions of fluency"), ignore_case = TRUE)` of fluency that make learners overestimate their understanding.
+
+>
+
+5. What strategy makes AI-generated practice testing most effective?
+`r mcq(c( "Doing as many questions as possible in one long session", "Focusing only on questions that feel easy to boost confidence", answer = "Spacing practice over time, reflecting on feedback, and verifying answers using reliable course materials", "Allowing AI to correct all mistakes automatically to reduce frustration" ))`
 

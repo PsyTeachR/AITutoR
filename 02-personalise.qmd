@@ -138,6 +138,8 @@ answer = "They help the AI tailor explanations to your level, background, and so
 
 `r longmcq(opts_custom)`
 
+>
+
 2. The purpose of using a Socratic tutor approach is to:
 
 ```{r}
@@ -154,16 +156,14 @@ answer = "Encourage active recall and deeper learning by answering guided questi
 
 >
 
-3.Metacognition means monitoring what you r fitb("know", ignore_case = TRUE) and understand, and adapting your learning strategies accordingly.
+3.Metacognition means monitoring what you `r fitb("know", ignore_case = TRUE)` and understand, and adapting your learning strategies accordingly.
 
 >
 
 4. What is the expertise reversal effect?
 
 ```{r}
-
 #| echo: false
-
 opts_expertise <- c(
 "When experts deliberately study beginner materials to refresh their skills",
 answer = "When instructional support that benefits novices becomes counterproductive once you gain competence",
@@ -187,5 +187,5 @@ opts_difficulties <- c("Effortless practice with immediate, perfect answers", an
 
 ```
 
-
+`r longmcq(opts_difficulties)`
 

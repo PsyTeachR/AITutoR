@@ -426,6 +426,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#document-errors" id="toc-document-errors" class="nav-link" data-scroll-target="#document-errors"><span class="header-section-number">4.4</span> Document errors</a></li>
   <li><a href="#common-errors" id="toc-common-errors" class="nav-link" data-scroll-target="#common-errors"><span class="header-section-number">4.5</span> Common errors</a></li>
   <li><a href="#be-critical" id="toc-be-critical" class="nav-link" data-scroll-target="#be-critical"><span class="header-section-number">4.6</span> Be critical</a></li>
+  <li><a href="#test-yourself" id="toc-test-yourself" class="nav-link" data-scroll-target="#test-yourself"><span class="header-section-number">4.7</span> Test yourself</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -819,6 +820,49 @@ Important
 <li><p>Treat AI as scaffolding. Ask it to explain rather than replace reasoning, and fade assistance over time to preserve autonomy and develop durable debugging habits.</p></li>
 </ol>
 </div>
+</div>
+</section><section id="test-yourself" class="level2" data-number="4.7"><h2 data-number="4.7" class="anchored" data-anchor-id="test-yourself">
+<span class="header-section-number">4.7</span> Test yourself</h2>
+<ol type="1">
+<li>When using AI for debugging, you should provide both the <input class="webex-solveme nospaces ignorecase" size="4" data-answer="[&quot;code&quot;]"> and the <input class="webex-solveme nospaces ignorecase" size="13" data-answer="[&quot;error&quot;,&quot;error message&quot;]"> to help it accurately diagnose the problem.</li>
+</ol>
+<blockquote class="blockquote">
+
+</blockquote>
+<ol start="2" type="1">
+<li>When might summary() or str() be unsafe to share with AI?</li>
+</ol>
+<div id="radio_MNSKHETXHQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MNSKHETXHQ" value=""><span>When the dataset has been previously published under open license</span></label><label><input type="radio" autocomplete="off" name="radio_MNSKHETXHQ" value="answer"><span>When the dataset contains sensitive or confidential data, because these functions reveal actual values</span></label><label><input type="radio" autocomplete="off" name="radio_MNSKHETXHQ" value=""><span>When using RStudio instead of VS Code, because summary() behaves differently</span></label><label><input type="radio" autocomplete="off" name="radio_MNSKHETXHQ" value=""><span>When the dataset includes factors or characters that the AI cannot parse</span></label>
+</div>
+<blockquote class="blockquote">
+
+</blockquote>
+<ol start="3" type="1">
+<li>What is the best strategy for prompting AI when your code runs but produces unexpected results?</li>
+</ol>
+<div id="radio_UVWDDOMDWX" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_UVWDDOMDWX" value=""><span>Provide only the output so the AI can infer what went wrong</span></label><label><input type="radio" autocomplete="off" name="radio_UVWDDOMDWX" value="answer"><span>Provide the code, the intended outcome, and a short description of what seems incorrect</span></label><label><input type="radio" autocomplete="off" name="radio_UVWDDOMDWX" value=""><span>Ask the AI to rewrite the entire function from scratch to ensure correctness</span></label><label><input type="radio" autocomplete="off" name="radio_UVWDDOMDWX" value=""><span>Send only the error message since the code is functional</span></label>
+</div>
+<blockquote class="blockquote">
+
+</blockquote>
+<ol start="4" type="1">
+<li>According to self-determination theory, how can AI support autonomy during debugging?</li>
+</ol>
+<p><select class="webex-select"><option value="blank"></option>
+<option value="">By providing step-by-step solutions before the user attempts a fix</option>
+<option value="answer">By explaining rather than replacing reasoning, allowing the learner to choose when and how to seek help</option>
+<option value="">By automatically fixing code errors without user input</option>
+<option value="">By suggesting unrelated optimisations to expand the learner’s knowledge</option></select></p>
+<blockquote class="blockquote">
+
+</blockquote>
+<ol start="5" type="1">
+<li>Why is struggling briefly with a coding error beneficial for learning?</li>
+</ol>
+<div id="radio_CGDYBBVQEE" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CGDYBBVQEE" value=""><span>Because cognitive overload forces the learner to memorise the correct syntax</span></label><label><input type="radio" autocomplete="off" name="radio_CGDYBBVQEE" value="answer"><span>Because effortful problem-solving creates desirable difficulties that strengthen retention and transfer of debugging skills</span></label><label><input type="radio" autocomplete="off" name="radio_CGDYBBVQEE" value=""><span>Because frustration reduces confidence and lowers the chance of repeating the same mistake</span></label><label><input type="radio" autocomplete="off" name="radio_CGDYBBVQEE" value=""><span>Because debugging replaces the need for structured practice or feedback</span></label>
 </div>
 
 

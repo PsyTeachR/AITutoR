@@ -424,6 +424,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#adding-comments-with-ai" id="toc-adding-comments-with-ai" class="nav-link" data-scroll-target="#adding-comments-with-ai"><span class="header-section-number">5.2</span> Adding comments with AI</a></li>
   <li><a href="#review-existing-comments" id="toc-review-existing-comments" class="nav-link" data-scroll-target="#review-existing-comments"><span class="header-section-number">5.3</span> Review existing comments</a></li>
   <li><a href="#refactoring-code" id="toc-refactoring-code" class="nav-link" data-scroll-target="#refactoring-code"><span class="header-section-number">5.4</span> Refactoring code</a></li>
+  <li><a href="#be-critical" id="toc-be-critical" class="nav-link" data-scroll-target="#be-critical"><span class="header-section-number">5.5</span> Be critical</a></li>
+  <li><a href="#test-yourself" id="toc-test-yourself" class="nav-link" data-scroll-target="#test-yourself"><span class="header-section-number">5.6</span> Test yourself</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -817,16 +819,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] TRUE</code></pre>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Be critical
-</div>
-</div>
-<div class="callout-body-container callout-body">
+</section><section id="be-critical" class="level2" data-number="5.5"><h2 data-number="5.5" class="anchored" data-anchor-id="be-critical">
+<span class="header-section-number">5.5</span> Be critical</h2>
 <p>From both cognitive science and motivational psychology, writing your own comments and understanding your code before refactoring are key to developing genuine expertise and confidence. As we’ve mentioned several times already, research on <a href="https://www.learningscientists.org/blog/2016/6/23-1">retrieval practice</a> shows that learning is stronger when you produce information yourself rather than copying or reading it. Writing your own code comments works like taking your own lecture notes: the act of explaining what your code does, in your own words, strengthens understanding and recall. Similarly, <a href="https://www.learningscientists.org/blog/2016/7/7-1">elaboration</a> - adding meaning and connections - helps transform isolated code into a coherent mental model of whatever it is you’re doing</p>
 <p>These processes also feed into psychological needs identified in <a href="https://positivepsychology.com/self-determination-theory/">self-determination theory</a>: competence, autonomy, and relatedness. Each time you explain your code or verify that a refactor still works, you experience a small mastery moment, evidence that you can and do actually understand and control what you are doing. These mastery experiences are the foundation of <a href="https://www.simplypsychology.org/self-efficacy.html">self-efficacy</a>, the belief that you can succeed in similar tasks in the future. Over time, writing and refining your own comments builds both technical skill and the confidence to tackle new coding challenges independently.</p>
 <p>By contrast, outsourcing explanations or edits to AI may help short-term efficiency but undermines these motivational and cognitive benefits. When an AI provides ready-made comments or “cleaner” code, it might fuel the <a href="https://en.wikipedia.org/wiki/Dunning%E2%80%93Kruger_effect">Dunning-Kruger effect</a>, the systematic tendancy of people with low ability to over-estimate their competence. This false fluency weakens both comprehension and autonomy: the more you depend on external solutions, the less opportunity you have to consolidate your own knowledge and sense of competence.</p>
@@ -850,10 +844,58 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </div>
 </div>
+</section><section id="test-yourself" class="level2" data-number="5.6"><h2 data-number="5.6" class="anchored" data-anchor-id="test-yourself">
+<span class="header-section-number">5.6</span> Test yourself</h2>
+<ol type="1">
+<li>Why can AI assist in code review but not replace a human reviewer? <select class="webex-select"><option value="blank"></option>
+<option value="">Because AI tools cannot access RStudio’s environment variables</option>
+<option value="">Because AI can only detect missing commas and syntax errors</option>
+<option value="answer">Because AI lacks domain knowledge and intent—it can describe what code does, but not whether it does the right thing</option>
+<option value="">Because AI cannot interpret comments embedded in R scripts</option></select>
+</li>
+</ol>
+<blockquote class="blockquote">
+
+</blockquote>
+<ol start="2" type="1">
+<li>Why should you never upload your research data to AI for code review?
+<div id="radio_ZBXGCAFPNK" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ZBXGCAFPNK" value=""><span>To rewrite code so that it matches the reviewer’s preferred style</span></label><label><input type="radio" autocomplete="off" name="radio_ZBXGCAFPNK" value="answer"><span>To ensure that code runs correctly, is reproducible, auditable, and follows best practices without altering its intended behaviour</span></label><label><input type="radio" autocomplete="off" name="radio_ZBXGCAFPNK" value=""><span>To replace inefficient code with faster alternatives regardless of readability</span></label><label><input type="radio" autocomplete="off" name="radio_ZBXGCAFPNK" value=""><span>To simplify all code into a single consistent template across projects</span></label>
+</div>
+</li>
+</ol>
+<blockquote class="blockquote">
+
+</blockquote>
+<ol start="3" type="1">
+<li>What is the purpose of adding comments to code?
+<div id="radio_CVFUZHDVKE" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CVFUZHDVKE" value=""><span>To satisfy formal documentation requirements only</span></label><label><input type="radio" autocomplete="off" name="radio_CVFUZHDVKE" value="answer"><span>To clarify the logic and purpose of code for human readers without affecting execution</span></label><label><input type="radio" autocomplete="off" name="radio_CVFUZHDVKE" value=""><span>To improve runtime performance by reducing computation</span></label><label><input type="radio" autocomplete="off" name="radio_CVFUZHDVKE" value=""><span>To make AI-generated code easier to parse</span></label>
+</div>
+</li>
+</ol>
+<blockquote class="blockquote">
+
+</blockquote>
+<ol start="4" type="1">
+<li>What is the main distinction between commenting and refactoring? <select class="webex-select"><option value="blank"></option>
+<option value="">Commenting explains existing code; refactoring changes the code structure without changing outputs</option>
+<option value="answer">Commenting explains what and why; refactoring improves organisation and efficiency while preserving behaviour</option>
+<option value="">Both are the same if code readability improves</option>
+<option value="">Refactoring focuses on aesthetics, while commenting affects execution</option></select>
+</li>
+</ol>
+<blockquote class="blockquote">
+
+</blockquote>
+<ol start="5" type="1">
+<li>How does writing your own code comments support learning and motivation?</li>
+</ol>
+<div id="radio_FRMZWNEGUH" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FRMZWNEGUH" value=""><span>It allows you to memorise function syntax without understanding logic</span></label><label><input type="radio" autocomplete="off" name="radio_FRMZWNEGUH" value="answer"><span>It promotes self-explanation, builds mastery experiences, and strengthens self-efficacy through active engagement</span></label><label><input type="radio" autocomplete="off" name="radio_FRMZWNEGUH" value=""><span>It reduces the need for metacognitive reflection and deliberate practice</span></label><label><input type="radio" autocomplete="off" name="radio_FRMZWNEGUH" value=""><span>It ensures that AI-generated comments remain concise and accurate</span></label>
+</div>
 
 
-</div>
-</div>
 </section></main><!-- /main --><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script><script>
 
 /* update total correct if #webex-total_correct exists */

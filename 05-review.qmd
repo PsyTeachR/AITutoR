@@ -371,8 +371,6 @@ all.equal(dat, dat_copilot)
 ```
 
 
-::: {.callout-note}
-
 ## Be critical
 
 From both cognitive science and motivational psychology, writing your own comments and understanding your code before refactoring are key to developing genuine expertise and confidence. As we've mentioned several times already, research on [retrieval practice](https://www.learningscientists.org/blog/2016/6/23-1) shows that learning is stronger when you produce information yourself rather than copying or reading it. Writing your own code comments works like taking your own lecture notes: the act of explaining what your code does, in your own words, strengthens understanding and recall. Similarly, [elaboration](https://www.learningscientists.org/blog/2016/7/7-1) - adding meaning and connections - helps transform isolated code into a coherent mental model of whatever it is you're doing
@@ -396,4 +394,54 @@ I hadn't used AI to perform these types of tasks before writing this book so her
 
 :::
 
+## Test yourself
 
+```{r}
+#| echo: false
+library(webexercises)
+opts_goal <- c(
+"To rewrite code so that it matches the reviewer’s preferred style",
+answer = "To ensure that code runs correctly, is reproducible, auditable, and follows best practices without altering its intended behaviour",
+"To replace inefficient code with faster alternatives regardless of readability",
+"To simplify all code into a single consistent template across projects"
+)
+
+opts_comment <- c(
+"To satisfy formal documentation requirements only",
+answer = "To clarify the logic and purpose of code for human readers without affecting execution",
+"To improve runtime performance by reducing computation",
+"To make AI-generated code easier to parse"
+)
+
+opts_learning <- c(
+"It allows you to memorise function syntax without understanding logic",
+answer = "It promotes self-explanation, builds mastery experiences, and strengthens self-efficacy through active engagement",
+"It reduces the need for metacognitive reflection and deliberate practice",
+"It ensures that AI-generated comments remain concise and accurate"
+)
+
+```
+
+1. Why can AI assist in code review but not replace a human reviewer?
+`r mcq(c( "Because AI tools cannot access RStudio’s environment variables", "Because AI can only detect missing commas and syntax errors", answer = "Because AI lacks domain knowledge and intent—it can describe what code does, but not whether it does the right thing", "Because AI cannot interpret comments embedded in R scripts" ))`
+
+>
+
+2. Why should you never upload your research data to AI for code review? 
+`r longmcq(opts_goal)`
+
+>
+
+3. What is the purpose of adding comments to code?
+`r longmcq(opts_comment)`
+
+>
+
+4. What is the main distinction between commenting and refactoring?
+`r mcq(c( "Commenting explains existing code; refactoring changes the code structure without changing outputs", answer = "Commenting explains what and why; refactoring improves organisation and efficiency while preserving behaviour", "Both are the same if code readability improves", "Refactoring focuses on aesthetics, while commenting affects execution" ))`
+
+>
+
+5. How does writing your own code comments support learning and motivation?
+
+`r longmcq(opts_learning)`

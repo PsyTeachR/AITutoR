@@ -1,9 +1,4 @@
 
-```{r}
-library(webexercises)
-```
-
-
 # Writing Code with AI
 
 This chapter closes the coding section because writing code with AI represents the highest-risk, highest-reward use case. By this point, you should be able to judge when AI suggestions are useful scaffolds and when they are dangerous shortcuts.
@@ -43,18 +38,63 @@ But we'll start with the wrangling and see how far we get.
 
 ## Activity 1
 
-Create a new Quarto or Rmd document and run the below code in a new code chunk. This will load in the data and then it will create the three objects using the code I have written and the approach I have taken so that we can compare with how Copilot gets on.
+First, download the dataset from the [Open Science Framework](https://osf.io/a4zmv). Create a new Quarto or Rmd document and ensure the dataset is in the same folder, as this document, and then run the below code in a new code chunk. This will load in the data and then it will create the three objects using the code I have written and the approach I have taken so that we can compare with how Copilot gets on.
 
 This is such a large dataset that we will just select the columns we need, but bear in mind I have already made the task easier for the AI by doing so.
 
-```{r load-dat}
-#| message: FALSE
-
+```{r}
+#| echo: false
+#| message: false
 library(tidyverse)
 
 # load in the data and just select the columns we will need
 
 dat <- read_csv("include/data/smarvus_complete_050524.csv") |>
+  select(unique_id, age, gender, Q7.1_1:Q7.1_24, Q14.1_1:Q14.1_12)
+
+# pull out demographic data
+demo <- dat %>%
+  select(unique_id, age, gender) |>
+  drop_na()
+
+# create statistics anxiety scale
+
+STARS <- dat %>%
+  select(unique_id, Q7.1_1:Q7.1_24) %>% # select the STARS columns
+  filter(Q7.1_24 == 1) %>% # remove those who failed the attention check
+  select(-Q7.1_24) %>% # remove the attention check column
+  pivot_longer(cols = Q7.1_1:Q7.1_23, names_to = "item", values_to = "score") %>% # transform to long-form
+  group_by(unique_id) %>% # group by participant
+  summarise(stars_score = mean(score)) %>% # calculate mean STARS score for each ppt
+  ungroup() %>% # ungroup so it doesn't mess things up later
+  drop_na() #  get rid of NAs so they don't cause us havoc
+
+# Intolerance of Uncertainty.
+
+IUS <- dat %>%
+  select(unique_id, Q14.1_1:Q14.1_12) %>% # select the BNFE columns
+  pivot_longer(cols = Q14.1_1:Q14.1_12, names_to = "item", values_to = "score") %>% # transform to long-form
+  group_by(unique_id) %>% # group by participant
+  summarise(ius_score = mean(score)) %>% # calculate mean IUS-SF score for each ppt
+  ungroup() %>% # ungroup so it doesn't mess things up later
+  drop_na() #  get rid of NAs so they don't cause us havoc
+
+
+# join it all together
+
+dat_joined <- left_join(demo, IUS) |>
+  left_join(STARS)
+```
+
+
+
+```{r load-dat}
+#| eval: false
+library(tidyverse)
+
+# load in the data and just select the columns we will need
+
+dat <- read_csv("smarvus_complete_050524.csv") |>
   select(unique_id, age, gender, Q7.1_1:Q7.1_24, Q14.1_1:Q14.1_12)
 
 # pull out demographic data
@@ -191,7 +231,7 @@ The correct scoring (including reverse‑scored items) depends on the instrument
 
 ## Activity 4
 
-Again for educatoinal value, we're going to be lazy and give it minimal information. The questions it asks you will be slightly different to the ones above but will hopefully similar enough that this response should still work. Reply to Copilot with the following:
+Again for educatoinal value, we're going to be lazy and give it minimal information. The questions it asks you will be slightly different to the ones above but they will be similar enough that this response should still work. Reply to Copilot with the following:
 
 > Questions 7 are the Statistics Anxiety items and Q14 are the Intolerance of Uncertainty items. I only want complete cases. I don't know anything else.
 
@@ -207,13 +247,12 @@ Before I have a full blown existential crisis, let's get back on track.
 
 ## Activity 5
 
-Here's the code Copilot produced, run it and see if it works (or run the code it provides you when you do this yourself, make sure you update the object name so it creates a unique name rather than `dat` which will overwrite the original and we need to compare them).
+Here's the code Copilot produced, run it and see if it works. If you've prompted it yourself you can also use the version it produced for you (which will be slightly different to mine. You may need to update the object name so it creates a unique name rather than `dat` which will overwrite the original and we need to compare them.
 
-Spoiler alert: it doesn't work (also look at it, it's much more complicated than it needs to be).
+Spoiler alert: the code doesn't work (also look at it, it's much more complicated than it needs to be).
 
 ```{r copilot-error}
 #| error: true
-
 # Load packages (tidyverse-first, no installs here)
 library(dplyr)
 library(tidyr)
@@ -298,6 +337,8 @@ scored <-
 scored
 ```
 
+:::
+
 I'm going to save you the back-and-forth it required to get the code to work but briefly:
 
 - The error was because it was trying to parse a numeric variable as a character variable.
@@ -348,13 +389,15 @@ Now check if this matches our original code:
 all.equal(demo, demo_copilot)
 ```
 
-No but the differences are not potentially not problematic in that they stem from the fact that Copilot has explicitly converted age and gender to factors and my original code just left them as character. Additionally, it has also renamed `unique_id` as `participant_id`, which was entirely unnecessary and may cause some issues if you didn't notice, but the data is at least right.
+No but the differences are potentially not problematic in that they stem from the fact that Copilot has explicitly converted age and gender to factors and my original code just left them as character. Additionally, it has also renamed `unique_id` as `participant_id`, which was entirely unnecessary and may cause some issues if you didn't notice, but the data is at least right.
 
 :::{.callout-note}
 
 ## Activity 7
 
-Now try and reproduce the objects `IUS` and `STARS` using AI to write the code to create `IUS_copilot` and `STARS_copilot` version. If you manage to get this to work, reflect on how much information you had to give it and how you acquired this knowledge.
+Now try and reproduce the objects `IUS` and `STARS` using AI to write the code to create `IUS_copilot` and `STARS_copilot` version. 
+
+If you manage to get this to work, reflect on how much information you had to give it and how you acquired this knowledge.
 
 If you can't get them to match, reflect on what knowledge you might be missing to get it to do the task
 
@@ -368,9 +411,9 @@ But my biggest warning for this chapter is not about your psychological developm
 
 This is why the prophesised AI productivity boom has not come to pass. Now that the technology has been around for a while, instead, what we're seeing is that time saved on doing the task is being spent on cleaning up AI slop. [Programmers who use AI](https://www.cerbos.dev/blog/productivity-paradox-of-ai-coding-assistants) are found to be no faster (and in some cases slower), they just spend more time debugging errors AI has introduced rather than writing  code.
 
-This integrity issue isn't just about students cheating on their homework. The scientific literature is already full of AI garbage. There will be medical "treatments" being prescribed that at best don't work and at worsr are harmful. Code written by AI is significantly increasing [security risks](https://www.techradar.com/pro/ai-is-creating-code-faster-but-this-also-means-more-potential-security-issues).
+This integrity issue isn't just about students cheating on their homework. The scientific literature is already [full of AI garbage](https://retractionwatch.com/papers-and-peer-reviews-with-evidence-of-chatgpt-writing/). There will be medical "treatments" being prescribed based on AI fabricated/analysed data that at best don't work and at worst are harmful. Code written by AI is significantly increasing [security risks](https://www.techradar.com/pro/ai-is-creating-code-faster-but-this-also-means-more-potential-security-issues).
 
-The world has changed and for those of us that value integrity and expertise it feels like we are fighting a losing battle. My greatest challenge to you isn't coding, it is to resist every psychological urge that tells all of us to take the easy route. Respect yourself and your abilities. Spend hours figuring out what the bloody hell is wrong with your data. Learn how to do things properly. If nothing else, you'll be one of a increasingly small pool who can and that is going to become very valuable, very quickly.  
+The world has changed and for those of us that value integrity and expertise it feels like we are fighting a losing battle. My greatest challenge to you isn't about coding, instead, it is to resist every psychological urge that tells all of us to take the easy route. Respect yourself and your abilities. Spend hours figuring out what the bloody hell is wrong with your data. Learn how to do things properly. If nothing else, you'll be one of a increasingly small pool who can and that is going to become very valuable, very quickly.  
 
 
 :::{.callout-note}
@@ -411,4 +454,45 @@ spin_slot_machine <- function() {
 spin_slot_machine()
 
 ```
+
+## Test yourself
+
+```{r}
+#| echo: false
+library(webexercises)
+opts_security <- c("Copy-paste a few example rows into the chat so the model can infer variable types", "Use `summary()` or `str()` to describe the dataset to the AI, regardless of sensitivity", answer = "Start by providing only variable names (e.g., with `ls()`), scaling up detail only if necessary and safe", "Send the full CSV file because Copilot Enterprise does not store data")
+
+opts_ethics <- c(
+"It is acceptable because AI tools are considered standard assistive technology",
+"It is fine if the final code runs correctly",
+answer = "It raises transparency and authorship concerns because the analytical process cannot be audited or replicated",
+"It only violates policy if the AI was paid for using institutional funds"
+)
+```
+
+
+1. Why is it dangerous to assume that an AI coding assistant “knows” what it is doing?
+
+`r mcq(c( "Because it might not have been trained on the most recent R syntax", answer = "Because it does not possess reasoning or understanding—its output is pattern prediction, not knowledge", "Because it sometimes generates syntax errors due to poor tokenisation", "Because it prefers certain libraries over others" ))`
+
+>
+
+2. When Copilot produced incorrect STARS mean scores, the root cause was that it calculated `r fitb(c("sums", "sum scores", "total scores"), ignore_case = TRUE)` instead of means.
+
+>
+
+3. You are working with a sensitive dataset that includes demographic and psychological measures. Which of the following is the most responsible approach when prompting an AI model?
+
+`r longmcq(opts_security)`
+
+>
+
+4. Which psychological mechanism is most strengthened when you work through code rather than accept AI output uncritically?
+`r mcq(c( "Automaticity from repeated syntax exposure", answer = "Mastery experiences that build self-efficacy and competence", "Transfer of learning through imitation", "Cognitive load reduction through delegation" ))`
+
+>
+
+5. A student uses AI to generate R code for their dissertation dataset, but does not document what the AI produced versus what they wrote. Which statement best describes the issue?
+
+`r longmcq(opts_ethics)`
 
