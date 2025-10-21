@@ -179,7 +179,7 @@ Add in your sources for the content you want to study.
 :::
 
 
-## Test yourself
+## Generate questions
 
 You can now ask it to generate questions for you by typing `mcq` or `coding problem`. If the questions seem too easy or hard, you can adjust them by using `calibrate: easier` or `calibrate: harder`
 

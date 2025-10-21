@@ -640,8 +640,8 @@
     "objectID": "03-testing.html#test-yourself",
     "href": "03-testing.html#test-yourself",
     "title": "\n3  Practice testing\n",
-    "section": "\n3.5 Test yourself",
-    "text": "3.5 Test yourself\nYou can now ask it to generate questions for you by typing mcq or coding problem. If the questions seem too easy or hard, you can adjust them by using calibrate: easier or calibrate: harder\n\n\n\n\n\n\nNoteActivity 3\n\n\n\nAsk if for one question of each type and work through them. Reflect on whether they are challenging enough, if they align with your course content, and how they might differ from practice questions you have been given by a human.\n\n\n\n\n\n\n\n\nCaution\n\n\n\nThe suggested follow-up prompts in Copilot sometimes indicate what the correct answer is, particularly for closed-questions like MCQs. I’ve not found a reliable way to stop it from doing this - let me know if you crack it.",
+    "section": "\n3.7 Test yourself",
+    "text": "3.7 Test yourself\n\nWhy does practice testing improve long-term retention?\n\n\nBecause it increases exposure to learning materials without requiring recall\nBecause it allows learners to memorise correct answers through repetition alone\nBecause it strengthens retrieval pathways by requiring effortful recall and feedback\nBecause it reduces cognitive load by simplifying the learning task\n\n\n\n\nWhat key difference distinguishes multiple-choice questions (MCQs) from short-answer questions (SAQs)?\n\n\nMCQs and SAQs both primarily measure recognition memory\nMCQs test recognition of correct information, while SAQs test recall and explanation in your own words\nSAQs are easier to write but harder to mark objectively than MCQs\nMCQs promote deeper understanding because they include distractors\n\n\n\n\nHow does regular self-testing affect a learner’s metacognitive accuracy?\n\n\nFrequent testing reduces metacognition because learners focus on results instead of processFrequent testing improves metacognitive calibration by revealing what learners actually know versus what they think they knowSelf-testing has no measurable effect on metacognitive accuracyTesting reduces motivation and therefore limits reflection on learning progress\n\n\n\n\n\nAI-generated questions can create  of fluency that make learners overestimate their understanding.\n\n\n\n\n\nWhat strategy makes AI-generated practice testing most effective? \nDoing as many questions as possible in one long session\nFocusing only on questions that feel easy to boost confidence\nSpacing practice over time, reflecting on feedback, and verifying answers using reliable course materials\nAllowing AI to correct all mistakes automatically to reduce frustration",
     "crumbs": [
       "Personal Tutor",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Practice testing</span>"
@@ -908,6 +908,17 @@
     "crumbs": [
       "AI Pair Programmer",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Code review</span>"
+    ]
+  },
+  {
+    "objectID": "03-testing.html#generate-questions",
+    "href": "03-testing.html#generate-questions",
+    "title": "\n3  Practice testing\n",
+    "section": "\n3.5 Generate questions",
+    "text": "3.5 Generate questions\nYou can now ask it to generate questions for you by typing mcq or coding problem. If the questions seem too easy or hard, you can adjust them by using calibrate: easier or calibrate: harder\n\n\n\n\n\n\nNoteActivity 3\n\n\n\nAsk if for one question of each type and work through them. Reflect on whether they are challenging enough, if they align with your course content, and how they might differ from practice questions you have been given by a human.\n\n\n\n\n\n\n\n\nCaution\n\n\n\nThe suggested follow-up prompts in Copilot sometimes indicate what the correct answer is, particularly for closed-questions like MCQs. I’ve not found a reliable way to stop it from doing this - let me know if you crack it.",
+    "crumbs": [
+      "Personal Tutor",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Practice testing</span>"
     ]
   }
 ]
