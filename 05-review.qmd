@@ -64,7 +64,7 @@ For this chapter, be very, very careful to ensure you are using GPT-5, not GPT-4
 
 In Copilot, input the below code with the prompt:
 
-> Add comments to this code. Keep the comments as concise as possible. Ask me any questions about the code if you are not sure what it is doing or why. Do not change anything about the code. 
+> Please add concise, helpful comments to this code. Explain what each main step does, not every line. If you are unsure about what a section of code is doing or why it exists, ask me a clarifying question. Do not change the code itself in any way.
 
 ```{r eval = FALSE}
 penguins_clean <- penguins %>%
@@ -80,9 +80,9 @@ Here's its suggested comments:
 ```{r}
 
 # Clean data, convert factors to character, and create a combined label
-penguins_clean <- penguins %>%                         # start from the penguins data
-  filter(complete.cases(.)) %>%                        # keep only rows with no missing values in any column
-  mutate(across(where(is.factor), as.character)) %>%   # convert all factor columns to character
+penguins_clean <- penguins %>% # start from the penguins data
+  filter(complete.cases(.)) %>% # keep only rows with no missing values in any column
+  mutate(across(where(is.factor), as.character)) %>%# convert all factor columns to character
   mutate(species_sex = interaction(species, sex, sep = "_"))  # new factor combining species and sex, e.g., "Adelie_female"
 
 ```
@@ -120,9 +120,11 @@ The first section of my code involves quite a complicated and long bit of wrangl
 
 ## Activity 3
 
-Provide the code with the following prompt followed by the code:
+Provide the code with the following prompt followed by the below code:
 
-> Please review the comments in my code and improve them where needed. Make comments clear, concise, and useful for someone reading the code for the first time. Keep the meaning of existing comments, but reword or simplify them for better readability. Add comments only where they genuinely help understanding (e.g., explaining intent or logic, not obvious code). Do not change any of the code itself. After editing, explain your reasoning for each change — briefly describe why the original comment needed improvement (e.g., too long, unclear, redundant, missing context, etc.).
+> Please review the comments in my code and improve them where needed. Make comments clear, concise, and useful for someone reading the code for the first time. Keep the meaning of existing comments, but reword or simplify them for better readability. 
+
+> Add comments only where they genuinely help understanding (e.g., explaining intent or logic, not obvious code). Do not change any of the code itself. After editing, explain your reasoning for each change — briefly describe why the original comment needed improvement (e.g., too long, unclear, redundant, missing context, etc.).
 
 
 ```{r eval = TRUE} 
@@ -134,14 +136,24 @@ dat <- dat_raw%>%
   mutate(disability_nos = replace_na(disability_nos, "None"),
          physical_chronic = replace_na(physical_chronic, "None"),
          mental_health = replace_na(mental_health, "None"),
-) %>%
-   # recode gender data
-
-  mutate(gender_cleaned = case_when(Q6 %in% c("Female", "female", "Woman", "woman", "Cisgender woman","female (she/her)", "F", "f", "Womxn", "Woman (tranas)") ~ "Woman",
-                                    Q6 %in% c("Man", "man", "M", "m", "Male (he/him)", "Male", "male", "Trans man.") ~ "Man",
-                                    Q6 %in% c("Agender", "Genderfluid", "GNC", "NB", "non-binary", "	
-Non-binary", "Non-Binary", "Non-binary femme", "non-binary male", "non binary",
-"Non binary", "Nonbinary", "Queer", "Transmasculine", "Non-binary") ~ "Non-binary",
+) %>% # recode gender data
+  mutate(gender_cleaned = case_when(Q6 %in% c("Female", "female", "Woman",
+                                              "woman", 
+                                              "Cisgender woman",
+                                              "female (she/her)", 
+                                              "F", "f", "Womxn", 
+                                              "Woman (tranas)") ~ "Woman",
+                                    Q6 %in% c("Man", "man", "M", "m", 
+                                              "Male (he/him)", "Male",
+                                              "male", "Trans man.") ~
+                                      "Man",
+                                    Q6 %in% c("Agender", "Genderfluid",
+                                    "GNC", "NB", "non-binary", 
+                                    "	Non-binary", "Non-Binary",
+                                    "Non-binary femme", "non-binary male",
+                                    "non binary", "Non binary",
+                                    "Nonbinary", "Queer", "Transmasculine",
+                                    "Non-binary") ~ "Non-binary",
                             TRUE ~ "Not stated")) %>%
   # select necessary columns and tidy up the names
         select(ResponseId,
@@ -168,9 +180,11 @@ Non-binary", "Non-Binary", "Non-binary femme", "non-binary male", "non binary",
 
 ## Have I mentioned you need to be careful?
 
-1. In an earlier version of this book, providing this prompt resulting in it changing the code without telling me so that not only did it not do what I intended but it also didn't work so you need to **be very, very careful**. 
+1. In an earlier version of this book, providing this prompt resulting in it changing the code without telling me so that not only did it not do what I intended, it also didn't work so you need to **be very, very careful**. 
 
-2. Using GPT-4 for this task resulted in incorrect comments, which then affected subsequent reasoning. 
+2. Using GPT-4 for this task resulted in incorrect comments, which then affected subsequent reasoning and introduced errors into the code.
+
+**If you use AI without thinking and accidentally commit research fraud, don't blame me, I did try and warn you :)**
 
 :::
 
@@ -183,7 +197,7 @@ Here's the code with the new comments:
 # this is the code copied from Copilot with the edited comments
 
 dat_copilot <- dat_raw %>%
-  filter(Progress > 94,                        # keep responses with >94% progress
+  filter(Progress > 94, # keep responses with >94% progress
          DistributionChannel != "preview") %>% # exclude preview/test responses
   select(ResponseId, "duration" = 5, Q5:Q21) %>%  # select ID, rename column 5 as 'duration', keep Q5–Q21
   # fill missing disability-related fields with "None"
@@ -192,12 +206,24 @@ dat_copilot <- dat_raw %>%
          mental_health = replace_na(mental_health, "None"),
   ) %>%
   # standardise gender responses into four categories
-  mutate(gender_cleaned = case_when(Q6 %in% c("Female", "female", "Woman", "woman", "Cisgender woman","female (she/her)", "F", "f", "Womxn", "Woman (tranas)") ~ "Woman",
-                                    Q6 %in% c("Man", "man", "M", "m", "Male (he/him)", "Male", "male", "Trans man.") ~ "Man",
-                                    Q6 %in% c("Agender", "Genderfluid", "GNC", "NB", "non-binary", "    
-Non-binary", "Non-Binary", "Non-binary femme", "non-binary male", "non binary",
-"Non binary", "Nonbinary", "Queer", "Transmasculine", "Non-binary") ~ "Non-binary",
-                                    TRUE ~ "Not stated")) %>%
+  mutate(gender_cleaned = case_when(Q6 %in% c("Female", "female", "Woman",
+                                              "woman", 
+                                              "Cisgender woman",
+                                              "female (she/her)", 
+                                              "F", "f", "Womxn", 
+                                              "Woman (tranas)") ~ "Woman",
+                                    Q6 %in% c("Man", "man", "M", "m", 
+                                              "Male (he/him)", "Male",
+                                              "male", "Trans man.") ~
+                                      "Man",
+                                    Q6 %in% c("Agender", "Genderfluid",
+                                    "GNC", "NB", "non-binary", 
+                                    "	Non-binary", "Non-Binary",
+                                    "Non-binary femme", "non-binary male",
+                                    "non binary", "Non binary",
+                                    "Nonbinary", "Queer", "Transmasculine",
+                                    "Non-binary") ~ "Non-binary",
+                            TRUE ~ "Not stated")) %>%
   # rename key columns for clarity and keep all remaining variables
   select(ResponseId,
          "age" = Q5,
@@ -222,19 +248,21 @@ all.equal(dat, dat_copilot)
 
 ```
 
-`all.equal()` returns true 
+`all.equal()` returns true which means the two datasets are identical.
 
 
 ## Refactoring code
 
-Refactoring means improving the structure of your code without changing what it does. You are not adding new features or fixing bugs—you are just making the code cleaner, easier to read, and easier to work with. Refactoring is like tidying your desk: everything still works the same, but it is more organised and makes future work easier.Refactoring helps you:
+Refactoring means improving the structure of your code without changing what it does. You are not adding new features or fixing bugs, you are just making the code cleaner, easier to read, and easier to work with. Refactoring is like tidying your desk: everything still works the same, but it is more organised and makes future work easier. 
 
-* Make your code easier to read: So that you (and others) can quickly understand what it does later on.
-* Simplify your code: Break big, messy pieces into smaller, easier-to-manage parts.
-* Keep your code easy to update: Clean, consistent code makes it easier to fix bugs or add new features later.
-* Avoid repeating yourself: You can spot and remove duplicated or unnecessary code.
-* Sometimes make it faster: Tidier code can help your program run more efficiently.
-* Spot hidden problems: While cleaning up, you might notice bugs or logic errors that you had missed before.
+Refactoring:
+
+* Makes your code easier to read so that you (and others) can quickly understand what it does later on.
+* Simplifies your code by breaking big, messy pieces into smaller, easier-to-manage parts.
+* Keeps your code easy to update as clean, consistent code makes it easier to fix bugs or add new features later.
+* Helps you avoid and remove duplicated or unnecessary code.
+* Sometimes make it faster. Tidier code can help your program run more efficiently.
+* Can help spot hidden problems. While cleaning up, you might notice bugs or logic errors that you had missed before.
 
 ::: {.callout-caution}
 
@@ -265,70 +293,76 @@ Here's the refactored code it gave me:
 
 ```{r}
 
-# Lookup vectors for gender recoding (kept exactly as in the original lists)
-woman_terms <- c(
-  "Female", "female", "Woman", "woman", "Cisgender woman",
-  "female (she/her)", "F", "f", "Womxn", "Woman (tranas)"
-)
-
-man_terms <- c(
-  "Man", "man", "M", "m", "Male (he/him)", "Male", "male", "Trans man."
-)
-
-nonbinary_terms <- c(
-  "Agender", "Genderfluid", "GNC", "NB", "non-binary", "    
-Non-binary", "Non-Binary", "Non-binary femme", "non-binary male", "non binary",
-  "Non binary", "Nonbinary", "Queer", "Transmasculine", "Non-binary"
-)
-
+# Clean and prepare the survey data
 dat_copilot <- dat_raw %>%
-  # 1) Filter valid responses
+  # 1) Keep only near-complete, real responses
   filter(
-    Progress > 94,                       # keep responses with > 94% progress
-    DistributionChannel != "preview"     # exclude preview/test responses
+    Progress > 94,                          # exclude incomplete responses
+    DistributionChannel != "preview"        # exclude preview entries
   ) %>%
-  # 2) Keep required columns and rename column 5 to 'duration'
-  select(ResponseId, duration = 5, Q5:Q21) %>%
-  # 3) Impute missing disability-related fields with "None"
-  mutate(across(
-    c(disability_nos, physical_chronic, mental_health),
-    ~ replace_na(.x, "None")
-  )) %>%
-  # 4) Standardise gender responses into four categories
+  # 2) Retain core identifiers and items for analysis
+  #    Note: 'duration = 5' selects the 5th column by position and renames it to 'duration'
+  select(
+    ResponseId,
+    duration = 5,
+    Q5:Q21
+  ) %>%
+  # 3) Impute missing values for disability-related items with "None"
   mutate(
-    gender_cleaned = case_when(
-      Q6 %in% woman_terms ~ "Woman",
-      Q6 %in% man_terms ~ "Man",
-      Q6 %in% nonbinary_terms ~ "Non-binary",
+    across(
+      c(disability_nos, physical_chronic, mental_health),
+      ~ tidyr::replace_na(.x, "None")
+    )
+  ) %>%
+  # 4) Harmonise reported gender text into a clean categorical variable
+  mutate(
+    gender_cleaned = dplyr::case_when(
+      Q6 %in% c(
+        "Female", "female", "Woman", "woman", "Cisgender woman",
+        "female (she/her)", "F", "f", "Womxn", "Woman (tranas)"
+      ) ~ "Woman",
+      Q6 %in% c(
+        "Man", "man", "M", "m", "Male (he/him)", "Male",
+        "male", "Trans man."
+      ) ~ "Man",
+      Q6 %in% c(
+        "Agender", "Genderfluid", "GNC", "NB", "non-binary",
+        "    Non-binary", "Non-Binary", "Non-binary femme",
+        "non-binary male", "non binary", "Non binary",
+        "Nonbinary", "Queer", "Transmasculine", "Non-binary"
+      ) ~ "Non-binary",
       TRUE ~ "Not stated"
     )
   ) %>%
-  # 5) Rename key variables for clarity and keep all remaining variables
+  # 5) Final tidy selection and renaming for analytical clarity
   select(
     ResponseId,
-    age = Q5,
-    gender = Q6,
-    mature = Q7,
-    level_study = Q8,
-    country = Q9,
-    subject = Q10,
-    english_first = Q11,
+    age            = Q5,
+    gender         = Q6,
+    mature         = Q7,
+    level_study    = Q8,
+    country        = Q9,
+    subject        = Q10,
+    english_first  = Q11,
     neurotype_open = Q13,
-    disability_open = Q14,
-    why_open = Q18,
-    how_open = Q23,
-    advantages = Q20,
-    disadvantages = Q21,
-    everything()
+    disability_open= Q14,
+    why_open       = Q18,
+    how_open       = Q23,
+    advantages     = Q20,
+    disadvantages  = Q21,
+    dplyr::everything()
   )
-
 ```
 
-```{r img-refactor1, echo=FALSE, fig.cap="Refactoring"}
+And here's the explanation:
 
-knitr::include_graphics("include/images/05-review/refactor1.png")
+**What changed and why**
 
-```
+1. Structured the pipeline into five clearly labelled stages. Improves readability and helps future maintainers understand intent at a glance without scanning each line.
+2. Consistent tidyverse style and explicit namespaces where helpful. Retained %>%, used across() for grouped NA imputation, and added dplyr:: or tidyr:: qualifiers where ambiguity could arise in larger projects.
+3. Reduced repetition safely Replaced three separate mutate() calls for NA handling with a single mutate(across(...)), which is more concise and makes the imputation intent explicit while keeping the exact same behaviour.
+4. Clear, descriptive comments. Comments explain the purpose of each main step without annotating every line, matching your instruction and making the code easier to review.
+5. Preserved semantics of position-based selection for duration. Kept duration = 5 to ensure identical behaviour, as it renames the fifth column of the current data to duration.
 
 Again, it's very important to check that this refactored code has the same result as the original. **There is no shortcut for knowing and checking your data**.
 
@@ -337,72 +371,29 @@ all.equal(dat, dat_copilot)
 ```
 
 
-## Alternative approaches
-
-In the PsyTeachR courses, we mainly use the tidyverse approach because it provides a consistent, easy-to-read way of writing R code. The tidyverse is a collection of R packages (such as dplyr, ggplot2, and tidyr) that extend R’s core functionality and make data analysis more intuitive.
-
-However, it is also useful to understand Base R, which refers to the set of functions that come built into R itself. Base R does not rely on any additional packages, so it works “out of the box” as soon as you install R. This means your code will run anywhere, even if tidyverse packages are not installed.
-
 ::: {.callout-note}
 
-## Activity 5
+## Be critical
 
-Ask Copilot to write the code in Base R using the following prompt. Rather than give it the full code, we're just going to do the first few lines that filter and select.
+From both cognitive science and motivational psychology, writing your own comments and understanding your code before refactoring are key to developing genuine expertise and confidence. As we've mentioned several times already, research on [retrieval practice](https://www.learningscientists.org/blog/2016/6/23-1) shows that learning is stronger when you produce information yourself rather than copying or reading it. Writing your own code comments works like taking your own lecture notes: the act of explaining what your code does, in your own words, strengthens understanding and recall. Similarly, [elaboration](https://www.learningscientists.org/blog/2016/7/7-1) - adding meaning and connections - helps transform isolated code into a coherent mental model of whatever it is you're doing
 
-> Please rewrite the following code using Base R instead of tidyverse functions. Keep the same behaviour and output. When you rewrite it, please use only Base R functions (no tidyverse or other external packages).Add short, clear comments explaining what each main step does. After showing the Base R version, explain the key differences between the tidyverse and Base R approaches — for example, syntax style, readability, and performance. If there are trade-offs (e.g., tidyverse is easier to read but Base R runs without extra packages), explain those too.
+These processes also feed into psychological needs identified in [self-determination theory](https://positivepsychology.com/self-determination-theory/): competence, autonomy, and relatedness. Each time you explain your code or verify that a refactor still works, you experience a small mastery moment, evidence that you can and do actually understand and control what you are doing. These mastery experiences are the foundation of [self-efficacy](https://www.simplypsychology.org/self-efficacy.html), the belief that you can succeed in similar tasks in the future. Over time, writing and refining your own comments builds both technical skill and the confidence to tackle new coding challenges independently.
 
-```{r}
-dat_copilot <- dat_raw %>%
-  # 1) Filter valid responses
-  filter(
-    Progress > 94,                       # keep responses with > 94% progress
-    DistributionChannel != "preview"     # exclude preview/test responses
-  ) %>%
-  # 2) Keep required columns and rename column 5 to 'duration'
-  select(ResponseId, duration = 5, Q5:Q21)
-```
+By contrast, outsourcing explanations or edits to AI may help short-term efficiency but undermines these motivational and cognitive benefits. When an AI provides ready-made comments or “cleaner” code, it might fuel the [Dunning-Kruger effect](https://en.wikipedia.org/wiki/Dunning%E2%80%93Kruger_effect), the systematic tendancy of people with low ability to over-estimate their competence. This false fluency weakens both comprehension and autonomy: the more you depend on external solutions, the less opportunity you have to consolidate your own knowledge and sense of competence.
 
-:::
-
-Here's the Base R version. I'll confess I have no idea if this is the approach you would take because I never code in Base R (because look at it, it's horrible).
-
-```{r}
-## 1) Filter valid responses
-dat_tmp <- dat_raw[dat_raw$Progress > 94 &
-                   dat_raw$DistributionChannel != "preview",
-                   , drop = FALSE]
-
-## 2) Keep required columns and rename column 5 to 'duration'
-keep_idx <- c(
-  match("ResponseId", names(dat_tmp)),         # ResponseId
-  5L,                                          # original column 5
-  match(paste0("Q", 5:21), names(dat_tmp))     # Q5:Q21 by name
-)
-keep_idx <- unique(keep_idx[!is.na(keep_idx)]) # remove NAs, keep order
-
-dat_copilot <- dat_tmp[, keep_idx, drop = FALSE]
-
-## rename the selected column that came from original position 5
-pos5 <- which(keep_idx == 5L)
-if (length(pos5) == 1L) names(dat_copilot)[pos5] <- "duration"
-```
-
-```{r img-comment3, echo=FALSE, fig.cap="Base R. Gross."}
-
-knitr::include_graphics("include/images/05-review/refactor2.png")
-
-```
+In practice: write your own comments first, then use AI to critique or refine them. When refactoring, ensure you can explain what each variable represents, why each step exists, and how the data should behave before you let AI suggest changes. Doing so keeps you in control, supports your autonomy as a learner, and transforms code review from a mechanical task into an act of understanding.
 
 
-## Conclusions
+::: {.callout-tip}
+## Key takeaways
 
-I hadn't actually used AI to perform these types of tasks before writing this book so here's my takeaways:
+I hadn't used AI to perform these types of tasks before writing this book so here's my takeaways:
 
-* CHECK EVERYTHING.
+* DID I MENTION? CHECK EVERYTHING.
 * If you give an AI code, you simply cannot trust that it won't change your code, even if that's not the task you ask it to do. If you use AI to add or review comments, you must check the output. Tools like `all.equal()` can help perform these checks.
 * You also can't trust that the comments will be accurate. **Anything an AI writes must be checked before you use it. If you don't know if it's right, don't use it**.
 * Because you have to check what it does so carefully, don't give it a big dump of code. Smaller chunks will end up taking less time.
-* In some cases it was really useful and as someone who doesn't really use or know much Base R, I can see that this would be a great way to learn alternative approaches or to fill in comments.
-* That said, the amount of checking it takes is substantial and so I'm not completely convinced that it would be any quicker than doing it yourself.
+
+:::
 
 

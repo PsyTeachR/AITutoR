@@ -1,29 +1,113 @@
 
+```{r}
+library(webexercises)
+```
+
+
 # Writing Code with AI
 
-The best AI platform for writing code is arguably Github Copilot (or Super Clippy as my programmer friends like to call it). However, unless coding is the main part of your job, most people are unlikely to have this subscription service so we'll stick with the generic platforms.
+This chapter closes the coding section because writing code with AI represents the highest-risk, highest-reward use case. By this point, you should be able to judge when AI suggestions are useful scaffolds and when they are dangerous shortcuts.
+
+The best AI platform for writing code is arguably Github Copilot (or Super Clippy as my programmer friends like to call it) and there are also specialised packages that you integrate LLMs into RStudio. However, unless coding is the main part of your job, most people are likely to use AI through a generic platform so we'll stick with regular Copilot.
 
 If you have access to LinkedIn Learning (which you do if you are a UofG student or staff), I'd also highly recommend the short course [Pair Programming with AI](https://www.linkedin.com/learning/pair-programming-with-ai/) by Morten Rand-Hendriksen. It only takes 1.5 hours to work through and he covers using both Github Copilot and ChatGPT and has a nicely critical view of AI.
 
-If you've worked through this entire book then hopefully what you've learned is that AI is very useful but I also hope that you have a healthy mistrust of anything it produces which is why this chapter is the last in the coding section. 
+If you've worked through this entire book then hopefully what you've learned is that AI is very useful but you should also have a healthy mistrust of anything it produces which is why this chapter is the last in the coding section. 
 
 The number 1 rule to keep in mind when using AI to write code is that the platforms we're using **are not intelligent**. They are not thinking. They are not reasoning. They are not telling the truth or lying to you. They don't have gaps in their knowledge because they have no knowledge. They are digital parrots on cocaine. 
 
-## Activity 1: Set-up
+## The problem
 
-Again we'll use the `palmerpenguins` dataset for this exercise so open up an Rmd and run the following:
+The dataset used in this exercise is described in the paper [Data from an International Multi-Centre Study of Statistics and Mathematics Anxieties and Related Variables in University Students (the SMARVUS Dataset)](https://openpsychologydata.metajnl.com/articles/10.5334/jopd.80#2-methods) from the Journal of open Psychology Data.
 
-```{r warning=FALSE, message=FALSE}
+The dataset is massive so as our first task, we want to write code that narrows it down and creates three different objects.
+
+- First, we want to create an object named `demo` that has the demographic information, age and gender. Age data has transformed into categories (e.g., 18-21) for anonymisation purposes. The option 'Implausible' describes values that were 99 or higher or 17 or lower.
+
+- Second, we want an object named `STARS` which will represent each participant's score on the Statistics Anxiety Rating Scale (STARS; Cruise et al., 1985). Each item describes a situation involving statistics such as “Doing an examination in a statistics course” (test and class anxiety), “Interpreting the meaning of a table in a journal article” (interpretation anxiety), or “Going to ask my statistics teacher for individual help with material I am having difficulty understanding” (fear of asking for help). 
+
+- Third, we want an object named, `IUS` which will represent each participant's score on the Intolerance of Uncertainty Scale – Short Form (IUS-SF; Carleton et al., 2007). The scale contains 2 subscales, Prospective Anxiety and Inhibitory Anxiety, each with 6 items. The Prospective Anxiety subscale includes statements such as, “The smallest doubt can stop me from acting”. The Inhibitory Anxiety subscale includes statements such as, “It frustrates me not having all the information I need”. 
+
+For the two scales, we need to pivot it to long-form and then calculate the mean score for each participant. 
+
+We would need this information if we wanted to try and answer questions like:
+
+- What is the demographic make-up of the sample in terms of age and gender?
+- How is statistics anxiety and intolerance of uncertainty related?
+- Do men and women differ in their level of statistics anxiety?
+
+But we'll start with the wrangling and see how far we get.
+
+
+::: {.callout-note}
+
+## Activity 1
+
+Create a new Quarto or Rmd document and run the below code in a new code chunk. This will load in the data and then it will create the three objects using the code I have written and the approach I have taken so that we can compare with how Copilot gets on.
+
+This is such a large dataset that we will just select the columns we need, but bear in mind I have already made the task easier for the AI by doing so.
+
+```{r load-dat}
+#| message: FALSE
+
 library(tidyverse)
-library(palmerpenguins)
-data("penguins")
+
+# load in the data and just select the columns we will need
+
+dat <- read_csv("include/data/smarvus_complete_050524.csv") |>
+  select(unique_id, age, gender, Q7.1_1:Q7.1_24, Q14.1_1:Q14.1_12)
+
+# pull out demographic data
+demo <- dat %>%
+  select(unique_id, age, gender) |>
+  drop_na()
+
+# create statistics anxiety scale
+
+STARS <- dat %>%
+  select(unique_id, Q7.1_1:Q7.1_24) %>% # select the STARS columns
+  filter(Q7.1_24 == 1) %>% # remove those who failed the attention check
+  select(-Q7.1_24) %>% # remove the attention check column
+  pivot_longer(cols = Q7.1_1:Q7.1_23, names_to = "item", values_to = "score") %>% # transform to long-form
+  group_by(unique_id) %>% # group by participant
+  summarise(stars_score = mean(score)) %>% # calculate mean STARS score for each ppt
+  ungroup() %>% # ungroup so it doesn't mess things up later
+  drop_na() #  get rid of NAs so they don't cause us havoc
+
+# Intolerance of Uncertainty.
+
+IUS <- dat %>%
+  select(unique_id, Q14.1_1:Q14.1_12) %>% # select the BNFE columns
+  pivot_longer(cols = Q14.1_1:Q14.1_12, names_to = "item", values_to = "score") %>% # transform to long-form
+  group_by(unique_id) %>% # group by participant
+  summarise(ius_score = mean(score)) %>% # calculate mean IUS-SF score for each ppt
+  ungroup() %>% # ungroup so it doesn't mess things up later
+  drop_na() #  get rid of NAs so they don't cause us havoc
+
+
+# join it all together
+
+dat_joined <- left_join(demo, IUS) |>
+  left_join(STARS)
+
 ```
 
-We'll also do a little bit of set-up for the AI:
+:::
 
-> Act like an expert programmer in R. I want you to help me write code. The code should be commented and should use the tidyverse where possible. Ask me questions about the code before you write it if necessary.
+## Prompting
 
-## Activity 2: Knowledge is power
+Now we want to do some set-up to prompt the AI to help us write code that works and does what we want.
+
+::: {.callout-note}
+
+## Activity 2
+
+In Copilot, enter the following prompt:
+
+> You are an expert R programmer. Help me write tidyverse-first code.
+Before writing code, ask any clarifying questions needed about data, objectives, constraints, and outputs.When you do write code:
+
+> Use tidyverse idioms (|>, dplyr, ggplot2, tibble), no deprecated functions. Comment clearly and explain non-obvious choices (e.g., NA handling, binning, model specs). Be safe and reproducible: no setwd(), no absolute paths, no silent package installs; show any set.seed() if randomness is used. Handle missing data explicitly and avoid destructive transformations.
 
 When you input this starting prompt, there's a good chance you'll get something like the following:
 
@@ -33,280 +117,280 @@ knitr::include_graphics("include/images/06-writing/write1.png")
 
 ```
 
-Before you ask the AI to write code, it's helpful to give it as much information as you can about your dataset. You could write out a description manually but there's a few options to automate. 
+:::
+
+## Describing your dataset
+
+As I may have mentioned once or twice in this book, **there is no substitute for knowing your data**. For the dataset provided here, your first step as an analyst would be to read the paper in full so that you understand how and what data was collected, the scales of measurement, and information about missing data etc.
+
+In addition to this domain knowledge, you can also use information R provides about the dataset to help you.
 
 `summary()` is useful because it provides a list of all variables with some descriptive statistics so that the AI has a sense of the type and range of data:
 
-```{r}
-summary(penguins)
+```{r summary-dat}
+summary(dat)
 ```
 
 `str()` is also useful because it lists the variables, their data type, and the initial values for each variable. However, that means that you are giving it at least some of the raw data so you have to be very careful if you have sensitive / confidential data and you must ensure that any use of AI is in line with your data management plan. Using Copilot Enterprise means the data won't be stored and used to train the AI further so it's potentially the best option (which is not to say it's safe or problem free, please be careful and critical!).
 
-```{r}
-str(penguins)
+```{r str-dat}
+str(dat)
 ```
 
 
 Finally, `ls()` provides a list of all the variables in a given object. It doesn't provide any info on the variable type or sample, but that does mean it's the most secure and depending on the task, this might be all the info you really need to give the AI. I would suggest starting with `ls()` and only scaling up if necessary (and your data isn't sensitive):
 
-```{r}
-ls(penguins)
+```{r ls-dat}
+ls(dat)
 ```
 
-In your AI of choice, input the following:
+::: {.callout-note}
+
+## Activity 3
+
+Now we're going to tell the AI about our dataset and what we'd like. For educational value, we'll give it a purposefully brief description.
+
+> I have a dataset from a paper on statistics anxiety. I want to pull out the demographic information, age and gender and I want to calculate each participant's Statistic Anxiety score and their Intolerance of Uncertainty
 
 > here are the variables in my data set
 
-> ls(penguins)
-[1] "bill_depth_mm"     "bill_length_mm"    "body_mass_g"       "flipper_length_mm"
-[5] "island"            "sex"               "species"           "year" 
+> [1] "age"       "gender"    "Q14.1_1"   "Q14.1_10"  "Q14.1_11"  "Q14.1_12"  "Q14.1_2"  
+ [8] "Q14.1_3"   "Q14.1_4"   "Q14.1_5"   "Q14.1_6"   "Q14.1_7"   "Q14.1_8"   "Q14.1_9"  
+[15] "Q7.1_1"    "Q7.1_10"   "Q7.1_11"   "Q7.1_12"   "Q7.1_13"   "Q7.1_14"   "Q7.1_15"  
+[22] "Q7.1_16"   "Q7.1_17"   "Q7.1_18"   "Q7.1_19"   "Q7.1_2"    "Q7.1_20"   "Q7.1_21"  
+[29] "Q7.1_22"   "Q7.1_23"   "Q7.1_24"   "Q7.1_3"    "Q7.1_4"    "Q7.1_5"    "Q7.1_6"   
+[36] "Q7.1_7"    "Q7.1_8"    "Q7.1_9"    "unique_id"
 
-Without being asked, Copilot has provided some examples of how you might analyse this data using R and the code all works as intended.
+:::
 
-```{r}
-# Load the tidyverse package
-library(tidyverse)
+The number of questions Copilot asks in response to this prompt really does hammer home my point that there is no substitute for knowing your data, I won't copy them all here but you get the idea:
 
-# Assuming your data is in a dataframe called 'penguins'
-# Let's start by getting a summary of each numerical variable
-penguins %>%
-  summarise(
-    Average_Bill_Depth = mean(bill_depth_mm, na.rm = TRUE),
-    Average_Bill_Length = mean(bill_length_mm, na.rm = TRUE),
-    Average_Body_Mass = mean(body_mass_g, na.rm = TRUE),
-    Average_Flipper_Length = mean(flipper_length_mm, na.rm = TRUE)
-  )
+**Which instruments are these items from?**
 
-# Now, let's see the distribution of species across different islands
-penguins %>%
-  count(island, species) %>%
-  ggplot(aes(x = island, y = n, fill = species)) +
-  geom_bar(stat = "identity", position = "dodge") +
-  labs(title = "Distribution of Penguin Species Across Islands",
-       x = "Island",
-       y = "Count")
+- Are Q14.1_* the Statistics Anxiety items and Q7.1_* the Intolerance of Uncertainty items (or vice versa)?
+- What are the exact scales used? For example, common options are:
+Statistics anxiety: STARS (Cruise et al.), SAM (Earp), or newer short forms. Intolerance of Uncertainty: IUS-27 or IUS-12 (Carleton et al.).
+The correct scoring (including reverse‑scored items) depends on the instrument and version.
 
-# We can also explore the relationship between flipper length and body mass
-penguins %>%
-  ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
-  geom_point(aes(color = species)) +
-  geom_smooth(method = "lm") +
-  labs(title = "Relationship Between Flipper Length and Body Mass",
-       x = "Flipper Length (mm)",
-       y = "Body Mass (g)")
+**Response scales and coding**
 
-# If you want to perform more specific analyses or visualizations,
-# please let me know what you're interested in!
+- What are the response options and numeric mapping? For example, Likert 1–5 or 1–7, with higher numbers indicating more of the construct.
+- Are any items reverse‑scored? If yes, please list them (e.g., Q14.1_3, Q14.1_7, …). If you are unsure, I can map once you confirm the instrument.
 
-```
+**Missing data handling**
 
-I find this hugely problematic. Psychology has spent the last decade dealing with a replication and reproducibility crisis stemming in part because of questionable research practices. As a researcher, you should be making informed decisions as to how you analyse your data and I fear that this type of output is going to increase phishing and atheoretical, exploratory-as-confirmatory nonsense. What happens when the example code the AI spits out without being asked turns out to be a significant regression model that you would never have predicted or run yourself? Are you going to delete it? Or convince yourself that you were going to run it anyway and there's a perfectly logical explanation?
+- What rule should we apply per scale? Common options: Person‑mean imputation if ≤20% of items missing on a scale, else set the scale score to NA.  Require complete data (no imputation). Impute with item median across participants.
+- Please specify your preferred approach per scale.
+
+**Demographics**
+
+- Age: is it numeric years? Any range checks to apply (e.g., set implausible ages <16 or >100 to NA)?
+- Gender: current values and required recode? For example, keep original categories, or recode to levels such as “woman”, “man”, “non‑binary”, “prefer not to say”, “other”. Any harmonisation rules you prefer?
+
+::: {.callout-note}
+
+## Activity 4
+
+Again for educatoinal value, we're going to be lazy and give it minimal information. The questions it asks you will be slightly different to the ones above but will hopefully similar enough that this response should still work. Reply to Copilot with the following:
+
+> Questions 7 are the Statistics Anxiety items and Q14 are the Intolerance of Uncertainty items. I only want complete cases. I don't know anything else.
+
+:::
+
+Copilot then produces the code based on the minimal information you've given it. We'll get to whether it works in the next step but regardless of whether it does, I find this hugely problematic. Psychology and many other fields have spent the last decade dealing with a replication and reproducibility crisis stemming in part because of questionable research practices. As a researcher, you should be making informed decisions as to how you analyse your data and even when I have admitted I don't know almost anything about my data, it has provided the code.
+
+"Vibe coding" like this is going to increase phishing and atheoretical, exploratory-as-confirmatory nonsense. What happens when the example code the AI spits out without being asked turns out to be a significant regression model that you would never have predicted or run yourself? Are you going to delete it? Or convince yourself that you were going to run it anyway and there's a perfectly logical explanation?
 
 Before I have a full blown existential crisis, let's get back on track.
 
-## Activity 3: Writing code
+::: {.callout-note}
 
-First, we'll aim to produce a table of descriptive statistics for `body_mass_g` and a histogram. Because it has the exact variable and object names, it should write code we can easily copy and paste:
+## Activity 5
 
-> Create a table of descriptive statistics for body mass and a histogram of that variable
+Here's the code Copilot produced, run it and see if it works (or run the code it provides you when you do this yourself, make sure you update the object name so it creates a unique name rather than `dat` which will overwrite the original and we need to compare them).
 
-This is ChatGPT's output (Copilot was very similar):
+Spoiler alert: it doesn't work (also look at it, it's much more complicated than it needs to be).
 
-```{r}
-# Load the tidyverse package
-library(tidyverse)
+```{r copilot-error}
+#| error: true
 
-# Load the penguins dataset (assuming it's from the palmerpenguins package)
-data("penguins")
+# Load packages (tidyverse-first, no installs here)
+library(dplyr)
+library(tidyr)
+library(readr)
+library(stringr)
+library(tibble)
+library(ggplot2) # not required for scoring, but commonly loaded
 
-# Check the structure of the dataset
-str(penguins)
+# ---- Configuration ---------------------------------------------------------
 
-# Summary statistics for body mass
-body_mass_summary <- penguins %>%
-  summarise(
-    Mean = mean(body_mass_g, na.rm = TRUE),
-    Median = median(body_mass_g, na.rm = TRUE),
-    SD = sd(body_mass_g, na.rm = TRUE),
-    Min = min(body_mass_g, na.rm = TRUE),
-    Max = max(body_mass_g, na.rm = TRUE)
+# 1) Provide your data frame here. Replace `df` with your actual object name or
+#    add a readr call (e.g., read_csv("relative/path.csv")).
+#    The script assumes columns exactly as you listed:
+#    "age", "gender", Q14.1_1:Q14.1_12, Q7.1_1:Q7.1_24, and "unique_id".
+dat_copilot <- dat  # <-- replace if your object is named differently
+
+# 2) Identify item columns by pattern (robust to potential ordering).
+stats_items <- grep("^Q7\\.1_\\d+$", names(dat), value = TRUE)   # Statistics Anxiety items
+iu_items    <- grep("^Q14\\.1_\\d+$", names(dat), value = TRUE)  # Intolerance of Uncertainty items
+
+# Sanity checks: stop early if required columns are missing
+required_cols <- c("unique_id", "age", "gender", stats_items, iu_items)
+missing_cols <- setdiff(c("unique_id", "age", "gender"), names(dat))
+if (length(stats_items) == 0) stop("No Statistics Anxiety items (Q7.1_*) found.")
+if (length(iu_items) == 0)    stop("No Intolerance of Uncertainty items (Q14.1_*) found.")
+if (length(missing_cols) > 0) stop(paste("Missing required column(s):", paste(missing_cols, collapse = ", ")))
+
+# ---- Helper: safe numeric coercion for item responses ----------------------
+# Many survey exports store Likert responses as strings (e.g., "4", "Strongly agree (5)").
+# We parse numeric content only; non-parsable entries become NA (and will be excluded by complete-case rule).
+parse_items_numeric <- function(x) {
+  # parse_number is tolerant to labels like "5 - Strongly agree"; returns NA if no digits
+  readr::parse_number(x, na = c("", "NA", "N/A", "NaN", "Missing"))
+}
+
+# ---- Scoring ---------------------------------------------------------------
+
+scored <-
+  dat_copilot |>
+  # Keep only variables we need to avoid accidental modification of other fields
+  select(all_of(c("unique_id", "age", "gender", stats_items, iu_items))) |>
+  # Coerce age to numeric carefully; do not destructively overwrite original elsewhere
+  mutate(
+    age = suppressWarnings(parse_number(age))
+  ) |>
+  # Coerce item responses to numeric. We do this separately for each scale to allow per-scale complete-case rules.
+  mutate(
+    across(all_of(stats_items), parse_items_numeric),
+    across(all_of(iu_items),    parse_items_numeric)
+  ) |>
+  # Compute totals with explicit missing-data handling:
+  # - Because you requested complete cases, we first flag participants who have *all* item responses for each scale.
+  mutate(
+    stats_complete = if_all(all_of(stats_items), ~ !is.na(.x)),
+    iu_complete    = if_all(all_of(iu_items),    ~ !is.na(.x))
+  ) |>
+  # Compute totals only for complete cases; leave as NA otherwise (we will filter next)
+  mutate(
+    stats_anxiety_total = if_else(
+      stats_complete,
+      rowSums(across(all_of(stats_items)), na.rm = FALSE), # na.rm = FALSE enforces completeness
+      NA_real_
+    ),
+    iu_total = if_else(
+      iu_complete,
+      rowSums(across(all_of(iu_items)), na.rm = FALSE),
+      NA_real_
+    )
+  ) |>
+  # Keep only participants who are complete on *both* scales, as requested
+  filter(stats_complete & iu_complete) |>
+  # Select final output columns in a tidy participant-level tibble
+  transmute(
+    unique_id,
+    age,
+    gender,
+    stats_anxiety_total,
+    iu_total
   )
 
-# Print the summary statistics
-print(body_mass_summary)
-
-# Create a histogram of body mass
-ggplot(penguins, aes(x = body_mass_g)) +
-  geom_histogram(fill = "skyblue", color = "black", bins = 20) +
-  labs(
-    title = "Distribution of Body Mass",
-    x = "Body Mass (g)",
-    y = "Frequency"
-  ) +
-  theme_minimal()
-
+# ---- Result ----------------------------------------------------------------
+scored
 ```
 
-Some notes:
+I'm going to save you the back-and-forth it required to get the code to work but briefly:
 
-* I didn't have to use the exact variable name `body_mass_g`, it has figured out from my request that's the one I want to use.
-* It's also figured out that we're using the `palmerpenguins` dataset, although it hasn't given us the code to load that package so if we just copied and pasted this into a fresh script without having loaded the data already, it wouldn't work.
-* It's used `na.rm = TRUE` to ignore missing values. This is a very common choice but remember **it is a choice**. You might not want this. 
-* Similarly, it's specified `binwidth = 20` for the histogram. Looking at the data this seems like a reasonable binwidth to use, but again, it is a decision the AI has imposed and you must be aware of what you're accepting. 
-* I am aware that I am using phrases like "choice" and "decision" that imbue the AI with consciousness. I know that's not true, I just can't figure out how to write it any other way.
+- The error was because it was trying to parse a numeric variable as a character variable.
+- Once I fixed this, it calculated sum scores not mean scores. Which I spotted because I knew what the plausible range of values for the mean should be.
+- Then it calculated the mean scores incorrectly. I only knew this because I had the correct scores from my version of the code. This is very dangerous because these values looked entirely plausible. 
+- One of the reasons it did this, is that I had failed to tell it that item Q7.1_24 is an attention check and that only participants who answered 1 to that question should be included - so that's my fault for not giving it enough information.
+- The other differences were in how it handled missing data. These weren't necessarily wrong but they were a **choice** and it may not be a choice you intended to make.
 
-## Activity 4: Giving the AI more freedom
+## Break it down
 
-My initial request to write code was relatively simple and relatively well-specified but let's try an example where there's more room for the AI to make choices.
+One of the reasons this is going so wrong is because I have asked it to do too much at once. A better approach is to break down the code into small chunks. Once you can verify each chunk is working, you can then combine and refactor it (if you're starting to think that it might just be easier to write the code yourself and then review it, yes, yes it would).
 
-> Create a new variable that codes each penguin as chonky_boi if they're a large male, chonky_gurl if they're a large female, smol_boi if they're a small male, and smol_boi if they're a small female.
+:::{.callout-note}
 
-This prompt gives a lot of leeway. I haven't specified what to call the new variable, what criteria should be used to determine large and small, or what to do with observations that are neither.
+## Actiivty 6
 
-ChatGPT used percentiles to determine category, however, this code didn't work - it returns all observations as "average":
+We want to start fresh so start a new Copilot chat then enter the prompt from Activity 2 again.
+
+Now we're going to try and do the same thing again but we're going to break down the steps and ask for smaller chunks each time. Follow-up on the set-up prompt with the following:
+
+> Here is my dataset. First, I want to create an object named demo_copilot that has the participant id, age, and gender. Age is categorical. Remove any participant who is missing any information.
+
+> ls(dat)
+ [1] "age"       "gender"    "Q14.1_1"   "Q14.1_10"  "Q14.1_11"  "Q14.1_12"  "Q14.1_2"  
+ [8] "Q14.1_3"   "Q14.1_4"   "Q14.1_5"   "Q14.1_6"   "Q14.1_7"   "Q14.1_8"   "Q14.1_9"  
+[15] "Q7.1_1"    "Q7.1_10"   "Q7.1_11"   "Q7.1_12"   "Q7.1_13"   "Q7.1_14"   "Q7.1_15"  
+[22] "Q7.1_16"   "Q7.1_17"   "Q7.1_18"   "Q7.1_19"   "Q7.1_2"    "Q7.1_20"   "Q7.1_21"  
+[29] "Q7.1_22"   "Q7.1_23"   "Q7.1_24"   "Q7.1_3"    "Q7.1_4"    "Q7.1_5"    "Q7.1_6"   
+[36] "Q7.1_7"    "Q7.1_8"    "Q7.1_9"    "unique_id"
+
+
+:::
+
+```{r copilot-demo}
+# Create demo_copilot with participant ID, categorical age, and gender
+# Remove rows with any missing values in these columns
+demo_copilot <- dat |>
+  select(unique_id, age, gender) |>
+  rename(participant_id = unique_id) |>
+  mutate(age = as.factor(age),
+    gender = as.factor(gender))|>
+  drop_na(participant_id, age, gender)
+```
+
+Now check if this matches our original code:
 
 ```{r}
-# Create a new variable based on conditions
-penguins <- penguins %>%
-  mutate(chonkiness = case_when(
-    sex == "Male" & body_mass_g > quantile(body_mass_g, 0.75, na.rm = TRUE) ~ "chonky_boi",
-    sex == "Female" & body_mass_g > quantile(body_mass_g, 0.75, na.rm = TRUE) ~ "chonky_gurl",
-    sex == "Male" & body_mass_g <= quantile(body_mass_g, 0.25, na.rm = TRUE) ~ "smol_boi",
-    sex == "Female" & body_mass_g <= quantile(body_mass_g, 0.25, na.rm = TRUE) ~ "smol_gurl",
-    TRUE ~ "average"
-  ))
+all.equal(demo, demo_copilot)
 ```
 
-> In this code:
+No but the differences are not potentially not problematic in that they stem from the fact that Copilot has explicitly converted age and gender to factors and my original code just left them as character. Additionally, it has also renamed `unique_id` as `participant_id`, which was entirely unnecessary and may cause some issues if you didn't notice, but the data is at least right.
 
-> We use the case_when() function to define the conditions based on sex and body mass to categorize the penguins.
+:::{.callout-note}
 
-> For males with a body mass greater than the 75th percentile, they are categorized as "chonky_boi." For females with a body mass greater than the 75th percentile, they are categorized as "chonky_gurl."
+## Activity 7
 
-> For males with a body mass less than or equal to the 25th percentile, they are categorized as "smol_boi." For females with a body mass less than or equal to the 25th percentile, they are also categorized as "smol_gurl."
+Now try and reproduce the objects `IUS` and `STARS` using AI to write the code to create `IUS_copilot` and `STARS_copilot` version. If you manage to get this to work, reflect on how much information you had to give it and how you acquired this knowledge.
 
-> All other penguins are categorized as "average."
+If you can't get them to match, reflect on what knowledge you might be missing to get it to do the task
 
-> We then use mutate() to create the new variable "chonkiness" based on these conditions.
+:::
+
+## Be critical
+
+In terms of your psychological and cognitive development, the warnings of this chapter are similar to those in previous chapters: if you don't write the code yourself, you won't gain those mastery experiences that support the development of self-efficacy and competence. Additionally, working through the code yourself requires you to understand your data and is essentially a form of self-explanation which will further impact your competence and ability to produce anything autonomously.
+
+But my biggest warning for this chapter is not about your psychological development, but rather the integrity of your work. If you worked through Activity 7 properly you'll understand that the amount of information you have to provide in order to get AI to write correct code is so extensive, you might as well just have written it yourself and used AI to fix any resulting errors. 
+
+This is why the prophesised AI productivity boom has not come to pass. Now that the technology has been around for a while, instead, what we're seeing is that time saved on doing the task is being spent on cleaning up AI slop. [Programmers who use AI](https://www.cerbos.dev/blog/productivity-paradox-of-ai-coding-assistants) are found to be no faster (and in some cases slower), they just spend more time debugging errors AI has introduced rather than writing  code.
+
+This integrity issue isn't just about students cheating on their homework. The scientific literature is already full of AI garbage. There will be medical "treatments" being prescribed that at best don't work and at worsr are harmful. Code written by AI is significantly increasing [security risks](https://www.techradar.com/pro/ai-is-creating-code-faster-but-this-also-means-more-potential-security-issues).
+
+The world has changed and for those of us that value integrity and expertise it feels like we are fighting a losing battle. My greatest challenge to you isn't coding, it is to resist every psychological urge that tells all of us to take the easy route. Respect yourself and your abilities. Spend hours figuring out what the bloody hell is wrong with your data. Learn how to do things properly. If nothing else, you'll be one of a increasingly small pool who can and that is going to become very valuable, very quickly.  
 
 
-I will spare you the full adventure (my [chat history is here](https://chat.openai.com/share/769637ca-61bd-4ac5-9afb-d21381c5c99e) if you'd like to see) but after quite a bit of back-and-forth I realised that in the dataset "male" and "female" should both be lowercase and the code ChatGPT gave me had capitalised them both. **There is no substitute for knowing your data**.
+:::{.callout-note}
 
-Once I changed this, it worked.
+## Key takeaways
 
-```{r}
-# Create a new variable based on conditions
-penguins <- penguins %>%
-  mutate(chonkiness = case_when(
-    sex == "male" & body_mass_g > quantile(body_mass_g, 0.75, na.rm = TRUE) ~ "chonky_boi",
-    sex == "female" & body_mass_g > quantile(body_mass_g, 0.75, na.rm = TRUE) ~ "chonky_gurl",
-    sex == "male" & body_mass_g <= quantile(body_mass_g, 0.25, na.rm = TRUE) ~ "smol_boi",
-    sex == "female" & body_mass_g <= quantile(body_mass_g, 0.25, na.rm = TRUE) ~ "smol_gurl",
-    TRUE ~ "average"
-  ))
-```
+- There is no substitute for knowing your data. At minimum, you need to know what your variables are, what the range of plausible values are, how you want to handle missing data, and you need to know what you intended to do and why.
+- If you ask AI to write code from scratch, break it down into small chunks. 
+- The more specific you can be, the better the AI will do.
+- Always verify what it produces. Sometimes you can do this with code, sometimes you need your domain knowledge of the data.
+:::
 
-Copilot used a median split and didn't try and create a third category, which is a questionable choice because the wording of the prompt really implies there needs to be something that the penguins are larger or smaller than. The code did work out of the box but remember the Jurassic Park rule: just because you can, doesn't mean you should.
 
-```{r}
-# Assuming 'penguins' is your dataframe and 'body_mass_g' is the variable for body mass
-# First, we need to define what we consider 'large' and 'small'. 
-# For this example, let's assume penguins heavier than the median are 'large', 
-# and those equal or lighter are 'small'.
-
-# Calculate the median body mass
-median_body_mass <- median(penguins$body_mass_g, na.rm = TRUE)
-
-# Create the new variable 'size_category'
-penguins <- penguins %>%
-  mutate(size_category = case_when(
-    body_mass_g > median_body_mass & sex == "male"   ~ "chonky_boi",
-    body_mass_g > median_body_mass & sex == "female" ~ "chonky_gurl",
-    body_mass_g <= median_body_mass & sex == "male"   ~ "smol_boi",
-    body_mass_g <= median_body_mass & sex == "female" ~ "smol_gurl",
-    TRUE ~ NA_character_  # for missing or other values
-  ))
-
-```
-
-This code is a good example of why LLMs are inherently Luddites, even if they produce working code. When there's missing data, `case_when()` used to require you to specify the type of `NA`, in this case `NA_character`. This is very uninintuitive, particularly when you're trying to teach beginner coders (how can missing data have a type? is an entirely reasonable question) so I was delighted when it updated to remove this requirement. Additionally, `TRUE` was also changed to `default` which is a bit more readable. 
-
-However, these changes are not reflected in Copilot's code suggestion because the training data is older than the most recent update to `case_when()`. This example is relatively minor but it's important to recognise that if you only use these kinds of AI to write code, you will very quickly be writing outdated code and using deprecated functions.
-
-## Activity 5: Further analysis
-
-To give one last example, I entered the following prompt:
-
-> write me code to run a linear regression predicting body mass from sex. also include the code to perform necessary assumption tests using the easystats performance package.
-
-```{r error = TRUE, message=FALSE, warning=FALSE}
-library(tidyverse)
-library(easystats)
-
-# Load the penguins dataset
-data("penguins")
-
-# Filter out rows with missing values in body mass or sex
-penguins <- penguins %>%
-  filter(!is.na(body_mass_g) & !is.na(sex))
-
-# Convert sex to lowercase
-penguins$sex <- tolower(penguins$sex)
-
-# Run linear regression predicting body mass from sex
-lm_model <- lm(body_mass_g ~ sex, data = penguins)
-
-# Display summary of the linear regression model
-summary(lm_model)
-
-# Perform assumption tests using the performance package
-check_assumptions(lm_model)
-
-```
-
-ChatGPT refuses to forget that in my conversation history there was an issue with the code not being lowercase, so it's now including functions to covert to lowercase, even though it's completely unnecessary. 
-
-It's also introduced an error. The function should be `check_model()` not `check_assumptions()`. I know this because I know the package. The further away you get from what you could do yourself, the harder it will be to fix any errors and check what it has gotten wrong.
-
-## Conclusions and musings
-
-A large part of coding is looking up examples of code you've used before and then tweaking it to your new use case. If you use AI like this, then it can really help speed you up by giving you access to boiler plate code you can adapt. I also find it very useful for those functions that just refuse to stick in my brain - every time I try to change the labels on a faceted `ggplot()` I get it wrong. These days I just go straight to ChatGPT.
-
-Additionally, if what you're wanting to achieve is relatively simple - descriptive stats, basic plots, simple wrangling and cleaning - it can't go that far wrong and it's usually easy enough to spot when something is wrong.
-
-These use cases work well because it's your expertise that drives what the AI does and reviewing and tweaking the output is built-in to these workflows. These are the AI skills that everyone is going to need. 
-
-But using code written by an AI that you don't understand is dangerous and irresponsible. Think of all the stupid errors it has made throughout this book, and then imagine someone using it to write code for their medical research. I dread to think of the impact that this abdication of responsibility and expertise is going to have (and will already be having). 
-
-This is a depressing way to end this book so I gave all three AIs the prompt:
+This is a depressing way to end this book so I gave Copilot the prompt:
 
 > Write me a fun piece of R code.
 
-ChatGPT reassuring me comedy isn't going to be outsourced any time soon:
+And it took me to Vegas (ok I actually quite like this):
 
-```{r}
-# Function to generate a random joke
-generate_joke <- function() {
-  jokes <- c(
-    "Why don't scientists trust atoms? Because they make up everything!",
-    "I told my wife she was drawing her eyebrows too high. She looked surprised!",
-    "Why did the scarecrow win an award? Because he was outstanding in his field!",
-    "Why don't skeletons fight each other? They don't have the guts!",
-    "I'm reading a book on anti-gravity. It's impossible to put down!"
-  )
-  return(sample(jokes, 1))
-}
-
-# Generate and print a random joke
-cat("Here's a random joke for you:\n")
-cat(generate_joke(), "\n")
-
-```
-
-Copilot on its way to Vegas (ok I actually quite like this one):
-
-```{r}
+```{r copilot-joke}
 # Simple Slot Machine in R
 set.seed(Sys.time()) # Seed for randomness based on current time
 
@@ -328,6 +412,3 @@ spin_slot_machine()
 
 ```
 
-::: {.callout-caution}
-This book was written in Spring 2024 and should be considered a **living document**. The functionality and capability of AI is changing rapidly and the most recent advances may not reflect what is described in this book. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it [via Forms](https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u).
-:::

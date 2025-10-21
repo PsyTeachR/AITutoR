@@ -424,8 +424,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#adding-comments-with-ai" id="toc-adding-comments-with-ai" class="nav-link" data-scroll-target="#adding-comments-with-ai"><span class="header-section-number">5.2</span> Adding comments with AI</a></li>
   <li><a href="#review-existing-comments" id="toc-review-existing-comments" class="nav-link" data-scroll-target="#review-existing-comments"><span class="header-section-number">5.3</span> Review existing comments</a></li>
   <li><a href="#refactoring-code" id="toc-refactoring-code" class="nav-link" data-scroll-target="#refactoring-code"><span class="header-section-number">5.4</span> Refactoring code</a></li>
-  <li><a href="#alternative-approaches" id="toc-alternative-approaches" class="nav-link" data-scroll-target="#alternative-approaches"><span class="header-section-number">5.5</span> Alternative approaches</a></li>
-  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions"><span class="header-section-number">5.6</span> Conclusions</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -508,7 +506,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container callout-body">
 <p>In Copilot, input the below code with the prompt:</p>
 <blockquote class="blockquote">
-<p>Add comments to this code. Keep the comments as concise as possible. Ask me any questions about the code if you are not sure what it is doing or why. Do not change anything about the code.</p>
+<p>Please add concise, helpful comments to this code. Explain what each main step does, not every line. If you are unsure about what a section of code is doing or why it exists, ask me a clarifying question. Do not change the code itself in any way.</p>
 </blockquote>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>penguins_clean <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
@@ -521,9 +519,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Here’s its suggested comments:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Clean data, convert factors to character, and create a combined label</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>penguins_clean <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span>                         <span class="co"># start from the penguins data</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">filter</span>(<span class="fu">complete.cases</span>(.)) <span class="sc">%&gt;%</span>                        <span class="co"># keep only rows with no missing values in any column</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.factor), as.character)) <span class="sc">%&gt;%</span>   <span class="co"># convert all factor columns to character</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>penguins_clean <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> <span class="co"># start from the penguins data</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">filter</span>(<span class="fu">complete.cases</span>(.)) <span class="sc">%&gt;%</span> <span class="co"># keep only rows with no missing values in any column</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.factor), as.character)) <span class="sc">%&gt;%</span><span class="co"># convert all factor columns to character</span></span>
 <span id="cb4-5"><a href="#cb4-5"></a>  <span class="fu">mutate</span>(<span class="at">species_sex =</span> <span class="fu">interaction</span>(species, sex, <span class="at">sep =</span> <span class="st">"_"</span>))  <span class="co"># new factor combining species and sex, e.g., "Adelie_female"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>However, the AI can only tell you <strong>what</strong> the code is doing, it can’t say <strong>why</strong> you chose to do that. The more complex your analysis, the more crucial it becomes to explain the rationale and so ensuring your prompt encourages the AI to ask for clarification is vital and in order to be able to answer these questions <strong>you need to know your data and what you’re trying to achieve</strong>.</p>
@@ -567,9 +565,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Provide the code with the following prompt followed by the code:</p>
+<p>Provide the code with the following prompt followed by the below code:</p>
 <blockquote class="blockquote">
-<p>Please review the comments in my code and improve them where needed. Make comments clear, concise, and useful for someone reading the code for the first time. Keep the meaning of existing comments, but reword or simplify them for better readability. Add comments only where they genuinely help understanding (e.g., explaining intent or logic, not obvious code). Do not change any of the code itself. After editing, explain your reasoning for each change — briefly describe why the original comment needed improvement (e.g., too long, unclear, redundant, missing context, etc.).</p>
+<p>Please review the comments in my code and improve them where needed. Make comments clear, concise, and useful for someone reading the code for the first time. Keep the meaning of existing comments, but reword or simplify them for better readability.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Add comments only where they genuinely help understanding (e.g., explaining intent or logic, not obvious code). Do not change any of the code itself. After editing, explain your reasoning for each change — briefly describe why the original comment needed improvement (e.g., too long, unclear, redundant, missing context, etc.).</p>
 </blockquote>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>dat <span class="ot">&lt;-</span> dat_raw<span class="sc">%&gt;%</span></span>
@@ -580,31 +581,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-6"><a href="#cb6-6"></a>  <span class="fu">mutate</span>(<span class="at">disability_nos =</span> <span class="fu">replace_na</span>(disability_nos, <span class="st">"None"</span>),</span>
 <span id="cb6-7"><a href="#cb6-7"></a>         <span class="at">physical_chronic =</span> <span class="fu">replace_na</span>(physical_chronic, <span class="st">"None"</span>),</span>
 <span id="cb6-8"><a href="#cb6-8"></a>         <span class="at">mental_health =</span> <span class="fu">replace_na</span>(mental_health, <span class="st">"None"</span>),</span>
-<span id="cb6-9"><a href="#cb6-9"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a>   <span class="co"># recode gender data</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a></span>
-<span id="cb6-12"><a href="#cb6-12"></a>  <span class="fu">mutate</span>(<span class="at">gender_cleaned =</span> <span class="fu">case_when</span>(Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Female"</span>, <span class="st">"female"</span>, <span class="st">"Woman"</span>, <span class="st">"woman"</span>, <span class="st">"Cisgender woman"</span>,<span class="st">"female (she/her)"</span>, <span class="st">"F"</span>, <span class="st">"f"</span>, <span class="st">"Womxn"</span>, <span class="st">"Woman (tranas)"</span>) <span class="sc">~</span> <span class="st">"Woman"</span>,</span>
-<span id="cb6-13"><a href="#cb6-13"></a>                                    Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Man"</span>, <span class="st">"man"</span>, <span class="st">"M"</span>, <span class="st">"m"</span>, <span class="st">"Male (he/him)"</span>, <span class="st">"Male"</span>, <span class="st">"male"</span>, <span class="st">"Trans man."</span>) <span class="sc">~</span> <span class="st">"Man"</span>,</span>
-<span id="cb6-14"><a href="#cb6-14"></a>                                    Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Agender"</span>, <span class="st">"Genderfluid"</span>, <span class="st">"GNC"</span>, <span class="st">"NB"</span>, <span class="st">"non-binary"</span>, <span class="st">"    </span></span>
-<span id="cb6-15"><a href="#cb6-15"></a><span class="st">Non-binary"</span>, <span class="st">"Non-Binary"</span>, <span class="st">"Non-binary femme"</span>, <span class="st">"non-binary male"</span>, <span class="st">"non binary"</span>,</span>
-<span id="cb6-16"><a href="#cb6-16"></a><span class="st">"Non binary"</span>, <span class="st">"Nonbinary"</span>, <span class="st">"Queer"</span>, <span class="st">"Transmasculine"</span>, <span class="st">"Non-binary"</span>) <span class="sc">~</span> <span class="st">"Non-binary"</span>,</span>
-<span id="cb6-17"><a href="#cb6-17"></a>                            <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Not stated"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb6-18"><a href="#cb6-18"></a>  <span class="co"># select necessary columns and tidy up the names</span></span>
-<span id="cb6-19"><a href="#cb6-19"></a>        <span class="fu">select</span>(ResponseId,</span>
-<span id="cb6-20"><a href="#cb6-20"></a>             <span class="st">"age"</span> <span class="ot">=</span> Q5,</span>
-<span id="cb6-21"><a href="#cb6-21"></a>             <span class="st">"gender"</span> <span class="ot">=</span> Q6,</span>
-<span id="cb6-22"><a href="#cb6-22"></a>             <span class="st">"mature"</span> <span class="ot">=</span> Q7,</span>
-<span id="cb6-23"><a href="#cb6-23"></a>             <span class="st">"level_study"</span> <span class="ot">=</span> Q8,</span>
-<span id="cb6-24"><a href="#cb6-24"></a>             <span class="st">"country"</span> <span class="ot">=</span> Q9,</span>
-<span id="cb6-25"><a href="#cb6-25"></a>             <span class="st">"subject"</span> <span class="ot">=</span> Q10,</span>
-<span id="cb6-26"><a href="#cb6-26"></a>             <span class="st">"english_first"</span> <span class="ot">=</span> Q11,</span>
-<span id="cb6-27"><a href="#cb6-27"></a>             <span class="st">"neurotype_open"</span> <span class="ot">=</span> Q13, </span>
-<span id="cb6-28"><a href="#cb6-28"></a>             <span class="st">"disability_open"</span> <span class="ot">=</span> Q14,</span>
-<span id="cb6-29"><a href="#cb6-29"></a>             <span class="st">"why_open"</span> <span class="ot">=</span> Q18,</span>
-<span id="cb6-30"><a href="#cb6-30"></a>             <span class="st">"how_open"</span> <span class="ot">=</span> Q23,</span>
-<span id="cb6-31"><a href="#cb6-31"></a>             <span class="st">"advantages"</span> <span class="ot">=</span> Q20,</span>
-<span id="cb6-32"><a href="#cb6-32"></a>             <span class="st">"disadvantages"</span> <span class="ot">=</span> Q21,</span>
-<span id="cb6-33"><a href="#cb6-33"></a>             <span class="fu">everything</span>()) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-9"><a href="#cb6-9"></a>) <span class="sc">%&gt;%</span> <span class="co"># recode gender data</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a>  <span class="fu">mutate</span>(<span class="at">gender_cleaned =</span> <span class="fu">case_when</span>(Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Female"</span>, <span class="st">"female"</span>, <span class="st">"Woman"</span>,</span>
+<span id="cb6-11"><a href="#cb6-11"></a>                                              <span class="st">"woman"</span>, </span>
+<span id="cb6-12"><a href="#cb6-12"></a>                                              <span class="st">"Cisgender woman"</span>,</span>
+<span id="cb6-13"><a href="#cb6-13"></a>                                              <span class="st">"female (she/her)"</span>, </span>
+<span id="cb6-14"><a href="#cb6-14"></a>                                              <span class="st">"F"</span>, <span class="st">"f"</span>, <span class="st">"Womxn"</span>, </span>
+<span id="cb6-15"><a href="#cb6-15"></a>                                              <span class="st">"Woman (tranas)"</span>) <span class="sc">~</span> <span class="st">"Woman"</span>,</span>
+<span id="cb6-16"><a href="#cb6-16"></a>                                    Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Man"</span>, <span class="st">"man"</span>, <span class="st">"M"</span>, <span class="st">"m"</span>, </span>
+<span id="cb6-17"><a href="#cb6-17"></a>                                              <span class="st">"Male (he/him)"</span>, <span class="st">"Male"</span>,</span>
+<span id="cb6-18"><a href="#cb6-18"></a>                                              <span class="st">"male"</span>, <span class="st">"Trans man."</span>) <span class="sc">~</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a>                                      <span class="st">"Man"</span>,</span>
+<span id="cb6-20"><a href="#cb6-20"></a>                                    Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Agender"</span>, <span class="st">"Genderfluid"</span>,</span>
+<span id="cb6-21"><a href="#cb6-21"></a>                                    <span class="st">"GNC"</span>, <span class="st">"NB"</span>, <span class="st">"non-binary"</span>, </span>
+<span id="cb6-22"><a href="#cb6-22"></a>                                    <span class="st">"   Non-binary"</span>, <span class="st">"Non-Binary"</span>,</span>
+<span id="cb6-23"><a href="#cb6-23"></a>                                    <span class="st">"Non-binary femme"</span>, <span class="st">"non-binary male"</span>,</span>
+<span id="cb6-24"><a href="#cb6-24"></a>                                    <span class="st">"non binary"</span>, <span class="st">"Non binary"</span>,</span>
+<span id="cb6-25"><a href="#cb6-25"></a>                                    <span class="st">"Nonbinary"</span>, <span class="st">"Queer"</span>, <span class="st">"Transmasculine"</span>,</span>
+<span id="cb6-26"><a href="#cb6-26"></a>                                    <span class="st">"Non-binary"</span>) <span class="sc">~</span> <span class="st">"Non-binary"</span>,</span>
+<span id="cb6-27"><a href="#cb6-27"></a>                            <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Not stated"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-28"><a href="#cb6-28"></a>  <span class="co"># select necessary columns and tidy up the names</span></span>
+<span id="cb6-29"><a href="#cb6-29"></a>        <span class="fu">select</span>(ResponseId,</span>
+<span id="cb6-30"><a href="#cb6-30"></a>             <span class="st">"age"</span> <span class="ot">=</span> Q5,</span>
+<span id="cb6-31"><a href="#cb6-31"></a>             <span class="st">"gender"</span> <span class="ot">=</span> Q6,</span>
+<span id="cb6-32"><a href="#cb6-32"></a>             <span class="st">"mature"</span> <span class="ot">=</span> Q7,</span>
+<span id="cb6-33"><a href="#cb6-33"></a>             <span class="st">"level_study"</span> <span class="ot">=</span> Q8,</span>
+<span id="cb6-34"><a href="#cb6-34"></a>             <span class="st">"country"</span> <span class="ot">=</span> Q9,</span>
+<span id="cb6-35"><a href="#cb6-35"></a>             <span class="st">"subject"</span> <span class="ot">=</span> Q10,</span>
+<span id="cb6-36"><a href="#cb6-36"></a>             <span class="st">"english_first"</span> <span class="ot">=</span> Q11,</span>
+<span id="cb6-37"><a href="#cb6-37"></a>             <span class="st">"neurotype_open"</span> <span class="ot">=</span> Q13, </span>
+<span id="cb6-38"><a href="#cb6-38"></a>             <span class="st">"disability_open"</span> <span class="ot">=</span> Q14,</span>
+<span id="cb6-39"><a href="#cb6-39"></a>             <span class="st">"why_open"</span> <span class="ot">=</span> Q18,</span>
+<span id="cb6-40"><a href="#cb6-40"></a>             <span class="st">"how_open"</span> <span class="ot">=</span> Q23,</span>
+<span id="cb6-41"><a href="#cb6-41"></a>             <span class="st">"advantages"</span> <span class="ot">=</span> Q20,</span>
+<span id="cb6-42"><a href="#cb6-42"></a>             <span class="st">"disadvantages"</span> <span class="ot">=</span> Q21,</span>
+<span id="cb6-43"><a href="#cb6-43"></a>             <span class="fu">everything</span>()) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -619,9 +630,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li><p>In an earlier version of this book, providing this prompt resulting in it changing the code without telling me so that not only did it not do what I intended but it also didn’t work so you need to <strong>be very, very careful</strong>.</p></li>
-<li><p>Using GPT-4 for this task resulted in incorrect comments, which then affected subsequent reasoning.</p></li>
+<li><p>In an earlier version of this book, providing this prompt resulting in it changing the code without telling me so that not only did it not do what I intended, it also didn’t work so you need to <strong>be very, very careful</strong>.</p></li>
+<li><p>Using GPT-4 for this task resulted in incorrect comments, which then affected subsequent reasoning and introduced errors into the code.</p></li>
 </ol>
+<p><strong>If you use AI without thinking and accidentally commit research fraud, don’t blame me, I did try and warn you :)</strong></p>
 </div>
 </div>
 <p>To check that it hasn’t changed any code you can run <code><a href="https://rdrr.io/r/base/all.equal.html">all.equal()</a></code> to compare two datasets. If it returns true, it means that the result of your initial code and the new code are identical. This is a really important check.</p>
@@ -630,7 +642,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># this is the code copied from Copilot with the edited comments</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a></span>
 <span id="cb7-3"><a href="#cb7-3"></a>dat_copilot <span class="ot">&lt;-</span> dat_raw <span class="sc">%&gt;%</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a>  <span class="fu">filter</span>(Progress <span class="sc">&gt;</span> <span class="dv">94</span>,                        <span class="co"># keep responses with &gt;94% progress</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>  <span class="fu">filter</span>(Progress <span class="sc">&gt;</span> <span class="dv">94</span>, <span class="co"># keep responses with &gt;94% progress</span></span>
 <span id="cb7-5"><a href="#cb7-5"></a>         DistributionChannel <span class="sc">!=</span> <span class="st">"preview"</span>) <span class="sc">%&gt;%</span> <span class="co"># exclude preview/test responses</span></span>
 <span id="cb7-6"><a href="#cb7-6"></a>  <span class="fu">select</span>(ResponseId, <span class="st">"duration"</span> <span class="ot">=</span> <span class="dv">5</span>, Q5<span class="sc">:</span>Q21) <span class="sc">%&gt;%</span>  <span class="co"># select ID, rename column 5 as 'duration', keep Q5–Q21</span></span>
 <span id="cb7-7"><a href="#cb7-7"></a>  <span class="co"># fill missing disability-related fields with "None"</span></span>
@@ -639,48 +651,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-10"><a href="#cb7-10"></a>         <span class="at">mental_health =</span> <span class="fu">replace_na</span>(mental_health, <span class="st">"None"</span>),</span>
 <span id="cb7-11"><a href="#cb7-11"></a>  ) <span class="sc">%&gt;%</span></span>
 <span id="cb7-12"><a href="#cb7-12"></a>  <span class="co"># standardise gender responses into four categories</span></span>
-<span id="cb7-13"><a href="#cb7-13"></a>  <span class="fu">mutate</span>(<span class="at">gender_cleaned =</span> <span class="fu">case_when</span>(Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Female"</span>, <span class="st">"female"</span>, <span class="st">"Woman"</span>, <span class="st">"woman"</span>, <span class="st">"Cisgender woman"</span>,<span class="st">"female (she/her)"</span>, <span class="st">"F"</span>, <span class="st">"f"</span>, <span class="st">"Womxn"</span>, <span class="st">"Woman (tranas)"</span>) <span class="sc">~</span> <span class="st">"Woman"</span>,</span>
-<span id="cb7-14"><a href="#cb7-14"></a>                                    Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Man"</span>, <span class="st">"man"</span>, <span class="st">"M"</span>, <span class="st">"m"</span>, <span class="st">"Male (he/him)"</span>, <span class="st">"Male"</span>, <span class="st">"male"</span>, <span class="st">"Trans man."</span>) <span class="sc">~</span> <span class="st">"Man"</span>,</span>
-<span id="cb7-15"><a href="#cb7-15"></a>                                    Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Agender"</span>, <span class="st">"Genderfluid"</span>, <span class="st">"GNC"</span>, <span class="st">"NB"</span>, <span class="st">"non-binary"</span>, <span class="st">"    </span></span>
-<span id="cb7-16"><a href="#cb7-16"></a><span class="st">Non-binary"</span>, <span class="st">"Non-Binary"</span>, <span class="st">"Non-binary femme"</span>, <span class="st">"non-binary male"</span>, <span class="st">"non binary"</span>,</span>
-<span id="cb7-17"><a href="#cb7-17"></a><span class="st">"Non binary"</span>, <span class="st">"Nonbinary"</span>, <span class="st">"Queer"</span>, <span class="st">"Transmasculine"</span>, <span class="st">"Non-binary"</span>) <span class="sc">~</span> <span class="st">"Non-binary"</span>,</span>
-<span id="cb7-18"><a href="#cb7-18"></a>                                    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Not stated"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb7-19"><a href="#cb7-19"></a>  <span class="co"># rename key columns for clarity and keep all remaining variables</span></span>
-<span id="cb7-20"><a href="#cb7-20"></a>  <span class="fu">select</span>(ResponseId,</span>
-<span id="cb7-21"><a href="#cb7-21"></a>         <span class="st">"age"</span> <span class="ot">=</span> Q5,</span>
-<span id="cb7-22"><a href="#cb7-22"></a>         <span class="st">"gender"</span> <span class="ot">=</span> Q6,</span>
-<span id="cb7-23"><a href="#cb7-23"></a>         <span class="st">"mature"</span> <span class="ot">=</span> Q7,</span>
-<span id="cb7-24"><a href="#cb7-24"></a>         <span class="st">"level_study"</span> <span class="ot">=</span> Q8,</span>
-<span id="cb7-25"><a href="#cb7-25"></a>         <span class="st">"country"</span> <span class="ot">=</span> Q9,</span>
-<span id="cb7-26"><a href="#cb7-26"></a>         <span class="st">"subject"</span> <span class="ot">=</span> Q10,</span>
-<span id="cb7-27"><a href="#cb7-27"></a>         <span class="st">"english_first"</span> <span class="ot">=</span> Q11,</span>
-<span id="cb7-28"><a href="#cb7-28"></a>         <span class="st">"neurotype_open"</span> <span class="ot">=</span> Q13, </span>
-<span id="cb7-29"><a href="#cb7-29"></a>         <span class="st">"disability_open"</span> <span class="ot">=</span> Q14,</span>
-<span id="cb7-30"><a href="#cb7-30"></a>         <span class="st">"why_open"</span> <span class="ot">=</span> Q18,</span>
-<span id="cb7-31"><a href="#cb7-31"></a>         <span class="st">"how_open"</span> <span class="ot">=</span> Q23,</span>
-<span id="cb7-32"><a href="#cb7-32"></a>         <span class="st">"advantages"</span> <span class="ot">=</span> Q20,</span>
-<span id="cb7-33"><a href="#cb7-33"></a>         <span class="st">"disadvantages"</span> <span class="ot">=</span> Q21,</span>
-<span id="cb7-34"><a href="#cb7-34"></a>         <span class="fu">everything</span>())</span>
-<span id="cb7-35"><a href="#cb7-35"></a></span>
-<span id="cb7-36"><a href="#cb7-36"></a></span>
-<span id="cb7-37"><a href="#cb7-37"></a><span class="co"># then we can test if the two objects are identical to ensure it hasn't changed anything</span></span>
-<span id="cb7-38"><a href="#cb7-38"></a></span>
-<span id="cb7-39"><a href="#cb7-39"></a><span class="fu">all.equal</span>(dat, dat_copilot)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-13"><a href="#cb7-13"></a>  <span class="fu">mutate</span>(<span class="at">gender_cleaned =</span> <span class="fu">case_when</span>(Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Female"</span>, <span class="st">"female"</span>, <span class="st">"Woman"</span>,</span>
+<span id="cb7-14"><a href="#cb7-14"></a>                                              <span class="st">"woman"</span>, </span>
+<span id="cb7-15"><a href="#cb7-15"></a>                                              <span class="st">"Cisgender woman"</span>,</span>
+<span id="cb7-16"><a href="#cb7-16"></a>                                              <span class="st">"female (she/her)"</span>, </span>
+<span id="cb7-17"><a href="#cb7-17"></a>                                              <span class="st">"F"</span>, <span class="st">"f"</span>, <span class="st">"Womxn"</span>, </span>
+<span id="cb7-18"><a href="#cb7-18"></a>                                              <span class="st">"Woman (tranas)"</span>) <span class="sc">~</span> <span class="st">"Woman"</span>,</span>
+<span id="cb7-19"><a href="#cb7-19"></a>                                    Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Man"</span>, <span class="st">"man"</span>, <span class="st">"M"</span>, <span class="st">"m"</span>, </span>
+<span id="cb7-20"><a href="#cb7-20"></a>                                              <span class="st">"Male (he/him)"</span>, <span class="st">"Male"</span>,</span>
+<span id="cb7-21"><a href="#cb7-21"></a>                                              <span class="st">"male"</span>, <span class="st">"Trans man."</span>) <span class="sc">~</span></span>
+<span id="cb7-22"><a href="#cb7-22"></a>                                      <span class="st">"Man"</span>,</span>
+<span id="cb7-23"><a href="#cb7-23"></a>                                    Q6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Agender"</span>, <span class="st">"Genderfluid"</span>,</span>
+<span id="cb7-24"><a href="#cb7-24"></a>                                    <span class="st">"GNC"</span>, <span class="st">"NB"</span>, <span class="st">"non-binary"</span>, </span>
+<span id="cb7-25"><a href="#cb7-25"></a>                                    <span class="st">"   Non-binary"</span>, <span class="st">"Non-Binary"</span>,</span>
+<span id="cb7-26"><a href="#cb7-26"></a>                                    <span class="st">"Non-binary femme"</span>, <span class="st">"non-binary male"</span>,</span>
+<span id="cb7-27"><a href="#cb7-27"></a>                                    <span class="st">"non binary"</span>, <span class="st">"Non binary"</span>,</span>
+<span id="cb7-28"><a href="#cb7-28"></a>                                    <span class="st">"Nonbinary"</span>, <span class="st">"Queer"</span>, <span class="st">"Transmasculine"</span>,</span>
+<span id="cb7-29"><a href="#cb7-29"></a>                                    <span class="st">"Non-binary"</span>) <span class="sc">~</span> <span class="st">"Non-binary"</span>,</span>
+<span id="cb7-30"><a href="#cb7-30"></a>                            <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Not stated"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-31"><a href="#cb7-31"></a>  <span class="co"># rename key columns for clarity and keep all remaining variables</span></span>
+<span id="cb7-32"><a href="#cb7-32"></a>  <span class="fu">select</span>(ResponseId,</span>
+<span id="cb7-33"><a href="#cb7-33"></a>         <span class="st">"age"</span> <span class="ot">=</span> Q5,</span>
+<span id="cb7-34"><a href="#cb7-34"></a>         <span class="st">"gender"</span> <span class="ot">=</span> Q6,</span>
+<span id="cb7-35"><a href="#cb7-35"></a>         <span class="st">"mature"</span> <span class="ot">=</span> Q7,</span>
+<span id="cb7-36"><a href="#cb7-36"></a>         <span class="st">"level_study"</span> <span class="ot">=</span> Q8,</span>
+<span id="cb7-37"><a href="#cb7-37"></a>         <span class="st">"country"</span> <span class="ot">=</span> Q9,</span>
+<span id="cb7-38"><a href="#cb7-38"></a>         <span class="st">"subject"</span> <span class="ot">=</span> Q10,</span>
+<span id="cb7-39"><a href="#cb7-39"></a>         <span class="st">"english_first"</span> <span class="ot">=</span> Q11,</span>
+<span id="cb7-40"><a href="#cb7-40"></a>         <span class="st">"neurotype_open"</span> <span class="ot">=</span> Q13, </span>
+<span id="cb7-41"><a href="#cb7-41"></a>         <span class="st">"disability_open"</span> <span class="ot">=</span> Q14,</span>
+<span id="cb7-42"><a href="#cb7-42"></a>         <span class="st">"why_open"</span> <span class="ot">=</span> Q18,</span>
+<span id="cb7-43"><a href="#cb7-43"></a>         <span class="st">"how_open"</span> <span class="ot">=</span> Q23,</span>
+<span id="cb7-44"><a href="#cb7-44"></a>         <span class="st">"advantages"</span> <span class="ot">=</span> Q20,</span>
+<span id="cb7-45"><a href="#cb7-45"></a>         <span class="st">"disadvantages"</span> <span class="ot">=</span> Q21,</span>
+<span id="cb7-46"><a href="#cb7-46"></a>         <span class="fu">everything</span>())</span>
+<span id="cb7-47"><a href="#cb7-47"></a></span>
+<span id="cb7-48"><a href="#cb7-48"></a></span>
+<span id="cb7-49"><a href="#cb7-49"></a><span class="co"># then we can test if the two objects are identical to ensure it hasn't changed anything</span></span>
+<span id="cb7-50"><a href="#cb7-50"></a></span>
+<span id="cb7-51"><a href="#cb7-51"></a><span class="fu">all.equal</span>(dat, dat_copilot)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
 </div>
-<p><code><a href="https://rdrr.io/r/base/all.equal.html">all.equal()</a></code> returns true</p>
+<p><code><a href="https://rdrr.io/r/base/all.equal.html">all.equal()</a></code> returns true which means the two datasets are identical.</p>
 </section><section id="refactoring-code" class="level2" data-number="5.4"><h2 data-number="5.4" class="anchored" data-anchor-id="refactoring-code">
 <span class="header-section-number">5.4</span> Refactoring code</h2>
-<p>Refactoring means improving the structure of your code without changing what it does. You are not adding new features or fixing bugs—you are just making the code cleaner, easier to read, and easier to work with. Refactoring is like tidying your desk: everything still works the same, but it is more organised and makes future work easier.Refactoring helps you:</p>
+<p>Refactoring means improving the structure of your code without changing what it does. You are not adding new features or fixing bugs, you are just making the code cleaner, easier to read, and easier to work with. Refactoring is like tidying your desk: everything still works the same, but it is more organised and makes future work easier.</p>
+<p>Refactoring:</p>
 <ul>
-<li>Make your code easier to read: So that you (and others) can quickly understand what it does later on.</li>
-<li>Simplify your code: Break big, messy pieces into smaller, easier-to-manage parts.</li>
-<li>Keep your code easy to update: Clean, consistent code makes it easier to fix bugs or add new features later.</li>
-<li>Avoid repeating yourself: You can spot and remove duplicated or unnecessary code.</li>
-<li>Sometimes make it faster: Tidier code can help your program run more efficiently.</li>
-<li>Spot hidden problems: While cleaning up, you might notice bugs or logic errors that you had missed before.</li>
+<li>Makes your code easier to read so that you (and others) can quickly understand what it does later on.</li>
+<li>Simplifies your code by breaking big, messy pieces into smaller, easier-to-manage parts.</li>
+<li>Keeps your code easy to update as clean, consistent code makes it easier to fix bugs or add new features later.</li>
+<li>Helps you avoid and remove duplicated or unnecessary code.</li>
+<li>Sometimes make it faster. Tidier code can help your program run more efficiently.</li>
+<li>Can help spot hidden problems. While cleaning up, you might notice bugs or logic errors that you had missed before.</li>
 </ul>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -716,71 +741,75 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Here’s the refactored code it gave me:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Lookup vectors for gender recoding (kept exactly as in the original lists)</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>woman_terms <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb9-3"><a href="#cb9-3"></a>  <span class="st">"Female"</span>, <span class="st">"female"</span>, <span class="st">"Woman"</span>, <span class="st">"woman"</span>, <span class="st">"Cisgender woman"</span>,</span>
-<span id="cb9-4"><a href="#cb9-4"></a>  <span class="st">"female (she/her)"</span>, <span class="st">"F"</span>, <span class="st">"f"</span>, <span class="st">"Womxn"</span>, <span class="st">"Woman (tranas)"</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a>)</span>
-<span id="cb9-6"><a href="#cb9-6"></a></span>
-<span id="cb9-7"><a href="#cb9-7"></a>man_terms <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb9-8"><a href="#cb9-8"></a>  <span class="st">"Man"</span>, <span class="st">"man"</span>, <span class="st">"M"</span>, <span class="st">"m"</span>, <span class="st">"Male (he/him)"</span>, <span class="st">"Male"</span>, <span class="st">"male"</span>, <span class="st">"Trans man."</span></span>
-<span id="cb9-9"><a href="#cb9-9"></a>)</span>
-<span id="cb9-10"><a href="#cb9-10"></a></span>
-<span id="cb9-11"><a href="#cb9-11"></a>nonbinary_terms <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb9-12"><a href="#cb9-12"></a>  <span class="st">"Agender"</span>, <span class="st">"Genderfluid"</span>, <span class="st">"GNC"</span>, <span class="st">"NB"</span>, <span class="st">"non-binary"</span>, <span class="st">"    </span></span>
-<span id="cb9-13"><a href="#cb9-13"></a><span class="st">Non-binary"</span>, <span class="st">"Non-Binary"</span>, <span class="st">"Non-binary femme"</span>, <span class="st">"non-binary male"</span>, <span class="st">"non binary"</span>,</span>
-<span id="cb9-14"><a href="#cb9-14"></a>  <span class="st">"Non binary"</span>, <span class="st">"Nonbinary"</span>, <span class="st">"Queer"</span>, <span class="st">"Transmasculine"</span>, <span class="st">"Non-binary"</span></span>
-<span id="cb9-15"><a href="#cb9-15"></a>)</span>
-<span id="cb9-16"><a href="#cb9-16"></a></span>
-<span id="cb9-17"><a href="#cb9-17"></a>dat_copilot <span class="ot">&lt;-</span> dat_raw <span class="sc">%&gt;%</span></span>
-<span id="cb9-18"><a href="#cb9-18"></a>  <span class="co"># 1) Filter valid responses</span></span>
-<span id="cb9-19"><a href="#cb9-19"></a>  <span class="fu">filter</span>(</span>
-<span id="cb9-20"><a href="#cb9-20"></a>    Progress <span class="sc">&gt;</span> <span class="dv">94</span>,                       <span class="co"># keep responses with &gt; 94% progress</span></span>
-<span id="cb9-21"><a href="#cb9-21"></a>    DistributionChannel <span class="sc">!=</span> <span class="st">"preview"</span>     <span class="co"># exclude preview/test responses</span></span>
-<span id="cb9-22"><a href="#cb9-22"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb9-23"><a href="#cb9-23"></a>  <span class="co"># 2) Keep required columns and rename column 5 to 'duration'</span></span>
-<span id="cb9-24"><a href="#cb9-24"></a>  <span class="fu">select</span>(ResponseId, <span class="at">duration =</span> <span class="dv">5</span>, Q5<span class="sc">:</span>Q21) <span class="sc">%&gt;%</span></span>
-<span id="cb9-25"><a href="#cb9-25"></a>  <span class="co"># 3) Impute missing disability-related fields with "None"</span></span>
-<span id="cb9-26"><a href="#cb9-26"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(</span>
-<span id="cb9-27"><a href="#cb9-27"></a>    <span class="fu">c</span>(disability_nos, physical_chronic, mental_health),</span>
-<span id="cb9-28"><a href="#cb9-28"></a>    <span class="sc">~</span> <span class="fu">replace_na</span>(.x, <span class="st">"None"</span>)</span>
-<span id="cb9-29"><a href="#cb9-29"></a>  )) <span class="sc">%&gt;%</span></span>
-<span id="cb9-30"><a href="#cb9-30"></a>  <span class="co"># 4) Standardise gender responses into four categories</span></span>
-<span id="cb9-31"><a href="#cb9-31"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb9-32"><a href="#cb9-32"></a>    <span class="at">gender_cleaned =</span> <span class="fu">case_when</span>(</span>
-<span id="cb9-33"><a href="#cb9-33"></a>      Q6 <span class="sc">%in%</span> woman_terms <span class="sc">~</span> <span class="st">"Woman"</span>,</span>
-<span id="cb9-34"><a href="#cb9-34"></a>      Q6 <span class="sc">%in%</span> man_terms <span class="sc">~</span> <span class="st">"Man"</span>,</span>
-<span id="cb9-35"><a href="#cb9-35"></a>      Q6 <span class="sc">%in%</span> nonbinary_terms <span class="sc">~</span> <span class="st">"Non-binary"</span>,</span>
-<span id="cb9-36"><a href="#cb9-36"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Not stated"</span></span>
-<span id="cb9-37"><a href="#cb9-37"></a>    )</span>
-<span id="cb9-38"><a href="#cb9-38"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb9-39"><a href="#cb9-39"></a>  <span class="co"># 5) Rename key variables for clarity and keep all remaining variables</span></span>
-<span id="cb9-40"><a href="#cb9-40"></a>  <span class="fu">select</span>(</span>
-<span id="cb9-41"><a href="#cb9-41"></a>    ResponseId,</span>
-<span id="cb9-42"><a href="#cb9-42"></a>    <span class="at">age =</span> Q5,</span>
-<span id="cb9-43"><a href="#cb9-43"></a>    <span class="at">gender =</span> Q6,</span>
-<span id="cb9-44"><a href="#cb9-44"></a>    <span class="at">mature =</span> Q7,</span>
-<span id="cb9-45"><a href="#cb9-45"></a>    <span class="at">level_study =</span> Q8,</span>
-<span id="cb9-46"><a href="#cb9-46"></a>    <span class="at">country =</span> Q9,</span>
-<span id="cb9-47"><a href="#cb9-47"></a>    <span class="at">subject =</span> Q10,</span>
-<span id="cb9-48"><a href="#cb9-48"></a>    <span class="at">english_first =</span> Q11,</span>
-<span id="cb9-49"><a href="#cb9-49"></a>    <span class="at">neurotype_open =</span> Q13,</span>
-<span id="cb9-50"><a href="#cb9-50"></a>    <span class="at">disability_open =</span> Q14,</span>
-<span id="cb9-51"><a href="#cb9-51"></a>    <span class="at">why_open =</span> Q18,</span>
-<span id="cb9-52"><a href="#cb9-52"></a>    <span class="at">how_open =</span> Q23,</span>
-<span id="cb9-53"><a href="#cb9-53"></a>    <span class="at">advantages =</span> Q20,</span>
-<span id="cb9-54"><a href="#cb9-54"></a>    <span class="at">disadvantages =</span> Q21,</span>
-<span id="cb9-55"><a href="#cb9-55"></a>    <span class="fu">everything</span>()</span>
-<span id="cb9-56"><a href="#cb9-56"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Clean and prepare the survey data</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>dat_copilot <span class="ot">&lt;-</span> dat_raw <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="co"># 1) Keep only near-complete, real responses</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">filter</span>(</span>
+<span id="cb9-5"><a href="#cb9-5"></a>    Progress <span class="sc">&gt;</span> <span class="dv">94</span>,                          <span class="co"># exclude incomplete responses</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>    DistributionChannel <span class="sc">!=</span> <span class="st">"preview"</span>        <span class="co"># exclude preview entries</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>  <span class="co"># 2) Retain core identifiers and items for analysis</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a>  <span class="co">#    Note: 'duration = 5' selects the 5th column by position and renames it to 'duration'</span></span>
+<span id="cb9-10"><a href="#cb9-10"></a>  <span class="fu">select</span>(</span>
+<span id="cb9-11"><a href="#cb9-11"></a>    ResponseId,</span>
+<span id="cb9-12"><a href="#cb9-12"></a>    <span class="at">duration =</span> <span class="dv">5</span>,</span>
+<span id="cb9-13"><a href="#cb9-13"></a>    Q5<span class="sc">:</span>Q21</span>
+<span id="cb9-14"><a href="#cb9-14"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb9-15"><a href="#cb9-15"></a>  <span class="co"># 3) Impute missing values for disability-related items with "None"</span></span>
+<span id="cb9-16"><a href="#cb9-16"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb9-17"><a href="#cb9-17"></a>    <span class="fu">across</span>(</span>
+<span id="cb9-18"><a href="#cb9-18"></a>      <span class="fu">c</span>(disability_nos, physical_chronic, mental_health),</span>
+<span id="cb9-19"><a href="#cb9-19"></a>      <span class="sc">~</span> tidyr<span class="sc">::</span><span class="fu">replace_na</span>(.x, <span class="st">"None"</span>)</span>
+<span id="cb9-20"><a href="#cb9-20"></a>    )</span>
+<span id="cb9-21"><a href="#cb9-21"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb9-22"><a href="#cb9-22"></a>  <span class="co"># 4) Harmonise reported gender text into a clean categorical variable</span></span>
+<span id="cb9-23"><a href="#cb9-23"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb9-24"><a href="#cb9-24"></a>    <span class="at">gender_cleaned =</span> dplyr<span class="sc">::</span><span class="fu">case_when</span>(</span>
+<span id="cb9-25"><a href="#cb9-25"></a>      Q6 <span class="sc">%in%</span> <span class="fu">c</span>(</span>
+<span id="cb9-26"><a href="#cb9-26"></a>        <span class="st">"Female"</span>, <span class="st">"female"</span>, <span class="st">"Woman"</span>, <span class="st">"woman"</span>, <span class="st">"Cisgender woman"</span>,</span>
+<span id="cb9-27"><a href="#cb9-27"></a>        <span class="st">"female (she/her)"</span>, <span class="st">"F"</span>, <span class="st">"f"</span>, <span class="st">"Womxn"</span>, <span class="st">"Woman (tranas)"</span></span>
+<span id="cb9-28"><a href="#cb9-28"></a>      ) <span class="sc">~</span> <span class="st">"Woman"</span>,</span>
+<span id="cb9-29"><a href="#cb9-29"></a>      Q6 <span class="sc">%in%</span> <span class="fu">c</span>(</span>
+<span id="cb9-30"><a href="#cb9-30"></a>        <span class="st">"Man"</span>, <span class="st">"man"</span>, <span class="st">"M"</span>, <span class="st">"m"</span>, <span class="st">"Male (he/him)"</span>, <span class="st">"Male"</span>,</span>
+<span id="cb9-31"><a href="#cb9-31"></a>        <span class="st">"male"</span>, <span class="st">"Trans man."</span></span>
+<span id="cb9-32"><a href="#cb9-32"></a>      ) <span class="sc">~</span> <span class="st">"Man"</span>,</span>
+<span id="cb9-33"><a href="#cb9-33"></a>      Q6 <span class="sc">%in%</span> <span class="fu">c</span>(</span>
+<span id="cb9-34"><a href="#cb9-34"></a>        <span class="st">"Agender"</span>, <span class="st">"Genderfluid"</span>, <span class="st">"GNC"</span>, <span class="st">"NB"</span>, <span class="st">"non-binary"</span>,</span>
+<span id="cb9-35"><a href="#cb9-35"></a>        <span class="st">"    Non-binary"</span>, <span class="st">"Non-Binary"</span>, <span class="st">"Non-binary femme"</span>,</span>
+<span id="cb9-36"><a href="#cb9-36"></a>        <span class="st">"non-binary male"</span>, <span class="st">"non binary"</span>, <span class="st">"Non binary"</span>,</span>
+<span id="cb9-37"><a href="#cb9-37"></a>        <span class="st">"Nonbinary"</span>, <span class="st">"Queer"</span>, <span class="st">"Transmasculine"</span>, <span class="st">"Non-binary"</span></span>
+<span id="cb9-38"><a href="#cb9-38"></a>      ) <span class="sc">~</span> <span class="st">"Non-binary"</span>,</span>
+<span id="cb9-39"><a href="#cb9-39"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Not stated"</span></span>
+<span id="cb9-40"><a href="#cb9-40"></a>    )</span>
+<span id="cb9-41"><a href="#cb9-41"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb9-42"><a href="#cb9-42"></a>  <span class="co"># 5) Final tidy selection and renaming for analytical clarity</span></span>
+<span id="cb9-43"><a href="#cb9-43"></a>  <span class="fu">select</span>(</span>
+<span id="cb9-44"><a href="#cb9-44"></a>    ResponseId,</span>
+<span id="cb9-45"><a href="#cb9-45"></a>    <span class="at">age            =</span> Q5,</span>
+<span id="cb9-46"><a href="#cb9-46"></a>    <span class="at">gender         =</span> Q6,</span>
+<span id="cb9-47"><a href="#cb9-47"></a>    <span class="at">mature         =</span> Q7,</span>
+<span id="cb9-48"><a href="#cb9-48"></a>    <span class="at">level_study    =</span> Q8,</span>
+<span id="cb9-49"><a href="#cb9-49"></a>    <span class="at">country        =</span> Q9,</span>
+<span id="cb9-50"><a href="#cb9-50"></a>    <span class="at">subject        =</span> Q10,</span>
+<span id="cb9-51"><a href="#cb9-51"></a>    <span class="at">english_first  =</span> Q11,</span>
+<span id="cb9-52"><a href="#cb9-52"></a>    <span class="at">neurotype_open =</span> Q13,</span>
+<span id="cb9-53"><a href="#cb9-53"></a>    <span class="at">disability_open=</span> Q14,</span>
+<span id="cb9-54"><a href="#cb9-54"></a>    <span class="at">why_open       =</span> Q18,</span>
+<span id="cb9-55"><a href="#cb9-55"></a>    <span class="at">how_open       =</span> Q23,</span>
+<span id="cb9-56"><a href="#cb9-56"></a>    <span class="at">advantages     =</span> Q20,</span>
+<span id="cb9-57"><a href="#cb9-57"></a>    <span class="at">disadvantages  =</span> Q21,</span>
+<span id="cb9-58"><a href="#cb9-58"></a>    dplyr<span class="sc">::</span><span class="fu">everything</span>()</span>
+<span id="cb9-59"><a href="#cb9-59"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="include/images/05-review/refactor1.png" class="img-fluid figure-img" width="412"></p>
-<figcaption>Refactoring</figcaption></figure>
-</div>
-</div>
-</div>
+<p>And here’s the explanation:</p>
+<p><strong>What changed and why</strong></p>
+<ol type="1">
+<li>Structured the pipeline into five clearly labelled stages. Improves readability and helps future maintainers understand intent at a glance without scanning each line.</li>
+<li>Consistent tidyverse style and explicit namespaces where helpful. Retained %&gt;%, used across() for grouped NA imputation, and added dplyr:: or tidyr:: qualifiers where ambiguity could arise in larger projects.</li>
+<li>Reduced repetition safely Replaced three separate mutate() calls for NA handling with a single mutate(across(…)), which is more concise and makes the imputation intent explicit while keeping the exact same behaviour.</li>
+<li>Clear, descriptive comments. Comments explain the purpose of each main step without annotating every line, matching your instruction and making the code easier to review.</li>
+<li>Preserved semantics of position-based selection for duration. Kept duration = 5 to ensure identical behaviour, as it renames the fifth column of the current data to duration.</li>
+</ol>
 <p>Again, it’s very important to check that this refactored code has the same result as the original. <strong>There is no shortcut for knowing and checking your data</strong>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">all.equal</span>(dat, dat_copilot)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -788,78 +817,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] TRUE</code></pre>
 </div>
 </div>
-</section><section id="alternative-approaches" class="level2" data-number="5.5"><h2 data-number="5.5" class="anchored" data-anchor-id="alternative-approaches">
-<span class="header-section-number">5.5</span> Alternative approaches</h2>
-<p>In the PsyTeachR courses, we mainly use the tidyverse approach because it provides a consistent, easy-to-read way of writing R code. The tidyverse is a collection of R packages (such as dplyr, ggplot2, and tidyr) that extend R’s core functionality and make data analysis more intuitive.</p>
-<p>However, it is also useful to understand Base R, which refers to the set of functions that come built into R itself. Base R does not rely on any additional packages, so it works “out of the box” as soon as you install R. This means your code will run anywhere, even if tidyverse packages are not installed.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Activity 5
+<span class="screen-reader-only">Note</span>Be critical
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Ask Copilot to write the code in Base R using the following prompt. Rather than give it the full code, we’re just going to do the first few lines that filter and select.</p>
-<blockquote class="blockquote">
-<p>Please rewrite the following code using Base R instead of tidyverse functions. Keep the same behaviour and output. When you rewrite it, please use only Base R functions (no tidyverse or other external packages).Add short, clear comments explaining what each main step does. After showing the Base R version, explain the key differences between the tidyverse and Base R approaches — for example, syntax style, readability, and performance. If there are trade-offs (e.g., tidyverse is easier to read but Base R runs without extra packages), explain those too.</p>
-</blockquote>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>dat_copilot <span class="ot">&lt;-</span> dat_raw <span class="sc">%&gt;%</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a>  <span class="co"># 1) Filter valid responses</span></span>
-<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">filter</span>(</span>
-<span id="cb12-4"><a href="#cb12-4"></a>    Progress <span class="sc">&gt;</span> <span class="dv">94</span>,                       <span class="co"># keep responses with &gt; 94% progress</span></span>
-<span id="cb12-5"><a href="#cb12-5"></a>    DistributionChannel <span class="sc">!=</span> <span class="st">"preview"</span>     <span class="co"># exclude preview/test responses</span></span>
-<span id="cb12-6"><a href="#cb12-6"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb12-7"><a href="#cb12-7"></a>  <span class="co"># 2) Keep required columns and rename column 5 to 'duration'</span></span>
-<span id="cb12-8"><a href="#cb12-8"></a>  <span class="fu">select</span>(ResponseId, <span class="at">duration =</span> <span class="dv">5</span>, Q5<span class="sc">:</span>Q21)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>From both cognitive science and motivational psychology, writing your own comments and understanding your code before refactoring are key to developing genuine expertise and confidence. As we’ve mentioned several times already, research on <a href="https://www.learningscientists.org/blog/2016/6/23-1">retrieval practice</a> shows that learning is stronger when you produce information yourself rather than copying or reading it. Writing your own code comments works like taking your own lecture notes: the act of explaining what your code does, in your own words, strengthens understanding and recall. Similarly, <a href="https://www.learningscientists.org/blog/2016/7/7-1">elaboration</a> - adding meaning and connections - helps transform isolated code into a coherent mental model of whatever it is you’re doing</p>
+<p>These processes also feed into psychological needs identified in <a href="https://positivepsychology.com/self-determination-theory/">self-determination theory</a>: competence, autonomy, and relatedness. Each time you explain your code or verify that a refactor still works, you experience a small mastery moment, evidence that you can and do actually understand and control what you are doing. These mastery experiences are the foundation of <a href="https://www.simplypsychology.org/self-efficacy.html">self-efficacy</a>, the belief that you can succeed in similar tasks in the future. Over time, writing and refining your own comments builds both technical skill and the confidence to tackle new coding challenges independently.</p>
+<p>By contrast, outsourcing explanations or edits to AI may help short-term efficiency but undermines these motivational and cognitive benefits. When an AI provides ready-made comments or “cleaner” code, it might fuel the <a href="https://en.wikipedia.org/wiki/Dunning%E2%80%93Kruger_effect">Dunning-Kruger effect</a>, the systematic tendancy of people with low ability to over-estimate their competence. This false fluency weakens both comprehension and autonomy: the more you depend on external solutions, the less opportunity you have to consolidate your own knowledge and sense of competence.</p>
+<p>In practice: write your own comments first, then use AI to critique or refine them. When refactoring, ensure you can explain what each variable represents, why each step exists, and how the data should behave before you let AI suggest changes. Doing so keeps you in control, supports your autonomy as a learner, and transforms code review from a mechanical task into an act of understanding.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Key takeaways
 </div>
 </div>
-</div>
-<p>Here’s the Base R version. I’ll confess I have no idea if this is the approach you would take because I never code in Base R (because look at it, it’s horrible).</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="do">## 1) Filter valid responses</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a>dat_tmp <span class="ot">&lt;-</span> dat_raw[dat_raw<span class="sc">$</span>Progress <span class="sc">&gt;</span> <span class="dv">94</span> <span class="sc">&amp;</span></span>
-<span id="cb13-3"><a href="#cb13-3"></a>                   dat_raw<span class="sc">$</span>DistributionChannel <span class="sc">!=</span> <span class="st">"preview"</span>,</span>
-<span id="cb13-4"><a href="#cb13-4"></a>                   , drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
-<span id="cb13-5"><a href="#cb13-5"></a></span>
-<span id="cb13-6"><a href="#cb13-6"></a><span class="do">## 2) Keep required columns and rename column 5 to 'duration'</span></span>
-<span id="cb13-7"><a href="#cb13-7"></a>keep_idx <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb13-8"><a href="#cb13-8"></a>  <span class="fu">match</span>(<span class="st">"ResponseId"</span>, <span class="fu">names</span>(dat_tmp)),         <span class="co"># ResponseId</span></span>
-<span id="cb13-9"><a href="#cb13-9"></a>  <span class="dv">5</span>L,                                          <span class="co"># original column 5</span></span>
-<span id="cb13-10"><a href="#cb13-10"></a>  <span class="fu">match</span>(<span class="fu">paste0</span>(<span class="st">"Q"</span>, <span class="dv">5</span><span class="sc">:</span><span class="dv">21</span>), <span class="fu">names</span>(dat_tmp))     <span class="co"># Q5:Q21 by name</span></span>
-<span id="cb13-11"><a href="#cb13-11"></a>)</span>
-<span id="cb13-12"><a href="#cb13-12"></a>keep_idx <span class="ot">&lt;-</span> <span class="fu">unique</span>(keep_idx[<span class="sc">!</span><span class="fu">is.na</span>(keep_idx)]) <span class="co"># remove NAs, keep order</span></span>
-<span id="cb13-13"><a href="#cb13-13"></a></span>
-<span id="cb13-14"><a href="#cb13-14"></a>dat_copilot <span class="ot">&lt;-</span> dat_tmp[, keep_idx, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
-<span id="cb13-15"><a href="#cb13-15"></a></span>
-<span id="cb13-16"><a href="#cb13-16"></a><span class="do">## rename the selected column that came from original position 5</span></span>
-<span id="cb13-17"><a href="#cb13-17"></a>pos5 <span class="ot">&lt;-</span> <span class="fu">which</span>(keep_idx <span class="sc">==</span> <span class="dv">5</span>L)</span>
-<span id="cb13-18"><a href="#cb13-18"></a><span class="cf">if</span> (<span class="fu">length</span>(pos5) <span class="sc">==</span> <span class="dv">1</span>L) <span class="fu">names</span>(dat_copilot)[pos5] <span class="ot">&lt;-</span> <span class="st">"duration"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="include/images/05-review/refactor2.png" class="img-fluid figure-img" width="427"></p>
-<figcaption>Base R. Gross.</figcaption></figure>
-</div>
-</div>
-</div>
-</section><section id="conclusions" class="level2" data-number="5.6"><h2 data-number="5.6" class="anchored" data-anchor-id="conclusions">
-<span class="header-section-number">5.6</span> Conclusions</h2>
-<p>I hadn’t actually used AI to perform these types of tasks before writing this book so here’s my takeaways:</p>
+<div class="callout-body-container callout-body">
+<p>I hadn’t used AI to perform these types of tasks before writing this book so here’s my takeaways:</p>
 <ul>
-<li>CHECK EVERYTHING.</li>
+<li>DID I MENTION? CHECK EVERYTHING.</li>
 <li>If you give an AI code, you simply cannot trust that it won’t change your code, even if that’s not the task you ask it to do. If you use AI to add or review comments, you must check the output. Tools like <code><a href="https://rdrr.io/r/base/all.equal.html">all.equal()</a></code> can help perform these checks.</li>
 <li>You also can’t trust that the comments will be accurate. <strong>Anything an AI writes must be checked before you use it. If you don’t know if it’s right, don’t use it</strong>.</li>
 <li>Because you have to check what it does so carefully, don’t give it a big dump of code. Smaller chunks will end up taking less time.</li>
-<li>In some cases it was really useful and as someone who doesn’t really use or know much Base R, I can see that this would be a great way to learn alternative approaches or to fill in comments.</li>
-<li>That said, the amount of checking it takes is substantial and so I’m not completely convinced that it would be any quicker than doing it yourself.</li>
 </ul>
+</div>
+</div>
 
 
+</div>
+</div>
 </section></main><!-- /main --><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script><script>
 
 /* update total correct if #webex-total_correct exists */

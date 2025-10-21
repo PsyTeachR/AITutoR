@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.551">
+<meta name="generator" content="quarto-1.8.21">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>AI TutoR - 6&nbsp; Writing Code with AI</title>
+<title>6&nbsp; Writing Code with AI – AI TutoR</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -18,8 +18,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -62,17 +63,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./webexercises.html" rel="next">
 <link href="./05-review.html" rel="prev">
 <link href="./include/images/logo.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-bef06593271c35acc66b6cdfb882565b.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-ea06de1ba525ceca656e3b09b4cd3316.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-bef06593271c35acc66b6cdfb882565b.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-e9d847c6caaa7292d4a481c21d594016.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-c8dd5cd8506132e8ba466e2074c506b4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-e9d847c6caaa7292d4a481c21d594016.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -102,44 +107,208 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="include/webex.css">
 <link rel="stylesheet" href="include/style.css">
 </head>
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-errors.html">AI Pair Programmer</a></li><li class="breadcrumb-item"><a href="./06-writing.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Writing Code with AI</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">AI TutoR</a> 
         <div class="sidebar-tools-main">
     <div class="dropdown">
-      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Share"><i class="bi bi-share"></i></a>
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Share"><i class="bi bi-share"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
 <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=%7Curl%7C">
-              <i class="bi bi-bi-twitter pe-1"></i>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-twitter pe-1"></i>
             Twitter
             </a>
           </li>
           <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=%7Curl%7C">
-              <i class="bi bi-bi-facebook pe-1"></i>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+              <i class="bi bi-facebook pe-1"></i>
             Facebook
             </a>
           </li>
           <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=%7Curl%7C">
-              <i class="bi bi-bi-linkedin pe-1"></i>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+              <i class="bi bi-linkedin pe-1"></i>
             LinkedIn
             </a>
           </li>
@@ -170,9 +339,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Personal Tutor</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -193,9 +362,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">AI Pair Programmer</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -222,9 +391,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -251,12 +420,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#activity-1-set-up" id="toc-activity-1-set-up" class="nav-link active" data-scroll-target="#activity-1-set-up"><span class="header-section-number">6.1</span> Activity 1: Set-up</a></li>
-  <li><a href="#activity-2-knowledge-is-power" id="toc-activity-2-knowledge-is-power" class="nav-link" data-scroll-target="#activity-2-knowledge-is-power"><span class="header-section-number">6.2</span> Activity 2: Knowledge is power</a></li>
-  <li><a href="#activity-3-writing-code" id="toc-activity-3-writing-code" class="nav-link" data-scroll-target="#activity-3-writing-code"><span class="header-section-number">6.3</span> Activity 3: Writing code</a></li>
-  <li><a href="#activity-4-giving-the-ai-more-freedom" id="toc-activity-4-giving-the-ai-more-freedom" class="nav-link" data-scroll-target="#activity-4-giving-the-ai-more-freedom"><span class="header-section-number">6.4</span> Activity 4: Giving the AI more freedom</a></li>
-  <li><a href="#activity-5-further-analysis" id="toc-activity-5-further-analysis" class="nav-link" data-scroll-target="#activity-5-further-analysis"><span class="header-section-number">6.5</span> Activity 5: Further analysis</a></li>
-  <li><a href="#conclusions-and-musings" id="toc-conclusions-and-musings" class="nav-link" data-scroll-target="#conclusions-and-musings"><span class="header-section-number">6.6</span> Conclusions and musings</a></li>
+<li><a href="#the-problem" id="toc-the-problem" class="nav-link active" data-scroll-target="#the-problem"><span class="header-section-number">6.1</span> The problem</a></li>
+  <li><a href="#prompting" id="toc-prompting" class="nav-link" data-scroll-target="#prompting"><span class="header-section-number">6.2</span> Prompting</a></li>
+  <li><a href="#describing-your-dataset" id="toc-describing-your-dataset" class="nav-link" data-scroll-target="#describing-your-dataset"><span class="header-section-number">6.3</span> Describing your dataset</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -277,24 +443,103 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><p>The best AI platform for writing code is arguably Github Copilot (or Super Clippy as my programmer friends like to call it). However, unless coding is the main part of your job, most people are unlikely to have this subscription service so we’ll stick with the generic platforms.</p>
+</header><p>This chapter closes the coding section because writing code with AI represents the highest-risk, highest-reward use case. By this point, you should be able to judge when AI suggestions are useful scaffolds and when they are dangerous shortcuts.</p>
+<p>The best AI platform for writing code is arguably Github Copilot (or Super Clippy as my programmer friends like to call it) and there are also specialised packages that you integrate LLMs into RStudio. However, unless coding is the main part of your job, most people are likely to use AI through a generic platform so we’ll stick with regular Copilot.</p>
 <p>If you have access to LinkedIn Learning (which you do if you are a UofG student or staff), I’d also highly recommend the short course <a href="https://www.linkedin.com/learning/pair-programming-with-ai/">Pair Programming with AI</a> by Morten Rand-Hendriksen. It only takes 1.5 hours to work through and he covers using both Github Copilot and ChatGPT and has a nicely critical view of AI.</p>
-<p>If you’ve worked through this entire book then hopefully what you’ve learned is that AI is very useful but I also hope that you have a healthy mistrust of anything it produces which is why this chapter is the last in the coding section.</p>
+<p>If you’ve worked through this entire book then hopefully what you’ve learned is that AI is very useful but you should also have a healthy mistrust of anything it produces which is why this chapter is the last in the coding section.</p>
 <p>The number 1 rule to keep in mind when using AI to write code is that the platforms we’re using <strong>are not intelligent</strong>. They are not thinking. They are not reasoning. They are not telling the truth or lying to you. They don’t have gaps in their knowledge because they have no knowledge. They are digital parrots on cocaine.</p>
-<section id="activity-1-set-up" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="activity-1-set-up">
-<span class="header-section-number">6.1</span> Activity 1: Set-up</h2>
-<p>Again we’ll use the <code>palmerpenguins</code> dataset for this exercise so open up an Rmd and run the following:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">data</span>(<span class="st">"penguins"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="the-problem" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="the-problem">
+<span class="header-section-number">6.1</span> The problem</h2>
+<p>The dataset used in this exercise is described in the paper <a href="https://openpsychologydata.metajnl.com/articles/10.5334/jopd.80#2-methods">Data from an International Multi-Centre Study of Statistics and Mathematics Anxieties and Related Variables in University Students (the SMARVUS Dataset)</a> from the Journal of open Psychology Data.</p>
+<p>The dataset is massive so as our first task, we want to write code that narrows it down and creates three different objects.</p>
+<ul>
+<li><p>First, we want to create an object named <code>demo</code> that has the demographic information, age and gender. Age data has transformed into categories (e.g., 18-21) for anonymisation purposes. The option ‘Implausible’ describes values that were 99 or higher or 17 or lower.</p></li>
+<li><p>Second, we want an object named <code>STARS</code> which will represent each participant’s score on the Statistics Anxiety Rating Scale (STARS; Cruise et al., 1985). Each item describes a situation involving statistics such as “Doing an examination in a statistics course” (test and class anxiety), “Interpreting the meaning of a table in a journal article” (interpretation anxiety), or “Going to ask my statistics teacher for individual help with material I am having difficulty understanding” (fear of asking for help).</p></li>
+<li><p>Third, we want an object named, <code>IUS</code> which will represent each participant’s score on the Intolerance of Uncertainty Scale – Short Form (IUS-SF; Carleton et al., 2007). The scale contains 2 subscales, Prospective Anxiety and Inhibitory Anxiety, each with 6 items. The Prospective Anxiety subscale includes statements such as, “The smallest doubt can stop me from acting”. The Inhibitory Anxiety subscale includes statements such as, “It frustrates me not having all the information I need”.</p></li>
+</ul>
+<p>For the two scales, we need to pivot it to long-form and then calculate the mean score for each participant.</p>
+<p>We would need this information if we wanted to try and answer questions like:</p>
+<ul>
+<li>What is the demographic make-up of the sample in terms of age and gender?</li>
+<li>How is statistics anxiety and intolerance of uncertainty related?</li>
+<li>Do men and women differ in their level of statistics anxiety?</li>
+</ul>
+<p>But we’ll start with the wrangling and see how far we get.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>We’ll also do a little bit of set-up for the AI:</p>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Activity 1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Create a new Quarto or Rmd document and run the below code in a new code chunk. This will load in the data and then it will create the three objects using the code I have written and the approach I have taken so that we can compare with how Copilot gets on.</p>
+<p>This is such a large dataset that we will just select the columns we need, but bear in mind I have already made the task easier for the AI by doing so.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co"># load in the data and just select the columns we will need</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"include/data/smarvus_complete_050524.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>  <span class="fu">select</span>(unique_id, age, gender, Q7<span class="fl">.1</span>_1<span class="sc">:</span>Q7<span class="fl">.1</span>_24, Q14<span class="fl">.1</span>_1<span class="sc">:</span>Q14<span class="fl">.1</span>_12)</span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co"># pull out demographic data</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>demo <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a>  <span class="fu">select</span>(unique_id, age, gender) <span class="sc">|&gt;</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>  <span class="fu">drop_na</span>()</span>
+<span id="cb1-12"><a href="#cb1-12"></a></span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="co"># create statistics anxiety scale</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a></span>
+<span id="cb1-15"><a href="#cb1-15"></a>STARS <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a>  <span class="fu">select</span>(unique_id, Q7<span class="fl">.1</span>_1<span class="sc">:</span>Q7<span class="fl">.1</span>_24) <span class="sc">%&gt;%</span> <span class="co"># select the STARS columns</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a>  <span class="fu">filter</span>(Q7<span class="fl">.1</span>_24 <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co"># remove those who failed the attention check</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a>  <span class="fu">select</span>(<span class="sc">-</span>Q7<span class="fl">.1</span>_24) <span class="sc">%&gt;%</span> <span class="co"># remove the attention check column</span></span>
+<span id="cb1-19"><a href="#cb1-19"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> Q7<span class="fl">.1</span>_1<span class="sc">:</span>Q7<span class="fl">.1</span>_23, <span class="at">names_to =</span> <span class="st">"item"</span>, <span class="at">values_to =</span> <span class="st">"score"</span>) <span class="sc">%&gt;%</span> <span class="co"># transform to long-form</span></span>
+<span id="cb1-20"><a href="#cb1-20"></a>  <span class="fu">group_by</span>(unique_id) <span class="sc">%&gt;%</span> <span class="co"># group by participant</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a>  <span class="fu">summarise</span>(<span class="at">stars_score =</span> <span class="fu">mean</span>(score)) <span class="sc">%&gt;%</span> <span class="co"># calculate mean STARS score for each ppt</span></span>
+<span id="cb1-22"><a href="#cb1-22"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> <span class="co"># ungroup so it doesn't mess things up later</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a>  <span class="fu">drop_na</span>() <span class="co">#  get rid of NAs so they don't cause us havoc</span></span>
+<span id="cb1-24"><a href="#cb1-24"></a></span>
+<span id="cb1-25"><a href="#cb1-25"></a><span class="co"># Intolerance of Uncertainty.</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a></span>
+<span id="cb1-27"><a href="#cb1-27"></a>IUS <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span></span>
+<span id="cb1-28"><a href="#cb1-28"></a>  <span class="fu">select</span>(unique_id, Q14<span class="fl">.1</span>_1<span class="sc">:</span>Q14<span class="fl">.1</span>_12) <span class="sc">%&gt;%</span> <span class="co"># select the BNFE columns</span></span>
+<span id="cb1-29"><a href="#cb1-29"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> Q14<span class="fl">.1</span>_1<span class="sc">:</span>Q14<span class="fl">.1</span>_12, <span class="at">names_to =</span> <span class="st">"item"</span>, <span class="at">values_to =</span> <span class="st">"score"</span>) <span class="sc">%&gt;%</span> <span class="co"># transform to long-form</span></span>
+<span id="cb1-30"><a href="#cb1-30"></a>  <span class="fu">group_by</span>(unique_id) <span class="sc">%&gt;%</span> <span class="co"># group by participant</span></span>
+<span id="cb1-31"><a href="#cb1-31"></a>  <span class="fu">summarise</span>(<span class="at">ius_score =</span> <span class="fu">mean</span>(score)) <span class="sc">%&gt;%</span> <span class="co"># calculate mean IUS-SF score for each ppt</span></span>
+<span id="cb1-32"><a href="#cb1-32"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> <span class="co"># ungroup so it doesn't mess things up later</span></span>
+<span id="cb1-33"><a href="#cb1-33"></a>  <span class="fu">drop_na</span>() <span class="co">#  get rid of NAs so they don't cause us havoc</span></span>
+<span id="cb1-34"><a href="#cb1-34"></a></span>
+<span id="cb1-35"><a href="#cb1-35"></a></span>
+<span id="cb1-36"><a href="#cb1-36"></a><span class="co"># join it all together</span></span>
+<span id="cb1-37"><a href="#cb1-37"></a></span>
+<span id="cb1-38"><a href="#cb1-38"></a>dat_joined <span class="ot">&lt;-</span> <span class="fu">left_join</span>(demo, IUS) <span class="sc">|&gt;</span></span>
+<span id="cb1-39"><a href="#cb1-39"></a>  <span class="fu">left_join</span>(STARS)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</section><section id="prompting" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="prompting">
+<span class="header-section-number">6.2</span> Prompting</h2>
+<p>Now we want to do some set-up to prompt the AI to help us write code that works and does what we want.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Activity 2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In Copilot, enter the following prompt:</p>
 <blockquote class="blockquote">
-<p>Act like an expert programmer in R. I want you to help me write code. The code should be commented and should use the tidyverse where possible. Ask me questions about the code before you write it if necessary.</p>
+<p>You are an expert R programmer. Help me write tidyverse-first code. Before writing code, ask any clarifying questions needed about data, objectives, constraints, and outputs.When you do write code:</p>
 </blockquote>
-</section><section id="activity-2-knowledge-is-power" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="activity-2-knowledge-is-power">
-<span class="header-section-number">6.2</span> Activity 2: Knowledge is power</h2>
+<blockquote class="blockquote">
+<p>Use tidyverse idioms (|&gt;, dplyr, ggplot2, tibble), no deprecated functions. Comment clearly and explain non-obvious choices (e.g., NA handling, binning, model specs). Be safe and reproducible: no setwd(), no absolute paths, no silent package installs; show any set.seed() if randomness is used. Handle missing data explicitly and avoid destructive transformations.</p>
+</blockquote>
 <p>When you input this starting prompt, there’s a good chance you’ll get something like the following:</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -304,413 +549,463 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Before you ask the AI to write code, it’s helpful to give it as much information as you can about your dataset. You could write out a description manually but there’s a few options to automate.</p>
+</div>
+</div>
+</section><section id="describing-your-dataset" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="describing-your-dataset">
+<span class="header-section-number">6.3</span> Describing your dataset</h2>
+<p>As I may have mentioned once or twice in this book, <strong>there is no substitute for knowing your data</strong>. For the dataset provided here, your first step as an analyst would be to read the paper in full so that you understand how and what data was collected, the scales of measurement, and information about missing data etc.</p>
+<p>In addition to this domain knowledge, you can also use information R provides about the dataset to help you.</p>
 <p><code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> is useful because it provides a list of all variables with some descriptive statistics so that the AI has a sense of the type and range of data:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">summary</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">summary</span>(dat)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      species          island    bill_length_mm  bill_depth_mm  
- Adelie   :152   Biscoe   :168   Min.   :32.10   Min.   :13.10  
- Chinstrap: 68   Dream    :124   1st Qu.:39.23   1st Qu.:15.60  
- Gentoo   :124   Torgersen: 52   Median :44.45   Median :17.30  
-                                 Mean   :43.92   Mean   :17.15  
-                                 3rd Qu.:48.50   3rd Qu.:18.70  
-                                 Max.   :59.60   Max.   :21.50  
-                                 NA's   :2       NA's   :2      
- flipper_length_mm  body_mass_g       sex           year     
- Min.   :172.0     Min.   :2700   female:165   Min.   :2007  
- 1st Qu.:190.0     1st Qu.:3550   male  :168   1st Qu.:2007  
- Median :197.0     Median :4050   NA's  : 11   Median :2008  
- Mean   :200.9     Mean   :4202                Mean   :2008  
- 3rd Qu.:213.0     3rd Qu.:4750                3rd Qu.:2009  
- Max.   :231.0     Max.   :6300                Max.   :2009  
- NA's   :2         NA's   :2                                 </code></pre>
+<pre><code>  unique_id             age               gender              Q7.1_1     
+ Length:12570       Length:12570       Length:12570       Min.   :1.000  
+ Class :character   Class :character   Class :character   1st Qu.:2.000  
+ Mode  :character   Mode  :character   Mode  :character   Median :3.000  
+                                                          Mean   :3.229  
+                                                          3rd Qu.:4.000  
+                                                          Max.   :5.000  
+                                                          NA's   :457    
+     Q7.1_2          Q7.1_3          Q7.1_4          Q7.1_5     
+ Min.   :1.000   Min.   :1.000   Min.   :1.000   Min.   :1.000  
+ 1st Qu.:2.000   1st Qu.:2.000   1st Qu.:2.000   1st Qu.:2.000  
+ Median :3.000   Median :3.000   Median :3.000   Median :3.000  
+ Mean   :2.696   Mean   :2.817   Mean   :2.858   Mean   :2.687  
+ 3rd Qu.:4.000   3rd Qu.:4.000   3rd Qu.:4.000   3rd Qu.:4.000  
+ Max.   :5.000   Max.   :5.000   Max.   :5.000   Max.   :5.000  
+ NA's   :458     NA's   :453     NA's   :451     NA's   :457    
+     Q7.1_6          Q7.1_7          Q7.1_8          Q7.1_9        Q7.1_10     
+ Min.   :1.000   Min.   :1.000   Min.   :1.000   Min.   :1.00   Min.   :1.000  
+ 1st Qu.:1.000   1st Qu.:2.000   1st Qu.:3.000   1st Qu.:1.00   1st Qu.:3.000  
+ Median :2.000   Median :3.000   Median :4.000   Median :2.00   Median :4.000  
+ Mean   :2.424   Mean   :3.167   Mean   :3.841   Mean   :2.03   Mean   :3.647  
+ 3rd Qu.:3.000   3rd Qu.:4.000   3rd Qu.:5.000   3rd Qu.:3.00   3rd Qu.:5.000  
+ Max.   :5.000   Max.   :5.000   Max.   :5.000   Max.   :5.00   Max.   :5.000  
+ NA's   :467     NA's   :461     NA's   :454     NA's   :457    NA's   :459    
+    Q7.1_11         Q7.1_12         Q7.1_13         Q7.1_14     
+ Min.   :1.000   Min.   :1.000   Min.   :1.000   Min.   :1.000  
+ 1st Qu.:2.000   1st Qu.:1.000   1st Qu.:2.000   1st Qu.:2.000  
+ Median :3.000   Median :2.000   Median :3.000   Median :3.000  
+ Mean   :2.698   Mean   :2.583   Mean   :3.374   Mean   :2.654  
+ 3rd Qu.:4.000   3rd Qu.:4.000   3rd Qu.:4.000   3rd Qu.:4.000  
+ Max.   :5.000   Max.   :5.000   Max.   :5.000   Max.   :5.000  
+ NA's   :461     NA's   :454     NA's   :462     NA's   :459    
+    Q7.1_15         Q7.1_16         Q7.1_17         Q7.1_18     
+ Min.   :1.000   Min.   :1.000   Min.   :1.000   Min.   :1.000  
+ 1st Qu.:3.000   1st Qu.:2.000   1st Qu.:1.000   1st Qu.:1.000  
+ Median :4.000   Median :3.000   Median :2.000   Median :2.000  
+ Mean   :3.608   Mean   :2.711   Mean   :2.362   Mean   :2.461  
+ 3rd Qu.:5.000   3rd Qu.:4.000   3rd Qu.:3.000   3rd Qu.:3.000  
+ Max.   :5.000   Max.   :5.000   Max.   :5.000   Max.   :5.000  
+ NA's   :452     NA's   :463     NA's   :457     NA's   :460    
+    Q7.1_19         Q7.1_20         Q7.1_21         Q7.1_22     
+ Min.   :1.000   Min.   :1.000   Min.   :1.000   Min.   :1.000  
+ 1st Qu.:2.000   1st Qu.:2.000   1st Qu.:1.000   1st Qu.:2.000  
+ Median :2.000   Median :3.000   Median :2.000   Median :3.000  
+ Mean   :2.612   Mean   :2.734   Mean   :2.576   Mean   :3.048  
+ 3rd Qu.:4.000   3rd Qu.:4.000   3rd Qu.:4.000   3rd Qu.:4.000  
+ Max.   :5.000   Max.   :5.000   Max.   :5.000   Max.   :5.000  
+ NA's   :453     NA's   :458     NA's   :458     NA's   :463    
+    Q7.1_23         Q7.1_24         Q14.1_1         Q14.1_2     
+ Min.   :1.000   Min.   :1.000   Min.   :1.000   Min.   :1.000  
+ 1st Qu.:1.000   1st Qu.:1.000   1st Qu.:2.000   1st Qu.:3.000  
+ Median :2.000   Median :1.000   Median :3.000   Median :4.000  
+ Mean   :2.314   Mean   :1.161   Mean   :2.927   Mean   :3.465  
+ 3rd Qu.:3.000   3rd Qu.:1.000   3rd Qu.:4.000   3rd Qu.:4.000  
+ Max.   :5.000   Max.   :5.000   Max.   :5.000   Max.   :5.000  
+ NA's   :460     NA's   :1306    NA's   :1497    NA's   :1500   
+    Q14.1_3         Q14.1_4         Q14.1_5         Q14.1_6     
+ Min.   :1.000   Min.   :1.000   Min.   :1.000   Min.   :1.000  
+ 1st Qu.:2.000   1st Qu.:2.000   1st Qu.:2.000   1st Qu.:1.000  
+ Median :3.000   Median :3.000   Median :3.000   Median :2.000  
+ Mean   :2.681   Mean   :2.974   Mean   :2.702   Mean   :2.527  
+ 3rd Qu.:4.000   3rd Qu.:4.000   3rd Qu.:4.000   3rd Qu.:3.000  
+ Max.   :5.000   Max.   :5.000   Max.   :5.000   Max.   :5.000  
+ NA's   :1500    NA's   :1497    NA's   :1499    NA's   :1498   
+    Q14.1_7         Q14.1_8         Q14.1_9         Q14.1_10    
+ Min.   :1.000   Min.   :1.000   Min.   :1.000   Min.   :1.000  
+ 1st Qu.:2.000   1st Qu.:2.000   1st Qu.:2.000   1st Qu.:2.000  
+ Median :3.000   Median :3.000   Median :3.000   Median :3.000  
+ Mean   :3.008   Mean   :3.168   Mean   :2.667   Mean   :2.676  
+ 3rd Qu.:4.000   3rd Qu.:4.000   3rd Qu.:4.000   3rd Qu.:4.000  
+ Max.   :5.000   Max.   :5.000   Max.   :5.000   Max.   :5.000  
+ NA's   :1498    NA's   :1500    NA's   :1499    NA's   :1496   
+    Q14.1_11        Q14.1_12   
+ Min.   :1.000   Min.   :1.00  
+ 1st Qu.:2.000   1st Qu.:2.00  
+ Median :3.000   Median :3.00  
+ Mean   :3.228   Mean   :2.64  
+ 3rd Qu.:4.000   3rd Qu.:4.00  
+ Max.   :5.000   Max.   :5.00  
+ NA's   :1496    NA's   :1500  </code></pre>
 </div>
 </div>
 <p><code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> is also useful because it lists the variables, their data type, and the initial values for each variable. However, that means that you are giving it at least some of the raw data so you have to be very careful if you have sensitive / confidential data and you must ensure that any use of AI is in line with your data management plan. Using Copilot Enterprise means the data won’t be stored and used to train the AI further so it’s potentially the best option (which is not to say it’s safe or problem free, please be careful and critical!).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">str</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">str</span>(dat)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>tibble [344 × 8] (S3: tbl_df/tbl/data.frame)
- $ species          : Factor w/ 3 levels "Adelie","Chinstrap",..: 1 1 1 1 1 1 1 1 1 1 ...
- $ island           : Factor w/ 3 levels "Biscoe","Dream",..: 3 3 3 3 3 3 3 3 3 3 ...
- $ bill_length_mm   : num [1:344] 39.1 39.5 40.3 NA 36.7 39.3 38.9 39.2 34.1 42 ...
- $ bill_depth_mm    : num [1:344] 18.7 17.4 18 NA 19.3 20.6 17.8 19.6 18.1 20.2 ...
- $ flipper_length_mm: int [1:344] 181 186 195 NA 193 190 181 195 193 190 ...
- $ body_mass_g      : int [1:344] 3750 3800 3250 NA 3450 3650 3625 4675 3475 4250 ...
- $ sex              : Factor w/ 2 levels "female","male": 2 1 1 NA 1 2 1 2 NA NA ...
- $ year             : int [1:344] 2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...</code></pre>
+<pre><code>tibble [12,570 × 39] (S3: tbl_df/tbl/data.frame)
+ $ unique_id: chr [1:12570] "01057178" "0300b5f2" "03f6503b" "0601d699" ...
+ $ age      : chr [1:12570] "18-21" "18-21" "22-25" NA ...
+ $ gender   : chr [1:12570] "Male/Man" "Female/Woman" "Female/Woman" NA ...
+ $ Q7.1_1   : num [1:12570] 3 3 4 4 5 1 1 3 4 4 ...
+ $ Q7.1_2   : num [1:12570] 5 4 4 4 4 1 2 1 4 3 ...
+ $ Q7.1_3   : num [1:12570] 3 1 3 4 5 2 2 1 5 2 ...
+ $ Q7.1_4   : num [1:12570] 4 5 4 5 5 2 3 3 3 3 ...
+ $ Q7.1_5   : num [1:12570] 4 5 4 4 4 1 1 2 4 2 ...
+ $ Q7.1_6   : num [1:12570] 4 4 3 2 4 1 1 2 1 3 ...
+ $ Q7.1_7   : num [1:12570] 5 4 4 4 5 3 1 5 5 4 ...
+ $ Q7.1_8   : num [1:12570] 5 2 5 5 5 3 4 4 3 4 ...
+ $ Q7.1_9   : num [1:12570] 2 1 1 1 1 1 1 1 1 4 ...
+ $ Q7.1_10  : num [1:12570] 4 3 4 4 5 2 1 2 2 4 ...
+ $ Q7.1_11  : num [1:12570] 4 4 4 4 4 1 1 1 5 4 ...
+ $ Q7.1_12  : num [1:12570] 2 1 1 2 4 1 4 1 4 3 ...
+ $ Q7.1_13  : num [1:12570] 4 2 5 3 5 2 1 2 4 4 ...
+ $ Q7.1_14  : num [1:12570] 4 5 4 2 5 2 1 4 2 5 ...
+ $ Q7.1_15  : num [1:12570] 3 3 3 4 5 2 2 1 3 2 ...
+ $ Q7.1_16  : num [1:12570] 2 4 2 4 5 1 2 2 5 3 ...
+ $ Q7.1_17  : num [1:12570] 2 2 2 2 4 1 1 1 3 5 ...
+ $ Q7.1_18  : num [1:12570] 4 1 5 2 5 1 1 3 4 2 ...
+ $ Q7.1_19  : num [1:12570] 4 3 2 2 5 1 1 1 4 1 ...
+ $ Q7.1_20  : num [1:12570] 5 4 4 4 4 1 1 3 4 2 ...
+ $ Q7.1_21  : num [1:12570] 2 3 3 4 4 1 1 4 1 3 ...
+ $ Q7.1_22  : num [1:12570] 5 4 4 5 4 1 1 2 4 3 ...
+ $ Q7.1_23  : num [1:12570] 4 4 2 1 5 1 1 2 4 1 ...
+ $ Q7.1_24  : num [1:12570] 1 1 1 1 1 1 1 1 1 1 ...
+ $ Q14.1_1  : num [1:12570] 3 2 3 2 5 2 1 1 4 2 ...
+ $ Q14.1_2  : num [1:12570] 3 2 4 5 5 3 4 1 2 3 ...
+ $ Q14.1_3  : num [1:12570] 2 5 3 2 5 2 2 2 5 2 ...
+ $ Q14.1_4  : num [1:12570] 1 2 3 5 4 2 5 1 4 2 ...
+ $ Q14.1_5  : num [1:12570] 3 2 4 4 5 1 2 2 4 2 ...
+ $ Q14.1_6  : num [1:12570] 2 4 3 2 3 1 2 5 3 2 ...
+ $ Q14.1_7  : num [1:12570] 4 4 2 4 5 2 3 2 1 4 ...
+ $ Q14.1_8  : num [1:12570] 3 4 4 5 4 3 4 5 5 2 ...
+ $ Q14.1_9  : num [1:12570] 1 3 2 4 5 2 1 3 1 2 ...
+ $ Q14.1_10 : num [1:12570] 2 2 2 5 4 1 1 2 4 3 ...
+ $ Q14.1_11 : num [1:12570] 4 3 2 5 5 2 5 4 4 3 ...
+ $ Q14.1_12 : num [1:12570] 2 3 2 2 5 1 1 1 4 2 ...</code></pre>
 </div>
 </div>
 <p>Finally, <code><a href="https://rdrr.io/r/base/ls.html">ls()</a></code> provides a list of all the variables in a given object. It doesn’t provide any info on the variable type or sample, but that does mean it’s the most secure and depending on the task, this might be all the info you really need to give the AI. I would suggest starting with <code><a href="https://rdrr.io/r/base/ls.html">ls()</a></code> and only scaling up if necessary (and your data isn’t sensitive):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">ls</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">ls</span>(dat)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "bill_depth_mm"     "bill_length_mm"    "body_mass_g"      
-[4] "flipper_length_mm" "island"            "sex"              
-[7] "species"           "year"             </code></pre>
+<pre><code> [1] "age"       "gender"    "Q14.1_1"   "Q14.1_10"  "Q14.1_11"  "Q14.1_12" 
+ [7] "Q14.1_2"   "Q14.1_3"   "Q14.1_4"   "Q14.1_5"   "Q14.1_6"   "Q14.1_7"  
+[13] "Q14.1_8"   "Q14.1_9"   "Q7.1_1"    "Q7.1_10"   "Q7.1_11"   "Q7.1_12"  
+[19] "Q7.1_13"   "Q7.1_14"   "Q7.1_15"   "Q7.1_16"   "Q7.1_17"   "Q7.1_18"  
+[25] "Q7.1_19"   "Q7.1_2"    "Q7.1_20"   "Q7.1_21"   "Q7.1_22"   "Q7.1_23"  
+[31] "Q7.1_24"   "Q7.1_3"    "Q7.1_4"    "Q7.1_5"    "Q7.1_6"    "Q7.1_7"   
+[37] "Q7.1_8"    "Q7.1_9"    "unique_id"</code></pre>
 </div>
 </div>
-<p>In your AI of choice, input the following:</p>
-<blockquote class="blockquote">
-<p>here are the variables in my data set</p>
-</blockquote>
-<blockquote class="blockquote">
-<p>ls(penguins) [1] “bill_depth_mm” “bill_length_mm” “body_mass_g” “flipper_length_mm” [5] “island” “sex” “species” “year”</p>
-</blockquote>
-<p>Without being asked, Copilot has provided some examples of how you might analyse this data using R and the code all works as intended.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Load the tidyverse package</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb8-3"><a href="#cb8-3"></a></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="co"># Assuming your data is in a dataframe called 'penguins'</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="co"># Let's start by getting a summary of each numerical variable</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a>penguins <span class="sc">%&gt;%</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb8-8"><a href="#cb8-8"></a>    <span class="at">Average_Bill_Depth =</span> <span class="fu">mean</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb8-9"><a href="#cb8-9"></a>    <span class="at">Average_Bill_Length =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb8-10"><a href="#cb8-10"></a>    <span class="at">Average_Body_Mass =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb8-11"><a href="#cb8-11"></a>    <span class="at">Average_Flipper_Length =</span> <span class="fu">mean</span>(flipper_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb8-12"><a href="#cb8-12"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="kable-table">
-<table class="table table-sm table-striped small">
-<colgroup>
-<col style="width: 23%">
-<col style="width: 25%">
-<col style="width: 22%">
-<col style="width: 28%">
-</colgroup>
-<thead><tr class="header">
-<th style="text-align: right;">Average_Bill_Depth</th>
-<th style="text-align: right;">Average_Bill_Length</th>
-<th style="text-align: right;">Average_Body_Mass</th>
-<th style="text-align: right;">Average_Flipper_Length</th>
-</tr></thead>
-<tbody><tr class="odd">
-<td style="text-align: right;">17.15117</td>
-<td style="text-align: right;">43.92193</td>
-<td style="text-align: right;">4201.754</td>
-<td style="text-align: right;">200.9152</td>
-</tr></tbody>
-</table>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Now, let's see the distribution of species across different islands</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>penguins <span class="sc">%&gt;%</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">count</span>(island, species) <span class="sc">%&gt;%</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> island, <span class="at">y =</span> n, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
-<span id="cb9-6"><a href="#cb9-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Penguin Species Across Islands"</span>,</span>
-<span id="cb9-7"><a href="#cb9-7"></a>       <span class="at">x =</span> <span class="st">"Island"</span>,</span>
-<span id="cb9-8"><a href="#cb9-8"></a>       <span class="at">y =</span> <span class="st">"Count"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="06-writing_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># We can also explore the relationship between flipper length and body mass</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>penguins <span class="sc">%&gt;%</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species)) <span class="sc">+</span></span>
-<span id="cb10-5"><a href="#cb10-5"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
-<span id="cb10-6"><a href="#cb10-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Relationship Between Flipper Length and Body Mass"</span>,</span>
-<span id="cb10-7"><a href="#cb10-7"></a>       <span class="at">x =</span> <span class="st">"Flipper Length (mm)"</span>,</span>
-<span id="cb10-8"><a href="#cb10-8"></a>       <span class="at">y =</span> <span class="st">"Body Mass (g)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 2 rows containing non-finite outside the scale range
-(`stat_smooth()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="06-writing_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># If you want to perform more specific analyses or visualizations,</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="co"># please let me know what you're interested in!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>I find this hugely problematic. Psychology has spent the last decade dealing with a replication and reproducibility crisis stemming in part because of questionable research practices. As a researcher, you should be making informed decisions as to how you analyse your data and I fear that this type of output is going to increase phishing and atheoretical, exploratory-as-confirmatory nonsense. What happens when the example code the AI spits out without being asked turns out to be a significant regression model that you would never have predicted or run yourself? Are you going to delete it? Or convince yourself that you were going to run it anyway and there’s a perfectly logical explanation?</p>
-<p>Before I have a full blown existential crisis, let’s get back on track.</p>
-</section><section id="activity-3-writing-code" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="activity-3-writing-code">
-<span class="header-section-number">6.3</span> Activity 3: Writing code</h2>
-<p>First, we’ll aim to produce a table of descriptive statistics for <code>body_mass_g</code> and a histogram. Because it has the exact variable and object names, it should write code we can easily copy and paste:</p>
-<blockquote class="blockquote">
-<p>Create a table of descriptive statistics for body mass and a histogram of that variable</p>
-</blockquote>
-<p>This is ChatGPT’s output (Copilot was very similar):</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># Load the tidyverse package</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb15-3"><a href="#cb15-3"></a></span>
-<span id="cb15-4"><a href="#cb15-4"></a><span class="co"># Load the penguins dataset (assuming it's from the palmerpenguins package)</span></span>
-<span id="cb15-5"><a href="#cb15-5"></a><span class="fu">data</span>(<span class="st">"penguins"</span>)</span>
-<span id="cb15-6"><a href="#cb15-6"></a></span>
-<span id="cb15-7"><a href="#cb15-7"></a><span class="co"># Check the structure of the dataset</span></span>
-<span id="cb15-8"><a href="#cb15-8"></a><span class="fu">str</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>tibble [344 × 8] (S3: tbl_df/tbl/data.frame)
- $ species          : Factor w/ 3 levels "Adelie","Chinstrap",..: 1 1 1 1 1 1 1 1 1 1 ...
- $ island           : Factor w/ 3 levels "Biscoe","Dream",..: 3 3 3 3 3 3 3 3 3 3 ...
- $ bill_length_mm   : num [1:344] 39.1 39.5 40.3 NA 36.7 39.3 38.9 39.2 34.1 42 ...
- $ bill_depth_mm    : num [1:344] 18.7 17.4 18 NA 19.3 20.6 17.8 19.6 18.1 20.2 ...
- $ flipper_length_mm: int [1:344] 181 186 195 NA 193 190 181 195 193 190 ...
- $ body_mass_g      : int [1:344] 3750 3800 3250 NA 3450 3650 3625 4675 3475 4250 ...
- $ sex              : Factor w/ 2 levels "female","male": 2 1 1 NA 1 2 1 2 NA NA ...
- $ year             : int [1:344] 2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># Summary statistics for body mass</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a>body_mass_summary <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
-<span id="cb17-3"><a href="#cb17-3"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb17-4"><a href="#cb17-4"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb17-5"><a href="#cb17-5"></a>    <span class="at">Median =</span> <span class="fu">median</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb17-6"><a href="#cb17-6"></a>    <span class="at">SD =</span> <span class="fu">sd</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb17-7"><a href="#cb17-7"></a>    <span class="at">Min =</span> <span class="fu">min</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb17-8"><a href="#cb17-8"></a>    <span class="at">Max =</span> <span class="fu">max</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb17-9"><a href="#cb17-9"></a>  )</span>
-<span id="cb17-10"><a href="#cb17-10"></a></span>
-<span id="cb17-11"><a href="#cb17-11"></a><span class="co"># Print the summary statistics</span></span>
-<span id="cb17-12"><a href="#cb17-12"></a><span class="fu">print</span>(body_mass_summary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 5
-   Mean Median    SD   Min   Max
-  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt;
-1 4202.   4050  802.  2700  6300</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># Create a histogram of body mass</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb19-3"><a href="#cb19-3"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">bins =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
-<span id="cb19-4"><a href="#cb19-4"></a>  <span class="fu">labs</span>(</span>
-<span id="cb19-5"><a href="#cb19-5"></a>    <span class="at">title =</span> <span class="st">"Distribution of Body Mass"</span>,</span>
-<span id="cb19-6"><a href="#cb19-6"></a>    <span class="at">x =</span> <span class="st">"Body Mass (g)"</span>,</span>
-<span id="cb19-7"><a href="#cb19-7"></a>    <span class="at">y =</span> <span class="st">"Frequency"</span></span>
-<span id="cb19-8"><a href="#cb19-8"></a>  ) <span class="sc">+</span></span>
-<span id="cb19-9"><a href="#cb19-9"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 2 rows containing non-finite outside the scale range
-(`stat_bin()`).</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="06-writing_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Some notes:</p>
-<ul>
-<li>I didn’t have to use the exact variable name <code>body_mass_g</code>, it has figured out from my request that’s the one I want to use.</li>
-<li>It’s also figured out that we’re using the <code>palmerpenguins</code> dataset, although it hasn’t given us the code to load that package so if we just copied and pasted this into a fresh script without having loaded the data already, it wouldn’t work.</li>
-<li>It’s used <code>na.rm = TRUE</code> to ignore missing values. This is a very common choice but remember <strong>it is a choice</strong>. You might not want this.</li>
-<li>Similarly, it’s specified <code>binwidth = 20</code> for the histogram. Looking at the data this seems like a reasonable binwidth to use, but again, it is a decision the AI has imposed and you must be aware of what you’re accepting.</li>
-<li>I am aware that I am using phrases like “choice” and “decision” that imbue the AI with consciousness. I know that’s not true, I just can’t figure out how to write it any other way.</li>
-</ul></section><section id="activity-4-giving-the-ai-more-freedom" class="level2" data-number="6.4"><h2 data-number="6.4" class="anchored" data-anchor-id="activity-4-giving-the-ai-more-freedom">
-<span class="header-section-number">6.4</span> Activity 4: Giving the AI more freedom</h2>
-<p>My initial request to write code was relatively simple and relatively well-specified but let’s try an example where there’s more room for the AI to make choices.</p>
-<blockquote class="blockquote">
-<p>Create a new variable that codes each penguin as chonky_boi if they’re a large male, chonky_gurl if they’re a large female, smol_boi if they’re a small male, and smol_boi if they’re a small female.</p>
-</blockquote>
-<p>This prompt gives a lot of leeway. I haven’t specified what to call the new variable, what criteria should be used to determine large and small, or what to do with observations that are neither.</p>
-<p>ChatGPT used percentiles to determine category, however, this code didn’t work - it returns all observations as “average”:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># Create a new variable based on conditions</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
-<span id="cb21-3"><a href="#cb21-3"></a>  <span class="fu">mutate</span>(<span class="at">chonkiness =</span> <span class="fu">case_when</span>(</span>
-<span id="cb21-4"><a href="#cb21-4"></a>    sex <span class="sc">==</span> <span class="st">"Male"</span> <span class="sc">&amp;</span> body_mass_g <span class="sc">&gt;</span> <span class="fu">quantile</span>(body_mass_g, <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"chonky_boi"</span>,</span>
-<span id="cb21-5"><a href="#cb21-5"></a>    sex <span class="sc">==</span> <span class="st">"Female"</span> <span class="sc">&amp;</span> body_mass_g <span class="sc">&gt;</span> <span class="fu">quantile</span>(body_mass_g, <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"chonky_gurl"</span>,</span>
-<span id="cb21-6"><a href="#cb21-6"></a>    sex <span class="sc">==</span> <span class="st">"Male"</span> <span class="sc">&amp;</span> body_mass_g <span class="sc">&lt;=</span> <span class="fu">quantile</span>(body_mass_g, <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"smol_boi"</span>,</span>
-<span id="cb21-7"><a href="#cb21-7"></a>    sex <span class="sc">==</span> <span class="st">"Female"</span> <span class="sc">&amp;</span> body_mass_g <span class="sc">&lt;=</span> <span class="fu">quantile</span>(body_mass_g, <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"smol_gurl"</span>,</span>
-<span id="cb21-8"><a href="#cb21-8"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"average"</span></span>
-<span id="cb21-9"><a href="#cb21-9"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<blockquote class="blockquote">
-<p>In this code:</p>
-</blockquote>
-<blockquote class="blockquote">
-<p>We use the case_when() function to define the conditions based on sex and body mass to categorize the penguins.</p>
-</blockquote>
-<blockquote class="blockquote">
-<p>For males with a body mass greater than the 75th percentile, they are categorized as “chonky_boi.” For females with a body mass greater than the 75th percentile, they are categorized as “chonky_gurl.”</p>
-</blockquote>
-<blockquote class="blockquote">
-<p>For males with a body mass less than or equal to the 25th percentile, they are categorized as “smol_boi.” For females with a body mass less than or equal to the 25th percentile, they are also categorized as “smol_gurl.”</p>
-</blockquote>
-<blockquote class="blockquote">
-<p>All other penguins are categorized as “average.”</p>
-</blockquote>
-<blockquote class="blockquote">
-<p>We then use mutate() to create the new variable “chonkiness” based on these conditions.</p>
-</blockquote>
-<p>I will spare you the full adventure (my <a href="https://chat.openai.com/share/769637ca-61bd-4ac5-9afb-d21381c5c99e">chat history is here</a> if you’d like to see) but after quite a bit of back-and-forth I realised that in the dataset “male” and “female” should both be lowercase and the code ChatGPT gave me had capitalised them both. <strong>There is no substitute for knowing your data</strong>.</p>
-<p>Once I changed this, it worked.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># Create a new variable based on conditions</span></span>
-<span id="cb22-2"><a href="#cb22-2"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
-<span id="cb22-3"><a href="#cb22-3"></a>  <span class="fu">mutate</span>(<span class="at">chonkiness =</span> <span class="fu">case_when</span>(</span>
-<span id="cb22-4"><a href="#cb22-4"></a>    sex <span class="sc">==</span> <span class="st">"male"</span> <span class="sc">&amp;</span> body_mass_g <span class="sc">&gt;</span> <span class="fu">quantile</span>(body_mass_g, <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"chonky_boi"</span>,</span>
-<span id="cb22-5"><a href="#cb22-5"></a>    sex <span class="sc">==</span> <span class="st">"female"</span> <span class="sc">&amp;</span> body_mass_g <span class="sc">&gt;</span> <span class="fu">quantile</span>(body_mass_g, <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"chonky_gurl"</span>,</span>
-<span id="cb22-6"><a href="#cb22-6"></a>    sex <span class="sc">==</span> <span class="st">"male"</span> <span class="sc">&amp;</span> body_mass_g <span class="sc">&lt;=</span> <span class="fu">quantile</span>(body_mass_g, <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"smol_boi"</span>,</span>
-<span id="cb22-7"><a href="#cb22-7"></a>    sex <span class="sc">==</span> <span class="st">"female"</span> <span class="sc">&amp;</span> body_mass_g <span class="sc">&lt;=</span> <span class="fu">quantile</span>(body_mass_g, <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"smol_gurl"</span>,</span>
-<span id="cb22-8"><a href="#cb22-8"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"average"</span></span>
-<span id="cb22-9"><a href="#cb22-9"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Copilot used a median split and didn’t try and create a third category, which is a questionable choice because the wording of the prompt really implies there needs to be something that the penguins are larger or smaller than. The code did work out of the box but remember the Jurassic Park rule: just because you can, doesn’t mean you should.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># Assuming 'penguins' is your dataframe and 'body_mass_g' is the variable for body mass</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a><span class="co"># First, we need to define what we consider 'large' and 'small'. </span></span>
-<span id="cb23-3"><a href="#cb23-3"></a><span class="co"># For this example, let's assume penguins heavier than the median are 'large', </span></span>
-<span id="cb23-4"><a href="#cb23-4"></a><span class="co"># and those equal or lighter are 'small'.</span></span>
-<span id="cb23-5"><a href="#cb23-5"></a></span>
-<span id="cb23-6"><a href="#cb23-6"></a><span class="co"># Calculate the median body mass</span></span>
-<span id="cb23-7"><a href="#cb23-7"></a>median_body_mass <span class="ot">&lt;-</span> <span class="fu">median</span>(penguins<span class="sc">$</span>body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb23-8"><a href="#cb23-8"></a></span>
-<span id="cb23-9"><a href="#cb23-9"></a><span class="co"># Create the new variable 'size_category'</span></span>
-<span id="cb23-10"><a href="#cb23-10"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
-<span id="cb23-11"><a href="#cb23-11"></a>  <span class="fu">mutate</span>(<span class="at">size_category =</span> <span class="fu">case_when</span>(</span>
-<span id="cb23-12"><a href="#cb23-12"></a>    body_mass_g <span class="sc">&gt;</span> median_body_mass <span class="sc">&amp;</span> sex <span class="sc">==</span> <span class="st">"male"</span>   <span class="sc">~</span> <span class="st">"chonky_boi"</span>,</span>
-<span id="cb23-13"><a href="#cb23-13"></a>    body_mass_g <span class="sc">&gt;</span> median_body_mass <span class="sc">&amp;</span> sex <span class="sc">==</span> <span class="st">"female"</span> <span class="sc">~</span> <span class="st">"chonky_gurl"</span>,</span>
-<span id="cb23-14"><a href="#cb23-14"></a>    body_mass_g <span class="sc">&lt;=</span> median_body_mass <span class="sc">&amp;</span> sex <span class="sc">==</span> <span class="st">"male"</span>   <span class="sc">~</span> <span class="st">"smol_boi"</span>,</span>
-<span id="cb23-15"><a href="#cb23-15"></a>    body_mass_g <span class="sc">&lt;=</span> median_body_mass <span class="sc">&amp;</span> sex <span class="sc">==</span> <span class="st">"female"</span> <span class="sc">~</span> <span class="st">"smol_gurl"</span>,</span>
-<span id="cb23-16"><a href="#cb23-16"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span>  <span class="co"># for missing or other values</span></span>
-<span id="cb23-17"><a href="#cb23-17"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>This code is a good example of why LLMs are inherently Luddites, even if they produce working code. When there’s missing data, <code>case_when()</code> used to require you to specify the type of <code>NA</code>, in this case <code>NA_character</code>. This is very uninintuitive, particularly when you’re trying to teach beginner coders (how can missing data have a type? is an entirely reasonable question) so I was delighted when it updated to remove this requirement. Additionally, <code>TRUE</code> was also changed to <code>default</code> which is a bit more readable.</p>
-<p>However, these changes are not reflected in Copilot’s code suggestion because the training data is older than the most recent update to <code>case_when()</code>. This example is relatively minor but it’s important to recognise that if you only use these kinds of AI to write code, you will very quickly be writing outdated code and using deprecated functions.</p>
-</section><section id="activity-5-further-analysis" class="level2" data-number="6.5"><h2 data-number="6.5" class="anchored" data-anchor-id="activity-5-further-analysis">
-<span class="header-section-number">6.5</span> Activity 5: Further analysis</h2>
-<p>To give one last example, I entered the following prompt:</p>
-<blockquote class="blockquote">
-<p>write me code to run a linear regression predicting body mass from sex. also include the code to perform necessary assumption tests using the easystats performance package.</p>
-</blockquote>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb24-2"><a href="#cb24-2"></a><span class="fu">library</span>(easystats)</span>
-<span id="cb24-3"><a href="#cb24-3"></a></span>
-<span id="cb24-4"><a href="#cb24-4"></a><span class="co"># Load the penguins dataset</span></span>
-<span id="cb24-5"><a href="#cb24-5"></a><span class="fu">data</span>(<span class="st">"penguins"</span>)</span>
-<span id="cb24-6"><a href="#cb24-6"></a></span>
-<span id="cb24-7"><a href="#cb24-7"></a><span class="co"># Filter out rows with missing values in body mass or sex</span></span>
-<span id="cb24-8"><a href="#cb24-8"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
-<span id="cb24-9"><a href="#cb24-9"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(body_mass_g) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(sex))</span>
-<span id="cb24-10"><a href="#cb24-10"></a></span>
-<span id="cb24-11"><a href="#cb24-11"></a><span class="co"># Convert sex to lowercase</span></span>
-<span id="cb24-12"><a href="#cb24-12"></a>penguins<span class="sc">$</span>sex <span class="ot">&lt;-</span> <span class="fu">tolower</span>(penguins<span class="sc">$</span>sex)</span>
-<span id="cb24-13"><a href="#cb24-13"></a></span>
-<span id="cb24-14"><a href="#cb24-14"></a><span class="co"># Run linear regression predicting body mass from sex</span></span>
-<span id="cb24-15"><a href="#cb24-15"></a>lm_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> sex, <span class="at">data =</span> penguins)</span>
-<span id="cb24-16"><a href="#cb24-16"></a></span>
-<span id="cb24-17"><a href="#cb24-17"></a><span class="co"># Display summary of the linear regression model</span></span>
-<span id="cb24-18"><a href="#cb24-18"></a><span class="fu">summary</span>(lm_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = body_mass_g ~ sex, data = penguins)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--1295.7  -595.7  -237.3   737.7  1754.3 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  3862.27      56.83  67.963  &lt; 2e-16 ***
-sexmale       683.41      80.01   8.542  4.9e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 730 on 331 degrees of freedom
-Multiple R-squared:  0.1806,    Adjusted R-squared:  0.1781 
-F-statistic: 72.96 on 1 and 331 DF,  p-value: 4.897e-16</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># Perform assumption tests using the performance package</span></span>
-<span id="cb26-2"><a href="#cb26-2"></a><span class="fu">check_assumptions</span>(lm_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in check_assumptions(lm_model): could not find function "check_assumptions"</code></pre>
-</div>
-</div>
-<p>ChatGPT refuses to forget that in my conversation history there was an issue with the code not being lowercase, so it’s now including functions to covert to lowercase, even though it’s completely unnecessary.</p>
-<p>It’s also introduced an error. The function should be <code>check_model()</code> not <code>check_assumptions()</code>. I know this because I know the package. The further away you get from what you could do yourself, the harder it will be to fix any errors and check what it has gotten wrong.</p>
-</section><section id="conclusions-and-musings" class="level2" data-number="6.6"><h2 data-number="6.6" class="anchored" data-anchor-id="conclusions-and-musings">
-<span class="header-section-number">6.6</span> Conclusions and musings</h2>
-<p>A large part of coding is looking up examples of code you’ve used before and then tweaking it to your new use case. If you use AI like this, then it can really help speed you up by giving you access to boiler plate code you can adapt. I also find it very useful for those functions that just refuse to stick in my brain - every time I try to change the labels on a faceted <code>ggplot()</code> I get it wrong. These days I just go straight to ChatGPT.</p>
-<p>Additionally, if what you’re wanting to achieve is relatively simple - descriptive stats, basic plots, simple wrangling and cleaning - it can’t go that far wrong and it’s usually easy enough to spot when something is wrong.</p>
-<p>These use cases work well because it’s your expertise that drives what the AI does and reviewing and tweaking the output is built-in to these workflows. These are the AI skills that everyone is going to need.</p>
-<p>But using code written by an AI that you don’t understand is dangerous and irresponsible. Think of all the stupid errors it has made throughout this book, and then imagine someone using it to write code for their medical research. I dread to think of the impact that this abdication of responsibility and expertise is going to have (and will already be having).</p>
-<p>This is a depressing way to end this book so I gave all three AIs the prompt:</p>
-<blockquote class="blockquote">
-<p>Write me a fun piece of R code.</p>
-</blockquote>
-<p>ChatGPT reassuring me comedy isn’t going to be outsourced any time soon:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># Function to generate a random joke</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a>generate_joke <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb28-3"><a href="#cb28-3"></a>  jokes <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb28-4"><a href="#cb28-4"></a>    <span class="st">"Why don't scientists trust atoms? Because they make up everything!"</span>,</span>
-<span id="cb28-5"><a href="#cb28-5"></a>    <span class="st">"I told my wife she was drawing her eyebrows too high. She looked surprised!"</span>,</span>
-<span id="cb28-6"><a href="#cb28-6"></a>    <span class="st">"Why did the scarecrow win an award? Because he was outstanding in his field!"</span>,</span>
-<span id="cb28-7"><a href="#cb28-7"></a>    <span class="st">"Why don't skeletons fight each other? They don't have the guts!"</span>,</span>
-<span id="cb28-8"><a href="#cb28-8"></a>    <span class="st">"I'm reading a book on anti-gravity. It's impossible to put down!"</span></span>
-<span id="cb28-9"><a href="#cb28-9"></a>  )</span>
-<span id="cb28-10"><a href="#cb28-10"></a>  <span class="fu">return</span>(<span class="fu">sample</span>(jokes, <span class="dv">1</span>))</span>
-<span id="cb28-11"><a href="#cb28-11"></a>}</span>
-<span id="cb28-12"><a href="#cb28-12"></a></span>
-<span id="cb28-13"><a href="#cb28-13"></a><span class="co"># Generate and print a random joke</span></span>
-<span id="cb28-14"><a href="#cb28-14"></a><span class="fu">cat</span>(<span class="st">"Here's a random joke for you:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Here's a random joke for you:</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">cat</span>(<span class="fu">generate_joke</span>(), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Why did the scarecrow win an award? Because he was outstanding in his field! </code></pre>
-</div>
-</div>
-<p>Copilot on its way to Vegas (ok I actually quite like this one):</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="co"># Simple Slot Machine in R</span></span>
-<span id="cb32-2"><a href="#cb32-2"></a><span class="fu">set.seed</span>(<span class="fu">Sys.time</span>()) <span class="co"># Seed for randomness based on current time</span></span>
-<span id="cb32-3"><a href="#cb32-3"></a></span>
-<span id="cb32-4"><a href="#cb32-4"></a><span class="co"># Function to spin the slot machine</span></span>
-<span id="cb32-5"><a href="#cb32-5"></a>spin_slot_machine <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb32-6"><a href="#cb32-6"></a>  fruits <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"🍒"</span>, <span class="st">"🍋"</span>, <span class="st">"🍊"</span>, <span class="st">"🍉"</span>, <span class="st">"🍇"</span>, <span class="st">"🍓"</span>)</span>
-<span id="cb32-7"><a href="#cb32-7"></a>  spin <span class="ot">&lt;-</span> <span class="fu">sample</span>(fruits, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb32-8"><a href="#cb32-8"></a>  <span class="fu">cat</span>(<span class="st">"Spinning... You got:"</span>, spin, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb32-9"><a href="#cb32-9"></a>  </span>
-<span id="cb32-10"><a href="#cb32-10"></a>  <span class="cf">if</span> (<span class="fu">length</span>(<span class="fu">unique</span>(spin)) <span class="sc">==</span> <span class="dv">1</span>) {</span>
-<span id="cb32-11"><a href="#cb32-11"></a>    <span class="fu">cat</span>(<span class="st">"Congratulations! You won! 🎉</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb32-12"><a href="#cb32-12"></a>  } <span class="cf">else</span> {</span>
-<span id="cb32-13"><a href="#cb32-13"></a>    <span class="fu">cat</span>(<span class="st">"Try again! 🍀</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb32-14"><a href="#cb32-14"></a>  }</span>
-<span id="cb32-15"><a href="#cb32-15"></a>}</span>
-<span id="cb32-16"><a href="#cb32-16"></a></span>
-<span id="cb32-17"><a href="#cb32-17"></a><span class="co"># Spin the slot machine</span></span>
-<span id="cb32-18"><a href="#cb32-18"></a><span class="fu">spin_slot_machine</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Spinning... You got: 🍉 🍇 🍇 
-Try again! 🍀</code></pre>
-</div>
-</div>
-<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Caution
+<span class="screen-reader-only">Note</span>Activity 3
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This book was written in Spring 2024 and should be considered a <strong>living document</strong>. The functionality and capability of AI is changing rapidly and the most recent advances may not reflect what is described in this book. Given the brave new world in which we now live, all constructive feedback and suggestions are welcome! If you have any feedback or suggestions, please provide it <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=KVxybjp2UE-B8i4lTwEzyKAHhjrab3lLkx60RR1iKjNUM0VCMUUxUUFLMTdNM0JTS09PSDg2SFQ3US4u">via Forms</a>.</p>
+<p>Now we’re going to tell the AI about our dataset and what we’d like. For educational value, we’ll give it a purposefully brief description.</p>
+<blockquote class="blockquote">
+<p>I have a dataset from a paper on statistics anxiety. I want to pull out the demographic information, age and gender and I want to calculate each participant’s Statistic Anxiety score and their Intolerance of Uncertainty</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>here are the variables in my data set</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>[1] “age” “gender” “Q14.1_1” “Q14.1_10” “Q14.1_11” “Q14.1_12” “Q14.1_2”<br>
+[8] “Q14.1_3” “Q14.1_4” “Q14.1_5” “Q14.1_6” “Q14.1_7” “Q14.1_8” “Q14.1_9”<br>
+[15] “Q7.1_1” “Q7.1_10” “Q7.1_11” “Q7.1_12” “Q7.1_13” “Q7.1_14” “Q7.1_15”<br>
+[22] “Q7.1_16” “Q7.1_17” “Q7.1_18” “Q7.1_19” “Q7.1_2” “Q7.1_20” “Q7.1_21”<br>
+[29] “Q7.1_22” “Q7.1_23” “Q7.1_24” “Q7.1_3” “Q7.1_4” “Q7.1_5” “Q7.1_6”<br>
+[36] “Q7.1_7” “Q7.1_8” “Q7.1_9” “unique_id”</p>
+</blockquote>
+</div>
+</div>
+<p>The number of questions Copilot asks in response to this prompt really does hammer home my point that there is no substitute for knowing your data, I won’t copy them all here but you get the idea:</p>
+<p><strong>Which instruments are these items from?</strong></p>
+<ul>
+<li>Are Q14.1_* the Statistics Anxiety items and Q7.1_* the Intolerance of Uncertainty items (or vice versa)?</li>
+<li>What are the exact scales used? For example, common options are: Statistics anxiety: STARS (Cruise et al.), SAM (Earp), or newer short forms. Intolerance of Uncertainty: IUS-27 or IUS-12 (Carleton et al.). The correct scoring (including reverse‑scored items) depends on the instrument and version.</li>
+</ul>
+<p><strong>Response scales and coding</strong></p>
+<ul>
+<li>What are the response options and numeric mapping? For example, Likert 1–5 or 1–7, with higher numbers indicating more of the construct.</li>
+<li>Are any items reverse‑scored? If yes, please list them (e.g., Q14.1_3, Q14.1_7, …). If you are unsure, I can map once you confirm the instrument.</li>
+</ul>
+<p><strong>Missing data handling</strong></p>
+<ul>
+<li>What rule should we apply per scale? Common options: Person‑mean imputation if ≤20% of items missing on a scale, else set the scale score to NA. Require complete data (no imputation). Impute with item median across participants.</li>
+<li>Please specify your preferred approach per scale.</li>
+</ul>
+<p><strong>Demographics</strong></p>
+<ul>
+<li>Age: is it numeric years? Any range checks to apply (e.g., set implausible ages &lt;16 or &gt;100 to NA)?</li>
+<li>Gender: current values and required recode? For example, keep original categories, or recode to levels such as “woman”, “man”, “non‑binary”, “prefer not to say”, “other”. Any harmonisation rules you prefer?</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Activity 4
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Again for educatoinal value, we’re going to be lazy and give it minimal information. The questions it asks you will be slightly different to the ones above but will hopefully similar enough that this response should still work. Reply to Copilot with the following:</p>
+<blockquote class="blockquote">
+<p>Questions 7 are the Statistics Anxiety items and Q14 are the Intolerance of Uncertainty items. I only want complete cases. I don’t know anything else.</p>
+</blockquote>
+</div>
+</div>
+<p>Copilot then produces the code based on the minimal information you’ve given it. We’ll get to whether it works in the next step but regardless of whether it does, I find this hugely problematic. Psychology and many other fields have spent the last decade dealing with a replication and reproducibility crisis stemming in part because of questionable research practices. As a researcher, you should be making informed decisions as to how you analyse your data and even when I have admitted I don’t know almost anything about my data, it has provided the code.</p>
+<p>“Vibe coding” like this is going to increase phishing and atheoretical, exploratory-as-confirmatory nonsense. What happens when the example code the AI spits out without being asked turns out to be a significant regression model that you would never have predicted or run yourself? Are you going to delete it? Or convince yourself that you were going to run it anyway and there’s a perfectly logical explanation?</p>
+<p>Before I have a full blown existential crisis, let’s get back on track.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Activity 5
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Here’s the code Copilot produced, run it and see if it works (or run the code it provides you when you do this yourself, make sure you update the object name so it creates a unique name rather than <code>dat</code> which will overwrite the original and we need to compare them).</p>
+<p>Spoiler alert: it doesn’t work (also look at it, it’s much more complicated than it needs to be).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Load packages (tidyverse-first, no installs here)</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="fu">library</span>(readr)</span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="fu">library</span>(ggplot2) <span class="co"># not required for scoring, but commonly loaded</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a></span>
+<span id="cb8-9"><a href="#cb8-9"></a><span class="co"># ---- Configuration ---------------------------------------------------------</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a></span>
+<span id="cb8-11"><a href="#cb8-11"></a><span class="co"># 1) Provide your data frame here. Replace `df` with your actual object name or</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a><span class="co">#    add a readr call (e.g., read_csv("relative/path.csv")).</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a><span class="co">#    The script assumes columns exactly as you listed:</span></span>
+<span id="cb8-14"><a href="#cb8-14"></a><span class="co">#    "age", "gender", Q14.1_1:Q14.1_12, Q7.1_1:Q7.1_24, and "unique_id".</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a>dat_copilot <span class="ot">&lt;-</span> dat  <span class="co"># &lt;-- replace if your object is named differently</span></span>
+<span id="cb8-16"><a href="#cb8-16"></a></span>
+<span id="cb8-17"><a href="#cb8-17"></a><span class="co"># 2) Identify item columns by pattern (robust to potential ordering).</span></span>
+<span id="cb8-18"><a href="#cb8-18"></a>stats_items <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">"^Q7</span><span class="sc">\\</span><span class="st">.1_</span><span class="sc">\\</span><span class="st">d+$"</span>, <span class="fu">names</span>(dat), <span class="at">value =</span> <span class="cn">TRUE</span>)   <span class="co"># Statistics Anxiety items</span></span>
+<span id="cb8-19"><a href="#cb8-19"></a>iu_items    <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">"^Q14</span><span class="sc">\\</span><span class="st">.1_</span><span class="sc">\\</span><span class="st">d+$"</span>, <span class="fu">names</span>(dat), <span class="at">value =</span> <span class="cn">TRUE</span>)  <span class="co"># Intolerance of Uncertainty items</span></span>
+<span id="cb8-20"><a href="#cb8-20"></a></span>
+<span id="cb8-21"><a href="#cb8-21"></a><span class="co"># Sanity checks: stop early if required columns are missing</span></span>
+<span id="cb8-22"><a href="#cb8-22"></a>required_cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"unique_id"</span>, <span class="st">"age"</span>, <span class="st">"gender"</span>, stats_items, iu_items)</span>
+<span id="cb8-23"><a href="#cb8-23"></a>missing_cols <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(<span class="fu">c</span>(<span class="st">"unique_id"</span>, <span class="st">"age"</span>, <span class="st">"gender"</span>), <span class="fu">names</span>(dat))</span>
+<span id="cb8-24"><a href="#cb8-24"></a><span class="cf">if</span> (<span class="fu">length</span>(stats_items) <span class="sc">==</span> <span class="dv">0</span>) <span class="fu">stop</span>(<span class="st">"No Statistics Anxiety items (Q7.1_*) found."</span>)</span>
+<span id="cb8-25"><a href="#cb8-25"></a><span class="cf">if</span> (<span class="fu">length</span>(iu_items) <span class="sc">==</span> <span class="dv">0</span>)    <span class="fu">stop</span>(<span class="st">"No Intolerance of Uncertainty items (Q14.1_*) found."</span>)</span>
+<span id="cb8-26"><a href="#cb8-26"></a><span class="cf">if</span> (<span class="fu">length</span>(missing_cols) <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="fu">stop</span>(<span class="fu">paste</span>(<span class="st">"Missing required column(s):"</span>, <span class="fu">paste</span>(missing_cols, <span class="at">collapse =</span> <span class="st">", "</span>)))</span>
+<span id="cb8-27"><a href="#cb8-27"></a></span>
+<span id="cb8-28"><a href="#cb8-28"></a><span class="co"># ---- Helper: safe numeric coercion for item responses ----------------------</span></span>
+<span id="cb8-29"><a href="#cb8-29"></a><span class="co"># Many survey exports store Likert responses as strings (e.g., "4", "Strongly agree (5)").</span></span>
+<span id="cb8-30"><a href="#cb8-30"></a><span class="co"># We parse numeric content only; non-parsable entries become NA (and will be excluded by complete-case rule).</span></span>
+<span id="cb8-31"><a href="#cb8-31"></a>parse_items_numeric <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb8-32"><a href="#cb8-32"></a>  <span class="co"># parse_number is tolerant to labels like "5 - Strongly agree"; returns NA if no digits</span></span>
+<span id="cb8-33"><a href="#cb8-33"></a>  readr<span class="sc">::</span><span class="fu">parse_number</span>(x, <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>, <span class="st">"N/A"</span>, <span class="st">"NaN"</span>, <span class="st">"Missing"</span>))</span>
+<span id="cb8-34"><a href="#cb8-34"></a>}</span>
+<span id="cb8-35"><a href="#cb8-35"></a></span>
+<span id="cb8-36"><a href="#cb8-36"></a><span class="co"># ---- Scoring ---------------------------------------------------------------</span></span>
+<span id="cb8-37"><a href="#cb8-37"></a></span>
+<span id="cb8-38"><a href="#cb8-38"></a>scored <span class="ot">&lt;-</span></span>
+<span id="cb8-39"><a href="#cb8-39"></a>  dat_copilot <span class="sc">|&gt;</span></span>
+<span id="cb8-40"><a href="#cb8-40"></a>  <span class="co"># Keep only variables we need to avoid accidental modification of other fields</span></span>
+<span id="cb8-41"><a href="#cb8-41"></a>  <span class="fu">select</span>(<span class="fu">all_of</span>(<span class="fu">c</span>(<span class="st">"unique_id"</span>, <span class="st">"age"</span>, <span class="st">"gender"</span>, stats_items, iu_items))) <span class="sc">|&gt;</span></span>
+<span id="cb8-42"><a href="#cb8-42"></a>  <span class="co"># Coerce age to numeric carefully; do not destructively overwrite original elsewhere</span></span>
+<span id="cb8-43"><a href="#cb8-43"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-44"><a href="#cb8-44"></a>    <span class="at">age =</span> <span class="fu">suppressWarnings</span>(<span class="fu">parse_number</span>(age))</span>
+<span id="cb8-45"><a href="#cb8-45"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb8-46"><a href="#cb8-46"></a>  <span class="co"># Coerce item responses to numeric. We do this separately for each scale to allow per-scale complete-case rules.</span></span>
+<span id="cb8-47"><a href="#cb8-47"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-48"><a href="#cb8-48"></a>    <span class="fu">across</span>(<span class="fu">all_of</span>(stats_items), parse_items_numeric),</span>
+<span id="cb8-49"><a href="#cb8-49"></a>    <span class="fu">across</span>(<span class="fu">all_of</span>(iu_items),    parse_items_numeric)</span>
+<span id="cb8-50"><a href="#cb8-50"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb8-51"><a href="#cb8-51"></a>  <span class="co"># Compute totals with explicit missing-data handling:</span></span>
+<span id="cb8-52"><a href="#cb8-52"></a>  <span class="co"># - Because you requested complete cases, we first flag participants who have *all* item responses for each scale.</span></span>
+<span id="cb8-53"><a href="#cb8-53"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-54"><a href="#cb8-54"></a>    <span class="at">stats_complete =</span> <span class="fu">if_all</span>(<span class="fu">all_of</span>(stats_items), <span class="sc">~</span> <span class="sc">!</span><span class="fu">is.na</span>(.x)),</span>
+<span id="cb8-55"><a href="#cb8-55"></a>    <span class="at">iu_complete    =</span> <span class="fu">if_all</span>(<span class="fu">all_of</span>(iu_items),    <span class="sc">~</span> <span class="sc">!</span><span class="fu">is.na</span>(.x))</span>
+<span id="cb8-56"><a href="#cb8-56"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb8-57"><a href="#cb8-57"></a>  <span class="co"># Compute totals only for complete cases; leave as NA otherwise (we will filter next)</span></span>
+<span id="cb8-58"><a href="#cb8-58"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-59"><a href="#cb8-59"></a>    <span class="at">stats_anxiety_total =</span> <span class="fu">if_else</span>(</span>
+<span id="cb8-60"><a href="#cb8-60"></a>      stats_complete,</span>
+<span id="cb8-61"><a href="#cb8-61"></a>      <span class="fu">rowSums</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(stats_items)), <span class="at">na.rm =</span> <span class="cn">FALSE</span>), <span class="co"># na.rm = FALSE enforces completeness</span></span>
+<span id="cb8-62"><a href="#cb8-62"></a>      <span class="cn">NA_real_</span></span>
+<span id="cb8-63"><a href="#cb8-63"></a>    ),</span>
+<span id="cb8-64"><a href="#cb8-64"></a>    <span class="at">iu_total =</span> <span class="fu">if_else</span>(</span>
+<span id="cb8-65"><a href="#cb8-65"></a>      iu_complete,</span>
+<span id="cb8-66"><a href="#cb8-66"></a>      <span class="fu">rowSums</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(iu_items)), <span class="at">na.rm =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb8-67"><a href="#cb8-67"></a>      <span class="cn">NA_real_</span></span>
+<span id="cb8-68"><a href="#cb8-68"></a>    )</span>
+<span id="cb8-69"><a href="#cb8-69"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb8-70"><a href="#cb8-70"></a>  <span class="co"># Keep only participants who are complete on *both* scales, as requested</span></span>
+<span id="cb8-71"><a href="#cb8-71"></a>  <span class="fu">filter</span>(stats_complete <span class="sc">&amp;</span> iu_complete) <span class="sc">|&gt;</span></span>
+<span id="cb8-72"><a href="#cb8-72"></a>  <span class="co"># Select final output columns in a tidy participant-level tibble</span></span>
+<span id="cb8-73"><a href="#cb8-73"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb8-74"><a href="#cb8-74"></a>    unique_id,</span>
+<span id="cb8-75"><a href="#cb8-75"></a>    age,</span>
+<span id="cb8-76"><a href="#cb8-76"></a>    gender,</span>
+<span id="cb8-77"><a href="#cb8-77"></a>    stats_anxiety_total,</span>
+<span id="cb8-78"><a href="#cb8-78"></a>    iu_total</span>
+<span id="cb8-79"><a href="#cb8-79"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in `mutate()`:
+ℹ In argument: `across(all_of(stats_items), parse_items_numeric)`.
+Caused by error in `across()`:
+! Can't compute column `Q7.1_1`.
+Caused by error in `parse_vector()`:
+! is.character(x) is not TRUE</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># ---- Result ----------------------------------------------------------------</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>scored</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error: object 'scored' not found</code></pre>
+</div>
+</div>
+<p>I’m going to save you the back-and-forth it required to get the code to work but briefly:</p>
+<ul>
+<li>The error was because it was trying to parse a numeric variable as a character variable.</li>
+<li>Once I fixed this, it calculated sum scores not mean scores. Which I spotted because I knew what the plausible range of values for the mean should be.</li>
+<li>Then it calculated the mean scores incorrectly. I only knew this because I had the correct scores from my version of the code. This is very dangerous because these values looked entirely plausible.</li>
+<li>One of the reasons it did this, is that I had failed to tell it that item Q7.1_24 is an attention check and that only participants who answered 1 to that question should be included - so that’s my fault for not giving it enough information.</li>
+<li>The other differences were in how it handled missing data. These weren’t necessarily wrong but they were a <strong>choice</strong> and it may not be a choice you intended to make.</li>
+</ul>
+<section id="break-it-down" class="level2" data-number="6.4"><h2 data-number="6.4" class="anchored" data-anchor-id="break-it-down">
+<span class="header-section-number">6.4</span> Break it down</h2>
+<p>One of the reasons this is going so wrong is because I have asked it to do too much at once. A better approach is to break down the code into small chunks. Once you can verify each chunk is working, you can then combine and refactor it (if you’re starting to think that it might just be easier to write the code yourself and then review it, yes, yes it would).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Actiivty 6
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We want to start fresh so start a new Copilot chat then enter the prompt from Activity 2 again.</p>
+<p>Now we’re going to try and do the same thing again but we’re going to break down the steps and ask for smaller chunks each time. Follow-up on the set-up prompt with the following:</p>
+<blockquote class="blockquote">
+<p>Here is my dataset. First, I want to create an object named demo_copilot that has the participant id, age, and gender. Age is categorical. Remove any participant who is missing any information.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>ls(dat) [1] “age” “gender” “Q14.1_1” “Q14.1_10” “Q14.1_11” “Q14.1_12” “Q14.1_2”<br>
+[8] “Q14.1_3” “Q14.1_4” “Q14.1_5” “Q14.1_6” “Q14.1_7” “Q14.1_8” “Q14.1_9”<br>
+[15] “Q7.1_1” “Q7.1_10” “Q7.1_11” “Q7.1_12” “Q7.1_13” “Q7.1_14” “Q7.1_15”<br>
+[22] “Q7.1_16” “Q7.1_17” “Q7.1_18” “Q7.1_19” “Q7.1_2” “Q7.1_20” “Q7.1_21”<br>
+[29] “Q7.1_22” “Q7.1_23” “Q7.1_24” “Q7.1_3” “Q7.1_4” “Q7.1_5” “Q7.1_6”<br>
+[36] “Q7.1_7” “Q7.1_8” “Q7.1_9” “unique_id”</p>
+</blockquote>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># Create demo_copilot with participant ID, categorical age, and gender</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="co"># Remove rows with any missing values in these columns</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>demo_copilot <span class="ot">&lt;-</span> dat <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a>  <span class="fu">select</span>(unique_id, age, gender) <span class="sc">|&gt;</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>  <span class="fu">rename</span>(<span class="at">participant_id =</span> unique_id) <span class="sc">|&gt;</span></span>
+<span id="cb12-6"><a href="#cb12-6"></a>  <span class="fu">mutate</span>(<span class="at">age =</span> <span class="fu">as.factor</span>(age),</span>
+<span id="cb12-7"><a href="#cb12-7"></a>    <span class="at">gender =</span> <span class="fu">as.factor</span>(gender))<span class="sc">|&gt;</span></span>
+<span id="cb12-8"><a href="#cb12-8"></a>  <span class="fu">drop_na</span>(participant_id, age, gender)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Now check if this matches our original code:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">all.equal</span>(demo, demo_copilot)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Names: 1 string mismatch"                                             
+[2] "Component \"age\": Modes: character, numeric"                         
+[3] "Component \"age\": Attributes: &lt; target is NULL, current is list &gt;"   
+[4] "Component \"age\": target is character, current is factor"            
+[5] "Component \"gender\": Modes: character, numeric"                      
+[6] "Component \"gender\": Attributes: &lt; target is NULL, current is list &gt;"
+[7] "Component \"gender\": target is character, current is factor"         </code></pre>
+</div>
+</div>
+<p>No but the differences are not potentially not problematic in that they stem from the fact that Copilot has explicitly converted age and gender to factors and my original code just left them as character. Additionally, it has also renamed <code>unique_id</code> as <code>participant_id</code>, which was entirely unnecessary and may cause some issues if you didn’t notice, but the data is at least right.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Activity 7
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Now try and reproduce the objects <code>IUS</code> and <code>STARS</code> using AI to write the code to create <code>IUS_copilot</code> and <code>STARS_copilot</code> version. If you manage to get this to work, reflect on how much information you had to give it and how you acquired this knowledge.</p>
+<p>If you can’t get them to match, reflect on what knowledge you might be missing to get it to do the task</p>
+</div>
+</div>
+</section><section id="be-critical" class="level2" data-number="6.5"><h2 data-number="6.5" class="anchored" data-anchor-id="be-critical">
+<span class="header-section-number">6.5</span> Be critical</h2>
+<p>In terms of your psychological and cognitive development, the warnings of this chapter are similar to those in previous chapters: if you don’t write the code yourself, you won’t gain those mastery experiences that support the development of self-efficacy and competence. Additionally, working through the code yourself requires you to understand your data and is essentially a form of self-explanation which will further impact your competence and ability to produce anything autonomously.</p>
+<p>But my biggest warning for this chapter is not about your psychological development, but rather the integrity of your work. If you worked through Activity 7 properly you’ll understand that the amount of information you have to provide in order to get AI to write correct code is so extensive, you might as well just have written it yourself and used AI to fix any resulting errors.</p>
+<p>This is why the prophesised AI productivity boom has not come to pass. Now that the technology has been around for a while, instead, what we’re seeing is that time saved on doing the task is being spent on cleaning up AI slop. Programmers who use AI are found to be no faster, they just spend more time debugging errors AI has introduced rather than writing code.</p>
+<p>This integrity issue isn’t just about students cheating on their homework. The scientific literature is already full of AI garbage. There will be medical “treatments” being prescribed that at best don’t work and at worsr are harmful. Copilot being introduced into Microsoft Excel is a financial disaster waiting to happen.</p>
+<p>The world has changed and for those of us that value integrity and expertise it feels like we are fighting a losing battle. My greatest challenge to you isn’t coding, it is to resist every psychological urge that tells all of us to take the easy route. Respect yourself and your abilities. Spend hours figuring out what the bloody hell is wrong with your data. Learn how to do things properly. If nothing else, you’ll be one of a increasingly small pool who can and that is going to become very valuable, very quickly.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Key takeaways
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>There is no substitute for knowing your data. At minimum, you need to know what your variables are, what the range of plausible values are, how you want to handle missing data, and you need to know what you intended to do and why.</li>
+<li>If you ask AI to write code from scratch, break it down into small chunks.</li>
+<li>The more specific you can be, the better the AI will do.</li>
+<li>Always verify what it produces. Sometimes you can do this with code, sometimes you need your domain knowledge of the data.</li>
+</ul>
+</div>
+</div>
+<p>This is a depressing way to end this book so I gave Copilot the prompt:</p>
+<blockquote class="blockquote">
+<p>Write me a fun piece of R code.</p>
+</blockquote>
+<p>And it took me to Vegas (ok I actually quite like this):</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># Simple Slot Machine in R</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="fu">set.seed</span>(<span class="fu">Sys.time</span>()) <span class="co"># Seed for randomness based on current time</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a></span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="co"># Function to spin the slot machine</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>spin_slot_machine <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb15-6"><a href="#cb15-6"></a>  fruits <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"🍒"</span>, <span class="st">"🍋"</span>, <span class="st">"🍊"</span>, <span class="st">"🍉"</span>, <span class="st">"🍇"</span>, <span class="st">"🍓"</span>)</span>
+<span id="cb15-7"><a href="#cb15-7"></a>  spin <span class="ot">&lt;-</span> <span class="fu">sample</span>(fruits, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-8"><a href="#cb15-8"></a>  <span class="fu">cat</span>(<span class="st">"Spinning... You got:"</span>, spin, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb15-9"><a href="#cb15-9"></a>  </span>
+<span id="cb15-10"><a href="#cb15-10"></a>  <span class="cf">if</span> (<span class="fu">length</span>(<span class="fu">unique</span>(spin)) <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="cb15-11"><a href="#cb15-11"></a>    <span class="fu">cat</span>(<span class="st">"Congratulations! You won! 🎉</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb15-12"><a href="#cb15-12"></a>  } <span class="cf">else</span> {</span>
+<span id="cb15-13"><a href="#cb15-13"></a>    <span class="fu">cat</span>(<span class="st">"Try again! 🍀</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb15-14"><a href="#cb15-14"></a>  }</span>
+<span id="cb15-15"><a href="#cb15-15"></a>}</span>
+<span id="cb15-16"><a href="#cb15-16"></a></span>
+<span id="cb15-17"><a href="#cb15-17"></a><span class="co"># Spin the slot machine</span></span>
+<span id="cb15-18"><a href="#cb15-18"></a><span class="fu">spin_slot_machine</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Spinning... You got: 🍊 🍋 🍊 
+Try again! 🍀</code></pre>
 </div>
 </div>
 
 
+</section>
+</div>
+</div>
 </section></main><!-- /main --><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script><script>
 
 /* update total correct if #webex-total_correct exists */
@@ -912,372 +1207,255 @@ function move_sidebar() {
 move_sidebar();
 window.onresize = move_sidebar;
 </script><script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
     }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
       }
+      return false;
     }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
       });
     }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
-        }
-      }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
-      return false;
-    }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
         }
-        return container.innerHTML
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1285,185 +1463,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./05-review.html" class="pagination-link" aria-label="Code review">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Code review</span></span>
       </a>          

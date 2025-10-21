@@ -163,7 +163,67 @@ Reflect on the differences between the summaries - the technicality of the langu
 
 :::
 
+## Test yourself
 
+```{r}
+#| echo: false
+#| 
+library(webexercises)
+
+opts_model <- c("A model is the company that owns the AI, and a platform is the type of computer it runs on",
+  answer = "A model is the underlying language system, and a platform is the app or interface that uses it",
+  "A model is always multimodal, and a platform never is",
+  "There is no real difference"
+)
+
+opts_ethics <- c(
+  "Bias and discrimination in training data",
+  "Hidden human labour in data moderation",
+  "Lack of transparency about training sources",
+  answer = "Over-representation of animal behaviour in datasets"
+)
+
+opts_epistemic <- c(
+  "Avoiding any use of AI at university",
+  answer = "Being careful about what you claim to know and recognising that fluent text is not always true",
+  "Using AI outputs only when they are properly referenced",
+  "Asking AI to simplify complex ideas for you"
+)
+
+opts_sdt <- c(
+  "Accuracy, efficiency, and convenience",
+  answer = "Autonomy, competence, and relatedness",
+  "Curiosity, creativity, and collaboration",
+  "Motivation, confidence, and control"
+)
+```
+
+
+1. What is the main difference between an AI model and an AI platform?
+
+`r longmcq(opts_model)`
+
+>
+
+2. OpenAI’s most recent model at the time of writing is GPT-`r fitb("5")`, which is also used by Microsoft Copilot.
+
+>
+ 
+3. Which of the following is not listed in the chapter as a key ethical concern about AI?
+
+`r longmcq(opts_ethics)`
+
+>
+
+4. Epistemic caution” means:
+
+`r longmcq(opts_epistemic)`
+
+> 
+
+5. According to self-determination theory, which three elements support high-quality learning?
+
+`r longmcq(opts_sdt)`
 
 
 
